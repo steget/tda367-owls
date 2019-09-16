@@ -10,31 +10,28 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ProjectController implements Initializable {
-  private final Project project;
-  private final ProjectView projectView;
+  //private final Project project;
+  //private final ProjectView projectView;
   public static final int KO = 1;
 
-  public static ProjectController create(Project project, ProjectView projectView) {
+  /*public static ProjectController create(Project project, ProjectView projectView) {
     return new ProjectController(project, projectView);
-  }
+  }*/
 
-  private ProjectController(Project project, ProjectView projectView) {
-    projectView.getButton().addActionListener(new ProjectButtonPressed());
 
-    this.project = project;
-    this.projectView = projectView;
-  }
 
   private class ProjectButtonPressed implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
-      project.incrementPresses();
-      projectView.getPressesLabel().setText(String.valueOf(project.getPresses()));
+  //    project.incrementPresses();
+  //    projectView.getPressesLabel().setText(String.valueOf(project.getPresses()));
     }
   }
 
   @Override
   public void initialize(URL url, ResourceBundle rb) {
+
+
 
   }
 }

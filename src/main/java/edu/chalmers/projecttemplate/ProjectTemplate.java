@@ -12,13 +12,13 @@ import javafx.stage.Stage;
 import javax.swing.SwingUtilities;
 
 public final class ProjectTemplate extends Application {
-	private ProjectTemplate() {
-		/* No instances allowed! */
-	}
+	/*private ProjectTemplate() {
+		*//* No instances allowed! *//*
+	}*/
 
 	@Override
 	public void start(Stage stage) throws Exception {
-			Parent root = FXMLLoader.load(getClass().getResource("storageSystem.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("/resources/storageSystem.fxml"));
 
 			Scene scene = new Scene(root);
 
