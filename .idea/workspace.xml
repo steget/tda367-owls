@@ -1,38 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="eb971552-d376-47d4-af75-89a345c6038d" name="Default Changelist" comment="" />
+    <list default="true" id="3ef8672f-7133-4ad9-a2d4-872df7a298ab" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1QxN59me5FAXiUBzo4YjiyaPLcb" />
-  <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/storagesystem/view" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
-  </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Per_A\Downloads\basicSwing\storIT\src\main\resources" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="storagesystem.controller" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Per_A\Downloads\basicSwing\storIT\src\main\java\storagesystem\view" />
-    </key>
-  </component>
+  <component name="ProjectId" id="1QxRcqJYnszQ8idZBPBL3jyhKcf" />
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -70,12 +49,23 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="eb971552-d376-47d4-af75-89a345c6038d" name="Default Changelist" comment="" />
-      <created>1568708101564</created>
+      <changelist id="3ef8672f-7133-4ad9-a2d4-872df7a298ab" name="Default Changelist" comment="" />
+      <created>1568710342496</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1568708101564</updated>
+      <updated>1568710342496</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
