@@ -10,6 +10,14 @@
     <packaging>jar</packaging>
     <name>Storage System</name>
     <build>
+
+        <resources>
+            <resource>
+                <directory>src/main/java/storagesystem/View</directory>
+            </resource>
+        </resources>
+
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
