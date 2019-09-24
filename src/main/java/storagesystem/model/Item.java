@@ -2,20 +2,19 @@ package storagesystem.model;
 
 import javafx.scene.image.Image;
 
-public class Item {
-
-
-    private String name;
-    private String description;
-    private String userRequirements;
-    private int ID;
-    private int amount;
-    private int condition;
-    private boolean reservable;
-    private Location location;
+public class Item extends Team{ //TODO: implement IReservable
+    private Team teamOwner = super.getTeam();
+    private String name = "Temp Item";
+    private String description = "This is a temporary item";
+    private String userRequirements = "don't remove me unless done";
+    private int ID = 0;
+    private int amount = 25;
+    private Condition condition = Condition.GOOD;
+    private boolean reservable = false; //TODO: Change from boolean to IReservable
+    private Location location = new Location("Temp Loc", "This is a temporary location", null); //TODO: add image
     private Image image;
 
-    Item(String name, String description, String userRequirements, int ID, int amount, int condition, boolean reservable, Location location, Image image) {
+    Item(String name, String description, String userRequirements, int ID, int amount, Condition condition, boolean reservable, Location location, Image image) {
         this.name = name;
         this.description = description;
         this.userRequirements = userRequirements;
@@ -67,11 +66,11 @@ public class Item {
         this.amount = amount;
     }
 
-    public int getCondition() {
+    public Condition getCondition() {
         return condition;
     }
 
-    public void setCondition(int condition) {
+    public void setCondition(Condition condition) {
         this.condition = condition;
     }
 
