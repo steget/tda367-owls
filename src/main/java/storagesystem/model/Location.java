@@ -8,7 +8,7 @@ public class Location {
     private String description;
     private Image image;
 
-    public Location(String name, String description, Image image) {
+    Location(String name, String description, Image image) {
         this.name = name;
         this.description = description;
         this.image = image;
