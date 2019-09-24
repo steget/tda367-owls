@@ -5,14 +5,16 @@ import java.util.List;
 
 public class Organisation {
     private final List<Team> teams;
+    private String name;
     //todo reservationHandler
 
-    public Organisation() {
+    public Organisation(String name) {
+        this.name = name;
         teams = new ArrayList<>();
         //fill teams from db
     }
 
-    private List<Item> getAllItems() {
+    List<Item> getAllItems() {
         List<Item> allItems = new ArrayList<Item>();
         for (Team t :
                 teams) {
@@ -42,5 +44,13 @@ public class Organisation {
 
     void getReservation() {
 
+    }
+
+    String getName() {
+        return name;
+    }
+
+    void setName(String name) {
+        this.name = name;
     }
 }
