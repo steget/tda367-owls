@@ -3,22 +3,28 @@ package storagesystem.model;
 import javafx.scene.image.Image;
 
 public class Item {
-    private int ID;
+
+
     private String name;
-    private Location location;
-    private int amount;
     private String description;
-    private Image image;
-    private int condition;
     private String userRequirements;
+    private int ID;
+    private int amount;
+    private int condition;
     private boolean reservable;
+    private Location location;
+    private Image image;
 
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
+    Item(String name, String description, String userRequirements, int ID, int amount, int condition, boolean reservable, Location location, Image image) {
+        this.name = name;
+        this.description = description;
+        this.userRequirements = userRequirements;
         this.ID = ID;
+        this.amount = amount;
+        this.condition = condition;
+        this.reservable = reservable;
+        this.location = location;
+        this.image = image;
     }
 
     public String getName() {
@@ -29,44 +35,12 @@ public class Item {
         this.name = name;
     }
 
-    public Location getLocation() {
-        return location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
-    }
-
-    public int getAmount() {
-        return amount;
-    }
-
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
-
     public String getDescription() {
         return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Image getImage() {
-        return image;
-    }
-
-    public void setImage(Image image) {
-        this.image = image;
-    }
-
-    public int getCondition() {
-        return condition;
-    }
-
-    public void setCondition(int condition) {
-        this.condition = condition;
     }
 
     public String getUserRequirements() {
@@ -77,11 +51,51 @@ public class Item {
         this.userRequirements = userRequirements;
     }
 
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    public int getCondition() {
+        return condition;
+    }
+
+    public void setCondition(int condition) {
+        this.condition = condition;
+    }
+
     public boolean isReservable() {
         return reservable;
     }
 
     public void setReservable(boolean reservable) {
         this.reservable = reservable;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
     }
 }
