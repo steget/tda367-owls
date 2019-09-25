@@ -12,9 +12,11 @@ import java.util.List;
 * */
 public class Organisation {
     private final List<Team> teams;
+    private String name;
     //todo reservationHandler
 
-    public Organisation() {
+    public Organisation(String name) {
+        this.name = name;
         teams = new ArrayList<>();
         //fill teams from db
     }
@@ -61,5 +63,13 @@ public class Organisation {
 
     void getReservation() {
 
+    }
+
+    String getName() {
+        return name;
+    }
+
+    void setName(String name) {
+        this.name = name;
     }
 }
