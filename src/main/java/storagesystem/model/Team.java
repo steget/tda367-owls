@@ -3,6 +3,11 @@ package storagesystem.model;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A team has a list of users that belong to the same team.
+ * A team has an inventory of items which it can browse.
+ * A user may borrow items from other teams inventory for its own team .
+ */
 public class Team {
     private String name;
     private final List<Item> inventory;
@@ -22,10 +27,18 @@ public class Team {
         return inventory;
     }
 
+    /**
+     * Adds a member to a team.
+     * @param newMember
+     */
     void addMember(User newMember){
         members.add(newMember);
     }
 
+    /**
+     * Remove member from its team.
+     * @param memberToBeRemoved
+     */
     void removeMember(User memberToBeRemoved){
         members.remove(memberToBeRemoved);
     }
