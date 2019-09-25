@@ -3,6 +3,13 @@ package storagesystem.model;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
+/**
+ * An Organisation holds a collection of teams with the purpose being that the teams can communicate with each other.
+ * The teams that belong to an organisation should be relevant to one another.
+ * An Organisation should keep track of all the reservations between its teams.
+* */
 public class Organisation {
     private final List<Team> teams;
     private String name;
@@ -14,7 +21,12 @@ public class Organisation {
         //fill teams from db
     }
 
-    List<Item> getAllItems() {
+    /**
+     * Exist to show a user all the items available to borrow.
+     *
+     * @return List of all the items from all the teams.
+     */
+    private List<Item> getAllItems() {
         List<Item> allItems = new ArrayList<Item>();
         for (Team t :
                 teams) {
@@ -23,6 +35,13 @@ public class Organisation {
         return allItems;
     }
 
+    /**
+     * The point of this method exist to show specific items for teams/users.
+     *
+     * @param ID every item has its own ID connected to it.
+     * @return the requested item if found
+     * @throws Exception if item ID not found
+     */
     private Item getItem(int ID) throws Exception {
         for (Team t :
                 teams) {
