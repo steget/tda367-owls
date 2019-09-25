@@ -46,7 +46,7 @@ public class Team {
         memberIDs.remove(memberToBeRemoved);
     }
 
-    List<Integer> getAllMembers() {
+    List<Integer> getAllMemberIDs() {
         return memberIDs;
     }
 }
