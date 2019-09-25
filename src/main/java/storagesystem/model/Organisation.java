@@ -12,11 +12,14 @@ import java.util.List;
 * */
 public class Organisation {
     private final List<Team> teams;
+    private final List<User> users;
     private String name;
     //todo reservationHandler
 
     public Organisation(String name) {
         this.name = name;
+        users = new ArrayList<>();
+        //fill users from db
         teams = new ArrayList<>();
         //fill teams from db
     }
@@ -26,7 +29,7 @@ public class Organisation {
      *
      * @return List of all the items from all the teams.
      */
-    private List<Item> getAllItems() {
+    List<Item> getAllItems() {
         List<Item> allItems = new ArrayList<Item>();
         for (Team t :
                 teams) {
@@ -71,5 +74,13 @@ public class Organisation {
 
     void setName(String name) {
         this.name = name;
+    }
+
+    public List<Team> getTeams() {
+        return teams;
+    }
+
+    public List<User> getUsers() {
+        return users;
     }
 }

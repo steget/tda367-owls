@@ -11,15 +11,16 @@ import java.util.List;
 public class Team {
     private String name;
     private final List<Item> inventory;
-    private final List<User> members;
+    private final List<Integer> memberIDs;
     private String termsAndConditions;
 
-    Team(String teamName){
+    Team(String teamName) {
         this.name = teamName;
         inventory = new ArrayList<>();
         //fill inventory from db
-        members = new ArrayList<>();
-        //fill members from db
+        memberIDs = new ArrayList<>();
+        //fill memberIDs from db
+        termsAndConditions = "";
         //fill termsAndConditions from db
     }
 
@@ -29,22 +30,23 @@ public class Team {
 
     /**
      * Adds a member to a team.
-     * @param newMember
+     *
+     * @param newMember ID of the new member
      */
-    void addMember(User newMember){
-        members.add(newMember);
+    void addMember(int newMember) {
+        memberIDs.add(newMember);
     }
 
     /**
      * Remove member from its team.
-     * @param memberToBeRemoved
+     *
+     * @param memberToBeRemoved ID of the member to be removed
      */
-    void removeMember(User memberToBeRemoved){
-        members.remove(memberToBeRemoved);
+    void removeMember(int memberToBeRemoved) {
+        memberIDs.remove(memberToBeRemoved);
     }
 
-    List<User> getAllMembers(){
-        List<User> clonedMemberList = new ArrayList<>(members);
-        return clonedMemberList;
+    List<Integer> getAllMembers() {
+        return memberIDs;
     }
 }

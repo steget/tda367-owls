@@ -9,15 +9,21 @@ public class User {
     private String name;
     private String description;
     private String contactInformation;
-
-    public User(String name) {
-        this.name = name;
-    }
+    private int ID;
+    private static int lastID;
 
     public User(String name, String description, String contactInformation) {
         this.name = name;
         this.description = description;
         this.contactInformation = contactInformation;
+
+        //set ID and update lastID
+        ID = lastID + 1;
+        lastID++;
+    }
+
+    public User(String name) {
+        new User(name, "", "");
     }
 
     String getName() {
@@ -42,5 +48,9 @@ public class User {
 
     void setContactInformation(String contactInformation) {
         this.contactInformation = contactInformation;
+    }
+
+    int getID() {
+        return ID;
     }
 }
