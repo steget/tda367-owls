@@ -77,6 +77,7 @@ public class ItemPageController implements Initializable {
         itemPageReservableLabel.setText(reservable);
     }
 
+<<<<<<< Updated upstream
     protected void setConditionSlider(int condition) {
         itemPageConditionSlider.setValue(condition);
     }
@@ -86,6 +87,15 @@ public class ItemPageController implements Initializable {
 
 
 
+=======
+    protected void setDescription(String string){
+        itemPageDescriptionTA.setText(string);
+    }
+
+    protected void setUserRequirements(String string){
+        itemPageUserRequirementsTA.setText(string);
+    }
+>>>>>>> Stashed changes
 }
 
 
