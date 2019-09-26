@@ -1,6 +1,6 @@
 package storagesystem.model;
 
-enum Condition {
+public enum Condition {
     BAD,
     GOOD,
     GREAT;

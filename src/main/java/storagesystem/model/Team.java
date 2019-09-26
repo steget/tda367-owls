@@ -1,11 +1,20 @@
 package storagesystem.model;
 
 public class Team {
-    Team(){
+
+    private String name = "MockTeam";
+
+    public Team() {
 
     }
 
-    protected Team getTeam() {
-        return this; //TODO: Protective copying???
+    public String getName() {
+        return name;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
 }
+

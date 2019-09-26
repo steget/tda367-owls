@@ -2,8 +2,7 @@ package storagesystem.model;
 
 import javafx.scene.image.Image;
 
-public class Item extends Team{ //TODO: implement IReservable
-    private Team teamOwner = super.getTeam();
+public class Item { //TODO: implement IReservable
     private String name = "Temp Item";
     private String description = "This is a temporary item";
     private String userRequirements = "don't remove me unless done";
@@ -14,7 +13,7 @@ public class Item extends Team{ //TODO: implement IReservable
     private Location location = new Location("Temp Loc", "This is a temporary location", null); //TODO: add image
     private Image image;
 
-    Item(String name, String description, String userRequirements, int ID, int amount, Condition condition, boolean reservable, Location location, Image image) {
+    public Item(String name, String description, String userRequirements, int ID, int amount, Condition condition, boolean reservable, Location location, Image image) {
         this.name = name;
         this.description = description;
         this.userRequirements = userRequirements;
@@ -97,4 +96,6 @@ public class Item extends Team{ //TODO: implement IReservable
     public void setImage(Image image) {
         this.image = image;
     }
+
+
 }
