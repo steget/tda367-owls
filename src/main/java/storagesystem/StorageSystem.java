@@ -10,9 +10,9 @@ public class StorageSystem extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/settings.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/loginPage.fxml"));
 
-        Scene scene = new Scene(root, 1280, 800);
+        Scene scene = new Scene(root);
 
         stage.setScene(scene);
         stage.show();
