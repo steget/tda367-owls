@@ -43,7 +43,7 @@ public class Team {
      * @param memberToBeRemoved ID of the member to be removed
      */
     void removeMember(int memberToBeRemoved) {
-        memberIDs.remove(memberToBeRemoved);
+        memberIDs.remove((Object) memberToBeRemoved); //needs to use object to make sure index is not chosen
     }
 
     List<Integer> getAllMemberIDs() {
