@@ -51,7 +51,36 @@ public class ItemPageController implements Initializable {
         setReservableLabel(item.isReservable() + "");
         setNameLabel(item.getName());
         setConditionSlider(2);
+        setDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id vehicula lectus, quis sagittis erat. Fusce feugiat, dui a facilisis laoreet, nisi risus aliquam neque," +
+                " non volutpat nunc nulla ultricies dui. Proin lobortis nulla quis leo " +
+                "consequat varius. Aliquam eu erat ornare diam imperdiet interdum pellentesque et libero. Curabitur volutpat eleifend facilisis. Duis molestie blandit" +
+                " suscipit. Nam varius lacus turpis, nec venenatis erat ultrices sed. Aenean pretium nisi" +
+                "sed volutpat lobortis. \n Suspendisse interdum vulputate suscipit. Maecenas in dui a tellus condimentum commodo. Proin auctor massa et dictum " +
+                "malesuada. Curabitur eu dui iaculis, semper eros nec, mollis nisi. Nam porta lectus sed magna pellentesque, id fringilla leo posuere." +
+                "Donec nisl erat, sollicitudin id faucibus in, posuere eget lectus. Nunc ultrices felis vel elit faucibus, eu efficitur est sagittis.\n" +
+                "\n" + "Nullam maximus arcu ac elit ultricies, at maximus nibh dignissim. In commodo nibh et varius imperdiet. Suspendisse sed " +
+                "nulla quis nunc porta accumsan. Proin ac elementum odio. Duis consectetur, urna nec facilisis euismod, felis nisi efficitur " +
+                "dolor, a eleifend odio velit dapibus ante. Praesent malesuada quis risus vitae congue. \n Vestibulum ante ipsum primis in faucibus " +
+                "orci luctus et ultrices posuere cubilia Curae; Maecenas mauris quam, semper at venenatis varius, pulvinar et nibh. Duis sollicitudin " +
+                "ligula at arcu tristique, ut pretium sem condimentum. \n Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ultricies risus " +
+                "nec fringilla vulputate. Aenean volutpat, nunc et aliquet luctus, erat mi tempus ligula, et tristique arcu odio sit amet dolor. Donec " +
+                "egestas orci vitae quam facilisis gravida");
+        setUserRequirements("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id vehicula lectus, quis sagittis erat. Fusce feugiat, dui a facilisis laoreet, nisi risus aliquam neque," +
+                " non volutpat nunc nulla ultricies dui. Proin lobortis nulla quis leo " +
+                "consequat varius. Aliquam eu erat ornare diam imperdiet interdum pellentesque et libero. Curabitur volutpat eleifend facilisis. Duis molestie blandit" +
+                " suscipit. Nam varius lacus turpis, nec venenatis erat ultrices sed. Aenean pretium nisi" +
+                "sed volutpat lobortis. \n Suspendisse interdum vulputate suscipit. Maecenas in dui a tellus condimentum commodo. Proin auctor massa et dictum " +
+                "malesuada. Curabitur eu dui iaculis, semper eros nec, mollis nisi. Nam porta lectus sed magna pellentesque, id fringilla leo posuere." +
+                "Donec nisl erat, sollicitudin id faucibus in, posuere eget lectus. Nunc ultrices felis vel elit faucibus, eu efficitur est sagittis.\n" +
+                "\n" + "Nullam maximus arcu ac elit ultricies, at maximus nibh dignissim. In commodo nibh et varius imperdiet. Suspendisse sed " +
+                "nulla quis nunc porta accumsan. Proin ac elementum odio. Duis consectetur, urna nec facilisis euismod, felis nisi efficitur " +
+                "dolor, a eleifend odio velit dapibus ante. Praesent malesuada quis risus vitae congue. \n Vestibulum ante ipsum primis in faucibus " +
+                "orci luctus et ultrices posuere cubilia Curae; Maecenas mauris quam, semper at venenatis varius, pulvinar et nibh. Duis sollicitudin " +
+                "ligula at arcu tristique, ut pretium sem condimentum. \n Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ultricies risus " +
+                "nec fringilla vulputate. Aenean volutpat, nunc et aliquet luctus, erat mi tempus ligula, et tristique arcu odio sit amet dolor. Donec " +
+                "egestas orci vitae quam facilisis gravida");
     }
+    
 
     protected void setNameLabel(String name) {
         itemPageNameLabel.setText(name);
@@ -77,17 +106,10 @@ public class ItemPageController implements Initializable {
         itemPageReservableLabel.setText(reservable);
     }
 
-<<<<<<< Updated upstream
     protected void setConditionSlider(int condition) {
         itemPageConditionSlider.setValue(condition);
     }
 
-
-
-
-
-
-=======
     protected void setDescription(String string){
         itemPageDescriptionTA.setText(string);
     }
@@ -95,7 +117,6 @@ public class ItemPageController implements Initializable {
     protected void setUserRequirements(String string){
         itemPageUserRequirementsTA.setText(string);
     }
->>>>>>> Stashed changes
 }
 
 

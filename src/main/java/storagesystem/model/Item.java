@@ -3,14 +3,14 @@ package storagesystem.model;
 import javafx.scene.image.Image;
 
 public class Item { //TODO: implement IReservable
-    private String name = "Temp Item";
-    private String description = "This is a temporary item";
-    private String userRequirements = "don't remove me unless done";
-    private int ID = 0;
-    private int amount = 25;
-    private Condition condition = Condition.GOOD;
-    private boolean reservable = false; //TODO: Change from boolean to IReservable
-    private Location location = new Location("Temp Loc", "This is a temporary location", null); //TODO: add image
+    private String name;
+    private String description;
+    private String userRequirements;
+    private int ID;
+    private int amount;
+    private Condition condition;
+    private boolean reservable;
+    private Location location; //TODO: add image
     private Image image;
 
     public Item(String name, String description, String userRequirements, int ID, int amount, Condition condition, boolean reservable, Location location, Image image) {
