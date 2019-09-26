@@ -26,7 +26,7 @@ public class Organisation {
      *
      * @return List of all the items from all the teams.
      */
-    private List<Item> getAllItems() {
+    List<Item> getAllItems() {
         List<Item> allItems = new ArrayList<Item>();
         for (Team t :
                 teams) {
