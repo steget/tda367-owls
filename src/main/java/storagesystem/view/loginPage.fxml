@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="storagesystem.controller.LoginPageController">
+   <children>
+      <Text layoutX="257.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" AnchorPane.topAnchor="55.0">
+         <font>
+            <Font size="35.0" />
+         </font>
+      </Text>
+      <Text layoutX="158.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" textAlignment="RIGHT" />
+      <Text layoutX="158.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" textAlignment="RIGHT" />
+      <TextField fx:id="userNameTextField" layoutX="283.0" layoutY="185.0" />
+      <TextField fx:id="passwordTextField" layoutX="283.0" layoutY="240.0" />
+      <ChoiceBox fx:id="organisationChoiceBox" layoutX="294.0" layoutY="302.0" prefWidth="150.0" />
+      <Text layoutX="160.0" layoutY="323.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Organisation" textAlignment="RIGHT" />
+   </children>
+</AnchorPane>
