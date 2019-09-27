@@ -97,8 +97,8 @@ public class ItemPageController implements Initializable {
             case GREAT:
                 value = 2;
                 break;
-            default://TODO: Exception handling
-                value = 0;
+            default:
+                //TODO: Exception handling
                 break;
         }
         itemPageConditionSlider.setValue(value);
