@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextArea?>
@@ -27,5 +28,6 @@
          <image>
             <Image url="@../../../resources/art.png" />
          </image></ImageView>
+      <Button fx:id="itemPageReserveBtn" layoutX="567.0" layoutY="522.0" mnemonicParsing="false" onAction="#itemPageReserveBtnPressed" text="Reserve" />
    </children>
 </AnchorPane>
