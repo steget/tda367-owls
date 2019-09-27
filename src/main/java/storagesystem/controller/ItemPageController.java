@@ -41,21 +41,25 @@ public class ItemPageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resources) {
         Location location = new Location("MockLocation", "This location does not exist", new Image("creepy.jpg"));
-        Item item = new Item("mockItem", "This is a description", "Behave please.", 1, 2, Condition.GOOD, false, location, location.getImage());
+        Item mockItem = new Item("mockItem", "This is a description", "Behave please.", 1, 2, Condition.GOOD, false, location, location.getImage());
         Team mockTeam = new Team();
+        setAll(mockItem, mockTeam);
 
-        setIDLabel("" + item.getID());
-        setAmountLabel(item.getAmount() + "");
-        setLocationLabel(item.getLocation().getName());
-        setTeamOwnerLabel(mockTeam.getName());
-        setReservableLabel(item.isReservable() + "");
+    }
+
+    protected void setAll(Item item, Team owner) { //TODO: better method name?
         setNameLabel(item.getName());
-        setImage(item.getImage());
-        setConditionSlider(2);
         setDescription(item.getDescription());
         setUserRequirements(item.getUserRequirements());
+        setIDLabel("" + item.getID());
+        setAmountLabel(item.getAmount() + "");
+        setConditionSlider(item.getCondition());
+        setReservableLabel(item.isReservable() + "");
+        setLocationLabel(item.getLocation().getName());
+        setImage(item.getImage());
+        setTeamOwnerLabel(owner.getName());
     }
-    
+
 
     protected void setNameLabel(String name) {
         itemPageNameLabel.setText(name);
@@ -81,8 +85,23 @@ public class ItemPageController implements Initializable {
         itemPageReservableLabel.setText(reservable);
     }
 
-    protected void setConditionSlider(int condition) {
-        itemPageConditionSlider.setValue(condition);
+    protected void setConditionSlider(Condition condition) {
+        int value = 0;
+        switch(condition) {
+            case BAD:
+                value = 0;
+                break;
+            case GOOD:
+                value = 1;
+                break;
+            case GREAT:
+                value = 2;
+                break;
+            default://TODO: Exception handling
+                value = 0;
+                break;
+        }
+        itemPageConditionSlider.setValue(value);
     }
 
     protected void setDescription(String string){
