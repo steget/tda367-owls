@@ -10,7 +10,7 @@ public class Item { //TODO: implement IReservable
     private int amount;
     private Condition condition;
     private boolean reservable;
-    private Location location; //TODO: add image
+    private Location location;
     private Image image;
 
     public Item(String name, String description, String userRequirements, int ID, int amount, Condition condition, boolean reservable, Location location, Image image) {
