@@ -68,7 +68,7 @@ public class Organisation {
 
     }
 
-    String getName() {
+    public String getName() {
         return name;
     }
 
@@ -82,5 +82,17 @@ public class Organisation {
 
     public List<User> getUsers() {
         return users;
+    }
+
+    public void createUser(String name) {
+        users.add(new User(name));
+    }
+
+    public void createUser(String name, String description, String contactInformation) {
+        users.add(new User(name, description, contactInformation));
+    }
+
+    public void addTeam(Team teamToBeAdded) {
+        teams.add(teamToBeAdded);
     }
 }

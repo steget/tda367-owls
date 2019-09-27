@@ -10,7 +10,7 @@ public class User {
     private String description;
     private String contactInformation;
     private int ID;
-    private static int lastID;
+    private static int nextID;
 
     public User(String name, String description, String contactInformation) {
         this.name = name;
@@ -18,15 +18,15 @@ public class User {
         this.contactInformation = contactInformation;
 
         //set ID and update lastID
-        ID = lastID + 1;
-        lastID++;
+        ID = nextID;
+        nextID++;
     }
 
     public User(String name) {
-        new User(name, "", "");
+        this(name, "", "");
     }
 
-    String getName() {
+    public String getName() {
         return name;
     }
 
@@ -50,7 +50,7 @@ public class User {
         this.contactInformation = contactInformation;
     }
 
-    int getID() {
+    public int getID() {
         return ID;
     }
 }

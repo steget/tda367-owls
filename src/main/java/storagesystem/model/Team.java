@@ -14,7 +14,7 @@ public class Team {
     private final List<Integer> memberIDs;
     private String termsAndConditions;
 
-    Team(String teamName) {
+    public Team(String teamName) {
         this.name = teamName;
         inventory = new ArrayList<>();
         //fill inventory from db
@@ -33,7 +33,7 @@ public class Team {
      *
      * @param newMember ID of the new member
      */
-    void addMember(int newMember) {
+    public void addMember(int newMember) {
         memberIDs.add(newMember);
     }
 

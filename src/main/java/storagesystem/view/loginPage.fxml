@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="rootPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="storagesystem.controller.LoginPageController">
+   <children>
+      <AnchorPane fx:id="leftAnchorPane" layoutY="171.0" prefHeight="400.0" prefWidth="300.0" style="-fx-background-color: red;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+         <children>
+            <Text layoutX="177.20654296875" layoutY="166.951171875" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" textAlignment="RIGHT" AnchorPane.bottomAnchor="230.0" AnchorPane.rightAnchor="50.0" />
+            <Text layoutX="178.58447265625" layoutY="217.4541015625" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" textAlignment="RIGHT" AnchorPane.bottomAnchor="180.0" AnchorPane.rightAnchor="50.0" />
+            <Text layoutX="150.50146484375" layoutY="267.4541015625" strokeType="OUTSIDE" strokeWidth="0.0" text="Organisation" textAlignment="RIGHT" AnchorPane.bottomAnchor="130.0" AnchorPane.rightAnchor="50.0" />
+            <Button fx:id="registrationButton" layoutX="201.0" layoutY="360.0" mnemonicParsing="false" text="Registrera dig" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" />
+            <Text layoutX="41.0" layoutY="325.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Har du inget konto så kan du klicka här för att registrera dig" textAlignment="CENTER" wrappingWidth="218.2548828125" AnchorPane.leftAnchor="41.0" AnchorPane.rightAnchor="40.7451171875" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="400.0" layoutY="171.0" prefHeight="400.0" prefWidth="300.0" style="-fx-background-color: blue;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <TextField fx:id="userNameTextField" layoutX="50.0" layoutY="139.0" prefWidth="200.0" AnchorPane.bottomAnchor="230.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
+            <TextField fx:id="passwordTextField" layoutX="50.0" layoutY="189.0" prefWidth="200.0" AnchorPane.bottomAnchor="180.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
+            <ChoiceBox fx:id="organisationChoiceBox" layoutX="50.0" layoutY="239.0" prefWidth="200.0" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
+            <Button fx:id="loginButton" layoutX="85.0" layoutY="360.0" mnemonicParsing="false" onAction="#loginButtonPressed" text="Logga in" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" />
+         </children>
+      </AnchorPane>
+      <Text layoutX="257.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" AnchorPane.topAnchor="55.0">
+         <font>
+            <Font size="35.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
