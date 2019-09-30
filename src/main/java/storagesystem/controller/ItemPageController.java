@@ -18,6 +18,8 @@ import java.util.ResourceBundle;
 
 public class ItemPageController implements Initializable {
 
+    private Item mockItem;
+
     @FXML
     private ImageView itemPageImageView;
     @FXML
@@ -62,6 +64,7 @@ public class ItemPageController implements Initializable {
         setLocationLabel(item.getLocation().getName());
         setImage(item.getImage());
         setTeamOwnerLabel(owner.getName());
+        this.mockItem = item;
     }
 
 
@@ -93,9 +96,10 @@ public class ItemPageController implements Initializable {
         itemPageReserveBtn.setDisable(!reservable);
     }
 
-    protected void updateReservable(boolean reservable) {
-        setReservableBtn(reservable);
-        setReservableLabel(""+reservable);
+    protected void updateReservable() {
+        mockItem.setReservable(!mockItem.isReservable());
+        setReservableBtn(mockItem.isReservable());
+        setReservableLabel(""+mockItem.isReservable());
     }
 
     protected void setConditionSlider(Condition condition) {
@@ -131,7 +135,7 @@ public class ItemPageController implements Initializable {
 
     @FXML
     protected void itemPageReserveBtnPressed() { //TODO: change reservable variable in item
-        updateReservable(false);
+        updateReservable();
     }
 }
 
