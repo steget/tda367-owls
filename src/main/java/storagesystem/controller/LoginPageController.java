@@ -9,7 +9,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Control;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import storagesystem.StorageSystem;
@@ -18,6 +20,7 @@ import storagesystem.model.User;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class LoginPageController implements Initializable {
@@ -53,6 +56,29 @@ public class LoginPageController implements Initializable {
 
         organisationChoiceBox.setItems(organisationNames);
         organisationChoiceBox.setValue(organisationNames.get(0)); //show first value in box
+
+        assignHandlers();
+    }
+
+    private void assignHandlers() {
+        ArrayList<Control> loginFields = new ArrayList();
+        loginFields.add(userNameTextField);
+        loginFields.add(passwordTextField);
+        loginFields.add(loginButton);
+        loginFields.add(organisationChoiceBox);
+
+        for (Control loginField :
+                loginFields) {
+            loginField.setOnKeyPressed(event -> {
+                if (event.getCode() == KeyCode.ENTER) {
+                    try {
+                        loginButtonPressed();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
     }
 
     /**
@@ -71,15 +97,16 @@ public class LoginPageController implements Initializable {
             stage.setScene(new Scene(root));
             stage.show();
         } else {
-            System.out.println("User with name \"" +  userNameTextField.getText() + "\" does not exist");
+            System.out.println("User with name \"" + userNameTextField.getText() + "\" does not exist");
         }
     }
 
     /**
      * Check if selected value in the Organisation Choicebox actually correspsonds to an existing organisation in the database
+     *
      * @return The actual organisation from the database
      */
-    private Organisation getSelectedOrganisation(){
+    private Organisation getSelectedOrganisation() {
         String selectedOrganisation = organisationChoiceBox.getValue().toString();
         for (Organisation org :
                 StorageSystem.getOrganisations()) {
@@ -93,6 +120,7 @@ public class LoginPageController implements Initializable {
 
     /**
      * Checks in the selected organisation if there is an user with the name currently written in the Username textfield
+     *
      * @return
      */
     private boolean doesUserExist() {
@@ -116,6 +144,7 @@ public class LoginPageController implements Initializable {
 
     /**
      * Saves the latest found User from doesUserExist
+     *
      * @param user An actual User
      */
     private void setLoginUser(User user) {
