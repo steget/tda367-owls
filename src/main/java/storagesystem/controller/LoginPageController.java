@@ -21,6 +21,7 @@ import storagesystem.model.User;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class LoginPageController implements Initializable {
@@ -101,8 +102,21 @@ public class LoginPageController implements Initializable {
         }
     }
 
+    @FXML
+    private void registerButtonPressed() throws IOException {
+        //make sure there is no user with the name
+        if(!doesUserExist()){
+            String name = userNameTextField.getText();
+            getSelectedOrganisation().createUser(name);
+
+            //todo text that fades out that says user created
+        }else{
+            System.out.println("A user with that name already exists");
+        }
+    }
+
     /**
-     * Check if selected value in the Organisation Choicebox actually correspsonds to an existing organisation in the database
+     * Check if selected value in the Organisation Choicebox actually corresponds to an existing organisation in the database
      *
      * @return The actual organisation from the database
      */
@@ -131,7 +145,7 @@ public class LoginPageController implements Initializable {
             //check if user exists in the organisation
             for (User user :
                     selectedOrganisation.getUsers()) {
-                if (user.getName().equals(userNameTextField.getText())) {
+                if (user.getName().equals(userNameTextField.getText())) { //todo check ID instead?
                     setLoginUser(user);
                     //todo password?
                     return true;
