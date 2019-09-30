@@ -56,4 +56,8 @@ public class Team {
     public void setName(String name) {
         this.name = name;
     }
+
+    protected void addItemToInventory(Item item){ //todo maybe just an ID instead and get the item from DB?
+        inventory.add(item);
+    }
 }

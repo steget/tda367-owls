@@ -45,13 +45,12 @@ public class Organisation {
      * @return the requested item if found
      * @throws Exception if item ID not found
      */
-    private Item getItem(int ID) throws Exception {
+    Item getItem(int ID) throws Exception {
         for (Team t :
                 teams) {
             for (Item i :
                     t.getAllItems()) {
-                //i.getID == ID
-                if (true) {
+                if (i.getID() == ID) {
                     System.out.println("Item found");
                     return i;
                 }

@@ -31,7 +31,7 @@ public class StorageSystem extends Application {
     private void initializeBackend() {
         Organisation informationsteknik = new Organisation("Informationsteknik");
         Team tempTeam = new Team("sexNollK");
-        informationsteknik.createUser("Albert");
+        informationsteknik.createUser("admin");
 
         Organisation data = new Organisation("Data");
 
