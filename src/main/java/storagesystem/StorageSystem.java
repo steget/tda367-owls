@@ -13,19 +13,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StorageSystem extends Application {
-    public static List<Organisation> organisations = new ArrayList<>();
-    public static User currentUser;
+    private static List<Organisation> organisations = new ArrayList<>();
+    private static User currentUser;
 
     @Override
     public void start(Stage stage) throws Exception {
+        initializeBackend();
+
         Parent root = FXMLLoader.load(getClass().getResource("/loginPage.fxml"));
 
         Scene scene = new Scene(root);
 
         stage.setScene(scene);
         stage.show();
-
-        initializeBackend();
     }
 
     private void initializeBackend() {
@@ -48,5 +48,13 @@ public class StorageSystem extends Application {
 
     public static void setCurrentUser(User currentUser){
         StorageSystem.currentUser = currentUser;
+    }
+
+    public static List<Organisation> getOrganisations() {
+        return organisations;
+    }
+
+    public static User getCurrentUser() {
+        return currentUser;
     }
 }

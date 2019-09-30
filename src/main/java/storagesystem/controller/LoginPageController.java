@@ -18,6 +18,7 @@ import storagesystem.model.User;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class LoginPageController implements Initializable {
@@ -44,11 +45,15 @@ public class LoginPageController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //todo Fill list with organisations from database
-        ObservableList<String> organisations = FXCollections.observableArrayList("Informationsteknik", "Data");
+        //Fill list with organisations from database
+        ObservableList<String> organisationNames = FXCollections.observableArrayList();
+        for (Organisation org :
+                StorageSystem.getOrganisations()) {
+            organisationNames.add(org.getName());
+        }
 
-        organisationChoiceBox.setItems(organisations);
-        organisationChoiceBox.setValue(organisations.get(0)); //show first value in box
+        organisationChoiceBox.setItems(organisationNames);
+        organisationChoiceBox.setValue(organisationNames.get(0)); //show first value in box
     }
 
     /**
@@ -74,7 +79,7 @@ public class LoginPageController implements Initializable {
     private Organisation getSelectedOrganisation(){
         String selectedOrganisation = organisationChoiceBox.getValue().toString();
         for (Organisation org :
-                StorageSystem.organisations) {
+                StorageSystem.getOrganisations()) {
             if (org.getName().equals(selectedOrganisation)) {
                 return org;
             }
