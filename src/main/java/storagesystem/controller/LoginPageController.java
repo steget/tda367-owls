@@ -1,19 +1,20 @@
 package storagesystem.controller;
 
+import javafx.animation.FadeTransition;
+import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Control;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import storagesystem.StorageSystem;
 import storagesystem.model.Organisation;
 import storagesystem.model.User;
@@ -43,6 +44,9 @@ public class LoginPageController implements Initializable {
 
     @FXML
     private AnchorPane rootPane;
+
+    @FXML
+    private Label userRegisteredLabel;
 
     private User loginUser;
 
@@ -108,8 +112,7 @@ public class LoginPageController implements Initializable {
         if(!doesUserExist()){
             String name = userNameTextField.getText();
             getSelectedOrganisation().createUser(name);
-
-            //todo text that fades out that says user created
+            fadeTransition(userRegisteredLabel);
         }else{
             System.out.println("A user with that name already exists");
         }
@@ -163,5 +166,17 @@ public class LoginPageController implements Initializable {
      */
     private void setLoginUser(User user) {
         loginUser = user;
+    }
+
+    private void fadeTransition(Node node) {
+        TranslateTransition transition = new TranslateTransition();
+
+        transition.setOnFinished((e) -> {
+            FadeTransition fadeOut = new FadeTransition(Duration.seconds(3), node);
+            fadeOut.setFromValue(1.0);
+            fadeOut.setToValue(0.0);
+            fadeOut.play();
+        });
+        transition.play();
     }
 }
