@@ -18,30 +18,29 @@ import storagesystem.model.User;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class LoginPageController implements Initializable {
 
     @FXML
-    TextField userNameTextField;
+    private TextField userNameTextField;
 
     @FXML
-    TextField passwordTextField;
+    private TextField passwordTextField;
 
     @FXML
-    ChoiceBox organisationChoiceBox;
+    private ChoiceBox organisationChoiceBox;
 
     @FXML
-    Button loginButton;
+    private Button loginButton;
 
     @FXML
-    Button registrationButton;
+    private Button registrationButton;
 
     @FXML
-    AnchorPane rootPane;
+    private AnchorPane rootPane;
 
-    User loginUser;
+    private User loginUser;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -76,6 +75,10 @@ public class LoginPageController implements Initializable {
         }
     }
 
+    /**
+     * Check if selected value in the Organisation Choicebox actually correspsonds to an existing organisation in the database
+     * @return The actual organisation from the database
+     */
     private Organisation getSelectedOrganisation(){
         String selectedOrganisation = organisationChoiceBox.getValue().toString();
         for (Organisation org :
@@ -88,6 +91,10 @@ public class LoginPageController implements Initializable {
         return null;
     }
 
+    /**
+     * Checks in the selected organisation if there is an user with the name currently written in the Username textfield
+     * @return
+     */
     private boolean doesUserExist() {
         Organisation selectedOrganisation = getSelectedOrganisation();
 
@@ -103,9 +110,14 @@ public class LoginPageController implements Initializable {
                 }
             }
         }
+        setLoginUser(null); //to prevent someone from logging in with a previous users credentials
         return false;
     }
 
+    /**
+     * Saves the latest found User from doesUserExist
+     * @param user An actual User
+     */
     private void setLoginUser(User user) {
         loginUser = user;
     }
