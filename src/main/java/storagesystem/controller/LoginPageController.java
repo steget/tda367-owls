@@ -1,19 +1,20 @@
 package storagesystem.controller;
 
+import javafx.animation.FadeTransition;
+import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Control;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import storagesystem.StorageSystem;
 import storagesystem.model.Organisation;
 import storagesystem.model.User;
@@ -21,6 +22,7 @@ import storagesystem.model.User;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class LoginPageController implements Initializable {
@@ -42,6 +44,9 @@ public class LoginPageController implements Initializable {
 
     @FXML
     private AnchorPane rootPane;
+
+    @FXML
+    private Label userRegisteredLabel;
 
     private User loginUser;
 
@@ -101,8 +106,20 @@ public class LoginPageController implements Initializable {
         }
     }
 
+    @FXML
+    private void registerButtonPressed() throws IOException {
+        //make sure there is no user with the name
+        if(!doesUserExist()){
+            String name = userNameTextField.getText();
+            getSelectedOrganisation().createUser(name);
+            fadeTransition(userRegisteredLabel);
+        }else{
+            System.out.println("A user with that name already exists");
+        }
+    }
+
     /**
-     * Check if selected value in the Organisation Choicebox actually correspsonds to an existing organisation in the database
+     * Check if selected value in the Organisation Choicebox actually corresponds to an existing organisation in the database
      *
      * @return The actual organisation from the database
      */
@@ -131,7 +148,7 @@ public class LoginPageController implements Initializable {
             //check if user exists in the organisation
             for (User user :
                     selectedOrganisation.getUsers()) {
-                if (user.getName().equals(userNameTextField.getText())) {
+                if (user.getName().equals(userNameTextField.getText())) { //todo check ID instead?
                     setLoginUser(user);
                     //todo password?
                     return true;
@@ -149,5 +166,17 @@ public class LoginPageController implements Initializable {
      */
     private void setLoginUser(User user) {
         loginUser = user;
+    }
+
+    private void fadeTransition(Node node) {
+        TranslateTransition transition = new TranslateTransition();
+
+        transition.setOnFinished((e) -> {
+            FadeTransition fadeOut = new FadeTransition(Duration.seconds(3), node);
+            fadeOut.setFromValue(1.0);
+            fadeOut.setToValue(0.0);
+            fadeOut.play();
+        });
+        transition.play();
     }
 }
