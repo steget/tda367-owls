@@ -12,6 +12,19 @@ public class Team {
     private String name;
     private final List<Item> inventory;
     private final List<Integer> memberIDs;
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setTermsAndConditions(String termsAndConditions) {
+        this.termsAndConditions = termsAndConditions;
+    }
+
+    public String getTermsAndConditions() {
+        return termsAndConditions;
+    }
+
     private String termsAndConditions;
 
     public Team(String teamName) {
@@ -35,6 +48,10 @@ public class Team {
      */
     public void addMember(int newMember) {
         memberIDs.add(newMember);
+    }
+
+    public String getName() {
+        return name;
     }
 
     /**

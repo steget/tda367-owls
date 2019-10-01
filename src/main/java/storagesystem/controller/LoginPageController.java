@@ -65,6 +65,7 @@ public class LoginPageController implements Initializable {
         if (doesUserExist()) {
             //set current user
             StorageSystem.setCurrentUser(loginUser);
+            StorageSystem.setCurrentOrganisation(getSelectedOrganisation());
 
             //open dashboard
             Parent root = FXMLLoader.load(getClass().getResource("/dashboard.fxml"));

@@ -60,6 +60,22 @@ public class Organisation {
         throw new Exception("ItemID not found in list of items");
     }
 
+    public List<Team> getUserTeams(User user) {
+        List<Team> userTeams = new ArrayList<Team>();
+        for(Team t: teams){
+            for(int i : t.getAllMemberIDs()){
+                if(user.getID() == i){
+                    userTeams.add(t);
+                }
+            }
+        }
+        if(userTeams.isEmpty()){
+            System.out.println("User is not appart of any team");
+            return null;
+        }
+        return userTeams;
+    }
+
     void getAllReservations() {
 
     }
