@@ -28,11 +28,6 @@
          <image>
             <Image url="@../../../resources/art.png" />
          </image></ImageView>
-      <Button fx:id="itemPageBorrowButton" layoutX="573.0" layoutY="522.0" mnemonicParsing="false" text="Borrow" />
-      <ImageView fitHeight="31.0" fitWidth="35.0" layoutX="615.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../../../Users/jonat/OneDrive/Skrivbord/clear-24px.png" />
-         </image>
-      </ImageView>
+      <Button fx:id="itemPageReserveBtn" layoutX="567.0" layoutY="522.0" mnemonicParsing="false" onAction="#itemPageReserveBtnPressed" text="Reserve" />
    </children>
 </AnchorPane>

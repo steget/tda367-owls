@@ -2,6 +2,7 @@ package storagesystem.model;
 
 import javafx.scene.image.Image;
 
+public class Item implements IReservable {
 /**
  * A class that represents an item. An item can be added by a team to their own inventory.
  * description consists of a short text about the item and what can be done with it.
@@ -13,7 +14,6 @@ import javafx.scene.image.Image;
  * Location has the information about where the item is located
  */
 
-public class Item { //TODO: implement IReservable
     private String name;
     private String description;
     private String userRequirements;
