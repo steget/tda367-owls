@@ -2,6 +2,7 @@ package storagesystem.controller;
 
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -22,7 +23,6 @@ import storagesystem.model.User;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class LoginPageController implements Initializable {
@@ -34,7 +34,7 @@ public class LoginPageController implements Initializable {
     private TextField passwordTextField;
 
     @FXML
-    private ChoiceBox organisationChoiceBox;
+    private ChoiceBox<String> organisationChoiceBox;
 
     @FXML
     private Button loginButton;
@@ -63,10 +63,12 @@ public class LoginPageController implements Initializable {
         organisationChoiceBox.setValue(organisationNames.get(0)); //show first value in box
 
         assignHandlers();
+
+        Platform.runLater(()->userNameTextField.requestFocus()); //Need to do this since Stage is not set yet when in initialize
     }
 
     private void assignHandlers() {
-        ArrayList<Control> loginFields = new ArrayList();
+        ArrayList<Control> loginFields = new ArrayList<>();
         loginFields.add(userNameTextField);
         loginFields.add(passwordTextField);
         loginFields.add(loginButton);
