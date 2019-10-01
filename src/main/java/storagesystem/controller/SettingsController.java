@@ -77,7 +77,7 @@ public class SettingsController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         user = StorageSystem.getCurrentUser();
-        currentUserTeams = new ArrayList<>(StorageSystem.getCurrentOrganisation().getUserTeams(user));
+        currentUserTeams = new ArrayList<>(StorageSystem.getCurrentOrganisation().getUsersTeams(user));
         currentTeamSelected = currentUserTeams.get(0);
         teamNames = FXCollections.observableArrayList();
 

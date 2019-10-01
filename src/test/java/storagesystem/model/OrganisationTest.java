@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class OrganisationTest {
 
@@ -26,7 +27,7 @@ public class OrganisationTest {
     }
 
     @Test(expected = Exception.class)
-    public void getItemTest() throws Exception{
+    public void getItemTest() throws Exception {
         Organisation informationsteknik = new Organisation("Informationsteknik");
         Team tempTeam = new Team("sexNollK");
         informationsteknik.addTeam(tempTeam);
@@ -51,5 +52,26 @@ public class OrganisationTest {
 
         informationsteknik.createUser("asd", "desc", "112");
         assertEquals("desc", informationsteknik.getUsers().get(1).getDescription());
+    }
+
+    @Test
+    public void getUsersTeamsTest() {
+        Organisation informationsteknik = new Organisation("Informationsteknik");
+        Team tempTeam = new Team("sexNollK");
+        Team tempTeam2 = new Team("team2");
+        informationsteknik.createUser("Albert");
+        informationsteknik.addTeam(tempTeam);
+        informationsteknik.addTeam(tempTeam2);
+
+        User testUser = informationsteknik.getUsers().get(0);
+        tempTeam.addMember(testUser.getID());
+        tempTeam2.addMember(testUser.getID());
+
+        assertTrue(informationsteknik.getUsersTeams(testUser).contains(tempTeam));
+        assertTrue(informationsteknik.getUsersTeams(testUser).contains(tempTeam2));
+
+        informationsteknik.createUser("Kalle");
+        User noTeamsUser = informationsteknik.getUsers().get(1);
+        assertEquals(0, informationsteknik.getUsersTeams(noTeamsUser).size());
     }
 }

@@ -7,7 +7,7 @@ import java.util.List;
  * An Organisation holds a collection of teams with the purpose being that the teams can communicate with each other.
  * The teams that belong to an organisation should be relevant to one another.
  * An Organisation should keep track of all the reservations between its teams.
-* */
+ */
 public class Organisation {
     private final List<Team> teams;
     private final List<User> users;
@@ -57,19 +57,25 @@ public class Organisation {
         throw new Exception("ItemID not found in list of items");
     }
 
-    //todo write javadoc and test
-    public List<Team> getUserTeams(User user) {
+    /**
+     * Use this to find out which teams one specific User is part of.
+     * Can be used for example if the user wants to switch which team it is currently doing an action for.
+     *
+     * @param user
+     * @return List of teams that the sent in user is a part of
+     */
+    public List<Team> getUsersTeams(User user) {
         List<Team> userTeams = new ArrayList<Team>();
-        for(Team t: teams){
-            for(int i : t.getAllMemberIDs()){
-                if(user.getID() == i){
+        for (Team t : teams) {
+            for (int memberID : t.getAllMemberIDs()) {
+                if (user.getID() == memberID) {
                     userTeams.add(t);
                 }
             }
         }
-        if(userTeams.isEmpty()){
+        if (userTeams.isEmpty()) {
+            //todo remove? don't think we need to do anything if this happens
             System.out.println("User is not apart of any team");
-            return null;
         }
         return userTeams;
     }
@@ -100,6 +106,7 @@ public class Organisation {
 
     /**
      * Creates a new user with only a name
+     *
      * @param name
      */
     public void createUser(String name) {
@@ -108,8 +115,9 @@ public class Organisation {
 
     /**
      * Creates a new user with all the possible information
-     * @param name Name of the User
-     * @param description Some information the user provides about themself
+     *
+     * @param name               Name of the User
+     * @param description        Some information the user provides about themself
      * @param contactInformation Some sort of way to contact the User, preferably phone/mail
      */
     public void createUser(String name, String description, String contactInformation) {
@@ -118,6 +126,7 @@ public class Organisation {
 
     /**
      * Add an already existing team to the organisations list of teams
+     *
      * @param teamToBeAdded
      */
     public void addTeam(Team teamToBeAdded) {
