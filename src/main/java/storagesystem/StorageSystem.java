@@ -15,6 +15,7 @@ import java.util.List;
 public class StorageSystem extends Application {
     private static List<Organisation> organisations = new ArrayList<>();
     private static User currentUser;
+    private static Organisation currentOrganisation;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -28,15 +29,22 @@ public class StorageSystem extends Application {
         stage.show();
     }
 
+    //todo write javadoc
     private void initializeBackend() {
         Organisation informationsteknik = new Organisation("Informationsteknik");
         Team tempTeam = new Team("sexNollK");
+        informationsteknik.createUser("Albert");
         informationsteknik.createUser("admin");
+        Team tempTeam2 = new Team("P.R.NollK");
 
         Organisation data = new Organisation("Data");
 
+        tempTeam.setTermsAndConditions("För att låna våra prylar måste prylen vara i samma skick som den var när den lånades ut. Behövs den diskas så diska den osv. Prylen ska också vara tillbaka på samma plats igen");
+
         informationsteknik.addTeam(tempTeam);
+        informationsteknik.addTeam(tempTeam2);
         tempTeam.addMember(informationsteknik.getUsers().get(0).getID());
+        tempTeam2.addMember(informationsteknik.getUsers().get(0).getID());
 
         organisations.add(informationsteknik);
         organisations.add(data);
@@ -50,8 +58,15 @@ public class StorageSystem extends Application {
         StorageSystem.currentUser = currentUser;
     }
 
+    public static void setCurrentOrganisation(Organisation currentOrganisation) {
+        StorageSystem.currentOrganisation = currentOrganisation;
+    }
+
     public static List<Organisation> getOrganisations() {
         return organisations;
+    }
+    public static Organisation getCurrentOrganisation(){
+        return currentOrganisation;
     }
 
     public static User getCurrentUser() {

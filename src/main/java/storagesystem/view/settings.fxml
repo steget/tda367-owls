@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -14,7 +15,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="617.0" prefWidth="990.0" style="-fx-background-color: teal;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="storagesystem.controller.SettingsController">
    <children>
       <Label fx:id="settingsUserLabel" layoutX="165.0" layoutY="107.0" text="USER" AnchorPane.rightAnchor="165.0" />
-      <Label fx:id="settingsTeamLabel" layoutX="165.0" layoutY="107.0" text="TEAM" AnchorPane.leftAnchor="165.0" />
+      <Label fx:id="settingsTeamLabel" layoutX="201.0" layoutY="107.0" text="TEAM" AnchorPane.leftAnchor="201.0" />
       <Label fx:id="settingsLabel" alignment="CENTER" prefHeight="70.0" prefWidth="250.0" style="-fx-font-size: 40px;" text="SETTINGS" textAlignment="CENTER" wrapText="true" AnchorPane.leftAnchor="165.0" AnchorPane.rightAnchor="185.0" AnchorPane.topAnchor="10.0" />
       <AnchorPane fx:id="settingsTeamAnchorPane" prefHeight="347.0" prefWidth="979.0" style="-fx-background-color: green;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="150.0">
          <children>
@@ -68,7 +69,7 @@
                   </Pane>
                </children>
             </GridPane>
-            <Button fx:id="settingsTeamSave" layoutX="309.0" layoutY="321.0" mnemonicParsing="false" prefHeight="120.0" prefWidth="372.0" text="SAVE " />
+            <Button fx:id="settingsTeamSave" layoutX="309.0" layoutY="321.0" mnemonicParsing="false" onAction="#saveTeam" prefHeight="120.0" prefWidth="372.0" text="SAVE " />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="settingsUserAnchorPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: red;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="150.0">
@@ -120,5 +121,6 @@
             </GridPane>
          </children>
       </AnchorPane>
+      <ChoiceBox fx:id="settingsChooseTeamInput" layoutX="39.0" layoutY="101.0" prefWidth="150.0" />
    </children>
 </AnchorPane>

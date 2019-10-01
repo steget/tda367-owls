@@ -3,8 +3,6 @@ package storagesystem.model;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 /**
  * An Organisation holds a collection of teams with the purpose being that the teams can communicate with each other.
  * The teams that belong to an organisation should be relevant to one another.
@@ -57,6 +55,23 @@ public class Organisation {
             }
         }
         throw new Exception("ItemID not found in list of items");
+    }
+
+    //todo write javadoc and test
+    public List<Team> getUserTeams(User user) {
+        List<Team> userTeams = new ArrayList<Team>();
+        for(Team t: teams){
+            for(int i : t.getAllMemberIDs()){
+                if(user.getID() == i){
+                    userTeams.add(t);
+                }
+            }
+        }
+        if(userTeams.isEmpty()){
+            System.out.println("User is not apart of any team");
+            return null;
+        }
+        return userTeams;
     }
 
     void getAllReservations() {

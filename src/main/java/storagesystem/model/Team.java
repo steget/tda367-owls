@@ -24,10 +24,6 @@ public class Team {
         //fill termsAndConditions from db
     }
 
-    List<Item> getAllItems() {
-        return inventory;
-    }
-
     /**
      * Adds a member to a team.
      *
@@ -46,9 +42,14 @@ public class Team {
         memberIDs.remove((Object) memberToBeRemoved); //needs to use object to make sure index is not chosen
     }
 
+    void addItemToInventory(Item item) { //todo maybe just an ID instead and get the item from DB?
+        inventory.add(item);
+    }
+
     List<Integer> getAllMemberIDs() {
         return memberIDs;
     }
+
     public String getName() {
         return name;
     }
@@ -57,7 +58,15 @@ public class Team {
         this.name = name;
     }
 
-    protected void addItemToInventory(Item item){ //todo maybe just an ID instead and get the item from DB?
-        inventory.add(item);
+    public void setTermsAndConditions(String termsAndConditions) {
+        this.termsAndConditions = termsAndConditions;
+    }
+
+    public String getTermsAndConditions() {
+        return termsAndConditions;
+    }
+
+    List<Item> getAllItems() {
+        return inventory;
     }
 }
