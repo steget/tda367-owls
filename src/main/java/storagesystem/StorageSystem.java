@@ -61,10 +61,15 @@ public class StorageSystem extends Application {
     }
 
     public static List<Organisation> getOrganisations() {
-        return organisations;
+        List<Organisation> deepCopyOrganisations = new ArrayList<>();
+        for (Organisation org :
+                organisations) {
+            deepCopyOrganisations.add(org.getDeepCopy(org));
+        }
+        return deepCopyOrganisations;
     }
     public static Organisation getCurrentOrganisation(){
-        return currentOrganisation;
+        return currentOrganisation.getDeepCopy(currentOrganisation);
     }
 
     public static User getCurrentUser() {

@@ -11,17 +11,23 @@ import java.util.List;
  * An Organisation should keep track of all the reservations between its teams.
 * */
 public class Organisation {
-    private final List<Team> teams;
-    private final List<User> users;
+    private final List<Team> teams = new ArrayList<>();
+    private final List<User> users = new ArrayList<>();
     private String name;
     //todo reservationHandler
 
     public Organisation(String name) {
         this.name = name;
-        users = new ArrayList<>();
         //fill users from db
-        teams = new ArrayList<>();
         //fill teams from db
+    }
+
+    //deep copy
+    private Organisation(Organisation organisationToCopy){
+        this.name = organisationToCopy.name;
+        this.teams.addAll(organisationToCopy.getTeams());
+        this.users.addAll(organisationToCopy.getUsers());
+        //todo reservationHandler = organisationToCopy.reservationHandlerDeepCopy
     }
 
     /**
@@ -97,10 +103,12 @@ public class Organisation {
         this.name = name;
     }
 
-    public List<Team> getTeams() {
+    //TODO deep copy
+    private List<Team> getTeams() {
         return teams;
     }
 
+    //TODO deep copy
     public List<User> getUsers() {
         return users;
     }
@@ -129,5 +137,9 @@ public class Organisation {
      */
     public void addTeam(Team teamToBeAdded) {
         teams.add(teamToBeAdded);
+    }
+
+    public Organisation getDeepCopy(Organisation organisationToCopy){
+        return new Organisation(organisationToCopy);
     }
 }
