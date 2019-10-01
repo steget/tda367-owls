@@ -62,10 +62,10 @@ public class ItemPageController implements Initializable {
         setReservableLabel(item.isReservable() + "");
         setReservableBtn(item.isReservable());
         setLocationLabel(item.getLocation().getName());
-        setTeamOwnerLabel(mockTeam.getName());
+        setTeamOwnerLabel(owner.getName());
         setReservableLabel(item.isReservable() + "");
         setNameLabel(item.getName());
-        setConditionSlider(2);
+        setConditionSlider(Condition.GOOD);
         setDescription(item.getDescription());
         setUserRequirements(item.getUserRequirements());
         setImage(item.getImage());

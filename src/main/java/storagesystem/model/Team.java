@@ -5,7 +5,6 @@ public class Team {
     private String name = "MockTeam";
 
     public Team() {
-
     }
 
     public String getName() {
