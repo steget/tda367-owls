@@ -1,14 +1,8 @@
 package storagesystem.controller;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -18,17 +12,15 @@ import javafx.scene.layout.AnchorPane;
 import storagesystem.StorageSystem;
 import storagesystem.model.Team;
 import storagesystem.model.User;
-import sun.plugin.javascript.navig.Anchor;
-import sun.plugin.javascript.navig.Array;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.EventListener;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.concurrent.TimeoutException;
 
+/**
+ * Settingscontroller controlls the settingsView.
+ */
 public class SettingsController implements Initializable {
 
     @FXML
@@ -76,25 +68,26 @@ public class SettingsController implements Initializable {
     ChoiceBox settingsChooseTeamInput;
 
     private User user;
-    private List<Team> teams;
-    private Team currentTeam;
+    private List<Team> currentUserTeams;
+    private Team currentTeamSelected;
     private ObservableList<String> teamNames;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         user = StorageSystem.getCurrentUser();
-        teams = new ArrayList<>(StorageSystem.getCurrentOrganisation().getUserTeams(user));
-        currentTeam = teams.get(0);
+        currentUserTeams = new ArrayList<>(StorageSystem.getCurrentOrganisation().getUserTeams(user));
+        currentTeamSelected = currentUserTeams.get(0);
         teamNames = FXCollections.observableArrayList();
 
-        update();
+        update(); //Updates the View
 
         settingsChooseTeamInput.setValue(teamNames.get(0)); //show first value in box
 
 
         settingsNameInput.setText(user.getName());
-        settingsTeamNameInput.setText(currentTeam.getName());
+        settingsTeamNameInput.setText(currentTeamSelected.getName());
 
         settingsUserLabel.setOnMouseClicked((event -> {
             if (!settingsUserAnchorPane.isVisible()) {
@@ -111,22 +104,31 @@ public class SettingsController implements Initializable {
 
 
         settingsChooseTeamInput.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
-            for (Team t : teams) {
+            for (Team t : currentUserTeams) {
                 if (t.getName().equals(settingsChooseTeamInput.getValue())) {   //removed toString()
-                    currentTeam = t;
-                    changeTeam(currentTeam);
+                    currentTeamSelected = t;
+                    changeTeam(currentTeamSelected);
                 }
             }
         });
     }
+
+    /**
+     * Saves the inputs to the active team.
+     */
     @FXML
     public void saveTeam() {
-        currentTeam.setTermsAndConditions(settingsContractInput.getText());
-        currentTeam.setName(settingsTeamNameInput.getText());
+        currentTeamSelected.setTermsAndConditions(settingsContractInput.getText());
+        currentTeamSelected.setName(settingsTeamNameInput.getText());
         settingsChooseTeamInput.setValue(teamNames.get(0));
         update();
     }
 
+
+    /**
+     * Updates the View when called. It does this by refreshing the values that is shown in boxes.
+     * It clears all lists and refills them.
+     */
     void update() {
 
         //Clear all lists
@@ -137,7 +139,7 @@ public class SettingsController implements Initializable {
        settingsChooseTeamInput.getItems().clear();
 
 
-        for (Team t : teams) { //adds team names into an observable list.
+        for (Team t : currentUserTeams) { //adds team names into an observable list.
             teamNames.add(t.getName());
         }
 
@@ -145,6 +147,10 @@ public class SettingsController implements Initializable {
 
     }
 
+    /**
+     * this method is called when a user swithces its team. It changes the inputs in the boxes.
+     * @param currentTeam
+     */
     private void changeTeam(Team currentTeam) {
         settingsTeamNameInput.setText(currentTeam.getName());
         settingsContractInput.setText(currentTeam.getTermsAndConditions());
