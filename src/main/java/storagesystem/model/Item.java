@@ -2,6 +2,17 @@ package storagesystem.model;
 
 import javafx.scene.image.Image;
 
+/**
+ * A class that represents an item. An item can be added by a team to their own inventory.
+ * description consists of a short text about the item and what can be done with it.
+ * userRequirements is the "terms and conditions" for a specific item.
+ * Every item has an ID, to help identifying an item.
+ * Amount tells us how many copies of an item there is.
+ * Condition describes if an item is in bad, good or great condition.
+ * Reservable tells us if an item is able to be borrowed or not.
+ * Location has the information about where the item is located
+ */
+
 public class Item { //TODO: implement IReservable
     private String name;
     private String description;
@@ -10,7 +21,7 @@ public class Item { //TODO: implement IReservable
     private int amount;
     private Condition condition;
     private boolean reservable;
-    private Location location; //TODO: add image
+    private Location location;
     private Image image;
 
     public Item(String name, String description, String userRequirements, int ID, int amount, Condition condition, boolean reservable, Location location, Image image) {
@@ -53,9 +64,7 @@ public class Item { //TODO: implement IReservable
         return ID;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
-    }
+    public void setID(int ID) { this.ID = ID; }
 
     public int getAmount() {
         return amount;
