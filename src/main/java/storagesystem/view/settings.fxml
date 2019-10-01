@@ -39,7 +39,7 @@
                         <Insets left="150.0" />
                      </GridPane.margin>
                   </TextField>
-                  <TextField fx:id="settingsContractInput" alignment="TOP_LEFT" prefHeight="88.0" prefWidth="490.0" promptText="Write your teams standard contract here" style="-fx-background-color: white;" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+                  <TextField fx:id="settingsTeamContractInput" alignment="TOP_LEFT" prefHeight="88.0" prefWidth="490.0" promptText="Write your teams standard contract here" style="-fx-background-color: white;" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20px;" text="Standard Contract" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
                      <GridPane.margin>
                         <Insets bottom="25.0" />
