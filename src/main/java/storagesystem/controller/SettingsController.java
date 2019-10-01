@@ -19,30 +19,30 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 /**
- * Settingscontroller controlls the settingsView.
+ * SettingsController controls the settingsView.
  */
 public class SettingsController implements Initializable {
 
     @FXML
-    Label settingsLabel;
+    private Label settingsLabel;
 
     @FXML
-    AnchorPane settingsTeamAnchorPane;
+    private AnchorPane settingsTeamAnchorPane;
 
     @FXML
-    AnchorPane settingsUserAnchorPane;
+    private AnchorPane settingsUserAnchorPane;
 
     @FXML
-    Label settingsUserLabel;
+    private Label settingsUserLabel;
 
     @FXML
-    Label settingsTeamLabel;
+    private Label settingsTeamLabel;
 
     @FXML
-    Button settingsUserSave;
+    private Button settingsUserSave;
 
     @FXML
-    Button settingsTeamSave;
+    private Button settingsTeamSave;
 
 
     /**
@@ -50,44 +50,45 @@ public class SettingsController implements Initializable {
      */
 
     @FXML
-    TextField settingsNameInput;
+    private TextField settingsNameInput;
 
     @FXML
-    TextField settingsTeamNameInput;
+    private TextField settingsTeamNameInput;
+    //todo change this to a TextArea so we can set the text to wrap
+    @FXML
+    private TextField settingsTeamContractInput;
 
     @FXML
-    TextField settingsContractInput;
+    private TextField settingsContactInput;
 
     @FXML
-    TextField settingsContactInput;
+    private TextField settingsDescriptionInput;
 
     @FXML
-    TextField settingsDescriptionInput;
+    private ChoiceBox settingsChooseTeamInput;
 
-    @FXML
-    ChoiceBox settingsChooseTeamInput;
-
-    private User user;
-    private List<Team> currentUserTeams;
-    private Team currentTeamSelected;
-    private ObservableList<String> teamNames;
-
+    private User currentUser;
+    private List<Team> currentUsersTeams = new ArrayList<>();
+    private Team currentlySelectedTeam;
+    private ObservableList<String> teamNames = FXCollections.observableArrayList();
+    private int currentlySelectedTeamIndex;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        currentUser = StorageSystem.getCurrentUser();
+        currentUsersTeams = StorageSystem.getCurrentOrganisation().getUsersTeams(currentUser);
+        currentlySelectedTeam = currentUsersTeams.get(0);
+        for (Team t : currentUsersTeams) { //adds team names into an observable list.
+            teamNames.add(t.getName());
+        }
 
-        user = StorageSystem.getCurrentUser();
-        currentUserTeams = new ArrayList<>(StorageSystem.getCurrentOrganisation().getUsersTeams(user));
-        currentTeamSelected = currentUserTeams.get(0);
-        teamNames = FXCollections.observableArrayList();
-
-        update(); //Updates the View
-
+        settingsChooseTeamInput.setItems(teamNames);
         settingsChooseTeamInput.setValue(teamNames.get(0)); //show first value in box
+        currentlySelectedTeamIndex = 0;
 
-
-        settingsNameInput.setText(user.getName());
-        settingsTeamNameInput.setText(currentTeamSelected.getName());
+        settingsNameInput.setText(currentUser.getName());
+        settingsTeamNameInput.setText(currentlySelectedTeam.getName());
+        settingsTeamContractInput.setText(currentlySelectedTeam.getTermsAndConditions());
 
         settingsUserLabel.setOnMouseClicked((event -> {
             if (!settingsUserAnchorPane.isVisible()) {
@@ -102,12 +103,20 @@ public class SettingsController implements Initializable {
             }
         }));
 
-
         settingsChooseTeamInput.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
-            for (Team t : currentUserTeams) {
-                if (t.getName().equals(settingsChooseTeamInput.getValue())) {   //removed toString()
-                    currentTeamSelected = t;
-                    changeTeam(currentTeamSelected);
+            int newIndex = newValue.intValue();
+            /*
+            index will be changed to -1 if you change a value in the code,
+            don't want to check that value in an array and it isn't an actual teamchange
+             */
+            if (newIndex >= 0) {
+                for (Team t : currentUsersTeams) {
+                    if (t.getName().equals(settingsChooseTeamInput.getItems().get(newIndex))) {
+                        currentlySelectedTeamIndex = newIndex;
+                        currentlySelectedTeam = t;
+                        changeTeam();
+                        break;
+                    }
                 }
             }
         });
@@ -118,44 +127,33 @@ public class SettingsController implements Initializable {
      */
     @FXML
     public void saveTeam() {
-        currentTeamSelected.setTermsAndConditions(settingsContractInput.getText());
-        currentTeamSelected.setName(settingsTeamNameInput.getText());
-        settingsChooseTeamInput.setValue(teamNames.get(0));
-        update();
-    }
+        currentlySelectedTeam.setTermsAndConditions(settingsTeamContractInput.getText());
+        currentlySelectedTeam.setName(settingsTeamNameInput.getText());
 
+        updateChangedTeamNameInChoicebox();
+        updateTeamsChoicebox();
+    }
 
     /**
      * Updates the View when called. It does this by refreshing the values that is shown in boxes.
      * It clears all lists and refills them.
      */
-    void update() {
-
-        //Clear all lists
-        if(teamNames.size() > 1){
-            teamNames.clear();
-        }
-
-       settingsChooseTeamInput.getItems().clear();
-
-
-        for (Team t : currentUserTeams) { //adds team names into an observable list.
-            teamNames.add(t.getName());
-        }
-
-        settingsChooseTeamInput.setItems(teamNames);
-
+    private void updateTeamsChoicebox() {
+        settingsChooseTeamInput.getSelectionModel().select(currentlySelectedTeamIndex);
     }
 
     /**
-     * this method is called when a user swithces its team. It changes the inputs in the boxes.
-     * @param currentTeam
+     * Changes the text of the team which just changed name to its new name in the Choicebox values.
      */
-    private void changeTeam(Team currentTeam) {
-        settingsTeamNameInput.setText(currentTeam.getName());
-        settingsContractInput.setText(currentTeam.getTermsAndConditions());
+    private void updateChangedTeamNameInChoicebox() {
+        teamNames.set(settingsChooseTeamInput.getSelectionModel().getSelectedIndex(), settingsTeamNameInput.getText());
+    }
+
+    /**
+     * This method is called when a user switches team in the choicebox. It changes the values in the boxes.
+     */
+    private void changeTeam() {
+        settingsTeamNameInput.setText(currentlySelectedTeam.getName());
+        settingsTeamContractInput.setText(currentlySelectedTeam.getTermsAndConditions());
     }
 }
-
-
-

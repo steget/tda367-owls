@@ -96,7 +96,7 @@ public class Organisation {
         this.name = name;
     }
 
-    public List<Team> getTeams() {
+    private List<Team> getTeams() {
         return teams;
     }
 
