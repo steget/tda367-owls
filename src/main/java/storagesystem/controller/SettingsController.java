@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 /**
- * Settingscontroller controlls the settingsView.
+ * SettingsController controls the settingsView.
  */
 public class SettingsController implements Initializable {
 
@@ -67,8 +67,8 @@ public class SettingsController implements Initializable {
     @FXML
     ChoiceBox settingsChooseTeamInput;
 
-    private User user;
-    private List<Team> currentUserTeams;
+    private User currentUser;
+    private List<Team> currentUsersTeams;
     private Team currentTeamSelected;
     private ObservableList<String> teamNames;
 
@@ -76,17 +76,17 @@ public class SettingsController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        user = StorageSystem.getCurrentUser();
-        currentUserTeams = new ArrayList<>(StorageSystem.getCurrentOrganisation().getUserTeams(user));
-        currentTeamSelected = currentUserTeams.get(0);
+        currentUser = StorageSystem.getCurrentUser();
+        currentUsersTeams = new ArrayList<>(StorageSystem.getCurrentOrganisation().getUserTeams(currentUser));
+        currentTeamSelected = currentUsersTeams.get(0);
         teamNames = FXCollections.observableArrayList();
 
-        update(); //Updates the View
+        refreshView(); //Updates the View
 
         settingsChooseTeamInput.setValue(teamNames.get(0)); //show first value in box
 
 
-        settingsNameInput.setText(user.getName());
+        settingsNameInput.setText(currentUser.getName());
         settingsTeamNameInput.setText(currentTeamSelected.getName());
 
         settingsUserLabel.setOnMouseClicked((event -> {
@@ -104,8 +104,8 @@ public class SettingsController implements Initializable {
 
 
         settingsChooseTeamInput.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
-            for (Team t : currentUserTeams) {
-                if (t.getName().equals(settingsChooseTeamInput.getValue())) {   //removed toString()
+            for (Team t : currentUsersTeams) {
+                if (t.getName().equals(settingsChooseTeamInput.getItems().get(newValue.intValue()))) {
                     currentTeamSelected = t;
                     changeTeam(currentTeamSelected);
                 }
@@ -116,12 +116,13 @@ public class SettingsController implements Initializable {
     /**
      * Saves the inputs to the active team.
      */
+    //todo fix so not NPE when saving
     @FXML
     public void saveTeam() {
         currentTeamSelected.setTermsAndConditions(settingsContractInput.getText());
         currentTeamSelected.setName(settingsTeamNameInput.getText());
         settingsChooseTeamInput.setValue(teamNames.get(0));
-        update();
+        refreshView();
     }
 
 
@@ -129,7 +130,7 @@ public class SettingsController implements Initializable {
      * Updates the View when called. It does this by refreshing the values that is shown in boxes.
      * It clears all lists and refills them.
      */
-    void update() {
+    void refreshView() {
 
         //Clear all lists
         if(teamNames.size() > 1){
@@ -139,7 +140,7 @@ public class SettingsController implements Initializable {
        settingsChooseTeamInput.getItems().clear();
 
 
-        for (Team t : currentUserTeams) { //adds team names into an observable list.
+        for (Team t : currentUsersTeams) { //adds team names into an observable list.
             teamNames.add(t.getName());
         }
 
@@ -148,7 +149,7 @@ public class SettingsController implements Initializable {
     }
 
     /**
-     * this method is called when a user swithces its team. It changes the inputs in the boxes.
+     * this method is called when a user switches its team. It changes the inputs in the boxes.
      * @param currentTeam
      */
     private void changeTeam(Team currentTeam) {

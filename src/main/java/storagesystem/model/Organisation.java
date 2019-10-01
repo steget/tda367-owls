@@ -60,6 +60,11 @@ public class Organisation {
         throw new Exception("ItemID not found in list of items");
     }
 
+    /**
+     * todo javadoc + test
+     * @param user
+     * @return
+     */
     public List<Team> getUserTeams(User user) {
         List<Team> userTeams = new ArrayList<Team>();
         for(Team t: teams){
