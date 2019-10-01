@@ -1,17 +1,20 @@
 package storagesystem.controller;
 
+import javafx.animation.FadeTransition;
+import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import storagesystem.StorageSystem;
 import storagesystem.model.Organisation;
 import storagesystem.model.User;
@@ -19,29 +22,33 @@ import storagesystem.model.User;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class LoginPageController implements Initializable {
 
     @FXML
-    TextField userNameTextField;
+    private TextField userNameTextField;
 
     @FXML
-    TextField passwordTextField;
+    private TextField passwordTextField;
 
     @FXML
-    ChoiceBox organisationChoiceBox;
+    private ChoiceBox organisationChoiceBox;
 
     @FXML
-    Button loginButton;
+    private Button loginButton;
 
     @FXML
-    Button registrationButton;
+    private Button registrationButton;
 
     @FXML
-    AnchorPane rootPane;
+    private AnchorPane rootPane;
 
-    User loginUser;
+    @FXML
+    private Label userRegisteredLabel;
+
+    private User loginUser;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -54,6 +61,29 @@ public class LoginPageController implements Initializable {
 
         organisationChoiceBox.setItems(organisationNames);
         organisationChoiceBox.setValue(organisationNames.get(0)); //show first value in box
+
+        assignHandlers();
+    }
+
+    private void assignHandlers() {
+        ArrayList<Control> loginFields = new ArrayList();
+        loginFields.add(userNameTextField);
+        loginFields.add(passwordTextField);
+        loginFields.add(loginButton);
+        loginFields.add(organisationChoiceBox);
+
+        for (Control loginField :
+                loginFields) {
+            loginField.setOnKeyPressed(event -> {
+                if (event.getCode() == KeyCode.ENTER) {
+                    try {
+                        loginButtonPressed();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
     }
 
     /**
@@ -73,11 +103,28 @@ public class LoginPageController implements Initializable {
             stage.setScene(new Scene(root));
             stage.show();
         } else {
-            System.out.println("User with name \"" +  userNameTextField.getText() + "\" does not exist");
+            System.out.println("User with name \"" + userNameTextField.getText() + "\" does not exist");
         }
     }
 
-    private Organisation getSelectedOrganisation(){
+    @FXML
+    private void registerButtonPressed() throws IOException {
+        //make sure there is no user with the name
+        if(!doesUserExist()){
+            String name = userNameTextField.getText();
+            getSelectedOrganisation().createUser(name);
+            fadeTransition(userRegisteredLabel);
+        }else{
+            System.out.println("A user with that name already exists");
+        }
+    }
+
+    /**
+     * Check if selected value in the Organisation Choicebox actually corresponds to an existing organisation in the database
+     *
+     * @return The actual organisation from the database
+     */
+    private Organisation getSelectedOrganisation() {
         String selectedOrganisation = organisationChoiceBox.getValue().toString();
         for (Organisation org :
                 StorageSystem.getOrganisations()) {
@@ -89,6 +136,11 @@ public class LoginPageController implements Initializable {
         return null;
     }
 
+    /**
+     * Checks in the selected organisation if there is an user with the name currently written in the Username textfield
+     *
+     * @return
+     */
     private boolean doesUserExist() {
         Organisation selectedOrganisation = getSelectedOrganisation();
 
@@ -97,17 +149,35 @@ public class LoginPageController implements Initializable {
             //check if user exists in the organisation
             for (User user :
                     selectedOrganisation.getUsers()) {
-                if (user.getName().equals(userNameTextField.getText())) {
+                if (user.getName().equals(userNameTextField.getText())) { //todo check ID instead?
                     setLoginUser(user);
                     //todo password?
                     return true;
                 }
             }
         }
+        setLoginUser(null); //to prevent someone from logging in with a previous users credentials
         return false;
     }
 
+    /**
+     * Saves the latest found User from doesUserExist
+     *
+     * @param user An actual User
+     */
     private void setLoginUser(User user) {
         loginUser = user;
+    }
+
+    private void fadeTransition(Node node) {
+        TranslateTransition transition = new TranslateTransition();
+
+        transition.setOnFinished((e) -> {
+            FadeTransition fadeOut = new FadeTransition(Duration.seconds(3), node);
+            fadeOut.setFromValue(1.0);
+            fadeOut.setToValue(0.0);
+            fadeOut.play();
+        });
+        transition.play();
     }
 }

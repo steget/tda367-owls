@@ -100,14 +100,28 @@ public class Organisation {
         return users;
     }
 
+    /**
+     * Creates a new user with only a name
+     * @param name
+     */
     public void createUser(String name) {
         users.add(new User(name));
     }
 
+    /**
+     * Creates a new user with all the possible information
+     * @param name Name of the User
+     * @param description Some information the user provides about themself
+     * @param contactInformation Some sort of way to contact the User, preferably phone/mail
+     */
     public void createUser(String name, String description, String contactInformation) {
         users.add(new User(name, description, contactInformation));
     }
 
+    /**
+     * Add an already existing team to the organisations list of teams
+     * @param teamToBeAdded
+     */
     public void addTeam(Team teamToBeAdded) {
         teams.add(teamToBeAdded);
     }
