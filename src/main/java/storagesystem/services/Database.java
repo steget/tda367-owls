@@ -17,7 +17,7 @@ public class Database implements IDatabase {
     private Item tree = new Item("Tree", "A often green plant that grows to become very tall. The best tree is the oak tree", "You need a saw and a good mood to handle mother natures most lovable thing", 2, 1, Condition.GREAT, false, hasen, new Image("creepy.jpg"));
     private List<Item> itemList = new ArrayList<>();
     
-    private List<User> userList;
+    //private List<User> userList;
     private List<Team> teamList;
 
     @Override
@@ -25,10 +25,12 @@ public class Database implements IDatabase {
         return itemList;
     }
 
-    @Override
+    /*@Override
     public List<User> getAllUsers() {
         return userList;
     }
+    */
+
 
     @Override
     public List<Team> getAllTeams() {
