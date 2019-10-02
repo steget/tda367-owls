@@ -26,6 +26,13 @@ public class User {
         this(name, "", "");
     }
 
+    private User(User userToCopy) {
+        this.name = userToCopy.name;
+        this.description = userToCopy.description;
+        this.contactInformation = userToCopy.contactInformation;
+        this.ID = userToCopy.ID;
+    }
+
     public String getName() {
         return name;
     }
@@ -52,5 +59,12 @@ public class User {
 
     public int getID() {
         return ID;
+    }
+
+    /**
+     * @return A new instance of User with the same attribute values as this
+     */
+    public User getDeepCopy() {
+        return new User(this);
     }
 }

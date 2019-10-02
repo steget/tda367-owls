@@ -112,11 +112,11 @@ public class LoginPageController implements Initializable {
     @FXML
     private void registerButtonPressed() throws IOException {
         //make sure there is no user with the name
-        if(!doesUserExist()){
+        if (!doesUserExist()) {
             String name = userNameTextField.getText();
             getSelectedOrganisation().createUser(name);
             fadeTransition(userRegisteredLabel);
-        }else{
+        } else {
             System.out.println("A user with that name already exists");
         }
     }
@@ -134,7 +134,7 @@ public class LoginPageController implements Initializable {
                 return org;
             }
         }
-        //todo throw exception?
+        //todo throw exception? or write error message saying the admin needs to add organisations
         return null;
     }
 
