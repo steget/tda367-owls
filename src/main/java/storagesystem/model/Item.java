@@ -1,6 +1,4 @@
 package storagesystem.model;
 
-public class Model {
-
-
+public class Item {
 }
