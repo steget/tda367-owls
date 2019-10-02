@@ -10,8 +10,23 @@ import java.util.List;
  */
 public class Team {
     private String name;
-    private final List<Item> inventory;
-    private final List<Integer> memberIDs;
+    private final List<Item> inventory = new ArrayList<>(); // maybe itemIDs instead?
+    private final List<Integer> memberIDs = new ArrayList<>();
+
+    //deep copy
+    public Team(Team teamToCopy) {
+        this.name = teamToCopy.getName();
+        this.inventory.addAll(teamToCopy.inventory);
+        this.memberIDs.addAll(teamToCopy.memberIDs);
+    }
+
+    public Team(String teamName) {
+        this.name = teamName;
+        //fill inventory from db
+        //fill memberIDs from db
+        termsAndConditions = "";
+        //fill termsAndConditions from db
+    }
 
     public void setName(String name) {
         this.name = name;
@@ -26,16 +41,6 @@ public class Team {
     }
 
     private String termsAndConditions;
-
-    public Team(String teamName) {
-        this.name = teamName;
-        inventory = new ArrayList<>();
-        //fill inventory from db
-        memberIDs = new ArrayList<>();
-        //fill memberIDs from db
-        termsAndConditions = "";
-        //fill termsAndConditions from db
-    }
 
     List<Item> getAllItems() {
         return inventory;
@@ -65,5 +70,14 @@ public class Team {
 
     List<Integer> getAllMemberIDs() {
         return memberIDs;
+    }
+
+    /**
+     * Creates a new instance of Team with the same attribute values as this
+     *
+     * @return
+     */
+    public Team getDeepCopy() {
+        return new Team(this);
     }
 }

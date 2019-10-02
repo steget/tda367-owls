@@ -4,12 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
 /**
  * An Organisation holds a collection of teams with the purpose being that the teams can communicate with each other.
  * The teams that belong to an organisation should be relevant to one another.
  * An Organisation should keep track of all the reservations between its teams.
-* */
+ */
 public class Organisation {
     private final List<Team> teams = new ArrayList<>();
     private final List<User> users = new ArrayList<>();
@@ -23,7 +22,7 @@ public class Organisation {
     }
 
     //deep copy
-    private Organisation(Organisation organisationToCopy){
+    private Organisation(Organisation organisationToCopy) {
         this.name = organisationToCopy.name;
         this.teams.addAll(organisationToCopy.getTeams());
         this.users.addAll(organisationToCopy.getUsers());
@@ -67,20 +66,19 @@ public class Organisation {
     }
 
     /**
-     * todo javadoc + test
      * @param user
      * @return
      */
     public List<Team> getUserTeams(User user) {
         List<Team> userTeams = new ArrayList<Team>();
-        for(Team t: teams){
-            for(int i : t.getAllMemberIDs()){
-                if(user.getID() == i){
+        for (Team t : teams) {
+            for (int i : t.getAllMemberIDs()) {
+                if (user.getID() == i) {
                     userTeams.add(t);
                 }
             }
         }
-        if(userTeams.isEmpty()){
+        if (userTeams.isEmpty()) {
             System.out.println("User is not appart of any team");
             return null;
         }
@@ -103,18 +101,33 @@ public class Organisation {
         this.name = name;
     }
 
-    //TODO deep copy
+    /**
+     * @return A deep copy of the teams
+     */
     private List<Team> getTeams() {
-        return teams;
+        List<Team> deepCopyTeams = new ArrayList<>();
+        for (Team team :
+                teams) {
+            deepCopyTeams.add(team.getDeepCopy());
+        }
+        return deepCopyTeams;
     }
 
-    //TODO deep copy
+    /**
+     * @return A deep copy of all the users
+     */
     public List<User> getUsers() {
-        return users;
+        List<User> deepCopyUsers = new ArrayList<>();
+        for (User user :
+                users) {
+            deepCopyUsers.add(user.getDeepCopy());
+        }
+        return deepCopyUsers;
     }
 
     /**
      * Creates a new user with only a name
+     *
      * @param name
      */
     public void createUser(String name) {
@@ -123,8 +136,9 @@ public class Organisation {
 
     /**
      * Creates a new user with all the possible information
-     * @param name Name of the User
-     * @param description Some information the user provides about themself
+     *
+     * @param name               Name of the User
+     * @param description        Some information the user provides about themself
      * @param contactInformation Some sort of way to contact the User, preferably phone/mail
      */
     public void createUser(String name, String description, String contactInformation) {
@@ -133,13 +147,28 @@ public class Organisation {
 
     /**
      * Add an already existing team to the organisations list of teams
+     *
      * @param teamToBeAdded
      */
     public void addTeam(Team teamToBeAdded) {
         teams.add(teamToBeAdded);
     }
 
-    public Organisation getDeepCopy(Organisation organisationToCopy){
+    /**
+     * Creates a new instance of Organisation with the same attribute values as this
+     *
+     * @return
+     */
+    public Organisation getDeepCopy() {
+        return new Organisation(this);
+    }
+
+    /**
+     * Creates a new instance of Organisation with the same attribute values as this
+     *
+     * @return
+     */
+    public Organisation getDeepCopy(Organisation organisationToCopy) {
         return new Organisation(organisationToCopy);
     }
 }
