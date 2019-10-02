@@ -12,6 +12,7 @@ public class Team {
     private String name;
     private final List<Item> inventory = new ArrayList<>(); // maybe itemIDs instead?
     private final List<Integer> memberIDs = new ArrayList<>();
+    private String termsAndConditions;
 
     //deep copy
     public Team(Team teamToCopy) {
@@ -28,24 +29,6 @@ public class Team {
         //fill termsAndConditions from db
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setTermsAndConditions(String termsAndConditions) {
-        this.termsAndConditions = termsAndConditions;
-    }
-
-    public String getTermsAndConditions() {
-        return termsAndConditions;
-    }
-
-    private String termsAndConditions;
-
-    List<Item> getAllItems() {
-        return inventory;
-    }
-
     /**
      * Adds a member to a team.
      *
@@ -53,10 +36,6 @@ public class Team {
      */
     public void addMember(int newMember) {
         memberIDs.add(newMember);
-    }
-
-    public String getName() {
-        return name;
     }
 
     /**
@@ -73,11 +52,29 @@ public class Team {
     }
 
     /**
-     * Creates a new instance of Team with the same attribute values as this
-     *
-     * @return
+     * @return A new instance of Team with the same attribute values as this
      */
     public Team getDeepCopy() {
         return new Team(this);
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setTermsAndConditions(String termsAndConditions) {
+        this.termsAndConditions = termsAndConditions;
+    }
+
+    public String getTermsAndConditions() {
+        return termsAndConditions;
+    }
+
+    List<Item> getAllItems() {
+        return inventory;
+    }
+
+    public String getName() {
+        return name;
     }
 }

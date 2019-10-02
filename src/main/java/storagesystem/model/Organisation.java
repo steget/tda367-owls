@@ -85,22 +85,6 @@ public class Organisation {
         return userTeams;
     }
 
-    void getAllReservations() {
-
-    }
-
-    void getReservation() {
-
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    void setName(String name) {
-        this.name = name;
-    }
-
     /**
      * @return A deep copy of the teams
      */
@@ -155,20 +139,32 @@ public class Organisation {
     }
 
     /**
-     * Creates a new instance of Organisation with the same attribute values as this
-     *
-     * @return
+     * @return A new instance of Organisation with the same attribute values as this
      */
     public Organisation getDeepCopy() {
         return new Organisation(this);
     }
 
     /**
-     * Creates a new instance of Organisation with the same attribute values as this
-     *
-     * @return
+     * @return A new instance of Organisation with the same attribute values as this
      */
     public Organisation getDeepCopy(Organisation organisationToCopy) {
         return new Organisation(organisationToCopy);
+    }
+
+    void getAllReservations() {
+
+    }
+
+    void getReservation() {
+
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    void setName(String name) {
+        this.name = name;
     }
 }
