@@ -135,6 +135,16 @@ public class SettingsController implements Initializable {
     }
 
     /**
+     * Save the current users data that inputted.
+     */
+    @FXML
+    public void saveUser() {
+        currentUser.setName(settingsNameInput.getText());
+        currentUser.setDescription(settingsDescriptionInput.getText());
+        currentUser.setContactInformation(settingsContactInput.getText());
+    }
+
+    /**
      * Updates the View when called. It does this by refreshing the values that is shown in boxes.
      * It clears all lists and refills them.
      */
