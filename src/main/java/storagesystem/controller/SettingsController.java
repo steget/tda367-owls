@@ -44,6 +44,12 @@ public class SettingsController implements Initializable {
     @FXML
     private Button settingsTeamSave;
 
+    @FXML
+    private TextField settingsAddUserInput;
+
+    @FXML
+    private TextField settingsRemoveUserInput;
+
 
     /**
      * These textfields are where data is gathered
@@ -166,4 +172,57 @@ public class SettingsController implements Initializable {
         settingsTeamNameInput.setText(currentlySelectedTeam.getName());
         settingsTeamContractInput.setText(currentlySelectedTeam.getTermsAndConditions());
     }
+
+    /**
+     * Adds a member to the current team selected if a username is written in the input.
+     * Returns true if user get added in team.
+     * If user already exists in team it returns false.
+     * @return true or false depending the user got added to the team.
+     */
+    @FXML
+    private boolean addMemberToTeam() {
+
+        for (User user : StorageSystem.getCurrentOrganisation().getUsers()) {
+            if (user.getName().equals(settingsAddUserInput.getText())) {
+                if (!currentlySelectedTeam.doesMemberIDexist(user.getID())) {
+
+                    currentlySelectedTeam.addMember(user.getID());
+                    return true;
+                } else {
+                    System.out.println("User is already apart of this team.");
+                    return false;
+                }
+            }
+        }
+        System.out.println("User is already apart of this team.");
+        return false;
+    }
+
+    /**
+     * Removes a user from the current selected team.
+     * If the name in @settingsRemoveUserInput variable exists in the team,it gets removed from the team list and returns true.
+     * If the name in @settingsRemoveUserInput does not exist it returns false and does nothing.
+     *  @return true or false depending if the user got removed or not
+     */
+    @FXML
+    private boolean removeMemberToTeam() {
+
+        int userID = 0;
+        for (User user : StorageSystem.getCurrentOrganisation().getUsers()) {
+            if (user.getName().equals(settingsRemoveUserInput.getText())) {
+                userID = user.getID();
+            }
+        }
+        for (int i : currentlySelectedTeam.getAllMemberIDs()) {
+            if (i == userID) {
+                currentlySelectedTeam.removeMember(userID);
+                return true;
+            }
+
+        }
+        System.out.println("Could not remove member. Member is not apart of the team.");
+        return false;
+    }
+
+
 }

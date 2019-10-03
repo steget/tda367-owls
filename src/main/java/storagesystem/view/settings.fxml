@@ -97,24 +97,24 @@
                   </Text>
                   <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: lime;" GridPane.columnIndex="1">
                      <children>
-                        <TextField layoutX="119.0" layoutY="44.0" prefHeight="26.0" prefWidth="251.0" promptText="Write name of person to add from team" style="-fx-background-color: white;">
+                        <TextField fx:id="settingsAddUserInput" layoutX="119.0" layoutY="44.0" prefHeight="26.0" prefWidth="251.0" promptText="Write name of person to add from team" style="-fx-background-color: white;">
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
                         </TextField>
                         <Text layoutX="218.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add user" textAlignment="CENTER" />
-                        <Button layoutX="154.0" layoutY="93.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="180.0" style="-fx-background-color: GREEN;" text="ADD USER TO TEAM" textAlignment="CENTER" />
+                        <Button layoutX="154.0" layoutY="93.0" mnemonicParsing="false" onAction="#addMemberToTeam" prefHeight="32.0" prefWidth="180.0" style="-fx-background-color: GREEN;" text="ADD USER TO TEAM" textAlignment="CENTER" />
                      </children>
                   </Pane>
                   <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: navy;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
-                        <TextField layoutX="106.0" layoutY="49.0" prefHeight="26.0" prefWidth="277.0" promptText="Write name of person to remove from team" style="-fx-background-color: white;">
+                        <TextField fx:id="settingsRemoveUserInput" layoutX="106.0" layoutY="49.0" prefHeight="26.0" prefWidth="277.0" promptText="Write name of person to remove from team" style="-fx-background-color: white;">
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
                         </TextField>
                         <Text layoutX="206.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Remove user" />
-                        <Button layoutX="148.0" layoutY="90.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="194.0" style="-fx-background-color: RED;" text="REMOVE USER FROM TEAM" textAlignment="CENTER" />
+                        <Button layoutX="148.0" layoutY="90.0" mnemonicParsing="false" onAction="#removeMemberToTeam" prefHeight="32.0" prefWidth="194.0" style="-fx-background-color: RED;" text="REMOVE USER FROM TEAM" textAlignment="CENTER" />
                      </children>
                   </Pane>
                </children>
