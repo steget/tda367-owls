@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import storagesystem.StorageSystem;
+import storagesystem.model.Organisation;
 import storagesystem.model.Team;
 import storagesystem.model.User;
 
@@ -78,11 +79,13 @@ public class SettingsController implements Initializable {
     private Team currentlySelectedTeam;
     private ObservableList<String> teamNames = FXCollections.observableArrayList();
     private int currentlySelectedTeamIndex;
+    private Organisation currentOrganisation;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        currentUser = StorageSystem.getCurrentUser();
-        currentUsersTeams = StorageSystem.getCurrentOrganisation().getUsersTeams(currentUser);
+        currentOrganisation = StorageSystem.getCurrentOrganisation().getDeepCopy();
+        currentUser = StorageSystem.getCurrentUser().getDeepCopy();
+        currentUsersTeams = currentOrganisation.getUsersTeams(currentUser);
         currentlySelectedTeam = currentUsersTeams.get(0);
         for (Team t : currentUsersTeams) { //adds team names into an observable list.
             teamNames.add(t.getName());
@@ -182,7 +185,7 @@ public class SettingsController implements Initializable {
     @FXML
     private boolean addMemberToTeam() {
 
-        for (User user : StorageSystem.getCurrentOrganisation().getUsers()) {
+        for (User user : currentOrganisation.getUsers()) {
             if (user.getName().equals(settingsAddUserInput.getText())) {
                 if (!currentlySelectedTeam.doesMemberIDexist(user.getID())) {
 
@@ -208,7 +211,7 @@ public class SettingsController implements Initializable {
     private boolean removeMemberToTeam() {
 
         int userID = 0;
-        for (User user : StorageSystem.getCurrentOrganisation().getUsers()) {
+        for (User user : currentOrganisation.getUsers()) {
             if (user.getName().equals(settingsRemoveUserInput.getText())) {
                 userID = user.getID();
             }

@@ -72,7 +72,7 @@ public class Organisation {
      */
     public List<Team> getUsersTeams(User user) {
         List<Team> userTeams = new ArrayList<Team>();
-        for (Team t : teams) {
+        for (Team t : this.getTeams()) {
             for (int memberID : t.getAllMemberIDs()) {
                 if (user.getID() == memberID) {
                     userTeams.add(t);
@@ -168,4 +168,6 @@ public class Organisation {
     void setName(String name) {
         this.name = name;
     }
+
+
 }
