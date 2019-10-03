@@ -34,6 +34,7 @@ public class StorageSystem extends Application {
         Organisation informationsteknik = new Organisation("Informationsteknik");
         Team tempTeam = new Team("sexNollK");
         informationsteknik.createUser("Albert");
+        informationsteknik.createUser("Hugo");
         informationsteknik.createUser("admin");
         Team tempTeam2 = new Team("P.R.NollK");
 

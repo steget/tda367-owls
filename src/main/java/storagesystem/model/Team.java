@@ -38,7 +38,7 @@ public class Team {
      *
      * @param memberToBeRemoved ID of the member to be removed
      */
-    void removeMember(int memberToBeRemoved) {
+    public void removeMember(int memberToBeRemoved) {
         memberIDs.remove((Object) memberToBeRemoved); //needs to use object to make sure index is not chosen
     }
 
@@ -46,7 +46,7 @@ public class Team {
         inventory.add(item);
     }
 
-    List<Integer> getAllMemberIDs() {
+    public List<Integer> getAllMemberIDs() {
         return memberIDs;
     }
 
@@ -68,5 +68,18 @@ public class Team {
 
     List<Item> getAllItems() {
         return inventory;
+    }
+
+    /**
+     * @param ID from the user you want to check if it exists in the team
+     * @return true or false depending if the user exists in the team.
+     */
+    public boolean doesMemberIDexist(int ID){
+        for(int i: this.getAllMemberIDs()){
+            if(i == ID){
+                return true;
+            }
+        }
+        return false;
     }
 }
