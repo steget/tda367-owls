@@ -65,7 +65,7 @@ public class Organisation {
      * @param user
      * @return
      */
-    public List<Team> getUserTeams(User user) {
+    public List<Team> getUsersTeams(User user) {
         List<Team> userTeams = new ArrayList<Team>();
         for (Team t : teams) {
             for (int i : t.getAllMemberIDs()) {

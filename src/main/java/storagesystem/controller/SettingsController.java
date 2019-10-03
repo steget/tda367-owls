@@ -71,7 +71,7 @@ public class SettingsController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         currentUser = StorageSystem.getCurrentUser();
-        currentUsersTeams = StorageSystem.getCurrentOrganisation().getUserTeams(currentUser);
+        currentUsersTeams = StorageSystem.getCurrentOrganisation().getUsersTeams(currentUser);
         currentlySelectedTeam = currentUsersTeams.get(0);
         for (Team t : currentUsersTeams) { //adds team names into an observable list.
             teamNames.add(t.getName());
