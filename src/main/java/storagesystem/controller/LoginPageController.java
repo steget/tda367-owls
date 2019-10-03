@@ -65,6 +65,9 @@ public class LoginPageController implements Initializable {
         assignHandlers();
     }
 
+    /**
+     * Add function handlers to each field on the login page so that if the ENTER key is pressed the program parses it as if the users wants to login.
+     */
     private void assignHandlers() {
         ArrayList<Control> loginFields = new ArrayList();
         loginFields.add(userNameTextField);
@@ -87,7 +90,9 @@ public class LoginPageController implements Initializable {
     }
 
     /**
-     * attempts to login with the entered credentials in userNameTextField and passwordTextField
+     * Attempts to login with the entered credentials in userNameTextField and passwordTextField.
+     * If the user doesn't exist a message prints to the console.
+     * If the login is successful the dashboard will open.
      */
     @FXML
     private void loginButtonPressed() throws IOException {
@@ -107,13 +112,16 @@ public class LoginPageController implements Initializable {
         }
     }
 
+    /**
+     * Attempts to register a user with the values in the TextFields. If there already is a user with that name an error message shows in the console.
+     */
     @FXML
-    private void registerButtonPressed() throws IOException {
+    private void registerButtonPressed() {
         //make sure there is no user with the name
         if (!doesUserExist()) {
             String name = userNameTextField.getText();
             getSelectedOrganisation().createUser(name);
-            fadeTransition(userRegisteredLabel);
+            fadeTransition(userRegisteredLabel, 3);
         } else {
             System.out.println("A user with that name already exists");
         }
@@ -139,7 +147,7 @@ public class LoginPageController implements Initializable {
     /**
      * Checks in the selected organisation if there is an user with the name currently written in the Username textfield
      *
-     * @return
+     * @return If the written username exists within the selected Organisation
      */
     private boolean doesUserExist() {
         Organisation selectedOrganisation = getSelectedOrganisation();
@@ -169,11 +177,17 @@ public class LoginPageController implements Initializable {
         loginUser = user;
     }
 
-    private void fadeTransition(Node node) {
+    /**
+     * Takes in a JavaFX Node and starts with setting the opacity to full and fading out to 0 so the Node no longer shows.
+     *
+     * @param node          Thing to be faded
+     * @param timeInSeconds How long it should take for the opacity to go from full to not visible.
+     */
+    private void fadeTransition(Node node, int timeInSeconds) {
         TranslateTransition transition = new TranslateTransition();
 
         transition.setOnFinished((e) -> {
-            FadeTransition fadeOut = new FadeTransition(Duration.seconds(3), node);
+            FadeTransition fadeOut = new FadeTransition(Duration.seconds(timeInSeconds), node);
             fadeOut.setFromValue(1.0);
             fadeOut.setToValue(0.0);
             fadeOut.play();

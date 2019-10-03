@@ -26,6 +26,10 @@ public class DashboardController implements Initializable {
 
     }
 
+    /**
+     * Open the settings panel
+     * @throws IOException If the settings view cannot be found
+     */
     @FXML
     void settingsButtonPressed() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/settings.fxml"));
