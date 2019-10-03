@@ -194,7 +194,7 @@ public class SettingsController implements Initializable {
                 }
             }
         }
-        System.out.println("User is already apart of this team.");
+        System.out.println("User is does not exist.");
         return false;
     }
 
