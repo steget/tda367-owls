@@ -6,31 +6,29 @@ import java.util.List;
 /**
  * A team has a list of users that belong to the same team.
  * A team has an inventory of items which it can browse.
- * A user may borrow items from other teams inventory for its own team .
  */
 public class Team {
     private String name;
-    private final List<Item> inventory = new ArrayList<>(); // maybe itemIDs instead?
+    private final List<Item> inventory = new ArrayList<>(); //todo itemIDs instead
     private final List<Integer> memberIDs = new ArrayList<>();
     private String termsAndConditions;
 
     //deep copy
     public Team(Team teamToCopy) {
-        this.name = teamToCopy.getName();
+        this.name = teamToCopy.name;
         this.inventory.addAll(teamToCopy.inventory);
         this.memberIDs.addAll(teamToCopy.memberIDs);
+        this.termsAndConditions = teamToCopy.termsAndConditions;
     }
 
     public Team(String teamName) {
         this.name = teamName;
-        //fill inventory from db
-        //fill memberIDs from db
+        //todo fill stuff from db
         termsAndConditions = "";
-        //fill termsAndConditions from db
     }
 
     /**
-     * Adds a member to a team.
+     * Adds ID of a member to a team.
      *
      * @param newMember ID of the new member
      */
@@ -44,11 +42,14 @@ public class Team {
      * @param memberToBeRemoved ID of the member to be removed
      */
     void removeMember(int memberToBeRemoved) {
-        memberIDs.remove((Object) memberToBeRemoved); //needs to use object to make sure index is not chosen
+        memberIDs.remove(Integer.valueOf(memberToBeRemoved)); //needs to use Integer to make sure index is not chosen
     }
 
+    /**
+     * @return List of all the members IDs. Defensive copy
+     */
     List<Integer> getAllMemberIDs() {
-        return memberIDs;
+        return new ArrayList<>(memberIDs);
     }
 
     /**
@@ -71,6 +72,7 @@ public class Team {
     }
 
     List<Item> getAllItems() {
+        //todo defensive copy
         return inventory;
     }
 

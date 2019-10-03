@@ -23,10 +23,11 @@ public class TeamTest {
     @Test
     public void addMember() {
         Team testTeam = new Team("owls");
-        testTeam.addMember(12);
+        int ID = 12;
+        testTeam.addMember(ID);
 
         assertEquals(1, testTeam.getAllMemberIDs().size()); //check if 1 member
-        //todo check if there is a user with the ID of the member?
+        assertTrue(testTeam.getAllMemberIDs().contains(ID));
     }
 
     @Test
@@ -48,6 +49,6 @@ public class TeamTest {
         testTeam.addMember(id1);
         testTeam.addMember(id2);
         testTeam.addMember(id3);
-        assertTrue(testTeam.getAllMemberIDs().size() == 3);
+        assertEquals(3, testTeam.getAllMemberIDs().size());
     }
 }

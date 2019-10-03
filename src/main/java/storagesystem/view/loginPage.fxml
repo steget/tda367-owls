@@ -10,7 +10,7 @@
 
 <AnchorPane fx:id="rootPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="storagesystem.controller.LoginPageController">
    <children>
-      <AnchorPane fx:id="leftAnchorPane" layoutY="171.0" prefHeight="400.0" prefWidth="300.0" style="-fx-background-color: red;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+      <AnchorPane fx:id="leftAnchorPane" layoutY="171.0" maxWidth="300.0" prefHeight="400.0" prefWidth="300.0" style="-fx-background-color: red;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
          <children>
             <Text layoutX="177.20654296875" layoutY="166.951171875" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" textAlignment="RIGHT" AnchorPane.bottomAnchor="230.0" AnchorPane.rightAnchor="50.0" />
             <Text layoutX="178.58447265625" layoutY="217.4541015625" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" textAlignment="RIGHT" AnchorPane.bottomAnchor="180.0" AnchorPane.rightAnchor="50.0" />
@@ -18,6 +18,11 @@
             <Button fx:id="registrationButton" layoutX="201.0" layoutY="360.0" mnemonicParsing="false" onAction="#registerButtonPressed" text="Registrera dig" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" />
             <Text layoutX="41.0" layoutY="304.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Har du inget konto så kan du klicka här för att registrera dig med de uppgifter du har fyllt i" textAlignment="CENTER" wrappingWidth="218.2548828125" AnchorPane.leftAnchor="41.0" AnchorPane.rightAnchor="40.7451171875" />
             <Label fx:id="userRegisteredLabel" layoutX="33.0" layoutY="33.0" opacity="0.0" text="User created">
+               <font>
+                  <Font size="39.0" />
+               </font>
+            </Label>
+            <Label fx:id="userAlreadyExistsLabel" layoutY="14.0" maxWidth="300.0" opacity="0.0" text="Username already&#10;exists" textAlignment="CENTER">
                <font>
                   <Font size="39.0" />
                </font>

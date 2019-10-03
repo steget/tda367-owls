@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 /**
- * SettingsController controls the settingsView.
+ * Control a settings page
  */
 public class SettingsController implements Initializable {
 
@@ -43,11 +43,6 @@ public class SettingsController implements Initializable {
 
     @FXML
     private Button settingsTeamSave;
-
-
-    /**
-     * These textfields are where data is gathered
-     */
 
     @FXML
     private TextField settingsNameInput;
@@ -143,14 +138,14 @@ public class SettingsController implements Initializable {
     }
 
     /**
-     * Changes the text of the team which just changed name to its new name in the Choicebox values.
+     * Changes the text in the Choicebox, of the team which just changed name, to the teams new name.
      */
     private void updateChangedTeamNameInChoicebox() {
         teamNames.set(settingsChooseTeamInput.getSelectionModel().getSelectedIndex(), settingsTeamNameInput.getText());
     }
 
     /**
-     * This method is called when a user switches team in the choicebox. It changes the values in the boxes.
+     * Update the texts in team name and a teams contract to their values.
      */
     private void changeTeam() {
         settingsTeamNameInput.setText(currentlySelectedTeam.getName());

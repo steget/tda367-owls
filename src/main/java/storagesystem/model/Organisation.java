@@ -17,11 +17,9 @@ public class Organisation {
 
     public Organisation(String name) {
         this.name = name;
-        //fill users from db
-        //fill teams from db
+        //todo fill stuff from db
     }
 
-    //deep copy
     private Organisation(Organisation organisationToCopy) {
         this.name = organisationToCopy.name;
         this.teams.addAll(organisationToCopy.getTeams());
@@ -30,8 +28,6 @@ public class Organisation {
     }
 
     /**
-     * Exist to show a user all the items available to borrow.
-     *
      * @return List of all the items from all the teams.
      */
     List<Item> getAllItems() {
@@ -44,13 +40,13 @@ public class Organisation {
     }
 
     /**
-     * The point of this method exist to show specific items for teams/users.
+     * Get a specific item.
      *
-     * @param ID every item has its own ID connected to it.
+     * @param ID The ID of the item to get
      * @return the requested item if found
      * @throws Exception if item ID not found
      */
-    private Item getItem(int ID) throws Exception {
+    private Item getItem(int ID) throws NullPointerException {
         for (Team t :
                 teams) {
             for (Item i :
@@ -62,7 +58,7 @@ public class Organisation {
                 }
             }
         }
-        throw new Exception("ItemID not found in list of items");
+        throw new NullPointerException("ItemID not found in list of items");
     }
 
     /**
@@ -78,15 +74,11 @@ public class Organisation {
                 }
             }
         }
-        if (userTeams.isEmpty()) {
-            System.out.println("User is not appart of any team");
-            return null;
-        }
         return userTeams;
     }
 
     /**
-     * @return A deep copy of the teams
+     * @return Defensive copy of all teams within the organisation
      */
     private List<Team> getTeams() {
         List<Team> deepCopyTeams = new ArrayList<>();
@@ -150,14 +142,6 @@ public class Organisation {
      */
     public Organisation getDeepCopy(Organisation organisationToCopy) {
         return new Organisation(organisationToCopy);
-    }
-
-    void getAllReservations() {
-
-    }
-
-    void getReservation() {
-
     }
 
     public String getName() {

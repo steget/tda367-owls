@@ -48,6 +48,9 @@ public class LoginPageController implements Initializable {
     @FXML
     private Label userRegisteredLabel;
 
+    @FXML
+    private Label userAlreadyExistsLabel;
+
     private User loginUser;
 
     @Override
@@ -123,16 +126,17 @@ public class LoginPageController implements Initializable {
             getSelectedOrganisation().createUser(name);
             fadeTransition(userRegisteredLabel, 3);
         } else {
+            fadeTransition(userAlreadyExistsLabel, 3);
             System.out.println("A user with that name already exists");
         }
     }
 
     /**
-     * Check if selected value in the Organisation Choicebox actually corresponds to an existing organisation in the database
+     * Check if selected value in the Organisation Choicebox actually corresponds to an existing organisation in the database and then get it
      *
      * @return The actual organisation from the database
      */
-    private Organisation getSelectedOrganisation() {
+    private Organisation getSelectedOrganisation() throws NullPointerException {
         String selectedOrganisation = organisationChoiceBox.getValue().toString();
         for (Organisation org :
                 StorageSystem.getOrganisations()) {
@@ -140,8 +144,7 @@ public class LoginPageController implements Initializable {
                 return org;
             }
         }
-        //todo throw exception? or write error message saying the admin needs to add organisations
-        return null;
+        throw new NullPointerException("Organisation cannot be found");
     }
 
     /**
@@ -169,7 +172,7 @@ public class LoginPageController implements Initializable {
     }
 
     /**
-     * Saves the latest found User from doesUserExist
+     * Save a User which is trying to login
      *
      * @param user An actual User
      */
