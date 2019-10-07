@@ -22,9 +22,7 @@ public class StorageSystem extends Application {
         initializeBackend();
 
         Parent root = FXMLLoader.load(getClass().getResource("/loginPage.fxml"));
-
         Scene scene = new Scene(root);
-
         stage.setScene(scene);
         stage.show();
     }

@@ -15,8 +15,8 @@ public class TeamTest {
         List<Item> allItems = testTeam.getAllItems();
         assertEquals(0, allItems.size());
 
-        Item item = new Item();
-        allItems.add(new Item());
+        Item item = new Item("mockItem", "This is a description", "Behave please.", 2, Condition.GOOD, true, null, null);
+        allItems.add(item);
         assertEquals(1, allItems.size());
     }
 
