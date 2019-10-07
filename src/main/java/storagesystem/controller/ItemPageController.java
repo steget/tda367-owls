@@ -10,7 +10,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import storagesystem.model.Condition;
 import storagesystem.model.Item;
-import storagesystem.model.Location;
 import storagesystem.model.Team;
 
 import java.net.URL;
@@ -18,7 +17,8 @@ import java.util.ResourceBundle;
 
 public class ItemPageController implements Initializable {
 
-    private final Item mockItem;
+    private final Item item;
+    private final Team itemOwner;
 
     @FXML
     private ImageView itemPageImageView;
@@ -43,19 +43,18 @@ public class ItemPageController implements Initializable {
     @FXML
     private Button itemPageReserveBtn;
 
-    public ItemPageController(Item mockItem) {
-        this.mockItem = mockItem;
+    public ItemPageController(Item item, Team itemOwner) {
+        this.item = item;
+        this.itemOwner = itemOwner;
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resources) {
-        Location location = new Location("MockLocation", "This location does not exist", new Image("creepy.jpg"));
-//        mockItem = new Item("mockItem", "This is a description", "Behave please.", 2, Condition.GOOD, true, location, location.getImage());
-        Team mockTeam = new Team("mockTeam");
-        setAll(mockItem, mockTeam);
+        //TODO: load the item here or somehow when creating a controller
+        updateAllVisibleFields();
     }
 
-    protected void setAll(Item item, Team owner) { //TODO: better method name?
+    private void updateAllVisibleFields() {
         setNameLabel(item.getName());
         setDescription(item.getDescription());
         setUserRequirements(item.getUserRequirements());
@@ -65,7 +64,7 @@ public class ItemPageController implements Initializable {
         setReservableLabel(item.isReservable() + "");
         setReservableBtn(item.isReservable());
         setLocationLabel(item.getLocation().getName());
-        setTeamOwnerLabel(owner.getName());
+        setTeamOwnerLabel(itemOwner.getName());
         setReservableLabel(item.isReservable() + "");
         setNameLabel(item.getName());
         setConditionSlider(Condition.GOOD);
@@ -75,41 +74,40 @@ public class ItemPageController implements Initializable {
     }
 
 
-    protected void setNameLabel(String name) {
+    private void setNameLabel(String name) {
         itemPageNameLabel.setText(name);
     }
 
-    protected void setIDLabel(String id) {
+    private void setIDLabel(String id) {
         itemPageIDLabel.setText("ID: " + id);
     }
 
-    protected void setAmountLabel(String amount) {
+    private void setAmountLabel(String amount) {
         itemPageAmountLabel.setText("Amount: " + amount);
     }
 
-    protected void setLocationLabel(String location) {
+    private void setLocationLabel(String location) {
         itemPageLocationLabel.setText("Location: " + location);
     }
 
-    protected void setTeamOwnerLabel(String teamOwner) {
+    private void setTeamOwnerLabel(String teamOwner) {
         itemPageTeamOwnerLabel.setText("Owner: " + teamOwner);
     }
 
-    protected void setReservableLabel(String reservable) {
+    private void setReservableLabel(String reservable) {
         itemPageReservableLabel.setText("Reservable: " + reservable);
     }
 
-    protected void setReservableBtn(boolean reservable) {
+    private void setReservableBtn(boolean reservable) {
         itemPageReserveBtn.setDisable(!reservable);
     }
 
-    protected void updateReservable() {
-        mockItem.setReservable(!mockItem.isReservable());
-        setReservableBtn(mockItem.isReservable());
-        setReservableLabel(""+mockItem.isReservable());
+    private void updateReservable() {
+        setReservableBtn(item.isReservable());
+        setReservableLabel(""+ item.isReservable());
     }
 
-    protected void setConditionSlider(Condition condition) {
+    private void setConditionSlider(Condition condition) {
         int value = 0;
         switch (condition) {
             case BAD:
@@ -128,21 +126,21 @@ public class ItemPageController implements Initializable {
         itemPageConditionSlider.setValue(value);
     }
 
-    protected void setDescription(String string) {
+    private void setDescription(String string) {
         itemPageDescriptionTA.setText(string);
     }
 
-    protected void setUserRequirements(String string) {
+    private void setUserRequirements(String string) {
         itemPageUserRequirementsTA.setText(string);
     }
 
-    protected void setImage(Image image) {
+    private void setImage(Image image) {
         itemPageImageView.setImage(image);
     }
 
     @FXML
-    protected void itemPageReserveBtnPressed() { //TODO: change reservable variable in item
-        updateReservable();
+    protected void itemPageReserveBtnPressed() {
+        //TODO: create a new reservation if possible
     }
 }
 

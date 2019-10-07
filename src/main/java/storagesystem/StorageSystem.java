@@ -4,10 +4,9 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import storagesystem.model.Organisation;
-import storagesystem.model.Team;
-import storagesystem.model.User;
+import storagesystem.model.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +27,7 @@ public class StorageSystem extends Application {
     }
 
     private void initializeBackend() {
+        //Hardcoded stuff for testing
         Organisation informationsteknik = new Organisation("Informationsteknik");
         Team tempTeam = new Team("sexNollK");
         Team tempTeam2 = new Team("P.R.NollK");
@@ -50,6 +50,10 @@ public class StorageSystem extends Application {
         tempTeam.addMember(informationsteknik.getUsers().get(1).getID());
         tempTeam2.addMember(informationsteknik.getUsers().get(0).getID());
         tempTeam2.addMember(informationsteknik.getUsers().get(1).getID());
+
+        Location location = new Location("MockLocation", "This location does not exist", new Image("creepy.jpg"));
+        Item mockItem = new Item("mockItem", "This is a description", "Behave please.",
+                2, Condition.GOOD, true, location, location.getImage());
 
         organisations.add(informationsteknik);
         organisations.add(data);
