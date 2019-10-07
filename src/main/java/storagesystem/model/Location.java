@@ -20,6 +20,11 @@ public class Location {
         this.image = image;
     }
 
+    public Location(){
+        this.name = "Hasen";
+        this.description = "Open the door";
+    }
+
     public String getName() {
         return name;
     }

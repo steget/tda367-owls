@@ -24,7 +24,7 @@ public class Item implements IReservable {
     private Location location;
     private Image image;
 
-    public Item(String name, String description, String userRequirements, int ID, int amount, Condition condition, boolean reservable, Location location, Image image) {
+    public Item(String name, String description, String userRequirements, int ID, int amount, Condition condition, boolean reservable) {
         this.name = name;
         this.description = description;
         this.userRequirements = userRequirements;
@@ -32,8 +32,17 @@ public class Item implements IReservable {
         this.amount = amount;
         this.condition = condition;
         this.reservable = reservable;
-        this.location = location;
-        this.image = image;
+    }
+
+    public Item(){
+        this.name = "Shoes";
+        this.description = "Wear them";
+        this.userRequirements = "Dont break them";
+        this.ID = 1;
+        this.amount = 2;
+        this.condition = Condition.BAD;
+        this.reservable = true;
+        this.location = new Location();
     }
 
     public String getName() {

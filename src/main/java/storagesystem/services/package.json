@@ -1,0 +1,14 @@
+{
+  "name": "Shoeser",
+  "description": "Wear them",
+  "userRequirements": "Dont break them",
+  "ID": 1,
+  "amount": 2,
+  "condition": "BAD",
+  "reservable": true,
+  "location": [{
+    "name": "Hasen",
+    "description": "Open the door plz"
+  }
+  ]
+}
