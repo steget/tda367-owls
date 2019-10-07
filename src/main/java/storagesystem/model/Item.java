@@ -2,6 +2,8 @@ package storagesystem.model;
 
 import javafx.scene.image.Image;
 
+import java.util.Objects;
+
 public class Item implements IReservable {
 /**
  * A class that represents an item. An item can be added by a team to their own inventory.
@@ -108,5 +110,16 @@ public class Item implements IReservable {
         this.image = image;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Item item = (Item) o;
+        return ID == item.ID;
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, description, userRequirements, ID, amount, condition, reservable, location, image);
+    }
 }
