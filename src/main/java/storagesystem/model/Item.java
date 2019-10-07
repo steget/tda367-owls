@@ -4,7 +4,6 @@ import javafx.scene.image.Image;
 
 import java.util.Objects;
 
-public class Item implements IReservable {
 /**
  * A class that represents an item. An item can be added by a team to their own inventory.
  * description consists of a short text about the item and what can be done with it.
@@ -15,11 +14,13 @@ public class Item implements IReservable {
  * Reservable tells us if an item is able to be borrowed or not.
  * Location has the information about where the item is located
  */
+public class Item implements IReservable {
+
 
     private String name;
     private String description;
     private String userRequirements;
-    private int ID;
+    private final int ID;
     private static int lastID;
     private int amount;
     private Condition condition;
@@ -67,8 +68,6 @@ public class Item implements IReservable {
     public int getID() {
         return ID;
     }
-
-    public void setID(int ID) { this.ID = ID; }
 
     public int getAmount() {
         return amount;
