@@ -90,8 +90,11 @@ public class Team {
         }
         return false;
     }
+<<<<<<< HEAD
 
     public String getName() {
         return name;
     }
+=======
+>>>>>>> settingsAddFunctionality
 }

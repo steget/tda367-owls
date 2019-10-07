@@ -185,7 +185,7 @@ public class SettingsController implements Initializable {
     @FXML
     private boolean addMemberToTeam() {
 
-        for (User user : currentOrganisation.getUsers()) {
+        for (User user : StorageSystem.getCurrentOrganisation().getUsers()) {
             if (user.getName().equals(settingsAddUserInput.getText())) {
                 if (!currentlySelectedTeam.doesMemberIDexist(user.getID())) {
 
