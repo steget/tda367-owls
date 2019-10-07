@@ -18,7 +18,7 @@ import java.util.ResourceBundle;
 
 public class ItemPageController implements Initializable {
 
-    private Item mockItem;
+    private final Item mockItem;
 
     @FXML
     private ImageView itemPageImageView;
@@ -43,13 +43,16 @@ public class ItemPageController implements Initializable {
     @FXML
     private Button itemPageReserveBtn;
 
+    public ItemPageController(Item mockItem) {
+        this.mockItem = mockItem;
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resources) {
         Location location = new Location("MockLocation", "This location does not exist", new Image("creepy.jpg"));
-        mockItem = new Item("mockItem", "This is a description", "Behave please.", 2, Condition.GOOD, true, location, location.getImage());
+//        mockItem = new Item("mockItem", "This is a description", "Behave please.", 2, Condition.GOOD, true, location, location.getImage());
         Team mockTeam = new Team("mockTeam");
         setAll(mockItem, mockTeam);
-
     }
 
     protected void setAll(Item item, Team owner) { //TODO: better method name?

@@ -15,8 +15,6 @@ import java.util.Objects;
  * Location has the information about where the item is located
  */
 public class Item implements IReservable {
-
-
     private String name;
     private String description;
     private String userRequirements;

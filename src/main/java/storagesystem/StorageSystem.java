@@ -70,7 +70,7 @@ public class StorageSystem extends Application {
     /**
      * @return A deep copy of all organisations
      */
-    public static List<Organisation> getOrganisations() {
+    public static List<Organisation> getDeepCopyOrganisations() {
         List<Organisation> deepCopyOrganisations = new ArrayList<>();
         for (Organisation org :
                 organisations) {
@@ -79,8 +79,12 @@ public class StorageSystem extends Application {
         return deepCopyOrganisations;
     }
 
+    public static List<Organisation> getOrganisations() {
+        return organisations;
+    }
+
     public static Organisation getCurrentOrganisation() {
-        return currentOrganisation.getDeepCopy();
+        return currentOrganisation;
     }
 
     public static User getCurrentUser() {
