@@ -18,17 +18,19 @@ public class Item implements IReservable {
     private String description;
     private String userRequirements;
     private int ID;
+    private static int lastID;
     private int amount;
     private Condition condition;
     private boolean reservable;
     private Location location;
     private Image image;
 
-    public Item(String name, String description, String userRequirements, int ID, int amount, Condition condition, boolean reservable, Location location, Image image) {
+    public Item(String name, String description, String userRequirements, int amount, Condition condition, boolean reservable, Location location, Image image) {
         this.name = name;
         this.description = description;
         this.userRequirements = userRequirements;
-        this.ID = ID;
+        this.ID = lastID + 1;
+        lastID++;
         this.amount = amount;
         this.condition = condition;
         this.reservable = reservable;
