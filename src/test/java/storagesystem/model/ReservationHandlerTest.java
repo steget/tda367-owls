@@ -17,8 +17,8 @@ public class ReservationHandlerTest {
     @Test
     public void shouldCreateMultipleReservations() {
 
-        IBorrower borrower = new MockUser();
-        IReservable object = new MockItem();
+        IBorrower borrower = new User("John Doe", "Developer", "Call me");
+        IReservable object = new Item();
         ReservationHandler handler = new ReservationHandler(0, new ArrayList<>());
 
         DateTime time1 = new DateTime();
@@ -40,9 +40,9 @@ public class ReservationHandlerTest {
 
     @Test
     public void onlyOneReservationPerObjectAndIntervalShouldExist() {
-        IBorrower borrower = new MockUser();
-        IReservable object1 = new MockItem();
-        IReservable object2 = new MockItem();
+        IBorrower borrower = new User("John Doe", "Developer", "Call me");
+        IReservable object1 = new Item();
+        IReservable object2 = new Item();
         ReservationHandler handler = new ReservationHandler(0, new ArrayList<>());
 
         DateTime time1 = new DateTime();
@@ -69,8 +69,8 @@ public class ReservationHandlerTest {
 
     @Test
     public void shouldGiveID() {
-        IBorrower borrower = new MockUser();
-        IReservable object = new MockItem();
+        IBorrower borrower = new User("John Doe", "Developer", "Call me");
+        IReservable object = new Item();
         ReservationHandler handler = new ReservationHandler(0, new ArrayList<>());
 
         DateTime startTime = new DateTime(1999, 8, 14, 12, 30);
@@ -92,11 +92,11 @@ public class ReservationHandlerTest {
 
     @Test
     public void shouldReturnAllBorrowerReservations() {
-        IBorrower borrower1 = new MockUser();
-        IBorrower borrower2 = new MockUser();
+        IBorrower borrower1 = new User("John Doe", "Developer", "Call me");
+        IBorrower borrower2 = new User("William", "Admin", "Mail me");
 
-        IReservable object1 = new MockItem();
-        IReservable object2 = new MockItem();
+        IReservable object1 = new Item();
+        IReservable object2 = new Item();
 
         ReservationHandler handler = new ReservationHandler(0, new ArrayList<>());
 

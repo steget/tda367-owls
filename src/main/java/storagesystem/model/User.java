@@ -1,9 +1,11 @@
 package storagesystem.model;
 
+import java.util.Objects;
+
 /**
  * A user should represent a person.
  */
-public class User {
+public class User implements IBorrower {
     private String name;
     private String description;
     private String contactInformation;
@@ -62,7 +64,16 @@ public class User {
     /**
      * @return A new instance of User with the same attribute values as this
      */
-    public User getDeepCopy() {
+    public User copy() {
         return new User(this);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return ID == user.ID;
+    }
+
 }

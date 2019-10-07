@@ -9,8 +9,8 @@ public class ReservationTest {
 
     @Test
     public void reservationsShouldBeEqual(){
-        IBorrower borrower = new MockUser();
-        IReservable object = new MockItem();
+        IBorrower borrower = new User("John Doe", "Developer", "Call me");
+        IReservable object = new Item();
         DateTime time1 = new DateTime();
         DateTime time2 = time1.plusDays(1);
 
@@ -26,8 +26,8 @@ public class ReservationTest {
 
     @Test
     public void objectShouldEqual(){
-        IBorrower borrower = new MockUser();
-        IReservable object = new MockItem();
+        IBorrower borrower = new User("John Doe", "Developer", "Call me");
+        IReservable object = new Item();
         DateTime time1 = new DateTime();
         DateTime time2 = time1.plusDays(1);
 

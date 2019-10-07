@@ -84,7 +84,7 @@ public class Organisation {
         List<Team> deepCopyTeams = new ArrayList<>();
         for (Team team :
                 teams) {
-            deepCopyTeams.add(team.getDeepCopy());
+            deepCopyTeams.add(team.copy());
         }
         return deepCopyTeams;
     }
@@ -96,7 +96,7 @@ public class Organisation {
         List<User> deepCopyUsers = new ArrayList<>();
         for (User user :
                 users) {
-            deepCopyUsers.add(user.getDeepCopy());
+            deepCopyUsers.add(user.copy());
         }
         return deepCopyUsers;
     }
@@ -133,14 +133,14 @@ public class Organisation {
     /**
      * @return A new instance of Organisation with the same attribute values as this
      */
-    public Organisation getDeepCopy() {
+    public Organisation copy() {
         return new Organisation(this);
     }
 
     /**
      * @return A new instance of Organisation with the same attribute values as this
      */
-    public Organisation getDeepCopy(Organisation organisationToCopy) {
+    public Organisation copy(Organisation organisationToCopy) {
         return new Organisation(organisationToCopy);
     }
 

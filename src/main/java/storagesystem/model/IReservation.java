@@ -2,6 +2,10 @@ package storagesystem.model;
 
 import org.joda.time.Interval;
 
+/**
+ * Interface used for reservatiions.
+ */
+
 public interface IReservation {
     int getID();
 
