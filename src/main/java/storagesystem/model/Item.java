@@ -21,7 +21,7 @@ public class Item implements IReservable {
     private String description;
     private String userRequirements;
     private final int ID;
-    private static int lastID;
+    private static int nextID;
     private int amount;
     private Condition condition;
     private boolean reservable;
@@ -32,8 +32,8 @@ public class Item implements IReservable {
         this.name = name;
         this.description = description;
         this.userRequirements = userRequirements;
-        this.ID = lastID + 1;
-        lastID++;
+        this.ID = nextID;
+        nextID++;
         this.amount = amount;
         this.condition = condition;
         this.reservable = reservable;
