@@ -34,7 +34,7 @@
       </AnchorPane>
       <AnchorPane fx:id="settingsTeamAnchorPane" prefHeight="347.0" prefWidth="979.0" style="-fx-background-color: lime;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="150.0">
          <children>
-            <Button layoutX="759.0" layoutY="225.0" mnemonicParsing="false" onAction="#removeMemberFromTeam" prefHeight="32.0" prefWidth="194.0" style="-fx-background-color: RED;" text="REMOVE USER FROM TEAM" textAlignment="CENTER" />
+            <Button layoutX="759.0" layoutY="225.0" mnemonicParsing="false" onAction="#removeMemberButtonPressed" prefHeight="32.0" prefWidth="194.0" style="-fx-background-color: RED;" text="REMOVE USER FROM TEAM" textAlignment="CENTER" />
             <TextField fx:id="settingsAddUserInput" layoutX="733.0" layoutY="76.0" prefHeight="26.0" prefWidth="277.0" promptText="Write name of person to add from team" style="-fx-background-color: white;">
                <opaqueInsets>
                   <Insets />
