@@ -6,7 +6,7 @@ import org.joda.time.Interval;
 import java.util.Objects;
 
 /**
- * A reservation most importantly contains a object that is a reserved, a time of reservation and who the borrower is
+ * A reservation most importantly contains a object that is reserved, a time of reservation and who the borrower is
  */
 
 public class Reservation implements IReservation {
@@ -68,11 +68,11 @@ public class Reservation implements IReservation {
 
     @Override
     public IBorrower getBorrower() {
-        return borrower.copy();
+        return borrower;
     }
 
     private void setBorrower(IBorrower borrower) {
-        this.borrower = borrower.copy();
+        this.borrower = borrower;
     }
 
     @Override
@@ -86,11 +86,11 @@ public class Reservation implements IReservation {
 
     @Override
     public IReservable getReservedObject() {
-        return reservedObject.copy();
+        return reservedObject;
     }
 
     private void setReservedObject(IReservable reservedObject) {
-        this.reservedObject = reservedObject.copy();
+        this.reservedObject = reservedObject;
     }
 
     @Override
