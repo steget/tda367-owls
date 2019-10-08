@@ -1,6 +1,7 @@
 package storagesystem.controller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -12,10 +13,11 @@ import storagesystem.model.Condition;
 import storagesystem.model.Item;
 import storagesystem.model.Team;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ItemPageController implements Initializable {
+public class ItemPageController {
 
     private final Item item;
     private final Team itemOwner;
@@ -44,13 +46,22 @@ public class ItemPageController implements Initializable {
     private Button itemPageReserveBtn;
 
     public ItemPageController(Item item, Team itemOwner) {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("itemPage.fxml"));
+        fxmlLoader.setRoot(this);
+        fxmlLoader.setController(this);
+
+        try {
+            fxmlLoader.load();
+        } catch (IOException exception) {
+            throw new RuntimeException(exception);
+        }
+
         this.item = item;
         this.itemOwner = itemOwner;
+        initialize();
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resources) {
-        //TODO: load the item here or somehow when creating a controller
+    public void initialize() {
         updateAllVisibleFields();
     }
 
@@ -73,38 +84,9 @@ public class ItemPageController implements Initializable {
         setImage(item.getImage());
     }
 
-
-    private void setNameLabel(String name) {
-        itemPageNameLabel.setText(name);
-    }
-
-    private void setIDLabel(String id) {
-        itemPageIDLabel.setText("ID: " + id);
-    }
-
-    private void setAmountLabel(String amount) {
-        itemPageAmountLabel.setText("Amount: " + amount);
-    }
-
-    private void setLocationLabel(String location) {
-        itemPageLocationLabel.setText("Location: " + location);
-    }
-
-    private void setTeamOwnerLabel(String teamOwner) {
-        itemPageTeamOwnerLabel.setText("Owner: " + teamOwner);
-    }
-
-    private void setReservableLabel(String reservable) {
-        itemPageReservableLabel.setText("Reservable: " + reservable);
-    }
-
-    private void setReservableBtn(boolean reservable) {
-        itemPageReserveBtn.setDisable(!reservable);
-    }
-
     private void updateReservable() {
         setReservableBtn(item.isReservable());
-        setReservableLabel(""+ item.isReservable());
+        setReservableLabel("" + item.isReservable());
     }
 
     private void setConditionSlider(Condition condition) {
@@ -141,6 +123,34 @@ public class ItemPageController implements Initializable {
     @FXML
     protected void itemPageReserveBtnPressed() {
         //TODO: create a new reservation if possible
+    }
+
+    private void setNameLabel(String name) {
+        itemPageNameLabel.setText(name);
+    }
+
+    private void setIDLabel(String id) {
+        itemPageIDLabel.setText("ID: " + id);
+    }
+
+    private void setAmountLabel(String amount) {
+        itemPageAmountLabel.setText("Amount: " + amount);
+    }
+
+    private void setLocationLabel(String location) {
+        itemPageLocationLabel.setText("Location: " + location);
+    }
+
+    private void setTeamOwnerLabel(String teamOwner) {
+        itemPageTeamOwnerLabel.setText("Owner: " + teamOwner);
+    }
+
+    private void setReservableLabel(String reservable) {
+        itemPageReservableLabel.setText("Reservable: " + reservable);
+    }
+
+    private void setReservableBtn(boolean reservable) {
+        itemPageReserveBtn.setDisable(!reservable);
     }
 }
 
