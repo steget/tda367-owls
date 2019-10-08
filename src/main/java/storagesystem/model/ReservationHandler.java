@@ -4,12 +4,15 @@ import org.joda.time.Interval;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 /**
  * A handler taking care of all reservations for one organisation. Methods for creating and retrieving reservations
  */
 
 public class ReservationHandler {
+
+    //TODO Understand exceptions and implement correctly
 
 
     private List<IReservation> reservations;
@@ -26,13 +29,13 @@ public class ReservationHandler {
      * @return Reservation matching id. Returns null if none found.
      */
 
-    public IReservation getReservation(int id) throws NullPointerException {
+    public IReservation getReservation(int id) throws NoSuchElementException {
         for (IReservation res : reservations) {
             if (res.getID() == id) {
                 return res.copy();
             }
         }
-        return null;
+        throw new NoSuchElementException("No reservation with that id");
     }
 
 
@@ -118,11 +121,10 @@ public class ReservationHandler {
      *  Get the last created reservation
      * @return Null if no reservation found
      */
-    public IReservation getLastReservation() throws NullPointerException{
+    public IReservation getLastReservation() throws NoSuchElementException{
         int lenght = reservations.size();
         if (lenght == 0) {
-            System.out.println("No reservation found");
-            return null;
+            throw new NoSuchElementException("No reservations exists");
         }
         return reservations.get(lenght-1).copy();
     }
