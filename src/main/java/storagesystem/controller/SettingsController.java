@@ -3,6 +3,7 @@ package storagesystem.controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -14,6 +15,7 @@ import storagesystem.model.Organisation;
 import storagesystem.model.Team;
 import storagesystem.model.User;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +24,7 @@ import java.util.ResourceBundle;
 /**
  * SettingsController controls the settingsView.
  */
-public class SettingsController implements Initializable {
+public class SettingsController extends AnchorPane implements Initializable {
 
     @FXML
     private Label settingsLabel;
@@ -38,12 +40,6 @@ public class SettingsController implements Initializable {
 
     @FXML
     private Label settingsTeamLabel;
-
-    @FXML
-    private Button settingsUserSave;
-
-    @FXML
-    private Button settingsTeamSave;
 
     @FXML
     private TextField settingsAddUserInput;
@@ -83,8 +79,8 @@ public class SettingsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        currentOrganisation = StorageSystem.getCurrentOrganisation().getDeepCopy();
-        currentUser = StorageSystem.getCurrentUser().getDeepCopy();
+        currentOrganisation = StorageSystem.getCurrentOrganisation();
+        currentUser = StorageSystem.getCurrentUser();
         currentUsersTeams = currentOrganisation.getUsersTeams(currentUser);
         currentlySelectedTeam = currentUsersTeams.get(0);
         for (Team t : currentUsersTeams) { //adds team names into an observable list.
@@ -138,6 +134,9 @@ public class SettingsController implements Initializable {
     public void saveTeam() {
         currentlySelectedTeam.setTermsAndConditions(settingsTeamContractInput.getText());
         currentlySelectedTeam.setName(settingsTeamNameInput.getText());
+        currentOrganisation.saveTeam(currentlySelectedTeam);
+        StorageSystem.getCurrentOrganisation().saveTeam(currentlySelectedTeam);
+        StorageSystem.setCurrentOrganisation(currentOrganisation);
 
         updateChangedTeamNameInChoicebox();
         updateTeamsChoicebox();
@@ -151,6 +150,9 @@ public class SettingsController implements Initializable {
         currentUser.setName(settingsNameInput.getText());
         currentUser.setDescription(settingsDescriptionInput.getText());
         currentUser.setContactInformation(settingsContactInput.getText());
+
+        currentOrganisation.saveUser(currentUser);
+        StorageSystem.setCurrentOrganisation(currentOrganisation);
     }
 
     /**
@@ -180,6 +182,7 @@ public class SettingsController implements Initializable {
      * Adds a member to the current team selected if a username is written in the input.
      * Returns true if user get added in team.
      * If user already exists in team it returns false.
+     *
      * @return true or false depending the user got added to the team.
      */
     @FXML
@@ -205,10 +208,11 @@ public class SettingsController implements Initializable {
      * Removes a user from the current selected team.
      * If the name in @settingsRemoveUserInput variable exists in the team,it gets removed from the team list and returns true.
      * If the name in @settingsRemoveUserInput does not exist it returns false and does nothing.
-     *  @return true or false depending if the user got removed or not
+     *
+     * @return true or false depending if the user got removed or not
      */
     @FXML
-    private boolean removeMemberToTeam() {
+    private boolean removeMemberFromTeam() {
 
         int userID = 0;
         for (User user : currentOrganisation.getUsers()) {

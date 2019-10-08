@@ -86,7 +86,7 @@ public class StorageSystem extends Application {
     }
 
     public static Organisation getCurrentOrganisation() {
-        return currentOrganisation.getDeepCopy();
+        return currentOrganisation;
     }
 
     public static User getCurrentUser() {
