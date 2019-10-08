@@ -130,9 +130,6 @@ public class SettingsController extends AnchorPane implements Initializable {
         currentlySelectedTeam.setTermsAndConditions(settingsTeamContractInput.getText());
         currentlySelectedTeam.setName(settingsTeamNameInput.getText());
 
-//        currentOrganisation.saveTeam(currentlySelectedTeam);
-//        StorageSystem.getCurrentOrganisation().saveTeam(currentlySelectedTeam);
-
         updateChangedTeamNameInChoicebox();
         updateTeamsChoicebox();
     }
@@ -145,9 +142,6 @@ public class SettingsController extends AnchorPane implements Initializable {
         currentUser.setName(settingsNameInput.getText());
         currentUser.setDescription(settingsDescriptionInput.getText());
         currentUser.setContactInformation(settingsContactInput.getText());
-
-//        currentOrganisation.saveUser(currentUser);
-//        StorageSystem.setCurrentOrganisation(currentOrganisation);
     }
 
     /**
@@ -207,23 +201,31 @@ public class SettingsController extends AnchorPane implements Initializable {
      * @return true or false depending if the user got removed or not
      */
     @FXML
-    private boolean removeMemberFromTeam() {
+    private void removeMemberFromTeam() {
+        int tempUserID = -1;
 
-        int userID = 0;
+        //todo refactor out this part
+        //check if user with matching name in textbox exists
         for (User user : currentOrganisation.getUsers()) {
             if (user.getName().equals(settingsRemoveUserInput.getText())) {
-                userID = user.getID();
+                tempUserID = user.getID();
             }
         }
+
+        boolean memberFound = false;
+        //remove member from team
         for (int i : currentlySelectedTeam.getAllMemberIDs()) {
-            if (i == userID) {
-                currentlySelectedTeam.removeMember(userID);
-                return true;
+            if (i == tempUserID) {
+                currentlySelectedTeam.removeMember(tempUserID);
+                memberFound = true;
+                break;
             }
 
         }
-        System.out.println("Could not remove member. Member is not apart of the team.");
-        return false;
+        if (!memberFound) {
+            //todo print in program instead
+            System.out.println("Could not remove member. Member is not apart of the team.");
+        }
     }
 
 
