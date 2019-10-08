@@ -55,7 +55,7 @@ public class Team {
     /**
      * @return A new instance of Team with the same attribute values as this
      */
-    public Team getDeepCopy() {
+    public Team copy() {
         return new Team(this);
     }
 
