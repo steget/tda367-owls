@@ -57,7 +57,7 @@ public class ReservationHandler {
 
     /**
      * @param object
-     * @return A list with all known reservations with specific object.
+     * @return A list with all known reservations for one specific object.
      */
     public List<IReservation> getReservations(IReservable object) {
 

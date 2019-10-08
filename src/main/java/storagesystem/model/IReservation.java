@@ -3,7 +3,7 @@ package storagesystem.model;
 import org.joda.time.Interval;
 
 /**
- * Interface used for reservatiions.
+ * Interface used for reservations.
  */
 
 public interface IReservation {
@@ -17,7 +17,6 @@ public interface IReservation {
 
     ReservationStatus getStatus();
 
-    IReservation copy();
 
 
     @Override
