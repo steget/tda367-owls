@@ -25,9 +25,6 @@ import java.util.ResourceBundle;
 public class SettingsController extends AnchorPane implements Initializable {
 
     @FXML
-    private Label settingsLabel;
-
-    @FXML
     private AnchorPane settingsTeamAnchorPane;
 
     @FXML
@@ -63,9 +60,6 @@ public class SettingsController extends AnchorPane implements Initializable {
     @FXML
     private ChoiceBox<String> settingsChooseTeamInput;
 
-    @FXML
-    private Button saveTeamButton;
-
     private User currentUser;
     private List<Team> currentUsersTeams = new ArrayList<>();
     private Team currentlySelectedTeam;
@@ -83,13 +77,10 @@ public class SettingsController extends AnchorPane implements Initializable {
             isUserPartOfTeam = false;
         }
 
-        if(isUserPartOfTeam){
+        if(isUserPartOfTeam){   //goes through team m
             teamMethods();
         }
-        else{
-            saveTeamButton.setOnAction(null);
 
-        }
 
 
 
@@ -106,12 +97,14 @@ public class SettingsController extends AnchorPane implements Initializable {
                 settingsTeamAnchorPane.setVisible(false);
             }
         }));
-        settingsTeamLabel.setOnMouseClicked((event -> {
-            if (settingsUserAnchorPane.isVisible()) {
-                settingsUserAnchorPane.setVisible(false);
-                settingsTeamAnchorPane.setVisible(true);
-            }
-        }));
+        if(isUserPartOfTeam) {
+            settingsTeamLabel.setOnMouseClicked((event -> {
+                if (settingsUserAnchorPane.isVisible()) {
+                    settingsUserAnchorPane.setVisible(false);
+                    settingsTeamAnchorPane.setVisible(true);
+                }
+            }));
+        }
 
         settingsChooseTeamInput.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
             int newIndex = newValue.intValue();
@@ -225,7 +218,6 @@ public class SettingsController extends AnchorPane implements Initializable {
     @FXML
     private void removeMemberButtonPressed() {
         int tempUserID = getUserIDFromName(settingsRemoveUserInput.getText());
-
         removeMemberFromTeam(tempUserID);
     }
 

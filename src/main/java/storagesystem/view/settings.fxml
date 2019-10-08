@@ -21,17 +21,6 @@
          </cursor></Label>
       <Label fx:id="settingsLabel" alignment="CENTER" prefHeight="70.0" prefWidth="250.0" style="-fx-font-size: 40px;" text="SETTINGS" textAlignment="CENTER" wrapText="true" AnchorPane.leftAnchor="165.0" AnchorPane.rightAnchor="185.0" AnchorPane.topAnchor="10.0" />
       <ChoiceBox fx:id="settingsChooseTeamInput" layoutX="39.0" layoutY="101.0" prefWidth="150.0" />
-      <AnchorPane fx:id="settingsUserAnchorPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: red;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="150.0">
-         <children>
-            <TextField fx:id="settingsDescriptionInput" alignment="TOP_LEFT" layoutX="178.0" layoutY="161.0" prefHeight="268.0" prefWidth="407.0" promptText="Write something about yourself..." style="-fx-background-color: white;" />
-            <Text layoutX="10.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20px;" text="Description of yourself:" textAlignment="RIGHT" wrappingWidth="131.10546875" />
-            <Text layoutX="47.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20px;" text="Name:" textAlignment="RIGHT" wrappingWidth="95.10546875" />
-            <TextField fx:id="settingsNameInput" layoutX="178.0" layoutY="49.0" prefHeight="26.0" prefWidth="230.0" promptText="Input Name" style="-fx-background-color: white;" />
-            <TextField fx:id="settingsContactInput" layoutX="178.0" layoutY="107.0" prefHeight="26.0" prefWidth="230.0" promptText="Input E-Mail" style="-fx-background-color: white;" />
-            <Text layoutX="47.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20px;" text="Contact:" textAlignment="RIGHT" wrappingWidth="95.10546875" />
-            <Button layoutX="747.0" layoutY="368.0" mnemonicParsing="false" onAction="#saveUser" prefHeight="70.0" prefWidth="250.0" text="SAVE " AnchorPane.bottomAnchor="59.0" AnchorPane.rightAnchor="71.0" />
-         </children>
-      </AnchorPane>
       <AnchorPane fx:id="settingsTeamAnchorPane" prefHeight="347.0" prefWidth="979.0" style="-fx-background-color: lime;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="150.0">
          <children>
             <Button layoutX="759.0" layoutY="225.0" mnemonicParsing="false" onAction="#removeMemberButtonPressed" prefHeight="32.0" prefWidth="194.0" style="-fx-background-color: RED;" text="REMOVE USER FROM TEAM" textAlignment="CENTER" />
@@ -53,6 +42,17 @@
             </TextField>
             <Text layoutX="622.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Remove user:" textAlignment="RIGHT" wrappingWidth="95.10546875" />
             <Button fx:id="saveTeamButton" contentDisplay="BOTTOM" layoutX="688.0" layoutY="321.0" mnemonicParsing="false" onAction="#saveTeam" prefHeight="70.0" prefWidth="250.0" text="SAVE " textAlignment="CENTER" AnchorPane.bottomAnchor="59.0" AnchorPane.rightAnchor="71.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="settingsUserAnchorPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: red;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="150.0">
+         <children>
+            <TextField fx:id="settingsDescriptionInput" alignment="TOP_LEFT" layoutX="178.0" layoutY="161.0" prefHeight="268.0" prefWidth="407.0" promptText="Write something about yourself..." style="-fx-background-color: white;" />
+            <Text layoutX="10.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20px;" text="Description of yourself:" textAlignment="RIGHT" wrappingWidth="131.10546875" />
+            <Text layoutX="47.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20px;" text="Name:" textAlignment="RIGHT" wrappingWidth="95.10546875" />
+            <TextField fx:id="settingsNameInput" layoutX="178.0" layoutY="49.0" prefHeight="26.0" prefWidth="230.0" promptText="Input Name" style="-fx-background-color: white;" />
+            <TextField fx:id="settingsContactInput" layoutX="178.0" layoutY="107.0" prefHeight="26.0" prefWidth="230.0" promptText="Input E-Mail" style="-fx-background-color: white;" />
+            <Text layoutX="47.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20px;" text="Contact:" textAlignment="RIGHT" wrappingWidth="95.10546875" />
+            <Button layoutX="747.0" layoutY="368.0" mnemonicParsing="false" onAction="#saveUser" prefHeight="70.0" prefWidth="250.0" text="SAVE " AnchorPane.bottomAnchor="59.0" AnchorPane.rightAnchor="71.0" />
          </children>
       </AnchorPane>
    </children>
