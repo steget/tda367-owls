@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -62,33 +63,42 @@ public class SettingsController extends AnchorPane implements Initializable {
     @FXML
     private ChoiceBox<String> settingsChooseTeamInput;
 
+    @FXML
+    private Button saveTeamButton;
+
     private User currentUser;
     private List<Team> currentUsersTeams = new ArrayList<>();
     private Team currentlySelectedTeam;
     private ObservableList<String> teamNames = FXCollections.observableArrayList();
     private int currentlySelectedTeamIndex;
     private Organisation currentOrganisation;
+    private boolean isUserPartOfTeam = true;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         currentOrganisation = StorageSystem.getCurrentOrganisation();
         currentUser = StorageSystem.getCurrentUser();
-        currentUsersTeams = StorageSystem.getCurrentOrganisation().getUsersTeams(currentUser);
-        currentlySelectedTeam = currentUsersTeams.get(0);
 
-        for (Team t : currentUsersTeams) { //adds team names into an observable list.
-            teamNames.add(t.getName());
+        if(StorageSystem.getCurrentOrganisation().getUsersTeams(currentUser).size() == 0){
+            isUserPartOfTeam = false;
         }
 
-        settingsChooseTeamInput.setItems(teamNames);
-        settingsChooseTeamInput.setValue(teamNames.get(0)); //show first value in box
-        currentlySelectedTeamIndex = 0;
+        if(isUserPartOfTeam){
+            teamMethods();
+        }
+        else{
+            saveTeamButton.setOnAction(null);
+
+        }
+
+
+
+
 
         settingsNameInput.setText(currentUser.getName());
         settingsDescriptionInput.setText(currentUser.getDescription());
         settingsContactInput.setText(currentUser.getContactInformation());
-        settingsTeamNameInput.setText(currentlySelectedTeam.getName());
-        settingsTeamContractInput.setText(currentlySelectedTeam.getTermsAndConditions());
+
 
         settingsUserLabel.setOnMouseClicked((event -> {
             if (!settingsUserAnchorPane.isVisible()) {
@@ -120,6 +130,22 @@ public class SettingsController extends AnchorPane implements Initializable {
                 }
             }
         });
+    }
+
+    private void teamMethods() {
+
+        currentUsersTeams = StorageSystem.getCurrentOrganisation().getUsersTeams(currentUser);
+        currentlySelectedTeam = currentUsersTeams.get(0);
+        for (Team t : currentUsersTeams) { //adds team names into an observable list.
+            teamNames.add(t.getName());
+        }
+        settingsChooseTeamInput.setItems(teamNames);
+        settingsChooseTeamInput.setValue(teamNames.get(0)); //show first value in box
+        currentlySelectedTeamIndex = 0;
+
+        settingsTeamNameInput.setText(currentlySelectedTeam.getName());
+        settingsTeamContractInput.setText(currentlySelectedTeam.getTermsAndConditions());
+
     }
 
     /**
