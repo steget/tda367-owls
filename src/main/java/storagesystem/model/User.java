@@ -35,23 +35,23 @@ public class User {
         return name;
     }
 
-    void setName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    String getDescription() {
+    public String getDescription() {
         return description;
     }
 
-    void setDescription(String description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
-    String getContactInformation() {
+    public String getContactInformation() {
         return contactInformation;
     }
 
-    void setContactInformation(String contactInformation) {
+    public void setContactInformation(String contactInformation) {
         this.contactInformation = contactInformation;
     }
 
@@ -65,4 +65,12 @@ public class User {
     public User getDeepCopy() {
         return new User(this);
     }
+
+
+    public void set(User user){
+        this.description = user.getDescription();
+        this.name = user.getName();
+        this.contactInformation = user.getContactInformation();
+    }
+
 }

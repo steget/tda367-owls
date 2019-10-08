@@ -14,9 +14,10 @@ public class TeamTest {
         Team testTeam = new Team("owls");
         List<Item> allItems = testTeam.getAllItems();
         assertEquals(0, allItems.size());
+        Location hasen = new Location("hasen","ha senare", null);
 
-        Item item = new Item();
-        allItems.add(new Item());
+        Item mockItem = new Item("mockItem", "desc","requirements",1,1,Condition.GREAT,true, hasen, null);
+        allItems.add(mockItem);
         assertEquals(1, allItems.size());
     }
 
@@ -50,5 +51,15 @@ public class TeamTest {
         testTeam.addMember(id2);
         testTeam.addMember(id3);
         assertEquals(3, testTeam.getAllMemberIDs().size());
+    }
+
+    @Test
+    public void doesMemberIDExist(){
+        Team testTeam = new Team("Owls");
+        User Harry = new User("Harry");
+        User Bob = new User("Bob");
+        testTeam.addMember(Harry.getID());
+        assertFalse(testTeam.doesMemberIDexist(Bob.getID()));
+        assertTrue(testTeam.doesMemberIDexist(Harry.getID()));
     }
 }

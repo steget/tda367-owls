@@ -29,9 +29,13 @@ public class StorageSystem extends Application {
         stage.show();
     }
 
+    //todo write javadoc
     private void initializeBackend() {
         Organisation informationsteknik = new Organisation("Informationsteknik");
         Team tempTeam = new Team("sexNollK");
+        informationsteknik.createUser("Albert");
+        informationsteknik.createUser("Hugo");
+        informationsteknik.createUser("admin");
         Team tempTeam2 = new Team("P.R.NollK");
         informationsteknik.createUser("admin");
         informationsteknik.createUser("Albert");
@@ -82,7 +86,7 @@ public class StorageSystem extends Application {
     }
 
     public static Organisation getCurrentOrganisation() {
-        return currentOrganisation.getDeepCopy();
+        return currentOrganisation;
     }
 
     public static User getCurrentUser() {

@@ -4,12 +4,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import storagesystem.StorageSystem;
+import storagesystem.model.Organisation;
 import storagesystem.model.Team;
 import storagesystem.model.User;
 
@@ -21,7 +21,7 @@ import java.util.ResourceBundle;
 /**
  * Control a settings page
  */
-public class SettingsController implements Initializable {
+public class SettingsController extends AnchorPane implements Initializable {
 
     @FXML
     private Label settingsLabel;
@@ -39,10 +39,10 @@ public class SettingsController implements Initializable {
     private Label settingsTeamLabel;
 
     @FXML
-    private Button settingsUserSave;
+    private TextField settingsAddUserInput;
 
     @FXML
-    private Button settingsTeamSave;
+    private TextField settingsRemoveUserInput;
 
     @FXML
     private TextField settingsNameInput;
@@ -60,19 +60,22 @@ public class SettingsController implements Initializable {
     private TextField settingsDescriptionInput;
 
     @FXML
-    private ChoiceBox settingsChooseTeamInput;
+    private ChoiceBox<String> settingsChooseTeamInput;
 
     private User currentUser;
     private List<Team> currentUsersTeams = new ArrayList<>();
     private Team currentlySelectedTeam;
     private ObservableList<String> teamNames = FXCollections.observableArrayList();
     private int currentlySelectedTeamIndex;
+    private Organisation currentOrganisation;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        currentOrganisation = StorageSystem.getCurrentOrganisation();
         currentUser = StorageSystem.getCurrentUser();
         currentUsersTeams = StorageSystem.getCurrentOrganisation().getUsersTeams(currentUser);
         currentlySelectedTeam = currentUsersTeams.get(0);
+
         for (Team t : currentUsersTeams) { //adds team names into an observable list.
             teamNames.add(t.getName());
         }
@@ -82,6 +85,8 @@ public class SettingsController implements Initializable {
         currentlySelectedTeamIndex = 0;
 
         settingsNameInput.setText(currentUser.getName());
+        settingsDescriptionInput.setText(currentUser.getDescription());
+        settingsContactInput.setText(currentUser.getContactInformation());
         settingsTeamNameInput.setText(currentlySelectedTeam.getName());
         settingsTeamContractInput.setText(currentlySelectedTeam.getTermsAndConditions());
 
@@ -125,8 +130,24 @@ public class SettingsController implements Initializable {
         currentlySelectedTeam.setTermsAndConditions(settingsTeamContractInput.getText());
         currentlySelectedTeam.setName(settingsTeamNameInput.getText());
 
+//        currentOrganisation.saveTeam(currentlySelectedTeam);
+//        StorageSystem.getCurrentOrganisation().saveTeam(currentlySelectedTeam);
+
         updateChangedTeamNameInChoicebox();
         updateTeamsChoicebox();
+    }
+
+    /**
+     * Save the current users data that inputted.
+     */
+    @FXML
+    public void saveUser() {
+        currentUser.setName(settingsNameInput.getText());
+        currentUser.setDescription(settingsDescriptionInput.getText());
+        currentUser.setContactInformation(settingsContactInput.getText());
+
+//        currentOrganisation.saveUser(currentUser);
+//        StorageSystem.setCurrentOrganisation(currentOrganisation);
     }
 
     /**
@@ -151,4 +172,59 @@ public class SettingsController implements Initializable {
         settingsTeamNameInput.setText(currentlySelectedTeam.getName());
         settingsTeamContractInput.setText(currentlySelectedTeam.getTermsAndConditions());
     }
+
+    /**
+     * Adds a member to the current team selected if a username is written in the input.
+     * Returns true if user get added in team.
+     * If user already exists in team it returns false.
+     *
+     * @return true or false depending the user got added to the team.
+     */
+    @FXML
+    private boolean addMemberToTeam() {
+
+        for (User user : StorageSystem.getCurrentOrganisation().getUsers()) {
+            if (user.getName().equals(settingsAddUserInput.getText())) {
+                if (!currentlySelectedTeam.doesMemberIDexist(user.getID())) {
+
+                    currentlySelectedTeam.addMember(user.getID());
+                    return true;
+                } else {
+                    System.out.println("User is already apart of this team.");
+                    return false;
+                }
+            }
+        }
+        System.out.println("User is does not exist.");
+        return false;
+    }
+
+    /**
+     * Removes a user from the current selected team.
+     * If the name in @settingsRemoveUserInput variable exists in the team,it gets removed from the team list and returns true.
+     * If the name in @settingsRemoveUserInput does not exist it returns false and does nothing.
+     *
+     * @return true or false depending if the user got removed or not
+     */
+    @FXML
+    private boolean removeMemberFromTeam() {
+
+        int userID = 0;
+        for (User user : currentOrganisation.getUsers()) {
+            if (user.getName().equals(settingsRemoveUserInput.getText())) {
+                userID = user.getID();
+            }
+        }
+        for (int i : currentlySelectedTeam.getAllMemberIDs()) {
+            if (i == userID) {
+                currentlySelectedTeam.removeMember(userID);
+                return true;
+            }
+
+        }
+        System.out.println("Could not remove member. Member is not apart of the team.");
+        return false;
+    }
+
+
 }

@@ -12,6 +12,9 @@ public class Team {
     private final List<Item> inventory = new ArrayList<>(); //todo itemIDs instead
     private final List<Integer> memberIDs = new ArrayList<>();
     private String termsAndConditions;
+    private int teamID;
+    private static int nextID;
+
 
     //deep copy
     public Team(Team teamToCopy) {
@@ -21,10 +24,17 @@ public class Team {
         this.termsAndConditions = teamToCopy.termsAndConditions;
     }
 
+    public int getTeamID() {
+        return teamID;
+    }
+
     public Team(String teamName) {
         this.name = teamName;
         //todo fill stuff from db
         termsAndConditions = "";
+        //fill termsAndConditions from db
+        teamID = nextID;
+        nextID++;
     }
 
     /**
@@ -41,15 +51,16 @@ public class Team {
      *
      * @param memberToBeRemoved ID of the member to be removed
      */
-    void removeMember(int memberToBeRemoved) {
-        memberIDs.remove(Integer.valueOf(memberToBeRemoved)); //needs to use Integer to make sure index is not chosen
+    public void removeMember(int memberToBeRemoved) {
+        memberIDs.remove((Object) memberToBeRemoved); //needs to use object to make sure index is not chosen
     }
 
-    /**
-     * @return List of all the members IDs. Defensive copy
-     */
-    List<Integer> getAllMemberIDs() {
-        return new ArrayList<>(memberIDs);
+    void addItemToInventory(Item item) { //todo maybe just an ID instead and get the item from DB?
+        inventory.add(item);
+    }
+
+    public List<Integer> getAllMemberIDs() {
+        return memberIDs;
     }
 
     /**
@@ -74,6 +85,19 @@ public class Team {
     List<Item> getAllItems() {
         //todo defensive copy
         return inventory;
+    }
+
+    /**
+     * @param ID from the user you want to check if it exists in the team
+     * @return true or false depending if the user exists in the team.
+     */
+    public boolean doesMemberIDexist(int ID){
+        for(int i: this.getAllMemberIDs()){
+            if(i == ID){
+                return true;
+            }
+        }
+        return false;
     }
 
     public String getName() {

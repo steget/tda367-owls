@@ -3,7 +3,6 @@ package storagesystem.model;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  * An Organisation holds a collection of teams with the purpose being that the teams can communicate with each other.
  * The teams that belong to an organisation should be relevant to one another.
@@ -22,7 +21,7 @@ public class Organisation {
 
     private Organisation(Organisation organisationToCopy) {
         this.name = organisationToCopy.name;
-        this.teams.addAll(organisationToCopy.getTeams());
+        this.teams.addAll(organisationToCopy.getDeepCopyOfTeams());
         this.users.addAll(organisationToCopy.getUsers());
         //todo reservationHandler = organisationToCopy.reservationHandlerDeepCopy
     }
@@ -51,8 +50,7 @@ public class Organisation {
                 teams) {
             for (Item i :
                     t.getAllItems()) {
-                //i.getID == ID
-                if (true) {
+                if (i.getID() == ID) {
                     System.out.println("Item found");
                     return i;
                 }
@@ -62,25 +60,28 @@ public class Organisation {
     }
 
     /**
+     * Use this to find out which teams one specific User is part of.
+     * Can be used for example if the user wants to switch which team it is currently doing an action for.
+     *
      * @param user
-     * @return
+     * @return List of teams that the sent in user is a part of
      */
     public List<Team> getUsersTeams(User user) {
-        List<Team> userTeams = new ArrayList<Team>();
+        List<Team> usersTeams = new ArrayList<Team>();
         for (Team t : teams) {
-            for (int i : t.getAllMemberIDs()) {
-                if (user.getID() == i) {
-                    userTeams.add(t);
+            for (int memberID : t.getAllMemberIDs()) {
+                if (user.getID() == memberID) {
+                    usersTeams.add(t);
                 }
             }
         }
-        return userTeams;
+        return usersTeams;
     }
 
     /**
      * @return Defensive copy of all teams within the organisation
      */
-    private List<Team> getTeams() {
+    private List<Team> getDeepCopyOfTeams() {
         List<Team> deepCopyTeams = new ArrayList<>();
         for (Team team :
                 teams) {
@@ -92,13 +93,20 @@ public class Organisation {
     /**
      * @return A deep copy of all the users
      */
-    public List<User> getUsers() {
+    public List<User> getDeepCopyOfUsers() {
         List<User> deepCopyUsers = new ArrayList<>();
         for (User user :
                 users) {
             deepCopyUsers.add(user.getDeepCopy());
         }
         return deepCopyUsers;
+    }
+
+    /**
+     * @return A list of all the users
+     */
+    public List<User> getUsers() {
+        return users;
     }
 
     /**
@@ -151,4 +159,28 @@ public class Organisation {
     void setName(String name) {
         this.name = name;
     }
+
+
+    public void saveUser(User user){
+        this.getUsers().get(user.getID()).set(user);
+    }
+
+    /**
+     * this method saves the altered team into the organisations list of team.
+     * If a team has been altered then this method updates the organisation
+     * @param team to be saved in organisation
+     * @return true if successfull
+     */
+    public boolean saveTeam(Team team){
+        for(Team t: this.getDeepCopyOfTeams()){
+          if(t.getTeamID() == team.getTeamID()){
+              t.setTermsAndConditions(team.getTermsAndConditions());
+              t.setName(team.getName());
+                return true;
+          }
+
+        }
+        return false;
+    }
+
 }
