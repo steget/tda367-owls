@@ -65,12 +65,4 @@ public class User {
     public User getDeepCopy() {
         return new User(this);
     }
-
-
-    public void set(User user){
-        this.description = user.getDescription();
-        this.name = user.getName();
-        this.contactInformation = user.getContactInformation();
-    }
-
 }
