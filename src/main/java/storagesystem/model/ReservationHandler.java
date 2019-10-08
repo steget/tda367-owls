@@ -41,7 +41,7 @@ public class ReservationHandler {
     public IReservation getReservation(int id) throws NoSuchElementException {
         for (IReservation res : reservations) {
             if (res.getID() == id) {
-                return res.copy();
+                return res;
             }
         }
         throw new NoSuchElementException("No reservation with that id");
@@ -67,7 +67,7 @@ public class ReservationHandler {
 
         for (IReservation res : this.reservations) {
             if (res.getReservedObject().equals(object)) {
-                reservations.add(res.copy());
+                reservations.add(res);
             }
         }
 
@@ -85,7 +85,7 @@ public class ReservationHandler {
 
         for(IReservation res : this.reservations){
             if(borrower.equals(res.getBorrower())){
-                reservations.add(res.copy());
+                reservations.add(res);
             }
         }
 
