@@ -62,7 +62,7 @@ public class ReservationHandler {
     public List<IReservation> getReservations(IReservable object) {
 
 
-        List<IReservation> reservations = new ArrayList<>();
+        List<IReservation> objectsReservations = new ArrayList<>();
 
 
         for (IReservation res : this.reservations) {
@@ -81,7 +81,7 @@ public class ReservationHandler {
      */
     public List<IReservation> getReservations(IBorrower borrower){
 
-        List<IReservation> reservations = new ArrayList<>();
+        List<IReservation> borrowersReservations = new ArrayList<>();
 
         for(IReservation res : this.reservations){
             if(borrower.equals(res.getBorrower())){
@@ -135,7 +135,7 @@ public class ReservationHandler {
         if (lenght == 0) {
             throw new NoSuchElementException("No reservations exists");
         }
-        return reservations.get(lenght-1).copy();
+        return reservations.get(lenght-1);
     }
 
     /**
