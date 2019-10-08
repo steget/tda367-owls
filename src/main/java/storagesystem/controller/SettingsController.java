@@ -135,9 +135,6 @@ public class SettingsController extends AnchorPane implements Initializable {
         currentlySelectedTeam.setTermsAndConditions(settingsTeamContractInput.getText());
         currentlySelectedTeam.setName(settingsTeamNameInput.getText());
 
-//        currentOrganisation.saveTeam(currentlySelectedTeam);
-//        StorageSystem.getCurrentOrganisation().saveTeam(currentlySelectedTeam);
-
         updateChangedTeamNameInChoicebox();
         updateTeamsChoicebox();
     }
@@ -150,9 +147,6 @@ public class SettingsController extends AnchorPane implements Initializable {
         currentUser.setName(settingsNameInput.getText());
         currentUser.setDescription(settingsDescriptionInput.getText());
         currentUser.setContactInformation(settingsContactInput.getText());
-
-//        currentOrganisation.saveUser(currentUser);
-//        StorageSystem.setCurrentOrganisation(currentOrganisation);
     }
 
     /**
