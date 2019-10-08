@@ -18,10 +18,19 @@ public class ReservationHandler {
     private List<IReservation> reservations;
 
 
-    public ReservationHandler(int nextReservationID, List<IReservation> reservations) {
-        Reservation.setNxtResId(nextReservationID);
+    public ReservationHandler(List<IReservation> reservations) {
         this.reservations = reservations;
     }
+
+    public ReservationHandler(){
+
+    }
+
+
+    public void setReservations(List<IReservation> reservations) {
+        this.reservations = reservations;
+    }
+
 
 
     /**
@@ -103,14 +112,14 @@ public class ReservationHandler {
 
 
     /**
-     * Creates a new reservation and saves in this ReservationHandler.
+     * Creates a new reservation and saves in this ReservationHandler. Firsts tests to see if object isn't already reserved.
      *
      * @param borrower The party which want to borrow object
-     * @param interval The interval in which
-     * @param object
+     * @param interval The interval in which to reserve the object.
+     * @param object The object which is to be reserved.
      */
     public void createReservation(IBorrower borrower, Interval interval, IReservable object) {
-        if (!isObjectReservedBetween(object, interval)) {
+        if (!isObjectReservedBetween(object, interval) && object.isReservable()) {
             Reservation reservation = new Reservation(borrower, interval, object, ReservationStatus.PENDING);
             reservations.add(reservation);
 
@@ -143,7 +152,8 @@ public class ReservationHandler {
      * @param res
      */
     private void removeReservation(IReservation res) {
-        reservations.remove(res);
+        IReservation resRem = getReservation(res.getID());
+        reservations.remove(resRem);
 
     }
 

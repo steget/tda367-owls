@@ -3,6 +3,7 @@ package storagesystem.model;
 public class Item implements IReservable {
     private static int LST_ID=0;
     private final int id;
+    private boolean isReservable;
 
     @Override
     public int getID() {
@@ -22,6 +23,11 @@ public class Item implements IReservable {
 
     public Item copy(){
         return new Item(this);
+    }
+
+    @Override
+    public boolean isReservable() {
+        return isReservable;
     }
 
     @Override
