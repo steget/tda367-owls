@@ -45,7 +45,7 @@ public class Organisation {
      * @return the requested item if found
      * @throws Exception if item ID not found
      */
-    private Item getItem(int ID) throws NullPointerException {
+    public Item getItem(int ID) throws NullPointerException {
         for (Team t :
                 teams) {
             for (Item i :
