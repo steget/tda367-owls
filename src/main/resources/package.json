@@ -1,5 +1,83 @@
 [
   {
+    "name": "This is now in the json file",
+    "description": "Wear them",
+    "userRequirements": "Dont break them",
+    "ID": 1,
+    "amount": 2,
+    "condition": "BAD",
+    "reservable": true,
+    "location": {
+      "name": "Hasen",
+      "description": "Open the door"
+    }
+  },
+  {
+    "name": "Shoes",
+    "description": "Wear them",
+    "userRequirements": "Dont break them",
+    "ID": 1,
+    "amount": 2,
+    "condition": "BAD",
+    "reservable": true,
+    "location": {
+      "name": "Hasen",
+      "description": "Open the door"
+    }
+  },
+  {
+    "name": "Shoes",
+    "description": "Wear them",
+    "userRequirements": "Dont break them",
+    "ID": 1,
+    "amount": 2,
+    "condition": "BAD",
+    "reservable": true,
+    "location": {
+      "name": "Hasen",
+      "description": "Open the door"
+    }
+  },
+  {
+    "name": "This is now in the json file",
+    "description": "Wear them",
+    "userRequirements": "Dont break them",
+    "ID": 1,
+    "amount": 2,
+    "condition": "BAD",
+    "reservable": true,
+    "location": {
+      "name": "Hasen",
+      "description": "Open the door"
+    }
+  },
+  {
+    "name": "This is now in the json file",
+    "description": "Wear them",
+    "userRequirements": "Dont break them",
+    "ID": 1,
+    "amount": 2,
+    "condition": "BAD",
+    "reservable": true,
+    "location": {
+      "name": "Hasen",
+      "description": "Open the door"
+    }
+  },
+  {
+    "name": "Shoes",
+    "description": "Wear them",
+    "userRequirements": "Dont break them",
+    "ID": 1,
+    "amount": 2,
+    "condition": "BAD",
+    "reservable": true,
+    "location": {
+      "name": "Hasen",
+      "description": "Open the door"
+    }
+  },
+  {
     "name": "Shoes",
     "description": "Wear them",
     "userRequirements": "Dont break them",
