@@ -1,7 +1,5 @@
 package storagesystem.model;
 
-import storagesystem.StorageSystem;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +23,7 @@ public class Organisation {
     //deep copy
     private Organisation(Organisation organisationToCopy) {
         this.name = organisationToCopy.name;
-        this.teams.addAll(organisationToCopy.getTeams());
+        this.teams.addAll(organisationToCopy.getDeepCopyOfTeams());
         this.users.addAll(organisationToCopy.getUsers());
         //todo reservationHandler = organisationToCopy.reservationHandlerDeepCopy
     }
@@ -73,25 +71,21 @@ public class Organisation {
      * @return List of teams that the sent in user is a part of
      */
     public List<Team> getUsersTeams(User user) {
-        List<Team> userTeams = new ArrayList<Team>();
-        for (Team t : this.getTeams()) {
+        List<Team> usersTeams = new ArrayList<Team>();
+        for (Team t : teams) {
             for (int memberID : t.getAllMemberIDs()) {
                 if (user.getID() == memberID) {
-                    userTeams.add(t);
+                    usersTeams.add(t);
                 }
             }
         }
-        if (userTeams.isEmpty()) {
-            //todo remove? don't think we need to do anything if this happens
-            System.out.println("User is not apart of any team");
-        }
-        return userTeams;
+        return usersTeams;
     }
 
     /**
      * @return A deep copy of the teams
      */
-    private List<Team> getTeams() {
+    private List<Team> getDeepCopyOfTeams() {
         List<Team> deepCopyTeams = new ArrayList<>();
         for (Team team :
                 teams) {
@@ -103,13 +97,20 @@ public class Organisation {
     /**
      * @return A deep copy of all the users
      */
-    public List<User> getUsers() {
+    public List<User> getDeepCopyOfUsers() {
         List<User> deepCopyUsers = new ArrayList<>();
         for (User user :
                 users) {
             deepCopyUsers.add(user.getDeepCopy());
         }
         return deepCopyUsers;
+    }
+
+    /**
+     * @return A list of all the users
+     */
+    public List<User> getUsers() {
+        return users;
     }
 
     /**
@@ -183,7 +184,7 @@ public class Organisation {
      * @return true if successfull
      */
     public boolean saveTeam(Team team){
-        for(Team t: this.getTeams()){
+        for(Team t: this.getDeepCopyOfTeams()){
           if(t.getTeamID() == team.getTeamID()){
               t.setTermsAndConditions(team.getTermsAndConditions());
               t.setName(team.getName());

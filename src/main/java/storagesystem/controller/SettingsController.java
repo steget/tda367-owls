@@ -3,9 +3,7 @@ package storagesystem.controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -15,7 +13,6 @@ import storagesystem.model.Organisation;
 import storagesystem.model.Team;
 import storagesystem.model.User;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -68,7 +65,7 @@ public class SettingsController extends AnchorPane implements Initializable {
     private TextField settingsDescriptionInput;
 
     @FXML
-    private ChoiceBox settingsChooseTeamInput;
+    private ChoiceBox<String> settingsChooseTeamInput;
 
     private User currentUser;
     private List<Team> currentUsersTeams = new ArrayList<>();
@@ -83,6 +80,7 @@ public class SettingsController extends AnchorPane implements Initializable {
         currentUser = StorageSystem.getCurrentUser();
         currentUsersTeams = currentOrganisation.getUsersTeams(currentUser);
         currentlySelectedTeam = currentUsersTeams.get(0);
+
         for (Team t : currentUsersTeams) { //adds team names into an observable list.
             teamNames.add(t.getName());
         }
