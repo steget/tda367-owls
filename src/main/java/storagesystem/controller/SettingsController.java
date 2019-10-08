@@ -194,38 +194,50 @@ public class SettingsController extends AnchorPane implements Initializable {
     }
 
     /**
-     * Removes a user from the current selected team.
+     * Handle when the removeButton has been pressed
+     */
+    @FXML
+    private void removeMemberButtonPressed() {
+        int tempUserID = getUserIDFromName(settingsRemoveUserInput.getText());
+
+        removeMemberFromTeam(tempUserID);
+    }
+
+    /**
+     * Removes a user from the currently selected team.
      * If the name in @settingsRemoveUserInput variable exists in the team,it gets removed from the team list and returns true.
      * If the name in @settingsRemoveUserInput does not exist it returns false and does nothing.
      *
      * @return true or false depending if the user got removed or not
      */
     @FXML
-    private void removeMemberFromTeam() {
-        int tempUserID = -1;
-
-        //todo refactor out this part
-        //check if user with matching name in textbox exists
-        for (User user : currentOrganisation.getUsers()) {
-            if (user.getName().equals(settingsRemoveUserInput.getText())) {
-                tempUserID = user.getID();
-            }
-        }
-
+    private void removeMemberFromTeam(int userID) {
         boolean memberFound = false;
         //remove member from team
         for (int i : currentlySelectedTeam.getAllMemberIDs()) {
-            if (i == tempUserID) {
-                currentlySelectedTeam.removeMember(tempUserID);
+            if (i == userID) {
+                currentlySelectedTeam.removeMember(userID);
                 memberFound = true;
                 break;
             }
-
         }
+
         if (!memberFound) {
             //todo print in program instead
             System.out.println("Could not remove member. Member is not apart of the team.");
         }
+    }
+
+    private int getUserIDFromName(String userName) {
+        int tempUserID = -1;
+        //check if user with matching name in textbox exists
+        for (User user : currentOrganisation.getUsers()) {
+            if (user.getName().equals(userName)) {
+                tempUserID = user.getID();
+                break;
+            }
+        }
+        return tempUserID;
     }
 
 
