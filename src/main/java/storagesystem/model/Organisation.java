@@ -160,27 +160,4 @@ public class Organisation {
         this.name = name;
     }
 
-
-    public void saveUser(User user){
-        this.getUsers().get(user.getID()).set(user);
-    }
-
-    /**
-     * this method saves the altered team into the organisations list of team.
-     * If a team has been altered then this method updates the organisation
-     * @param team to be saved in organisation
-     * @return true if successfull
-     */
-    public boolean saveTeam(Team team){
-        for(Team t: this.getDeepCopyOfTeams()){
-          if(t.getTeamID() == team.getTeamID()){
-              t.setTermsAndConditions(team.getTermsAndConditions());
-              t.setName(team.getName());
-                return true;
-          }
-
-        }
-        return false;
-    }
-
 }

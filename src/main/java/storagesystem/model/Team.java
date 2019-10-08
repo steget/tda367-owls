@@ -64,6 +64,23 @@ public class Team {
     }
 
     /**
+     * @param ID from the user you want to check if it exists in the team
+     * @return true or false depending if the user exists in the team.
+     */
+    public boolean doesMemberIDexist(int ID){
+        for(int i: this.getAllMemberIDs()){
+            if(i == ID){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    /**
      * @return A new instance of Team with the same attribute values as this
      */
     public Team getDeepCopy() {
@@ -83,24 +100,6 @@ public class Team {
     }
 
     List<Item> getAllItems() {
-        //todo defensive copy
         return inventory;
-    }
-
-    /**
-     * @param ID from the user you want to check if it exists in the team
-     * @return true or false depending if the user exists in the team.
-     */
-    public boolean doesMemberIDexist(int ID){
-        for(int i: this.getAllMemberIDs()){
-            if(i == ID){
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public String getName() {
-        return name;
     }
 }

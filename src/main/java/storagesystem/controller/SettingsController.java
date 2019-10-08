@@ -223,10 +223,7 @@ public class SettingsController extends AnchorPane implements Initializable {
 
     /**
      * Removes a user from the currently selected team.
-     * If the name in @settingsRemoveUserInput variable exists in the team,it gets removed from the team list and returns true.
-     * If the name in @settingsRemoveUserInput does not exist it returns false and does nothing.
      *
-     * @return true or false depending if the user got removed or not
      */
     @FXML
     private void removeMemberFromTeam(int userID) {
@@ -242,10 +239,15 @@ public class SettingsController extends AnchorPane implements Initializable {
 
         if (!memberFound) {
             //todo print in program instead
-            System.out.println("Could not remove member. Member is not apart of the team.");
+            System.out.println("Could not remove user since user is not apart of the team.");
         }
     }
 
+    /**
+     * Compares the input with all users in the organisation. If a match is made the userID is returned. Returns -1 otherwise which will never be any users ID.
+     * @param userName Name of the user which ID you want to find
+     * @return Found ID
+     */
     private int getUserIDFromName(String userName) {
         int tempUserID = -1;
         //check if user with matching name in textbox exists
@@ -257,6 +259,4 @@ public class SettingsController extends AnchorPane implements Initializable {
         }
         return tempUserID;
     }
-
-
 }
