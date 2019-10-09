@@ -34,7 +34,7 @@
             <TextField fx:id="settingsTeamNameInput" layoutX="241.0" layoutY="50.0" prefHeight="26.0" prefWidth="337.0" promptText="Input Team name" style="-fx-background-color: white;" />
             <Text layoutX="53.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20px;" text="Standard Contract:" textAlignment="RIGHT" />
             <Text layoutX="663.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add user:" textAlignment="RIGHT" AnchorPane.rightAnchor="304.9322929382324" />
-            <Button layoutX="759.0" layoutY="116.0" mnemonicParsing="false" onAction="#addMemberToTeam" prefHeight="32.0" prefWidth="194.0" style="-fx-background-color: GREEN;" text="ADD USER TO TEAM" textAlignment="CENTER" />
+            <Button layoutX="759.0" layoutY="116.0" mnemonicParsing="false" onAction="#addMemberButtonPressed" prefHeight="32.0" prefWidth="194.0" style="-fx-background-color: GREEN;" text="ADD USER TO TEAM" textAlignment="CENTER" />
             <TextField fx:id="settingsRemoveUserInput" layoutX="733.0" layoutY="180.0" prefHeight="26.0" prefWidth="277.0" promptText="Write name of person to remove from team" style="-fx-background-color: white;">
                <opaqueInsets>
                   <Insets />

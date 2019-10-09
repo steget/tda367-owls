@@ -29,7 +29,9 @@ public class StorageSystem extends Application {
         stage.show();
     }
 
-    //todo write javadoc
+    /**
+     * Loads all data into the program. Should be run at start.
+     */
     private void initializeBackend() {
         Organisation informationsteknik = new Organisation("Informationsteknik");
         Organisation data = new Organisation("Data");
@@ -39,7 +41,6 @@ public class StorageSystem extends Application {
 
         informationsteknik.createUser("Albert");
         informationsteknik.createUser("admin");
-        informationsteknik.createUser("Albert");
         informationsteknik.createUser("eke");
         informationsteknik.createUser("kvick");
         informationsteknik.createUser("sponken");

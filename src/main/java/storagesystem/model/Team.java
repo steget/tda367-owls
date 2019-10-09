@@ -63,19 +63,6 @@ public class Team {
         return memberIDs;
     }
 
-    /**
-     * @param ID from the user you want to check if it exists in the team
-     * @return true or false depending if the user exists in the team.
-     */
-    public boolean doesMemberIDexist(int ID){
-        for(int i: this.getAllMemberIDs()){
-            if(i == ID){
-                return true;
-            }
-        }
-        return false;
-    }
-
     public String getName() {
         return name;
     }

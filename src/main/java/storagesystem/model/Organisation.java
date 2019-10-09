@@ -2,6 +2,7 @@ package storagesystem.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 /**
  * An Organisation holds a collection of teams with the purpose being that the teams can communicate with each other.
@@ -43,9 +44,9 @@ public class Organisation {
      *
      * @param ID The ID of the item to get
      * @return the requested item if found
-     * @throws Exception if item ID not found
+     * @throws NoSuchElementException if item ID not found
      */
-    public Item getItem(int ID) throws NullPointerException {
+    public Item getItem(int ID) throws NoSuchElementException {
         for (Team t :
                 teams) {
             for (Item i :
@@ -56,7 +57,7 @@ public class Organisation {
                 }
             }
         }
-        throw new NullPointerException("ItemID not found in list of items");
+        throw new NoSuchElementException("ItemID not found in list of items");
     }
 
     /**

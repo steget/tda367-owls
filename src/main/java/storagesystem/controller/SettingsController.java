@@ -4,7 +4,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -66,38 +65,42 @@ public class SettingsController extends AnchorPane implements Initializable {
     private ObservableList<String> teamNames = FXCollections.observableArrayList();
     private int currentlySelectedTeamIndex;
     private Organisation currentOrganisation;
-    private boolean isUserPartOfTeam = true;
+    private boolean isUserPartOfTeam;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         currentOrganisation = StorageSystem.getCurrentOrganisation();
         currentUser = StorageSystem.getCurrentUser();
 
-        if(StorageSystem.getCurrentOrganisation().getUsersTeams(currentUser).size() == 0){
-            isUserPartOfTeam = false;
+        isUserPartOfTeam = StorageSystem.getCurrentOrganisation().getUsersTeams(currentUser).size() > 0;
+
+        if (isUserPartOfTeam) {
+            fillTeamAttributes();
         }
 
-        if(isUserPartOfTeam){   //goes through team m
-            teamMethods();
-        }
-
-
-
-
-
-
+        //fill user text boxes
         settingsNameInput.setText(currentUser.getName());
         settingsDescriptionInput.setText(currentUser.getDescription());
         settingsContactInput.setText(currentUser.getContactInformation());
 
+        assignListeners();
+    }
 
+    /**
+     * Adds listeners to the User and Team labels, aswell as the dropdown for teams
+     */
+    private void assignListeners() {
+        //when user is clicked the users settings should show
         settingsUserLabel.setOnMouseClicked((event -> {
             if (!settingsUserAnchorPane.isVisible()) {
                 settingsUserAnchorPane.setVisible(true);
                 settingsTeamAnchorPane.setVisible(false);
             }
         }));
-        if(isUserPartOfTeam) {
+
+        //when team is clicked the teams settings should show
+        if (isUserPartOfTeam) {
             settingsTeamLabel.setOnMouseClicked((event -> {
                 if (settingsUserAnchorPane.isVisible()) {
                     settingsUserAnchorPane.setVisible(false);
@@ -106,6 +109,7 @@ public class SettingsController extends AnchorPane implements Initializable {
             }));
         }
 
+        //checks when the users changes team in the dropdown
         settingsChooseTeamInput.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
             int newIndex = newValue.intValue();
             /*
@@ -125,10 +129,14 @@ public class SettingsController extends AnchorPane implements Initializable {
         });
     }
 
-    private void teamMethods() {
+    /**
+     * Fills attributes that has to do with the current users teams.
+     */
+    private void fillTeamAttributes() {
 
         currentUsersTeams = StorageSystem.getCurrentOrganisation().getUsersTeams(currentUser);
         currentlySelectedTeam = currentUsersTeams.get(0);
+
         for (Team t : currentUsersTeams) { //adds team names into an observable list.
             teamNames.add(t.getName());
         }
@@ -136,6 +144,7 @@ public class SettingsController extends AnchorPane implements Initializable {
         settingsChooseTeamInput.setValue(teamNames.get(0)); //show first value in box
         currentlySelectedTeamIndex = 0;
 
+        //fill text boxes in settings page for team
         settingsTeamNameInput.setText(currentlySelectedTeam.getName());
         settingsTeamContractInput.setText(currentlySelectedTeam.getTermsAndConditions());
 
@@ -154,7 +163,7 @@ public class SettingsController extends AnchorPane implements Initializable {
     }
 
     /**
-     * Save the current users data that inputted.
+     * Save the current users data that was put in.
      */
     @FXML
     public void saveUser() {
@@ -187,29 +196,26 @@ public class SettingsController extends AnchorPane implements Initializable {
     }
 
     /**
-     * Adds a member to the current team selected if a username is written in the input.
-     * Returns true if user get added in team.
-     * If user already exists in team it returns false.
-     *
-     * @return true or false depending the user got added to the team.
+     * Adds a member to the currently selected team if a existing username is written in the input.
      */
     @FXML
-    private boolean addMemberToTeam() {
-
+    private void addMemberButtonPressed() {
+        boolean doesUserExist = false;
         for (User user : StorageSystem.getCurrentOrganisation().getUsers()) {
             if (user.getName().equals(settingsAddUserInput.getText())) {
-                if (!currentlySelectedTeam.doesMemberIDexist(user.getID())) {
-
-                    currentlySelectedTeam.addMember(user.getID());
-                    return true;
+                doesUserExist = true;
+                    if (currentlySelectedTeam.getAllMemberIDs().contains(user.getID())) {
+                        //todo print in program
+                    System.out.println("User is already a part of this team.");
                 } else {
-                    System.out.println("User is already apart of this team.");
-                    return false;
+                    currentlySelectedTeam.addMember(user.getID());
                 }
             }
         }
-        System.out.println("User is does not exist.");
-        return false;
+        if (!doesUserExist) {
+            //todo print in program
+            System.out.println("User does not exist.");
+        }
     }
 
     /**
@@ -223,7 +229,6 @@ public class SettingsController extends AnchorPane implements Initializable {
 
     /**
      * Removes a user from the currently selected team.
-     *
      */
     @FXML
     private void removeMemberFromTeam(int userID) {
@@ -239,12 +244,13 @@ public class SettingsController extends AnchorPane implements Initializable {
 
         if (!memberFound) {
             //todo print in program instead
-            System.out.println("Could not remove user since user is not apart of the team.");
+            System.out.println("Could not remove user since user is not a part of the team.");
         }
     }
 
     /**
-     * Compares the input with all users in the organisation. If a match is made the userID is returned. Returns -1 otherwise which will never be any users ID.
+     * Compares the input with all users in the organisation. If a match is made the userID is returned. Returns -1 otherwise which will never be any user's  ID.
+     *
      * @param userName Name of the user which ID you want to find
      * @return Found ID
      */
