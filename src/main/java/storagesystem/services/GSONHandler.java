@@ -12,7 +12,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GSONWritingToFile {
+public class GSONHandler {
 
     public static void main(String[] args) throws IOException {
 
@@ -36,7 +36,7 @@ public class GSONWritingToFile {
         System.out.println(item.getLocation().getName());
         List<Item> itemListTest = (List)getListFromJson("src/main/resources/package.json", Item.class);
         System.out.println(itemList2.get(1).toString());
-        
+
         Item item2 = gson.fromJson(itemList2.get(1).toString(), Item.class);
         for(Item i : itemListTest) {
             System.out.println(i.getName());
