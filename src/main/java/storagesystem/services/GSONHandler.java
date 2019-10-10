@@ -21,15 +21,11 @@ import java.util.List;
 
 public class GSONHandler {
 
-    public static void main(String[] args) {
-
-    }
             /**
              * addToJson() adds an object of choice to a json file of choice without erasing the contents that are already in the json file.
              * @param fileName
              * @throws IOException
              */
-
     public static void addToJson(Object objectToAdd, String fileName) throws IOException {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         JsonArray oldJsonContent = gson.fromJson(new FileReader(fileName), JsonArray.class);
