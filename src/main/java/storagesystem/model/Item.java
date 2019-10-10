@@ -116,4 +116,17 @@ public class Item implements IReservable {
     }
 
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+        if (!(o instanceof Item)) {
+            return false;
+        }
+
+        Item i = (Item) o;
+
+        return i.getID() == this.getID();
+    }
 }
