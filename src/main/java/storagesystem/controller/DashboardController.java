@@ -21,6 +21,9 @@ public class DashboardController implements Initializable {
     @FXML
     Button settingsButton;
 
+    @FXML
+    private Button searchButton;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -33,6 +36,18 @@ public class DashboardController implements Initializable {
     @FXML
     void settingsButtonPressed() throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/settings.fxml"));
+        Stage stage = (Stage) rootPane.getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    /**
+     * Open the itemList panel
+     * @throws IOException If the itemList view cannot be found
+     */
+    @FXML
+    void searchButtonPressed() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/itemList.fxml"));
         Stage stage = (Stage) rootPane.getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.show();

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="250.0" prefWidth="180.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="storagesystem.controller.SmallItemPanel">
+   <children>
+      <ImageView fx:id="itemImage" fitHeight="160.0" fitWidth="160.0" layoutX="400.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+   </children>
+</AnchorPane>
