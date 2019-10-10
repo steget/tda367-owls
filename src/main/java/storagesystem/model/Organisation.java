@@ -2,7 +2,7 @@ package storagesystem.model;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.NoSuchElementException;
 
 /**
  * An Organisation holds a collection of teams with the purpose being that the teams can communicate with each other.
@@ -18,13 +18,6 @@ public class Organisation {
     public Organisation(String name) {
         this.name = name;
         //todo fill stuff from db
-    }
-
-    private Organisation(Organisation organisationToCopy) {
-        this.name = organisationToCopy.name;
-        this.teams.addAll(organisationToCopy.getTeams());
-        this.users.addAll(organisationToCopy.getUsers());
-        //todo reservationHandler = organisationToCopy.reservationHandlerDeepCopy
     }
 
     /**
@@ -44,61 +37,46 @@ public class Organisation {
      *
      * @param ID The ID of the item to get
      * @return the requested item if found
-     * @throws Exception if item ID not found
+     * @throws NoSuchElementException if item ID not found
      */
-    private Item getItem(int ID) throws NullPointerException {
+    public Item getItem(int ID) throws NoSuchElementException {
         for (Team t :
                 teams) {
             for (Item i :
                     t.getAllItems()) {
-                //i.getID == ID
-                if (true) {
+                if (i.getID() == ID) {
                     System.out.println("Item found");
                     return i;
                 }
             }
         }
-        throw new NullPointerException("ItemID not found in list of items");
+        throw new NoSuchElementException("ItemID not found in list of items");
     }
 
     /**
+     * Use this to find out which teams one specific User is part of.
+     * Can be used for example if the user wants to switch which team it is currently doing an action for.
+     *
      * @param user
-     * @return
+     * @return List of teams that the sent in user is a part of
      */
     public List<Team> getUsersTeams(User user) {
-        List<Team> userTeams = new ArrayList<Team>();
+        List<Team> usersTeams = new ArrayList<Team>();
         for (Team t : teams) {
-            for (int i : t.getAllMemberIDs()) {
-                if (user.getID() == i) {
-                    userTeams.add(t);
+            for (int memberID : t.getAllMemberIDs()) {
+                if (user.getID() == memberID) {
+                    usersTeams.add(t);
                 }
             }
         }
-        return userTeams;
+        return usersTeams;
     }
 
     /**
-     * @return Defensive copy of all teams within the organisation
-     */
-    private List<Team> getTeams() {
-        List<Team> deepCopyTeams = new ArrayList<>();
-        for (Team team :
-                teams) {
-            deepCopyTeams.add(team.copy());
-        }
-        return deepCopyTeams;
-    }
-
-    /**
-     * @return A deep copy of all the users
+     * @return A list of all the users
      */
     public List<User> getUsers() {
-        List<User> deepCopyUsers = new ArrayList<>();
-        for (User user :
-                users) {
-            deepCopyUsers.add(user.copy());
-        }
-        return deepCopyUsers;
+        return users;
     }
 
     /**
@@ -129,21 +107,6 @@ public class Organisation {
     public void addTeam(Team teamToBeAdded) {
         teams.add(teamToBeAdded);
     }
-
-    /**
-     * @return A new instance of Organisation with the same attribute values as this
-     */
-    public Organisation copy() {
-        return new Organisation(this);
-    }
-
-    /**
-     * @return A new instance of Organisation with the same attribute values as this
-     */
-    public Organisation copy(Organisation organisationToCopy) {
-        return new Organisation(organisationToCopy);
-    }
-
     public String getName() {
         return name;
     }
@@ -151,4 +114,5 @@ public class Organisation {
     void setName(String name) {
         this.name = name;
     }
+
 }

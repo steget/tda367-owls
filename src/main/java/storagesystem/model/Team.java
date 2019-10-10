@@ -12,19 +12,15 @@ public class Team {
     private final List<Item> inventory = new ArrayList<>(); //todo itemIDs instead
     private final List<Integer> memberIDs = new ArrayList<>();
     private String termsAndConditions;
-
-    //deep copy
-    public Team(Team teamToCopy) {
-        this.name = teamToCopy.name;
-        this.inventory.addAll(teamToCopy.inventory);
-        this.memberIDs.addAll(teamToCopy.memberIDs);
-        this.termsAndConditions = teamToCopy.termsAndConditions;
-    }
+    private int teamID;
+    private static int nextID;
 
     public Team(String teamName) {
         this.name = teamName;
         //todo fill stuff from db
         termsAndConditions = "";
+        teamID = nextID;
+        nextID++;
     }
 
     /**
@@ -41,22 +37,20 @@ public class Team {
      *
      * @param memberToBeRemoved ID of the member to be removed
      */
-    void removeMember(int memberToBeRemoved) {
-        memberIDs.remove(Integer.valueOf(memberToBeRemoved)); //needs to use Integer to make sure index is not chosen
+    public void removeMember(int memberToBeRemoved) {
+        memberIDs.remove((Object) memberToBeRemoved); //needs to use object to make sure index is not chosen
     }
 
-    /**
-     * @return List of all the members IDs. Defensive copy
-     */
-    List<Integer> getAllMemberIDs() {
-        return new ArrayList<>(memberIDs);
+    void addItemToInventory(Item item) { //todo maybe just an ID instead and get the item from DB?
+        inventory.add(item);
     }
 
-    /**
-     * @return A new instance of Team with the same attribute values as this
-     */
-    public Team copy() {
-        return new Team(this);
+    public List<Integer> getAllMemberIDs() {
+        return memberIDs;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void setName(String name) {
@@ -72,11 +66,10 @@ public class Team {
     }
 
     List<Item> getAllItems() {
-        //todo defensive copy
         return inventory;
     }
 
-    public String getName() {
-        return name;
+    public int getTeamID() {
+        return teamID;
     }
 }

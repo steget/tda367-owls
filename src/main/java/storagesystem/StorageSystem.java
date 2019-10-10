@@ -29,25 +29,30 @@ public class StorageSystem extends Application {
         stage.show();
     }
 
+    /**
+     * Loads all data into the program. Should be run at start.
+     */
     private void initializeBackend() {
         Organisation informationsteknik = new Organisation("Informationsteknik");
+        Organisation data = new Organisation("Data");
+
         Team tempTeam = new Team("sexNollK");
         Team tempTeam2 = new Team("P.R.NollK");
-        informationsteknik.createUser("admin");
+
         informationsteknik.createUser("Albert");
+        informationsteknik.createUser("admin");
         informationsteknik.createUser("eke");
         informationsteknik.createUser("kvick");
         informationsteknik.createUser("sponken");
         informationsteknik.createUser("giff");
         informationsteknik.createUser("steget");
 
-        Organisation data = new Organisation("Data");
-
         tempTeam.setTermsAndConditions("För att låna våra prylar måste prylen vara i samma skick som den var när den lånades ut. Behövs den diskas så diska den osv. Prylen ska också vara tillbaka på samma plats igen");
         tempTeam2.setTermsAndConditions("text 2");
 
         informationsteknik.addTeam(tempTeam);
         informationsteknik.addTeam(tempTeam2);
+
         tempTeam.addMember(informationsteknik.getUsers().get(0).getID());
         tempTeam.addMember(informationsteknik.getUsers().get(1).getID());
         tempTeam2.addMember(informationsteknik.getUsers().get(0).getID());
@@ -69,20 +74,12 @@ public class StorageSystem extends Application {
         StorageSystem.currentOrganisation = currentOrganisation;
     }
 
-    /**
-     * @return A deep copy of all organisations
-     */
     public static List<Organisation> getOrganisations() {
-        List<Organisation> deepCopyOrganisations = new ArrayList<>();
-        for (Organisation org :
-                organisations) {
-            deepCopyOrganisations.add(org.copy());
-        }
-        return deepCopyOrganisations;
+        return organisations;
     }
 
     public static Organisation getCurrentOrganisation() {
-        return currentOrganisation.copy();
+        return currentOrganisation;
     }
 
     public static User getCurrentUser() {
