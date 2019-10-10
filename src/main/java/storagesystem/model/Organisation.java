@@ -107,7 +107,6 @@ public class Organisation {
     public void addTeam(Team teamToBeAdded) {
         teams.add(teamToBeAdded);
     }
-
     public String getName() {
         return name;
     }

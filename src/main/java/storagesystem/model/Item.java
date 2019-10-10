@@ -2,7 +2,7 @@ package storagesystem.model;
 
 import javafx.scene.image.Image;
 
-public class Item { //TODO: implement IReservable
+public class Item implements IReservable {
     private String name;
     private String description;
     private String userRequirements;
@@ -98,4 +98,17 @@ public class Item { //TODO: implement IReservable
     }
 
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+        if (!(o instanceof Item)) {
+            return false;
+        }
+
+        Item i = (Item) o;
+
+        return i.getID() == this.getID();
+    }
 }

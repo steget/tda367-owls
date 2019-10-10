@@ -1,9 +1,11 @@
 package storagesystem.model;
 
+import java.util.Objects;
+
 /**
  * A user should represent a person.
  */
-public class User {
+public class User implements IBorrower {
     private String name;
     private String description;
     private String contactInformation;
