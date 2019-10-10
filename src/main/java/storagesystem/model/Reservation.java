@@ -43,9 +43,9 @@ public class Reservation implements IReservation {
 
     public Reservation(int id, IBorrower borrower, Interval interval, IReservable reservedObject, ReservationStatus status) {
         this.id = id;
-        this.borrower = borrower.copy();
+        this.borrower = borrower;
         this.interval = new Interval(interval);
-        this.reservedObject = reservedObject.copy();
+        this.reservedObject = reservedObject;
         this.status = status;
     }
 

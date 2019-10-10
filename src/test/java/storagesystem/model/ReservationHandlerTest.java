@@ -19,7 +19,7 @@ public class ReservationHandlerTest {
 
         IBorrower borrower = new User("John Doe", "Developer", "Call me");
         IReservable object = new Item();
-        ReservationHandler handler = new ReservationHandler(0, new ArrayList<>());
+        ReservationHandler handler = new ReservationHandler(new ArrayList<>());
 
         DateTime time1 = new DateTime();
         DateTime time2 = time1.plusDays(1);
@@ -43,7 +43,7 @@ public class ReservationHandlerTest {
         IBorrower borrower = new User("John Doe", "Developer", "Call me");
         IReservable object1 = new Item();
         IReservable object2 = new Item();
-        ReservationHandler handler = new ReservationHandler(0, new ArrayList<>());
+        ReservationHandler handler = new ReservationHandler(new ArrayList<>());
 
         DateTime time1 = new DateTime();
         DateTime time2 = time1.plusDays(1);
@@ -71,7 +71,7 @@ public class ReservationHandlerTest {
     public void shouldGiveID() {
         IBorrower borrower = new User("John Doe", "Developer", "Call me");
         IReservable object = new Item();
-        ReservationHandler handler = new ReservationHandler(0, new ArrayList<>());
+        ReservationHandler handler = new ReservationHandler(new ArrayList<>());
 
         DateTime startTime = new DateTime(1999, 8, 14, 12, 30);
         DateTime endTime = new DateTime();
@@ -98,7 +98,7 @@ public class ReservationHandlerTest {
         IReservable object1 = new Item();
         IReservable object2 = new Item();
 
-        ReservationHandler handler = new ReservationHandler(0, new ArrayList<>());
+        ReservationHandler handler = new ReservationHandler(new ArrayList<>());
 
         DateTime time1 = new DateTime();
         DateTime time2 = time1.plusDays(1);
