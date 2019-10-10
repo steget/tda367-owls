@@ -22,12 +22,19 @@ public class DashboardController implements Initializable {
 
     @FXML
     AnchorPane rootPane;
-
+    @FXML
+    AnchorPane centerPane;
     @FXML
     ImageView settingsImage;
 
     @FXML
     Button settingsButton;
+    @FXML
+    Button searchButton;
+    @FXML
+    Button teamButton;
+    @FXML
+    Button userButton;
 
     @FXML
     AnchorPane objectPane;
