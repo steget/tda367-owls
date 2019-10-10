@@ -67,11 +67,11 @@ public class ReservationHandler {
 
         for (IReservation res : this.reservations) {
             if (res.getReservedObject().equals(object)) {
-                reservations.add(res);
+                objectsReservations.add(res);
             }
         }
 
-        return reservations;
+        return objectsReservations;
     }
 
     /**
@@ -85,11 +85,11 @@ public class ReservationHandler {
 
         for(IReservation res : this.reservations){
             if(borrower.equals(res.getBorrower())){
-                reservations.add(res);
+                borrowersReservations.add(res);
             }
         }
 
-        return reservations;
+        return borrowersReservations;
     }
 
 
@@ -119,7 +119,7 @@ public class ReservationHandler {
      * @param object The object which is to be reserved.
      */
     public void createReservation(IBorrower borrower, Interval interval, IReservable object) {
-        if (!isObjectReservedBetween(object, interval) && object.isReservable()) {
+        if (!isObjectReservedBetween(object, interval)) {
             Reservation reservation = new Reservation(borrower, interval, object, ReservationStatus.PENDING);
             reservations.add(reservation);
 
