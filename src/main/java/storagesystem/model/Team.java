@@ -15,24 +15,10 @@ public class Team {
     private int teamID;
     private static int nextID;
 
-
-    //deep copy
-    public Team(Team teamToCopy) {
-        this.name = teamToCopy.name;
-        this.inventory.addAll(teamToCopy.inventory);
-        this.memberIDs.addAll(teamToCopy.memberIDs);
-        this.termsAndConditions = teamToCopy.termsAndConditions;
-    }
-
-    public int getTeamID() {
-        return teamID;
-    }
-
     public Team(String teamName) {
         this.name = teamName;
         //todo fill stuff from db
         termsAndConditions = "";
-        //fill termsAndConditions from db
         teamID = nextID;
         nextID++;
     }
@@ -67,13 +53,6 @@ public class Team {
         return name;
     }
 
-    /**
-     * @return A new instance of Team with the same attribute values as this
-     */
-    public Team getDeepCopy() {
-        return new Team(this);
-    }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -88,5 +67,9 @@ public class Team {
 
     List<Item> getAllItems() {
         return inventory;
+    }
+
+    public int getTeamID() {
+        return teamID;
     }
 }

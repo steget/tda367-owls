@@ -58,11 +58,4 @@ public class User {
     public int getID() {
         return ID;
     }
-
-    /**
-     * @return A new instance of User with the same attribute values as this
-     */
-    public User getDeepCopy() {
-        return new User(this);
-    }
 }

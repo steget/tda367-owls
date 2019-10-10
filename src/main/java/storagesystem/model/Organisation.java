@@ -20,13 +20,6 @@ public class Organisation {
         //todo fill stuff from db
     }
 
-    private Organisation(Organisation organisationToCopy) {
-        this.name = organisationToCopy.name;
-        this.teams.addAll(organisationToCopy.getDeepCopyOfTeams());
-        this.users.addAll(organisationToCopy.getUsers());
-        //todo reservationHandler = organisationToCopy.reservationHandlerDeepCopy
-    }
-
     /**
      * @return List of all the items from all the teams.
      */
@@ -80,30 +73,6 @@ public class Organisation {
     }
 
     /**
-     * @return Defensive copy of all teams within the organisation
-     */
-    private List<Team> getDeepCopyOfTeams() {
-        List<Team> deepCopyTeams = new ArrayList<>();
-        for (Team team :
-                teams) {
-            deepCopyTeams.add(team.getDeepCopy());
-        }
-        return deepCopyTeams;
-    }
-
-    /**
-     * @return A deep copy of all the users
-     */
-    public List<User> getDeepCopyOfUsers() {
-        List<User> deepCopyUsers = new ArrayList<>();
-        for (User user :
-                users) {
-            deepCopyUsers.add(user.getDeepCopy());
-        }
-        return deepCopyUsers;
-    }
-
-    /**
      * @return A list of all the users
      */
     public List<User> getUsers() {
@@ -137,20 +106,6 @@ public class Organisation {
      */
     public void addTeam(Team teamToBeAdded) {
         teams.add(teamToBeAdded);
-    }
-
-    /**
-     * @return A new instance of Organisation with the same attribute values as this
-     */
-    public Organisation getDeepCopy() {
-        return new Organisation(this);
-    }
-
-    /**
-     * @return A new instance of Organisation with the same attribute values as this
-     */
-    public Organisation getDeepCopy(Organisation organisationToCopy) {
-        return new Organisation(organisationToCopy);
     }
 
     public String getName() {

@@ -74,16 +74,8 @@ public class StorageSystem extends Application {
         StorageSystem.currentOrganisation = currentOrganisation;
     }
 
-    /**
-     * @return A deep copy of all organisations
-     */
     public static List<Organisation> getOrganisations() {
-        List<Organisation> deepCopyOrganisations = new ArrayList<>();
-        for (Organisation org :
-                organisations) {
-            deepCopyOrganisations.add(org.getDeepCopy());
-        }
-        return deepCopyOrganisations;
+        return organisations;
     }
 
     public static Organisation getCurrentOrganisation() {

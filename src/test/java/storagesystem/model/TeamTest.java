@@ -52,14 +52,4 @@ public class TeamTest {
         testTeam.addMember(id3);
         assertEquals(3, testTeam.getAllMemberIDs().size());
     }
-
-    @Test
-    public void doesMemberIDExist(){
-        Team testTeam = new Team("Owls");
-        User Harry = new User("Harry");
-        User Bob = new User("Bob");
-        testTeam.addMember(Harry.getID());
-        assertFalse(testTeam.doesMemberIDexist(Bob.getID()));
-        assertTrue(testTeam.doesMemberIDexist(Harry.getID()));
-    }
 }
