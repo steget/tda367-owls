@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import storagesystem.model.Condition;
 import storagesystem.model.Item;
 
 
@@ -16,9 +17,9 @@ public class GSONHandler {
 
     public static void main(String[] args) throws IOException {
 
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        /*Gson gson = new GsonBuilder().setPrettyPrinting().create(); //TODO: remove
         Item testItem = new Item();
-        Writer writer = new FileWriter("src/main/resources/package.json");
+        Writer writer = new FileWriter("src/main/resources/itemDB.json");
         List<Item> itemList = new ArrayList<>();
 
         testItem.setName("This is now in the json file");
@@ -27,21 +28,30 @@ public class GSONHandler {
         itemList.add(testItem2);
         itemList.add(testItem);
 
-        addToJson(testItem, "src/main/resources/package.json");
-        addToJson(testItem2, "src/main/resources/package.json");
-        addListToJson(itemList,"src/main/resources/package.json");
-        JsonArray itemList2 = gson.fromJson(new FileReader("src/main/resources/package.json"), JsonArray.class);
+        addToJson(testItem, "src/main/resources/itemDB.json");
+        addToJson(testItem2, "src/main/resources/itemDB.json");
+        addListToJson(itemList,"src/main/resources/itemDB.json");
+        JsonArray itemList2 = gson.fromJson(new FileReader("src/main/resources/itemDB.json"), JsonArray.class);
         JsonObject jsonObject = (JsonObject)gson.toJsonTree(itemList2.get(1));
         Item item = gson.fromJson(jsonObject.toString(), Item.class);
         System.out.println(item.getLocation().getName());
-        List<Item> itemListTest = (List)getListFromJson("src/main/resources/package.json", Item.class);
+        List<Item> itemListTest = (List)getListFromJson("src/main/resources/itemDB.json", Item.class);
         System.out.println(itemList2.get(1).toString());
 
         Item item2 = gson.fromJson(itemList2.get(1).toString(), Item.class);
         for(Item i : itemListTest) {
             System.out.println(i.getName());
         }
-        addListToJson(itemListTest, "src/main/resources/package.json");
+        addListToJson(itemListTest, "src/main/resources/itemDB.json");*///TODO: remove
+
+
+        clearJson("src/main/resources/json/itemDB.json");
+        List itemList = new ArrayList();
+        Item item1 = new Item();
+        Item item2 = new Item("name", "description", "UserReq", 2, 10, Condition.GREAT, false);
+        itemList.add(item1);
+        itemList.add(item2);
+        addListToJson(itemList, "src/main/resources/json/itemDB.json");
     }
 
 
@@ -58,6 +68,13 @@ public class GSONHandler {
         oldJsonContent.add(jsonObject);
         JsonArray newJsonContent = oldJsonContent;
         gson.toJson(newJsonContent, writer);
+        writer.flush();
+        writer.close();
+    }
+
+
+    private static void clearJson(String fileName) throws IOException {
+        Writer writer = new FileWriter(fileName);
         writer.flush();
         writer.close();
     }

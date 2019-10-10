@@ -45,7 +45,7 @@ public class ItemPageController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resources) {
-        Location location = new Location("MockLocation", "This location does not exist", new Image("creepy.jpg"));
+        Location location = new Location("MockLocation", "This location does not exist", new Image("pictures/creepy.jpg"));
         mockItem = new Item("mockItem", "This is a description", "Behave please.", 1, 2, Condition.GOOD, true);
         Team mockTeam = new Team();
 

@@ -1,0 +1,24 @@
+[
+  {
+    "name": "Shoes",
+    "description": "Wear them",
+    "userRequirements": "Dont break them",
+    "ID": 1,
+    "amount": 2,
+    "condition": "BAD",
+    "reservable": true,
+    "location": {
+      "name": "Hasen",
+      "description": "Open the door"
+    }
+  },
+  {
+    "name": "name",
+    "description": "description",
+    "userRequirements": "UserReq",
+    "ID": 2,
+    "amount": 10,
+    "condition": "GREAT",
+    "reservable": false
+  }
+]

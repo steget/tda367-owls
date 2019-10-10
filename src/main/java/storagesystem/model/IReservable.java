@@ -10,8 +10,8 @@ public interface IReservable {
     int amount = 0;
     Condition condition = Condition.BAD;
     boolean reservable = false;
-    Location location = new Location("Location Name", "Location Description", new Image("art.png"));
-    Image image = new Image("cute-owl.jpg");
+    Location location = new Location("Location Name", "Location Description", new Image("pictures/art.png"));
+    Image image = new Image("pictures/cute-owl.jpg");
 
     public String getName();
 
