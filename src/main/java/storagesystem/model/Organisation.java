@@ -30,7 +30,7 @@ public class Organisation {
     /**
      * @return List of all the items from all the teams.
      */
-    List<Item> getAllItems() {
+    public List<Item> getAllItems() {
         List<Item> allItems = new ArrayList<Item>();
         for (Team t :
                 teams) {
