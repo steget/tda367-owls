@@ -10,6 +10,7 @@ import storagesystem.model.IReservable;
 import java.io.IOException;
 
 /**
+ * @author Hugo Stegrell
  * Loads in a SmallItemPanel from FXML and represents it with only text and an image.
  */
 public class SmallItemPanel extends AnchorPane {

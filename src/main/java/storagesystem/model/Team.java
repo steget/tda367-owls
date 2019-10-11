@@ -6,6 +6,7 @@ import java.util.List;
 /**
  * A team has a list of users that belong to the same team.
  * A team has an inventory of items which it can browse.
+ * @author Hugo Stegrell, Pär Aronsson
  */
 public class Team {
     private String name;

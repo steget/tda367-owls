@@ -19,6 +19,7 @@ import java.util.ResourceBundle;
 
 /**
  * Controls a detailed view of an item. Can be used to book an item.
+ * @author Jonathan Eksberg, Carl Lindh
  */
 public class ItemPageController {
 
