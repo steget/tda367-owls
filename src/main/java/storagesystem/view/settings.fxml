@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="1024.0" style="-fx-background-color: teal;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="storagesystem.controller.SettingsController">
+<AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: teal;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="storagesystem.controller.SettingsController">
    <children>
       <Label fx:id="settingsUserLabel" layoutX="165.0" layoutY="107.0" style="-fx-font-size: 20;" text="USER" AnchorPane.rightAnchor="165.0">
          <cursor>
@@ -23,8 +23,8 @@
       <ChoiceBox fx:id="settingsChooseTeamInput" layoutX="39.0" layoutY="101.0" prefWidth="150.0" />
       <AnchorPane fx:id="settingsTeamAnchorPane" prefHeight="347.0" prefWidth="979.0" style="-fx-background-color: lime;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="150.0">
          <children>
-            <Button layoutX="759.0" layoutY="225.0" mnemonicParsing="false" onAction="#removeMemberButtonPressed" prefHeight="32.0" prefWidth="194.0" style="-fx-background-color: RED;" text="REMOVE USER FROM TEAM" textAlignment="CENTER" />
-            <TextField fx:id="settingsAddUserInput" layoutX="733.0" layoutY="76.0" prefHeight="26.0" prefWidth="277.0" promptText="Write name of person to add from team" style="-fx-background-color: white;">
+            <Button layoutX="738.0" layoutY="224.0" mnemonicParsing="false" onAction="#removeMemberButtonPressed" prefHeight="32.0" prefWidth="194.0" style="-fx-background-color: RED;" text="REMOVE USER FROM TEAM" textAlignment="CENTER" />
+            <TextField fx:id="settingsAddUserInput" layoutX="696.0" layoutY="75.0" prefHeight="26.0" prefWidth="277.0" promptText="Write name of person to add from team" style="-fx-background-color: white;">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -33,14 +33,14 @@
             <Text layoutX="106.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20px;" text="Team Name:" textAlignment="RIGHT" />
             <TextField fx:id="settingsTeamNameInput" layoutX="241.0" layoutY="50.0" prefHeight="26.0" prefWidth="337.0" promptText="Input Team name" style="-fx-background-color: white;" />
             <Text layoutX="53.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20px;" text="Standard Contract:" textAlignment="RIGHT" />
-            <Text layoutX="663.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add user:" textAlignment="RIGHT" AnchorPane.rightAnchor="304.9322929382324" />
-            <Button layoutX="759.0" layoutY="116.0" mnemonicParsing="false" onAction="#addMemberButtonPressed" prefHeight="32.0" prefWidth="194.0" style="-fx-background-color: GREEN;" text="ADD USER TO TEAM" textAlignment="CENTER" />
-            <TextField fx:id="settingsRemoveUserInput" layoutX="733.0" layoutY="180.0" prefHeight="26.0" prefWidth="277.0" promptText="Write name of person to remove from team" style="-fx-background-color: white;">
+            <Text layoutX="622.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add user:" textAlignment="RIGHT" AnchorPane.rightAnchor="315.38525390625" />
+            <Button layoutX="738.0" layoutY="115.0" mnemonicParsing="false" onAction="#addMemberButtonPressed" prefHeight="32.0" prefWidth="194.0" style="-fx-background-color: GREEN;" text="ADD USER TO TEAM" textAlignment="CENTER" />
+            <TextField fx:id="settingsRemoveUserInput" layoutX="696.0" layoutY="180.0" prefHeight="26.0" prefWidth="277.0" promptText="Write name of person to remove from team" style="-fx-background-color: white;">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
             </TextField>
-            <Text layoutX="622.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Remove user:" textAlignment="RIGHT" wrappingWidth="95.10546875" />
+            <Text layoutX="590.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Remove user:" textAlignment="RIGHT" wrappingWidth="95.10546875" />
             <Button fx:id="saveTeamButton" contentDisplay="BOTTOM" layoutX="688.0" layoutY="321.0" mnemonicParsing="false" onAction="#saveTeam" prefHeight="70.0" prefWidth="250.0" text="SAVE " textAlignment="CENTER" AnchorPane.bottomAnchor="59.0" AnchorPane.rightAnchor="71.0" />
          </children>
       </AnchorPane>

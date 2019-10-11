@@ -108,7 +108,7 @@ public class LoginPageController implements Initializable {
             StorageSystem.setCurrentOrganisation(getSelectedOrganisation());
 
             //open dashboard
-            Parent root = FXMLLoader.load(getClass().getResource("/dashboard.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/framework.fxml"));
             Stage stage = (Stage) rootPane.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();

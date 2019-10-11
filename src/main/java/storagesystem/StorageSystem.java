@@ -26,7 +26,11 @@ public class StorageSystem extends Application {
         Scene scene = new Scene(root);
 
         stage.setScene(scene);
+        stage.setWidth(1200);
+        stage.setHeight(800);
+        stage.setResizable(false);
         stage.show();
+
     }
 
     /**
