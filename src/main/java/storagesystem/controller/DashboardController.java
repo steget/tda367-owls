@@ -1,5 +1,6 @@
 package storagesystem.controller;
 
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -52,4 +53,12 @@ public class DashboardController implements Initializable {
         objectPane.getChildren().add(settings);
     }
 
+    @FXML
+    void inventoryButtonPressed() throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("/inventory.fxml"));
+        Stage stage = (Stage) rootPane.getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+
+    }
 }

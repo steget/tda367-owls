@@ -55,6 +55,7 @@ public class LoginPageController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         //Fill list with organisations from database
         ObservableList<String> organisationNames = FXCollections.observableArrayList();
         for (Organisation org :

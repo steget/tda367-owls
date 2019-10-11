@@ -65,7 +65,8 @@ public class Team {
         return termsAndConditions;
     }
 
-    List<Item> getAllItems() {
+    public List<Item> getAllItems() {
+        //todo defensive copy
         return inventory;
     }
 
