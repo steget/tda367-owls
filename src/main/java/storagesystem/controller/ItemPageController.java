@@ -81,7 +81,6 @@ public class ItemPageController {
         setReservableLabel(item.isReservable() + "");
         setReservableBtn(item.isReservable());
         setLocationLabel(item.getLocation().getName());
-        setTeamOwnerLabel(itemOwner.getName());
         setReservableLabel(item.isReservable() + "");
         setNameLabel(item.getName());
         setConditionSlider(item.getCondition());
@@ -108,7 +107,6 @@ public class ItemPageController {
                 value = 2;
                 break;
             default:
-                //TODO: Exception handling
                 break;
         }
         itemPageConditionSlider.setValue(value);
