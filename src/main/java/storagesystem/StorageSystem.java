@@ -5,9 +5,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import storagesystem.model.Organisation;
-import storagesystem.model.Team;
-import storagesystem.model.User;
+import org.joda.time.DateTime;
+import org.joda.time.Interval;
+import storagesystem.model.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,8 +53,18 @@ public class StorageSystem extends Application {
         tempTeam2.addMember(informationsteknik.getUsers().get(0).getID());
         tempTeam2.addMember(informationsteknik.getUsers().get(1).getID());
 
+
+
+        Interval interval = new Interval(new DateTime(), new DateTime().plusDays(1));
+        IReservation res = new Reservation(informationsteknik.getUsers().get(0),interval, new Item(), ReservationStatus.APPROVED);
+        ReservationHandler resHandler = informationsteknik.getReservationHandler();
+        List<IReservation> reservations = resHandler.getReservations();
+        reservations.add(res);
+
         organisations.add(informationsteknik);
         organisations.add(data);
+        setCurrentOrganisation(informationsteknik);
+        System.out.println(getCurrentOrganisation().getReservationHandler().getReservations().toString());
     }
 
     public static void main(String[] args) {
@@ -82,7 +92,7 @@ public class StorageSystem extends Application {
     }
 
     public static Organisation getCurrentOrganisation() {
-        return currentOrganisation.copy();
+        return currentOrganisation;
     }
 
     public static User getCurrentUser() {

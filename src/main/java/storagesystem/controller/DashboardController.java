@@ -21,6 +21,9 @@ public class DashboardController implements Initializable {
     @FXML
     Button settingsButton;
 
+    @FXML
+    Button reservationsButton;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -32,9 +35,20 @@ public class DashboardController implements Initializable {
      */
     @FXML
     void settingsButtonPressed() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/settings.fxml"));
+        buttonPressed("/settings.fxml");
+    }
+
+    @FXML
+    void reservationsButtonPressed() throws IOException{
+        buttonPressed("/reservations.fxml");
+    }
+
+    void buttonPressed(String ui) throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource(ui));
         Stage stage = (Stage) rootPane.getScene().getWindow();
         stage.setScene(new Scene(root));
         stage.show();
     }
+
+
 }

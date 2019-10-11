@@ -19,8 +19,6 @@ public class Item implements IReservable {
         id = old.getID();
     }
 
-
-
     public Item copy(){
         return new Item(this);
     }
@@ -44,5 +42,10 @@ public class Item implements IReservable {
             return true;
 
         return false;
+    }
+
+    @Override
+    public String getName() {
+        return "TempName";
     }
 }

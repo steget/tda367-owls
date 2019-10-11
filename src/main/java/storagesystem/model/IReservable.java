@@ -19,5 +19,7 @@ public interface IReservable {
     @Override
     boolean equals(Object o);
 
+    String getName();
+
     boolean isReservable();
 }

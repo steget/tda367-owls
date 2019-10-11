@@ -13,10 +13,11 @@ public class Organisation {
     private final List<Team> teams = new ArrayList<>();
     private final List<User> users = new ArrayList<>();
     private String name;
-    //todo reservationHandler
+    private ReservationHandler reservationHandler;
 
     public Organisation(String name) {
         this.name = name;
+        this.reservationHandler = new ReservationHandler();
         //todo fill stuff from db
     }
 
@@ -24,7 +25,12 @@ public class Organisation {
         this.name = organisationToCopy.name;
         this.teams.addAll(organisationToCopy.getTeams());
         this.users.addAll(organisationToCopy.getUsers());
-        //todo reservationHandler = organisationToCopy.reservationHandlerDeepCopy
+        //todo load from db
+        reservationHandler = new ReservationHandler();
+    }
+
+    public ReservationHandler getReservationHandler() {
+        return reservationHandler;
     }
 
     /**
@@ -120,6 +126,7 @@ public class Organisation {
     public void createUser(String name, String description, String contactInformation) {
         users.add(new User(name, description, contactInformation));
     }
+
 
     /**
      * Add an already existing team to the organisations list of teams

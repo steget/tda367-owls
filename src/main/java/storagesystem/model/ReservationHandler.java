@@ -15,7 +15,7 @@ public class ReservationHandler {
     //TODO Understand exceptions and implement correctly
 
 
-    private List<IReservation> reservations;
+    private List<IReservation> reservations = new ArrayList<>();
 
 
     public ReservationHandler(List<IReservation> reservations) {
@@ -23,7 +23,7 @@ public class ReservationHandler {
     }
 
     public ReservationHandler(){
-
+        reservations = new ArrayList<>();
     }
 
 

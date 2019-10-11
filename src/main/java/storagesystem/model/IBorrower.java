@@ -11,6 +11,8 @@ public interface IBorrower {
      */
     int getID();
 
+    String getName();
+
     /**
      * Should be implemented by all implementors
      * @param o An object which to test against
