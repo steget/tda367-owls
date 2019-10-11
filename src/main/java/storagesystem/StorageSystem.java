@@ -57,6 +57,8 @@ public class StorageSystem extends Application {
 
         organisations.add(informationsteknik);
         organisations.add(data);
+
+        tempTeam.addItemToInventory(mockItem);
     }
 
     public static void main(String[] args) {
