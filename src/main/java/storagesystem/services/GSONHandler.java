@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import javafx.scene.image.Image;
+import org.apache.commons.io.FileUtils;
 import storagesystem.model.Condition;
 import storagesystem.model.Item;
 
@@ -11,6 +13,7 @@ import storagesystem.model.Item;
 import java.io.*;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 
@@ -28,15 +31,35 @@ public class GSONHandler {
      */
     public static void addToJson(Object objectToAdd, String fileName) throws IOException {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        JsonArray oldJsonContent = gson.fromJson(new FileReader(fileName), JsonArray.class);
+        JsonArray jsonContent = gson.fromJson(new FileReader(fileName), JsonArray.class);
         Writer writer = new FileWriter(fileName);
-        if (oldJsonContent == null) {
-            oldJsonContent = new JsonArray();
+        if (jsonContent == null) {
+            jsonContent = new JsonArray();
         }
-        JsonObject jsonObject = (JsonObject) gson.toJsonTree(objectToAdd);
-        oldJsonContent.add(jsonObject);
-        JsonArray newJsonContent = oldJsonContent;
-        gson.toJson(newJsonContent, writer);
+
+        if(objectToAdd.getClass().equals(Item.class)) { //If objectToAdd has an Image, convert it to a Base64 String
+            byte[] imageInBinary = FileUtils.readFileToByteArray(new File("src/main/resources/pictures/art.png"));
+            String encodedString = Base64.getEncoder().encodeToString(imageInBinary);
+            Item newItem = (Item)objectToAdd;
+            Image imageCopy = newItem.getImage();
+            newItem.setImage(null);
+            JsonObject jsonObject = (JsonObject) gson.toJsonTree(newItem);
+            newItem.setImage(imageCopy);
+
+            jsonObject.addProperty("imageData", encodedString);
+
+            jsonContent.add(jsonObject);
+
+        } else {
+            JsonObject jsonObject = (JsonObject) gson.toJsonTree(objectToAdd);
+
+            jsonContent.add(jsonObject);
+            System.out.println(jsonObject.toString());
+
+        }
+
+        gson.toJson(jsonContent, writer);
+
         writer.flush();
         writer.close();
     }
