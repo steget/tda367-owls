@@ -2,6 +2,12 @@ package storagesystem.model;
 
 import javafx.scene.image.Image;
 
+/**
+ * Location tells us information about a place.
+ * Description contains information about the location, such as how to get to the location and other information.
+ * Image shows the user a picture of the location.
+ */
+
 public class Location {
 
     private String name;
@@ -12,6 +18,11 @@ public class Location {
         this.name = name;
         this.description = description;
         this.image = image;
+    }
+
+    public Location(String name, String description){
+        this.name = name;
+        this.description = description;
     }
 
     public String getName() {

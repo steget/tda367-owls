@@ -3,6 +3,17 @@ package storagesystem.model;
 import javafx.scene.image.Image;
 
 public class Item implements IReservable {
+/**
+ * A class that represents an item. An item can be added by a team to their own inventory.
+ * description consists of a short text about the item and what can be done with it.
+ * userRequirements is the "terms and conditions" for a specific item.
+ * Every item has an ID, to help identifying an item.
+ * Amount tells us how many copies of an item there is.
+ * Condition describes if an item is in bad, good or great condition.
+ * Reservable tells us if an item is able to be borrowed or not.
+ * Location has the information about where the item is located
+ */
+
     private String name;
     private String description;
     private String userRequirements;
@@ -23,6 +34,19 @@ public class Item implements IReservable {
         this.reservable = reservable;
         this.location = location;
         this.image = image;
+    }
+
+    public Item(){
+        Location mockLocation = new Location("Mock Location", "This is a temporary location");
+        this.name = "Shoes";
+        this.description = "Wear them";
+        this.userRequirements = "Dont break them";
+        this.ID = 1;
+        this.amount = 2;
+        this.condition = Condition.BAD;
+        this.reservable = true;
+        this.location = mockLocation;
+        this.image = mockLocation.getImage();
     }
 
     public String getName() {
@@ -53,9 +77,7 @@ public class Item implements IReservable {
         return ID;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
-    }
+    public void setID(int ID) { this.ID = ID; }
 
     public int getAmount() {
         return amount;
