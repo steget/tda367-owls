@@ -37,6 +37,7 @@ public class Item implements IReservable {
     }
 
     public Item(){
+        Location mockLocation = new Location("Mock Location", "This is a temporary location");
         this.name = "Shoes";
         this.description = "Wear them";
         this.userRequirements = "Dont break them";
@@ -44,8 +45,8 @@ public class Item implements IReservable {
         this.amount = 2;
         this.condition = Condition.BAD;
         this.reservable = true;
-        this.location = new Location();
-        this.image = new Location().getImage();
+        this.location = mockLocation;
+        this.image = mockLocation.getImage();
     }
 
     public String getName() {

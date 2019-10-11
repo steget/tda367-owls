@@ -18,7 +18,7 @@ public class GSONHandlerTest {
     @Test
     public void shouldAddItemsToJSON() throws IOException {
         GSONHandler.clearJson("src/main/resources/json/itemDB.json");
-        Location location = new Location();
+        Location location = new Location("Mock Location", "This is a temporary location");
         List<Item> itemList = new ArrayList();
 
         Item item1 = new Item();

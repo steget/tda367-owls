@@ -20,9 +20,9 @@ public class Location {
         this.image = image;
     }
 
-    public Location(){
-        this.name = "Hasen";
-        this.description = "Open the door";
+    public Location(String name, String description){
+        this.name = name;
+        this.description = description;
     }
 
     public String getName() {
