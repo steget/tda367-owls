@@ -54,9 +54,14 @@ public class StorageSystem extends Application {
         Location location = new Location("MockLocation", "This location does not exist", new Image("creepy.jpg"));
         Item mockItem = new Item("mockItem", "This is a description", "Behave please.",
                 2, Condition.GOOD, true, location, location.getImage());
+        Item mockItem2 = new Item("mockItem nr 2", "This is a description", "Behave please.",
+                2, Condition.GOOD, true, location, new Image("art.png"));
 
         organisations.add(informationsteknik);
         organisations.add(data);
+
+        tempTeam.addItemToInventory(mockItem);
+        tempTeam.addItemToInventory(mockItem2);
     }
 
     public static void main(String[] args) {

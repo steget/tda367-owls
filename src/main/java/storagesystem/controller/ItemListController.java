@@ -9,6 +9,7 @@ import storagesystem.StorageSystem;
 import storagesystem.model.IReservable;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.ResourceBundle;
@@ -23,11 +24,13 @@ public class ItemListController implements Initializable {
     @FXML
     private ScrollPane itemListScrollPane;
 
-    private List<SmallItemPanel> allSmallItemPanels;
+    private List<SmallItemPanel> allSmallItemPanels = new ArrayList<>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         createAllSmallItemPanels();
+        itemListFlowPane.getChildren().addAll(allSmallItemPanels);
+
     }
 
     private void createAllSmallItemPanels() {

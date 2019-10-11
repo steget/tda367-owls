@@ -1,6 +1,9 @@
 package storagesystem.controller;
 
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import storagesystem.model.IReservable;
 
@@ -10,12 +13,14 @@ public class SmallItemPanel extends AnchorPane {
 
     private IReservable reservableItem;
 
-    IReservable getReservableItem() {
-        return reservableItem;
-    }
+    @FXML
+    private ImageView itemImage;
+
+    @FXML
+    private Label itemNameLabel;
 
     public SmallItemPanel(IReservable reservableItem){
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("smallItemPanel.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/smallItemPanel.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 
@@ -26,5 +31,12 @@ public class SmallItemPanel extends AnchorPane {
         }
 
         this.reservableItem = reservableItem;
+
+        itemImage.setImage(reservableItem.getImage());
+        itemNameLabel.setText(reservableItem.getName());
+    }
+
+    IReservable getReservableItem() {
+        return reservableItem;
     }
 }

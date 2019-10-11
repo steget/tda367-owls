@@ -59,6 +59,10 @@ public class Team {
         return new Team(this);
     }
 
+    public void addItemToInventory(Item itemToAdd){
+        inventory.add(itemToAdd);
+    }
+
     public void setName(String name) {
         this.name = name;
     }
