@@ -8,6 +8,6 @@
    <children>
       <Button fx:id="settingsButton" layoutX="462.0" layoutY="14.0" mnemonicParsing="false" onAction="#settingsButtonPressed" text="Settings" />
       <Text layoutX="249.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Du tittar på:&#10;dashboard.fxml" textAlignment="CENTER" />
-      <Button fx:id="searchButton" layoutX="249.0" layoutY="30.0" mnemonicParsing="false" onAction="#searchButtonPressed" text="Search" />
+      <Button fx:id="showAllItemsButton" layoutX="249.0" layoutY="30.0" mnemonicParsing="false" onAction="#searchButtonPressed" text="Show all items" />
    </children>
 </AnchorPane>

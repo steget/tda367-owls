@@ -9,6 +9,9 @@ import storagesystem.model.IReservable;
 
 import java.io.IOException;
 
+/**
+ * Loads in a SmallItemPanel from FXML and represents it with only text and an image.
+ */
 public class SmallItemPanel extends AnchorPane {
 
     private IReservable reservableItem;
@@ -38,5 +41,9 @@ public class SmallItemPanel extends AnchorPane {
 
     IReservable getReservableItem() {
         return reservableItem;
+    }
+
+    void handlePanePressed(){
+        //open detailed view of item so it can be reserved
     }
 }

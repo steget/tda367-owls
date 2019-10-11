@@ -17,6 +17,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controls a detailed view of an item. Can be used to book an item.
+ */
 public class ItemPageController {
 
     private final Item item;
@@ -65,6 +68,9 @@ public class ItemPageController {
         updateAllVisibleFields();
     }
 
+    /**
+     * Fill all fields from the item
+     */
     private void updateAllVisibleFields() {
         setNameLabel(item.getName());
         setDescription(item.getDescription());
@@ -78,15 +84,15 @@ public class ItemPageController {
         setTeamOwnerLabel(itemOwner.getName());
         setReservableLabel(item.isReservable() + "");
         setNameLabel(item.getName());
-        setConditionSlider(Condition.GOOD);
+        setConditionSlider(item.getCondition());
         setDescription(item.getDescription());
         setUserRequirements(item.getUserRequirements());
         setImage(item.getImage());
     }
 
-    private void updateReservable() {
-        setReservableBtn(item.isReservable());
-        setReservableLabel("" + item.isReservable());
+    @FXML
+    protected void itemPageReserveBtnPressed() {
+        //TODO: create a new reservation if possible
     }
 
     private void setConditionSlider(Condition condition) {
@@ -118,11 +124,6 @@ public class ItemPageController {
 
     private void setImage(Image image) {
         itemPageImageView.setImage(image);
-    }
-
-    @FXML
-    protected void itemPageReserveBtnPressed() {
-        //TODO: create a new reservation if possible
     }
 
     private void setNameLabel(String name) {

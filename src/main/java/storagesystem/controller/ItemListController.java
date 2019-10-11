@@ -14,6 +14,9 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.ResourceBundle;
 
+/**
+ * Controls a view showing all reservable items
+ */
 public class ItemListController implements Initializable {
     @FXML
     private AnchorPane rootPane;

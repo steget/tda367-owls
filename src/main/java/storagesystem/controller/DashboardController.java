@@ -22,7 +22,7 @@ public class DashboardController implements Initializable {
     Button settingsButton;
 
     @FXML
-    private Button searchButton;
+    private Button showAllItemsButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
