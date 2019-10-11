@@ -38,7 +38,6 @@ public class DashboardController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        settingsImage.setImage(new Image("settingsIcon.png"));
 
     }
 
@@ -48,7 +47,7 @@ public class DashboardController implements Initializable {
      */
     @FXML
     void settingsButtonPressed() throws IOException {
-        AnchorPane settings = FXMLLoader.load(getClass().getClassLoader().getResource("settings.fxml"));
+        AnchorPane settings = FXMLLoader.load(getClass().getClassLoader().getResource("/settings.fxml"));
         objectPane.getChildren().removeAll();
         objectPane.getChildren().add(settings);
     }
