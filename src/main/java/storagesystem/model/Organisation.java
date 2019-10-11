@@ -8,6 +8,7 @@ import java.util.NoSuchElementException;
  * An Organisation holds a collection of teams with the purpose being that the teams can communicate with each other.
  * The teams that belong to an organisation should be relevant to one another.
  * An Organisation should keep track of all the reservations between its teams.
+ * @author Hugo Stegrell, Pär Aronsson
  */
 public class Organisation {
     private final List<Team> teams = new ArrayList<>();
@@ -23,7 +24,7 @@ public class Organisation {
     /**
      * @return List of all the items from all the teams.
      */
-    List<Item> getAllItems() {
+    public List<Item> getAllItems() {
         List<Item> allItems = new ArrayList<Item>();
         for (Team t :
                 teams) {

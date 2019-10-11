@@ -4,10 +4,9 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import storagesystem.model.Organisation;
-import storagesystem.model.Team;
-import storagesystem.model.User;
+import storagesystem.model.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +23,6 @@ public class StorageSystem extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/loginPage.fxml"));
 
         Scene scene = new Scene(root);
-
         stage.setScene(scene);
         stage.setWidth(1200);
         stage.setHeight(800);
@@ -37,6 +35,7 @@ public class StorageSystem extends Application {
      * Loads all data into the program. Should be run at start.
      */
     private void initializeBackend() {
+        //Hardcoded stuff for testing
         Organisation informationsteknik = new Organisation("Informationsteknik");
         Organisation data = new Organisation("Data");
 
@@ -62,8 +61,17 @@ public class StorageSystem extends Application {
         tempTeam2.addMember(informationsteknik.getUsers().get(0).getID());
         tempTeam2.addMember(informationsteknik.getUsers().get(1).getID());
 
+        Location location = new Location("MockLocation", "This location does not exist", new Image("creepy.jpg"));
+        Item mockItem = new Item("mockItem", "This is a description", "Behave please.",
+                2, Condition.GOOD, true, location, location.getImage());
+        Item mockItem2 = new Item("mockItem nr 2", "This is a description", "Behave please.",
+                2, Condition.GOOD, true, location, new Image("art.png"));
+
         organisations.add(informationsteknik);
         organisations.add(data);
+
+        tempTeam.addItemToInventory(mockItem);
+        tempTeam.addItemToInventory(mockItem2);
     }
 
     public static void main(String[] args) {

@@ -37,6 +37,8 @@ public class FrameworkController implements Initializable, ILoadUI {
     @FXML
     private Button yourInventoryButton;
     @FXML
+    private Button allItemsButton;
+    @FXML
     private Pane frameTopPane;
     @FXML
     private BorderPane borderPane;
@@ -50,6 +52,12 @@ public class FrameworkController implements Initializable, ILoadUI {
     void settingsButtonPressed(){
         loadUI("/settings");
     }
+
+    @FXML
+    void allItemsButtonPressed(){
+        loadUI("/itemList");
+    }
+
 
     /**
      * Method to avoid repetetive code.
