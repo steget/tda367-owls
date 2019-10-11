@@ -1,0 +1,23 @@
+.appbar{
+    -fx-background-color: #212121
+}
+
+.background{
+    -fx-background-color: #303030;
+}
+
+.dialogs{
+    -fx-background-color: #424242;
+}
+
+.menuButton{
+    -fx-background-color: #424242;
+    border: solid #FFFFFF;
+    -fx-text-fill: #FFFFFF;
+    height:75px;
+    width:200px;
+    -fx-border-color:white;
+    font-family: 'Roboto', sans-serif;
+}
+
+

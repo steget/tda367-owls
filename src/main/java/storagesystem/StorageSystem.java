@@ -21,13 +21,16 @@ public class StorageSystem extends Application {
     public void start(Stage stage) throws Exception {
         initializeBackend();
 
-        Parent root = FXMLLoader.load(getClass().getResource("/dashboard.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/loginPage.fxml"));
 
         Scene scene = new Scene(root);
 
         stage.setScene(scene);
-        stage.show();
+        stage.setWidth(1200);
+        stage.setHeight(800);
         stage.setResizable(false);
+        stage.show();
+
     }
 
     /**
