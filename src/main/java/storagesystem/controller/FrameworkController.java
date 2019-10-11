@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  * @author Jonathan Eksberg
  * Controller for the frame
  */
-public class FrameController implements Initializable, ILoadUI {
+public class FrameworkController implements Initializable, ILoadUI {
 
 
     @FXML
@@ -61,7 +61,7 @@ public class FrameController implements Initializable, ILoadUI {
         try{
             root = FXMLLoader.load(getClass().getResource(ui+".fxml"));
         } catch (IOException e){
-            Logger.getLogger(FrameController.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(FrameworkController.class.getName()).log(Level.SEVERE, null, e);
         }
         borderPane.setCenter(root);
     }
