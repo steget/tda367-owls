@@ -1,6 +1,6 @@
 package storagesystem.model;
 
-import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -44,5 +44,16 @@ public class UserTest {
         User testUser = new User("name1", "short desc", "1");
         testUser.setContactInformation("0734111337");
         assertEquals("0734111337", testUser.getContactInformation());
+    }
+
+    @Test @Before
+    public void IDTest(){
+            User oneUser = new User("name1");
+            User twoUser = new User("name2");
+            User threeUser = new User("name3");
+            User fourUser = new User("name4");
+
+            assertEquals(threeUser.getID()+1,fourUser.getID());
+
     }
 }

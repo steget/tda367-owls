@@ -6,25 +6,22 @@ import java.util.List;
 /**
  * A team has a list of users that belong to the same team.
  * A team has an inventory of items which it can browse.
+ * @author Hugo Stegrell, Pär Aronsson
  */
 public class Team {
     private String name;
     private final List<Item> inventory = new ArrayList<>(); //todo itemIDs instead
     private final List<Integer> memberIDs = new ArrayList<>();
     private String termsAndConditions;
-
-    //deep copy
-    public Team(Team teamToCopy) {
-        this.name = teamToCopy.name;
-        this.inventory.addAll(teamToCopy.inventory);
-        this.memberIDs.addAll(teamToCopy.memberIDs);
-        this.termsAndConditions = teamToCopy.termsAndConditions;
-    }
+    private int teamID;
+    private static int nextID;
 
     public Team(String teamName) {
         this.name = teamName;
         //todo fill stuff from db
         termsAndConditions = "";
+        teamID = nextID;
+        nextID++;
     }
 
     /**
@@ -41,22 +38,20 @@ public class Team {
      *
      * @param memberToBeRemoved ID of the member to be removed
      */
-    void removeMember(int memberToBeRemoved) {
-        memberIDs.remove(Integer.valueOf(memberToBeRemoved)); //needs to use Integer to make sure index is not chosen
+    public void removeMember(int memberToBeRemoved) {
+        memberIDs.remove((Object) memberToBeRemoved); //needs to use object to make sure index is not chosen
     }
 
-    /**
-     * @return List of all the members IDs. Defensive copy
-     */
-    List<Integer> getAllMemberIDs() {
-        return new ArrayList<>(memberIDs);
+    public List<Integer> getAllMemberIDs() {
+        return memberIDs;
     }
 
-    /**
-     * @return A new instance of Team with the same attribute values as this
-     */
-    public Team copy() {
-        return new Team(this);
+    public String getName() {
+        return name;
+    }
+
+    public void addItemToInventory(Item itemToAdd){
+        inventory.add(itemToAdd);
     }
 
     public void setName(String name) {
@@ -72,11 +67,10 @@ public class Team {
     }
 
     List<Item> getAllItems() {
-        //todo defensive copy
         return inventory;
     }
 
-    public String getName() {
-        return name;
+    public int getTeamID() {
+        return teamID;
     }
 }

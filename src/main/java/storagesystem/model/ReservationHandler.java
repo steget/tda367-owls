@@ -103,7 +103,7 @@ public class ReservationHandler {
         List<IReservation> reservations = getReservations(object);
 
         for (IReservation res : reservations) {
-            if (!(res.getInterval().overlap(interval) == null)) {
+            if (res.getReservedObject().equals(object) && !(res.getInterval().overlap(interval) == null)) {
                 return true;
             }
         }

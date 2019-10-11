@@ -4,6 +4,7 @@ import java.util.Objects;
 
 /**
  * A user should represent a person.
+ * @author Hugo Stegrell, Pär Aronsson
  */
 public class User implements IBorrower {
     private String name;
@@ -37,43 +38,27 @@ public class User implements IBorrower {
         return name;
     }
 
-    void setName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    String getDescription() {
+    public String getDescription() {
         return description;
     }
 
-    void setDescription(String description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
-    String getContactInformation() {
+    public String getContactInformation() {
         return contactInformation;
     }
 
-    void setContactInformation(String contactInformation) {
+    public void setContactInformation(String contactInformation) {
         this.contactInformation = contactInformation;
     }
 
     public int getID() {
         return ID;
     }
-
-    /**
-     * @return A new instance of User with the same attribute values as this
-     */
-    public User copy() {
-        return new User(this);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return ID == user.ID;
-    }
-
 }
