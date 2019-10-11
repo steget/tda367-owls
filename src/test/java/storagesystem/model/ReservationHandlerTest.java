@@ -41,7 +41,7 @@ public class ReservationHandlerTest {
     @Test
     public void onlyOneReservationPerObjectAndIntervalShouldExist() {
         IBorrower borrower = new User("John Doe", "Developer", "Call me");
-        IReservable object1 = new Item("mockItem", "desc","requirements",1,1,Condition.GREAT,true, null, null);
+        IReservable object1 = new Item("mockItem", "desc","requirements",0,1,Condition.GREAT,true, null, null);
         IReservable object2 = new Item("mockItem", "desc","requirements",1,1,Condition.GREAT,true, null, null);
         ReservationHandler handler = new ReservationHandler(new ArrayList<>());
 
@@ -95,7 +95,7 @@ public class ReservationHandlerTest {
         IBorrower borrower1 = new User("John Doe", "Developer", "Call me");
         IBorrower borrower2 = new User("William", "Admin", "Mail me");
 
-        IReservable object1 = new Item("mockItem", "desc","requirements",1,1,Condition.GREAT,true, null, null);
+        IReservable object1 = new Item("mockItem", "desc","requirements",0,1,Condition.GREAT,true, null, null);
         IReservable object2 = new Item("mockItem", "desc","requirements",1,1,Condition.GREAT,true, null, null);
 
         ReservationHandler handler = new ReservationHandler(new ArrayList<>());

@@ -18,6 +18,8 @@ import java.util.ResourceBundle;
 
 public class ItemPageController implements Initializable {
 
+    private Item mockItem;
+
     @FXML
     private ImageView itemPageImageView;
     @FXML
@@ -41,14 +43,26 @@ public class ItemPageController implements Initializable {
     @FXML
     private Button itemPageReserveBtn;
 
+    /**
+     * initialize() initializes the controller with neccessary variables.
+     * @param url
+     * @param resources
+     */
+
     @Override
     public void initialize(URL url, ResourceBundle resources) {
-        Location location = new Location("MockLocation", "This location does not exist", new Image("creepy.jpg"));
+        Location location = new Location("MockLocation", "This location does not exist", new Image("pictures/creepy.jpg"));
         Item mockItem = new Item("mockItem", "This is a description", "Behave please.", 1, 2, Condition.GOOD, true, location, location.getImage());
         Team mockTeam = new Team("mockTeam");
         setAll(mockItem, mockTeam);
     }
 
+    /**
+     * setAll() utilizes ALL set methods in ItemPageController to set all fxml objects according to the Item and Team that is provided.
+     * @param item
+     * @param owner
+     */
+    
     protected void setAll(Item item, Team owner) { //TODO: better method name?
         setNameLabel(item.getName());
         setDescription(item.getDescription());
@@ -59,8 +73,13 @@ public class ItemPageController implements Initializable {
         setReservableLabel(item.isReservable() + "");
         setReservableBtn(item.isReservable());
         setLocationLabel(item.getLocation().getName());
-        setImage(item.getImage());
         setTeamOwnerLabel(owner.getName());
+        setReservableLabel(item.isReservable() + "");
+        setNameLabel(item.getName());
+        setConditionSlider(Condition.GOOD);
+        setDescription(item.getDescription());
+        setUserRequirements(item.getUserRequirements());
+        setImage(item.getImage());
     }
 
 
@@ -92,9 +111,14 @@ public class ItemPageController implements Initializable {
         itemPageReserveBtn.setDisable(!reservable);
     }
 
-    protected void updateReservable(boolean reservable) {
-        setReservableBtn(reservable);
-        setReservableLabel(""+reservable);
+    /**
+     * updates the fxml reservable label and button to fit the mockItem
+      */
+
+    protected void updateReservable() {
+        mockItem.setReservable(!mockItem.isReservable());
+        setReservableBtn(mockItem.isReservable());
+        setReservableLabel(""+mockItem.isReservable());
     }
 
     protected void setConditionSlider(Condition condition) {
@@ -110,7 +134,6 @@ public class ItemPageController implements Initializable {
                 value = 2;
                 break;
             default:
-                //TODO: Exception handling
                 break;
         }
         itemPageConditionSlider.setValue(value);
@@ -128,9 +151,13 @@ public class ItemPageController implements Initializable {
         itemPageImageView.setImage(image);
     }
 
+    /**
+     * Runs updateReservable() when itemPageReserveBtn is pressed.
+     */
+
     @FXML
-    protected void itemPageReserveBtnPressed() { //TODO: change reservable variable in item
-        updateReservable(false);
+    protected void itemPageReserveBtnPressed() {
+        updateReservable();
     }
 }
 
