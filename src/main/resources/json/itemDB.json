@@ -11,18 +11,5 @@
       "name": "Mock Location",
       "description": "This is a temporary location"
     }
-  },
-  {
-    "name": "name",
-    "description": "description",
-    "userRequirements": "UserReq",
-    "ID": 2,
-    "amount": 10,
-    "condition": "GREAT",
-    "reservable": false,
-    "location": {
-      "name": "Mock Location",
-      "description": "This is a temporary location"
-    }
   }
 ]

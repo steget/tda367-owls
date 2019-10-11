@@ -16,21 +16,20 @@ import java.util.List;
 
 /**
  * GSONHandler is a handler with static methods with which it is possible to write and read from a json file of choice.
- *
  */
 
 public class GSONHandler {
 
-            /**
-             * addToJson() adds an object of choice to a json file of choice without erasing the contents that are already in the json file.
-             * @param fileName
-             * @throws IOException
-             */
+    /**
+     * addToJson() adds an object of choice to a json file of choice without erasing the contents that are already in the json file.
+     *
+     * @param fileName
+     * @throws IOException
+     */
     public static void addToJson(Object objectToAdd, String fileName) throws IOException {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         JsonArray oldJsonContent = gson.fromJson(new FileReader(fileName), JsonArray.class);
         Writer writer = new FileWriter(fileName);
-
         if (oldJsonContent == null) {
             oldJsonContent = new JsonArray();
         }
@@ -43,11 +42,12 @@ public class GSONHandler {
     }
 
 
-            /**
-             * clearJson() clears the json file completely.
-             * @param fileName
-             * @throws IOException
-             */
+    /**
+     * clearJson() clears the json file completely.
+     *
+     * @param fileName
+     * @throws IOException
+     */
 
     public static void clearJson(String fileName) throws IOException {
         Writer writer = new FileWriter(fileName);
@@ -55,12 +55,13 @@ public class GSONHandler {
         writer.close();
     }
 
-            /**
-             * addListToJson() adds a list of choice to a json file of choice without erasing the contents that are already in the json file.
-             * @param listToAdd
-             * @param fileName
-             * @throws IOException
-             */
+    /**
+     * addListToJson() adds a list of choice to a json file of choice without erasing the contents that are already in the json file.
+     *
+     * @param listToAdd
+     * @param fileName
+     * @throws IOException
+     */
 
     public static void addListToJson(List listToAdd, String fileName) throws IOException {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -76,22 +77,23 @@ public class GSONHandler {
         writer.close();
     }
 
-            /**
-             * getListFromJson() returns a list with objects from a json file of choice.
-             * @param fileName
-             * @param typeOfList
-             * @return
-             * @throws IOException
-             */
+    /**
+     * getListFromJson() returns a list with objects from a json file of choice.
+     *
+     * @param fileName
+     * @param typeOfList
+     * @return
+     * @throws IOException
+     */
 
     public static List getListFromJson(String fileName, Type typeOfList) throws IOException {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         JsonArray jsonList = gson.fromJson(new FileReader(fileName), JsonArray.class);
         List<Object> itemList = new ArrayList<>();
-                for(Object o : jsonList) {
+        for (Object o : jsonList) {
 
-                    itemList.add(gson.fromJson(o.toString(), typeOfList));
-                }
+            itemList.add(gson.fromJson(o.toString(), typeOfList));
+        }
         return itemList;
     }
 
