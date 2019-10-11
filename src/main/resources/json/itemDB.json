@@ -8,8 +8,8 @@
     "condition": "BAD",
     "reservable": true,
     "location": {
-      "name": "Hasen",
-      "description": "Open the door"
+      "name": "Mock Location",
+      "description": "This is a temporary location"
     }
   },
   {
@@ -21,8 +21,8 @@
     "condition": "GREAT",
     "reservable": false,
     "location": {
-      "name": "Hasen",
-      "description": "Open the door"
+      "name": "Mock Location",
+      "description": "This is a temporary location"
     }
   }
 ]

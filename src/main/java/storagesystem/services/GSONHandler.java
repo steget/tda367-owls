@@ -64,15 +64,14 @@ public class GSONHandler {
 
     public static void addListToJson(List listToAdd, String fileName) throws IOException {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        JsonArray oldJsonContent = gson.fromJson(new FileReader(fileName), JsonArray.class);
+        JsonArray jsonContent = gson.fromJson(new FileReader(fileName), JsonArray.class);
         Writer writer = new FileWriter(fileName);
-        if (oldJsonContent == null) {
-            oldJsonContent = new JsonArray();
+        if (jsonContent == null) {
+            jsonContent = new JsonArray();
         }
         JsonArray newJsonContent = gson.toJsonTree(listToAdd, List.class).getAsJsonArray();
-        oldJsonContent.addAll(newJsonContent);
-        newJsonContent = oldJsonContent;
-        gson.toJson(newJsonContent, writer);
+        jsonContent.addAll(newJsonContent);
+        gson.toJson(jsonContent, writer);
         writer.flush();
         writer.close();
     }
