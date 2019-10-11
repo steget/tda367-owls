@@ -39,6 +39,8 @@ public class FrameworkController implements Initializable, ILoadUI {
     @FXML
     private Button allItemsButton;
     @FXML
+    private Button reservationsButton;
+    @FXML
     private Pane frameTopPane;
     @FXML
     private BorderPane borderPane;
@@ -50,12 +52,17 @@ public class FrameworkController implements Initializable, ILoadUI {
 
     @FXML
     void settingsButtonPressed(){
-        loadUI("/settings");
+        loadUI("settings");
     }
 
     @FXML
     void allItemsButtonPressed(){
-        loadUI("/itemList");
+        loadUI("itemList");
+    }
+
+    @FXML
+    void reservationsButtonPressed(){
+        loadUI("reservations");
     }
 
 
@@ -67,7 +74,7 @@ public class FrameworkController implements Initializable, ILoadUI {
     public void loadUI(String ui){
         Parent root = null;
         try{
-            root = FXMLLoader.load(getClass().getResource(ui+".fxml"));
+            root = FXMLLoader.load(getClass().getResource("/"+ui+".fxml"));
         } catch (IOException e){
             Logger.getLogger(FrameworkController.class.getName()).log(Level.SEVERE, null, e);
         }

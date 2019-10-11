@@ -4,13 +4,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import storagesystem.model.IReservation;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ReservationListViewController {
+public class ReservationListViewController extends AnchorPane {
 
 
     IReservation reservation;
@@ -29,7 +30,7 @@ public class ReservationListViewController {
 
     public ReservationListViewController(IReservation res){
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/reservationsListView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/reservationListView.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 
@@ -43,7 +44,7 @@ public class ReservationListViewController {
 
         itemLabel.setText(reservation.getReservedObject().getName());
         borrowerLabel.setText(reservation.getBorrower().getName());
-        intervalLabel.setText(reservation.getInterval().toString());
+        intervalLabel.setText(reservation.getReadableInterval());
     }
 
 

@@ -39,4 +39,6 @@ public interface IReservation {
      */
     @Override
     boolean equals(Object o);
+
+    String getReadableInterval();
 }

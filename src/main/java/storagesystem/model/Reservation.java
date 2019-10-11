@@ -1,6 +1,7 @@
 package storagesystem.model;
 
 
+import org.joda.time.DateTime;
 import org.joda.time.Interval;
 
 import java.util.Objects;
@@ -115,5 +116,68 @@ public class Reservation implements IReservation {
         return id == that.id;
     }
 
+    @Override
+    public String getReadableInterval() {
+        DateTime start = interval.getStart();
+        DateTime end = interval.getEnd();
+
+        int startYear = start.getYear();
+        int startMonth = start.getMonthOfYear();
+        int startDay = start.getMonthOfYear();
+        int startHour = start.getHourOfDay();
+        int startMinute = start.getMinuteOfHour();
+
+        int endYear = end.getYear();
+        int endMonth = end.getMonthOfYear();
+        int endDay = end.getDayOfMonth();
+        int endHour = end.getHourOfDay();
+        int endMinute = end.getMinuteOfHour();
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(startYear + "-" + startMonth + "-" + startDay + " " + startHour +":" + startMinute + " - ");
+        if(startYear != endYear)
+            sb.append(endYear + "-" + endMonth + "-" + endDay + " " + endHour + ":" + endMinute);
+        else if(startMonth!=endMonth)
+            sb.append(endMonth + "-" + endDay + " " + endHour + ":" + endMinute);
+        else if(startDay != endDay)
+            sb.append(endDay + " " + endHour + ":" + endMinute);
+        else
+            sb.append(endHour + ":" + endMinute);
+
+        String readable = sb.toString();
+
+        return readable;
+    }
+
+    private String getMonth(int nr){
+        switch (nr){
+            case 1:
+                return "Jan";
+            case 2:
+                return "Feb";
+            case 3:
+                return "Mar";
+            case 4:
+                return "Apr";
+            case 5:
+                return "May";
+            case 6:
+                return "Jun";
+            case 7:
+                return "Jul";
+            case 8:
+                return "Aug";
+            case 9:
+                return "Sep";
+            case 10:
+                return "Oct";
+            case 11:
+                return "Nov";
+            case 12:
+                return "Dec";
+            default:
+                return "NaN";
+        }
+    }
 
 }
