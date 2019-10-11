@@ -20,6 +20,7 @@ import java.util.ResourceBundle;
 
 /**
  * Control a settings page
+ * @author Hugo Stegrell, Pär Aronsson
  */
 public class SettingsController extends AnchorPane implements Initializable {
 
