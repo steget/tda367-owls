@@ -1,16 +1,16 @@
 [
   {
-    "name": "Shoes",
-    "description": "Wear them",
-    "userRequirements": "Dont break them",
+    "name": "shoes",
+    "description": "for walking",
+    "userRequirements": "tie them",
     "ID": 1,
     "amount": 2,
-    "condition": "BAD",
+    "condition": "GREAT",
     "reservable": true,
     "location": {
-      "name": "Mock Location",
-      "description": "This is a temporary location"
+      "name": "Hasen",
+      "description": "outside of Hubben 2.1"
     },
-    "imageData": "iVBORw0KGgoAAAANSUhEUgAAAEUAAAA3CAIAAADVBRC0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAFiUAABYlAUlSJPAAAAGcSURBVGhD7ZgxskRAEIaFQqHQERxhjyEUCl1COYJQKhM6kiMIva6av7xZj1kPY3q2+gu2Si8zvvpNj91g/i7Ehzfiwxvx4Y348GbDp+u6qqpw4BsbPiQTBL7mJuuHN+LDG/c+wzAkSUIdiD7btkX1LO59lIwiDENUz+Lep65r2ARBURSonkXWD2/88KGe8Xq9jnQLD3xIJooiWl1HuoUHPnoDRGkfD3z0BojSPh74ELARH6bARnyYAhvx+UW9xhNN06DkDthc8dF3MYIOr/84OQ1u4oqPvostuIoL019cP9M05XmOkd4hsbIsx3HEqZbBrHf1g82sFM8khsnu8lGY47K6ujDNvT46fd+naYpJ3rGRGIa256MwJEbcGBpGtO2jMKyu6//XKDDcMz46fxPDF9fAWM/7LFAyuIU7HjwM5NCHdifcwg7/ahu4xqGPuVUskNXHfZm0cbZDnwVDt1ix91jGcaxOyLIMpX2s+2xyML0VdBWu38eNz4JhX15xJBzCsc+C+bEkmSPhEFx87kJ8eCM+vBEf3nyXzzz/AMfPYdNHLhK/AAAAAElFTkSuQmCC"
+    "imageData": "iVBORw0KGgoAAAANSUhEUgAAAEUAAAA3CAIAAADVBRC0AAABN0lEQVR42u3YLQ6EMBAF4JFIJJIjcASOgUQiuQThCEgsDsmROAKSnaTJpmHJpGRL//JGoEB8mfZNC51pFcEDDzzwwANPGJ5lWYZhSMfDGCLCeoMHHnic17ZtZVlyAvFznufoPQqjKsuy6D3jOH49Xddh/8ATQmbUdW2SFhQFJs9zw7SIwKMHYAoePQAT2T/wwAMPPBY96hjPNU1TCh59itm6nPj06FNMV3lpl539cxxH27Z0Vwzr+37f9yjz4LZXLjv2Sr7J7Xp1d72e1+u6VlXlrGOO5o/QMbtNczpPhd31//8az+eD344lct7hzlhceP49PJ1IrEex4d8jR8WjuczsgM7XQloY5mFRFOqFpmkCvS8Ydu9S/FXo9x9hLl/KpDkB3efkZckYk+ac+H8NDzzwwAOPn/oAx89h07iAP9IAAAAASUVORK5CYII\u003d"
   }
 ]

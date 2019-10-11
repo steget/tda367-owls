@@ -67,7 +67,7 @@ public class StorageSystem extends Application {
         tempTeam2.addMember(informationsteknik.getUsers().get(0).getID());
         tempTeam2.addMember(informationsteknik.getUsers().get(1).getID());
 
-        Item shoes = new Item();
+        Item shoes = new Item("shoes", "for walking", "tie them", 1, 2, Condition.GREAT, true, hasen, itemImage);
         GSONHandler.clearJson(itemFile.getPath());
         GSONHandler.addToJson(shoes, itemFile.getPath());
 
