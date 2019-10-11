@@ -24,7 +24,7 @@
                <children>
                   <Button fx:id="yourInventoryButton" mnemonicParsing="false" prefHeight="60.0" prefWidth="180.0" stylesheets="@basicStyles.css" text="Your Inventory">
                      <font>
-                        <Font name="Serif Regular" size="20.0" />
+                        <Font name="Arial" size="15.0" />
                      </font>
                      <styleClass>
                         <String fx:value="menuButton" />
@@ -32,24 +32,12 @@
                      </styleClass></Button>
                   <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="180.0" styleClass="menuButton" stylesheets="@basicStyles.css" text="All Items">
                      <font>
-                        <Font name="Serif Regular" size="20.0" />
+                        <Font name="Arial" size="15.0" />
                      </font></Button>
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="180.0" styleClass="menuButton" stylesheets="@basicStyles.css" text="Button">
-                     <font>
-                        <Font size="20.0" />
-                     </font></Button>
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="180.0" styleClass="menuButton" stylesheets="@basicStyles.css" text="Dashboard">
-                     <font>
-                        <Font size="20.0" />
-                     </font></Button>
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="180.0" styleClass="menuButton" stylesheets="@basicStyles.css" text="Button">
-                     <font>
-                        <Font size="20.0" />
-                     </font></Button>
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="180.0" styleClass="menuButton" stylesheets="@basicStyles.css" text="Button">
-                     <font>
-                        <Font size="20.0" />
-                     </font></Button>
+                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="180.0" styleClass="menuButton" stylesheets="@basicStyles.css" text="Button" />
+                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="180.0" styleClass="menuButton" stylesheets="@basicStyles.css" text="Dashboard" />
+                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="180.0" styleClass="menuButton" stylesheets="@basicStyles.css" text="Button" />
+                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="180.0" styleClass="menuButton" stylesheets="@basicStyles.css" text="Button" />
                </children>
                <BorderPane.margin>
                   <Insets top="20.0" />

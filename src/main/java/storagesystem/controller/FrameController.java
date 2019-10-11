@@ -15,27 +15,31 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * @author Jonathan Eksberg
+ * Controller for the frame
+ */
 public class FrameController implements Initializable, IController {
 
 
     @FXML
-    AnchorPane rootPane;
+    private AnchorPane rootPane;
     @FXML
-    AnchorPane centerPane;
+    private AnchorPane centerPane;
     @FXML
-    Button settingsButton;
+    private Button settingsButton;
     @FXML
-    Button searchButton;
+    private Button searchButton;
     @FXML
-    Button teamButton;
+    private Button teamButton;
     @FXML
-    Button userButton;
+    private Button userButton;
     @FXML
-    Button yourInventoryButton;
+    private Button yourInventoryButton;
     @FXML
-    Pane frameTopPane;
+    private Pane frameTopPane;
     @FXML
-    BorderPane borderPane;
+    private BorderPane borderPane;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -47,6 +51,10 @@ public class FrameController implements Initializable, IController {
         loadUI("/settings");
     }
 
+    /**
+     * Method to avoid repetetive code.
+     * @param ui The url to a fxml file.
+     */
     @Override
     public void loadUI(String ui){
         Parent root = null;
