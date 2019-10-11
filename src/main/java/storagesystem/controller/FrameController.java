@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  * @author Jonathan Eksberg
  * Controller for the frame
  */
-public class FrameController implements Initializable, IController {
+public class FrameController implements Initializable, ILoadUI {
 
 
     @FXML
