@@ -58,6 +58,7 @@ public class StorageSystem extends Application {
         tempTeam2.addMember(informationsteknik.getUsers().get(0).getID());
         tempTeam2.addMember(informationsteknik.getUsers().get(1).getID());
 
+
         organisations.add(informationsteknik);
         organisations.add(data);
     }
