@@ -46,6 +46,7 @@ public class StorageSystem extends Application {
 
         File itemFile = new File("src/main/resources/json/itemDB.json");
         Image itemImage = new Image("pictures/art.png");
+        Image itemImage2 = new Image("pictures/cute-owl.jpg");
         Location hasen = new Location("Hasen", "outside of Hubben 2.1");
 
         informationsteknik.createUser("Albert");
@@ -68,10 +69,20 @@ public class StorageSystem extends Application {
         tempTeam2.addMember(informationsteknik.getUsers().get(1).getID());
 
         Item shoes = new Item("shoes", "for walking", "tie them", 1, 2, Condition.GREAT, true, hasen, itemImage);
+
+        Item gloves = new Item("gloves", "for wearing", "wear them", 2, 4, Condition.GOOD, false, hasen, itemImage2);
+
+
+        List<Item> itemList = new ArrayList<>();
+        itemList.add(shoes);
+        itemList.add(gloves);
+
         GSONHandler.clearJson(itemFile.getPath());
         GSONHandler.addToJson(shoes, itemFile.getPath());
+        GSONHandler.addToJson(gloves, itemFile.getPath());
+        GSONHandler.addListToJson(itemList, itemFile.getPath());
 
-        items = GSONHandler.getListFromJson(itemFile.getPath(), Item.class);
+        //items = GSONHandler.getListFromJson(itemFile.getPath(), Item.class);
 
         organisations.add(informationsteknik);
         organisations.add(data);

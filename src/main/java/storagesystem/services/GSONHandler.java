@@ -14,6 +14,8 @@ import storagesystem.model.Item;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Base64;
@@ -36,23 +38,26 @@ public class GSONHandler {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         JsonArray jsonContent = gson.fromJson(new FileReader(fileName), JsonArray.class);
         Writer writer = new FileWriter(fileName);
-        JsonObject jsonObject;
+        JsonObject jsonObject = null;
         if (jsonContent == null) {
             jsonContent = new JsonArray();
         }
 
-        if (objectToAdd.getClass().equals(Item.class)) { //TODO: If objectToAdd has an Image, convert it to a Base64 String
-            Item newItem = (Item) objectToAdd;
-            try {
-                jsonObject = getJSONObjectFromItem(newItem, gson);
-            } catch (NullPointerException e) { //Sets imageData to an empty string if objectToAdd has no image
-                jsonObject = (JsonObject) gson.toJsonTree(newItem);
-                jsonObject.addProperty("imageData", "");
+        Field[] fields = objectToAdd.getClass().getDeclaredFields();
+        for (int i = 0; i < fields.length; i++) {
+            if (fields[i].toString().contains("javafx.scene.image")) {//If the objectToAdd has an Image, add imageData to JSON
+                Item newItem = (Item) objectToAdd;
+                try {
+                    jsonObject = getJSONObjectFromItem(newItem, gson);
+                } catch (NullPointerException e) { //Sets imageData to an empty string if objectToAdd has no image
+                    jsonObject = (JsonObject) gson.toJsonTree(newItem);
+                    jsonObject.addProperty("imageData", "");
+                }
+                break;
+            } else if (i == fields.length - 1) { //if objectToAdd hasn't got an Image, add to JSON as usual
+                jsonObject = (JsonObject) gson.toJsonTree(objectToAdd);
             }
-        } else { //TODO: if objectToAdd hasn't got an Image, add as usual
-            jsonObject = (JsonObject) gson.toJsonTree(objectToAdd);
         }
-
         jsonContent.add(jsonObject);
         gson.toJson(jsonContent, writer);
 
@@ -64,7 +69,7 @@ public class GSONHandler {
     private static JsonObject getJSONObjectFromItem(Item item, Gson gson) throws IOException {
         BufferedImage bImage = SwingFXUtils.fromFXImage(item.getImage(), null);
         File newImageFile = new File("src/main/resources/pictures/item-" + item.getID() + "-image.png");
-        ImageIO.write(bImage, "png", newImageFile);
+        ImageIO.write(bImage, "jpg", newImageFile);
         byte[] imageInBinary = FileUtils.readFileToByteArray(newImageFile);
         String encodedString = Base64.getEncoder().encodeToString(imageInBinary);
         Image imageCopy = item.getImage();
@@ -98,6 +103,10 @@ public class GSONHandler {
      */
 
     public static void addListToJson(List listToAdd, String fileName) throws IOException {
+        if (listToAdd.get(0) instanceof Item) {
+            addItemListToJson(listToAdd, fileName);
+            return;
+        }
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         JsonArray jsonContent = gson.fromJson(new FileReader(fileName), JsonArray.class);
         Writer writer = new FileWriter(fileName);
@@ -109,6 +118,14 @@ public class GSONHandler {
         gson.toJson(jsonContent, writer);
         writer.flush();
         writer.close();
+
+    }
+
+
+    private static void addItemListToJson(List itemListToAdd, String fileName) throws IOException {
+        for (Object item : itemListToAdd) {
+            addToJson(item, fileName);
+        }
     }
 
     /**
@@ -123,14 +140,14 @@ public class GSONHandler {
     public static List getListFromJson(String fileName, Type typeOfList) throws IOException {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         JsonArray jsonList = gson.fromJson(new FileReader(fileName), JsonArray.class);
-        List<Object> list =  new ArrayList<>();
+        List<Object> list = new ArrayList<>();
 
-        if(typeOfList.equals(Item.class)) {
+        if (typeOfList.equals(Item.class)) {
             List<Item> itemList = new ArrayList<>();
             for (Object o : jsonList) {
                 itemList.add(gson.fromJson(o.toString(), Item.class));
             }
-            for (int i = 0; i<jsonList.size(); i++) {
+            for (int i = 0; i < jsonList.size(); i++) {
                 byte[] decodedBytes = Base64.getDecoder().decode(jsonList.get(i).getAsJsonObject().get("imageData").getAsString());
                 File newImageFile = new File("src/main/resources/pictures/item-" + itemList.get(i).getID() + "-image.png");
                 FileUtils.writeByteArrayToFile(newImageFile, decodedBytes);
