@@ -5,6 +5,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import storagesystem.StorageSystem;
+import storagesystem.model.Item;
+
 import java.io.IOException;
 
 public class InventoryListItemController extends AnchorPane {
@@ -25,9 +28,6 @@ public class InventoryListItemController extends AnchorPane {
         return condition;
     }
 
-    public Label getCurrentRenter() {
-        return currentRenter;
-    }
     @FXML
     private Label name;
 
@@ -41,9 +41,11 @@ public class InventoryListItemController extends AnchorPane {
     private Label condition;
 
     @FXML
-    private Label currentRenter;
+    AnchorPane rootPane;
 
-    public InventoryListItemController(String name, String amount, String condition, String currentRenter, String location) {
+    Item thisItem;
+
+    public InventoryListItemController(Item item, AnchorPane rootpane) {
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/InventoryListItem.fxml"));
         fxmlLoader.setRoot(this);
@@ -55,16 +57,20 @@ public class InventoryListItemController extends AnchorPane {
             throw new RuntimeException(exception);
         }
 
-        this.name.setText(name);
-        this.amount.setText(amount);
-        this.itemLocation.setText(location);
-        this.condition.setText(condition);
-        this.currentRenter.setText(currentRenter);
+        this.name.setText(item.getName());
+        this.amount.setText("" + item.getAmount());
+        this.itemLocation.setText("" + item.getLocation());
+        this.condition.setText("" + item.getCondition());
+
+        this.rootPane = rootpane;
+        this.thisItem = item;
     }
 
     @FXML
     private void onClick(){
-        //todo göra så att ett klick öppnar itemVy
+
+        rootPane.getChildren().add(new ItemPageController(this.thisItem, StorageSystem.getCurrentTeam()))
+
     }
 
 }

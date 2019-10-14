@@ -45,7 +45,6 @@ public class FrameworkController implements Initializable, ILoadUI {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
     }
 
     @FXML
@@ -56,6 +55,11 @@ public class FrameworkController implements Initializable, ILoadUI {
     @FXML
     void allItemsButtonPressed(){
         loadUI("/itemList");
+    }
+
+    @FXML
+    void yourInventoryButtonPressed(){
+        loadUI("/Inventory");
     }
 
 

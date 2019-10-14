@@ -65,8 +65,6 @@ public class InventoryController implements Initializable {
 
         currentlySelectedTeamIndex = 0;
         teamChooserListener();
-
-
     }
 
     //checks when the users changes team in the dropdown
@@ -88,13 +86,10 @@ public class InventoryController implements Initializable {
     private void refreshItems() {
 
         inventory = currentlySelectedTeam.getAllItems();
-        itemPane.getChildren().removeAll();
-        itemPane.getChildren().add(new InventoryListItemController("Namn", "antal", "bra", "NollKIT äger allt", "FRUM"));
+        itemPane.getChildren().remove(0,itemPane.getChildren().size());
 
         for (Item i : inventory) {
-            itemPane.getChildren().add(new InventoryListItemController("Namn", "antal", "bra", "NollKIT äger allt", "FRUM"));
-
+            itemPane.getChildren().add(new InventoryListItemController(i));
         }
-
     }
 }

@@ -15,6 +15,7 @@ public class StorageSystem extends Application {
     private static List<Organisation> organisations = new ArrayList<>();
     private static User currentUser;
     private static Organisation currentOrganisation;
+    private static Team currentTeam;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -97,4 +98,13 @@ public class StorageSystem extends Application {
     public static User getCurrentUser() {
         return currentUser;
     }
+
+    public static Team getCurrentTeam() {
+        return currentTeam;
+    }
+
+    public static void setCurrentTeam(Team currentTeam) {
+        StorageSystem.currentTeam = currentTeam;
+    }
 }
+
