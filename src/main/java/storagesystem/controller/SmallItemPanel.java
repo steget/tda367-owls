@@ -31,7 +31,7 @@ public class SmallItemPanel extends AnchorPane {
     @FXML
     private Label itemNameLabel;
 
-    public SmallItemPanel(IReservable reservableItem) {
+    SmallItemPanel(IReservable reservableItem) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/smallItemPanel.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);

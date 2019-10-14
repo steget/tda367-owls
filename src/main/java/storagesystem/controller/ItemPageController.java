@@ -55,7 +55,7 @@ public class ItemPageController extends AnchorPane {
     @FXML
     private Button itemPageReserveBtn;
 
-    public ItemPageController(IReservable reservableItem, Team itemOwner) {
+    ItemPageController(IReservable reservableItem, Team itemOwner) {
         this.reservableItem = reservableItem;
         this.itemOwner = itemOwner;
 
@@ -94,6 +94,7 @@ public class ItemPageController extends AnchorPane {
         setReservableBtn(reservableItem.isReservable());
         setLocationLabel(reservableItem.getLocation().getName());
         setImage(reservableItem.getImage());
+        setTeamOwnerLabel(itemOwner.getName());
     }
 
     @FXML
@@ -103,7 +104,6 @@ public class ItemPageController extends AnchorPane {
 
     @FXML
     private void closeItemPage() {
-        //todo test and fix
         AnchorPane parent = (AnchorPane) rootPane.getScene().lookup("#itemListRootPane");
         parent.getChildren().remove(this);
     }
