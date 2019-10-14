@@ -1,5 +1,6 @@
 package storagesystem.controller;
 
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -26,7 +27,9 @@ public class ItemPageController extends AnchorPane {
     private final Team itemOwner;
 
     @FXML
-    AnchorPane rootPane;
+    private AnchorPane rootPane;
+    @FXML
+    private AnchorPane contentPane;
     @FXML
     private ImageView itemPageImageView;
     @FXML
@@ -69,9 +72,12 @@ public class ItemPageController extends AnchorPane {
         initialize();
     }
 
-    public void initialize() {
+    private void initialize() {
         updateAllVisibleFields();
         closeButtonImageView.setImage(new Image("pictures/close-button.png"));
+
+        //consume click so the box doesn't close itself
+        contentPane.setOnMouseClicked(Event::consume);
     }
 
     /**
