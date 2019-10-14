@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!-- Author: Carl Lindh, Jonathan Eksberg -->
 
 <?import javafx.scene.control.Button?>
@@ -10,11 +11,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: rgba(0, 0, 0, 0.75);" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="storagesystem.controller.ItemPageController">
+<fx:root fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMousePressed="#closeItemPage" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: rgba(0, 0, 0, 0.75);" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane layoutX="19.0" layoutY="30.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0">
+      <AnchorPane layoutX="19.0" layoutY="30.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="60.0">
          <children>
-            <Label fx:id="itemPageNameLabel" layoutX="304.0" text="Scissors">
+            <Label fx:id="itemPageNameLabel" layoutX="304.0" text="ItemName">
                <font>
                   <Font size="50.0" />
                </font>
@@ -29,11 +30,16 @@
             <Label fx:id="itemPageTeamOwnerLabel" layoutX="24.0" layoutY="328.0" text="OwnerLabel" />
             <ImageView fx:id="itemPageImageView" fitHeight="150.0" fitWidth="200.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../resources/art.png" />
+                  <Image url="@../../../resources/pictures/art.png" />
                </image>
             </ImageView>
-            <Button fx:id="itemPageReserveBtn" layoutX="548.0" layoutY="492.0" mnemonicParsing="false" onAction="#itemPageReserveBtnPressed" text="Reserve" />
+            <Button fx:id="itemPageReserveBtn" layoutX="548.0" layoutY="492.0" mnemonicParsing="false" onAction="#itemPageReserveBtnPressed" text="Reserve" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+            <ImageView fx:id="closeButtonImageView" fitHeight="52.0" fitWidth="38.0" layoutX="828.0" layoutY="23.0" onMouseClicked="#closeItemPage" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+               <image>
+                  <Image url="@../../../resources/pictures/close-button.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </children>
-</AnchorPane>
+</fx:root>

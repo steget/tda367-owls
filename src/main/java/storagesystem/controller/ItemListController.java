@@ -20,7 +20,7 @@ import java.util.ResourceBundle;
  */
 public class ItemListController implements Initializable {
     @FXML
-    private AnchorPane rootPane;
+    private AnchorPane itemListRootPane;
 
     @FXML
     private FlowPane itemListFlowPane;

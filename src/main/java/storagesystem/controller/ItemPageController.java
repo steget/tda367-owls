@@ -2,32 +2,35 @@ package storagesystem.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import storagesystem.model.Condition;
-import storagesystem.model.Item;
+import storagesystem.model.IReservable;
 import storagesystem.model.Team;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 /**
  * Controls a detailed view of an item. Can be used to book an item.
+ *
  * @author Jonathan Eksberg, Carl Lindh
  */
-public class ItemPageController {
+public class ItemPageController extends AnchorPane {
 
-    private final Item item;
+    private final IReservable reservableItem;
     private final Team itemOwner;
 
     @FXML
+    AnchorPane rootPane;
+    @FXML
     private ImageView itemPageImageView;
+    @FXML
+    private ImageView closeButtonImageView;
     @FXML
     private Label itemPageNameLabel;
     @FXML
@@ -49,8 +52,11 @@ public class ItemPageController {
     @FXML
     private Button itemPageReserveBtn;
 
-    public ItemPageController(Item item, Team itemOwner) {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("itemPage.fxml"));
+    public ItemPageController(IReservable reservableItem, Team itemOwner) {
+        this.reservableItem = reservableItem;
+        this.itemOwner = itemOwner;
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/itemPage.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 
@@ -60,39 +66,40 @@ public class ItemPageController {
             throw new RuntimeException(exception);
         }
 
-        this.item = item;
-        this.itemOwner = itemOwner;
         initialize();
     }
 
     public void initialize() {
         updateAllVisibleFields();
+        closeButtonImageView.setImage(new Image("pictures/close-button.png"));
     }
 
     /**
      * Fill all fields from the item
      */
     private void updateAllVisibleFields() {
-        setNameLabel(item.getName());
-        setDescription(item.getDescription());
-        setUserRequirements(item.getUserRequirements());
-        setIDLabel("" + item.getID());
-        setAmountLabel(item.getAmount() + "");
-        setConditionSlider(item.getCondition());
-        setReservableLabel(item.isReservable() + "");
-        setReservableBtn(item.isReservable());
-        setLocationLabel(item.getLocation().getName());
-        setReservableLabel(item.isReservable() + "");
-        setNameLabel(item.getName());
-        setConditionSlider(item.getCondition());
-        setDescription(item.getDescription());
-        setUserRequirements(item.getUserRequirements());
-        setImage(item.getImage());
+        setNameLabel(reservableItem.getName());
+        setDescription(reservableItem.getDescription());
+        setUserRequirements(reservableItem.getUserRequirements());
+        setIDLabel("" + reservableItem.getID());
+        setAmountLabel("" + reservableItem.getAmount());
+        setConditionSlider(reservableItem.getCondition());
+        setReservableLabel("" + reservableItem.isReservable());
+        setReservableBtn(reservableItem.isReservable());
+        setLocationLabel(reservableItem.getLocation().getName());
+        setImage(reservableItem.getImage());
     }
 
     @FXML
     protected void itemPageReserveBtnPressed() {
         //TODO: create a new reservation if possible
+    }
+
+    @FXML
+    private void closeItemPage() {
+        //todo test and fix
+        AnchorPane parent = (AnchorPane) rootPane.getScene().lookup("#itemListRootPane");
+        parent.getChildren().remove(this);
     }
 
     private void setConditionSlider(Condition condition) {
