@@ -97,12 +97,12 @@ public class DetailedItemViewController extends AnchorPane {
     }
 
     @FXML
-    protected void itemPageReserveBtnPressed() {
+    protected void reserveBtnPressed() {
         //TODO: create a new reservation if possible
     }
 
     @FXML
-    private void closeItemPage() {
+    private void closeDetailView() {
         AnchorPane parent = (AnchorPane) rootPane.getScene().lookup("#itemListRootPane");
         parent.getChildren().remove(this);
     }

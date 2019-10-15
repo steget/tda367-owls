@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#closeItemPage" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: rgba(0, 0, 0, 0.75);" stylesheets="@basicStyles.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#closeDetailView" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: rgba(0, 0, 0, 0.75);" stylesheets="@basicStyles.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane fx:id="contentPane" layoutX="19.0" layoutY="30.0" styleClass="background" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="60.0">
          <children>
@@ -33,8 +33,8 @@
                   <Image url="@../../../resources/pictures/art.png" />
                </image>
             </ImageView>
-            <Button fx:id="itemPageReserveBtn" layoutX="548.0" layoutY="492.0" mnemonicParsing="false" onAction="#itemPageReserveBtnPressed" prefHeight="73.0" prefWidth="118.0" text="Reserve this item" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
-            <ImageView fx:id="closeButtonImageView" fitHeight="52.0" fitWidth="38.0" layoutX="828.0" layoutY="23.0" onMouseClicked="#closeItemPage" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+            <Button fx:id="itemPageReserveBtn" layoutX="548.0" layoutY="492.0" mnemonicParsing="false" onAction="#reserveBtnPressed" prefHeight="73.0" prefWidth="118.0" text="Reserve this item" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" />
+            <ImageView fx:id="closeButtonImageView" fitHeight="52.0" fitWidth="38.0" layoutX="828.0" layoutY="23.0" onMouseClicked="#closeDetailedView" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
                <image>
                   <Image url="@../../../resources/pictures/close-button.png" />
                </image>
