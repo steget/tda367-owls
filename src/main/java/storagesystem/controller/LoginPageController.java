@@ -107,6 +107,9 @@ public class LoginPageController implements Initializable {
             //set current user
             StorageSystem.setCurrentUser(loginUser);
             StorageSystem.setCurrentOrganisation(getSelectedOrganisation());
+            if(StorageSystem.getCurrentOrganisation().getUsersTeams(StorageSystem.getCurrentUser()).size()>0){
+                StorageSystem.setCurrentTeam(StorageSystem.getCurrentOrganisation().getUsersTeams(StorageSystem.getCurrentUser()).get(0));
+            }
 
             //open dashboard
             Parent root = FXMLLoader.load(getClass().getResource("/framework.fxml"));

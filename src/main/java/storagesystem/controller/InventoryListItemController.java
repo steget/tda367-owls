@@ -45,7 +45,7 @@ public class InventoryListItemController extends AnchorPane {
 
     Item thisItem;
 
-    public InventoryListItemController(Item item, AnchorPane rootpane) {
+    public InventoryListItemController(Item item) {
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/InventoryListItem.fxml"));
         fxmlLoader.setRoot(this);
@@ -62,14 +62,14 @@ public class InventoryListItemController extends AnchorPane {
         this.itemLocation.setText("" + item.getLocation());
         this.condition.setText("" + item.getCondition());
 
-        this.rootPane = rootpane;
+      //  this.rootPane = rootpane;
         this.thisItem = item;
     }
 
     @FXML
     private void onClick(){
 
-        rootPane.getChildren().add(new ItemPageController(this.thisItem, StorageSystem.getCurrentTeam()))
+      //  rootPane.getChildren().add(new ItemPageController(this.thisItem, StorageSystem.getCurrentTeam()));
 
     }
 

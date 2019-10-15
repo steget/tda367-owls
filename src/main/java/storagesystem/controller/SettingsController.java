@@ -194,6 +194,12 @@ public class SettingsController extends AnchorPane implements Initializable {
     private void changeTeam() {
         settingsTeamNameInput.setText(currentlySelectedTeam.getName());
         settingsTeamContractInput.setText(currentlySelectedTeam.getTermsAndConditions());
+
+        /**
+         * temp thing REMOVE LATER
+         */
+        StorageSystem.setCurrentTeam(currentlySelectedTeam);
+
     }
 
     /**

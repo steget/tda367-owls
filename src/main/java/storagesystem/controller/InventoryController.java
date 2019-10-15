@@ -25,6 +25,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * @author Pär Aronsson
+ */
 public class InventoryController implements Initializable {
 
     private Organisation currentOrganisation;
@@ -48,21 +51,20 @@ public class InventoryController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         currentOrganisation = StorageSystem.getCurrentOrganisation();
         currentUser = StorageSystem.getCurrentUser();
+        currentlySelectedTeam = StorageSystem.getCurrentTeam();
         isUserPartOfTeam = currentOrganisation.getUsersTeams(currentUser).size() > 0;
+        currentUsersTeams = StorageSystem.getCurrentOrganisation().getUsersTeams(currentUser);
         fillTeamAttributes();
         refreshItems();
     }
 
     private void fillTeamAttributes() {
-        currentUsersTeams = currentOrganisation.getUsersTeams(currentUser);
         currentlySelectedTeam = currentUsersTeams.get(0);
-
         for (Team t : currentUsersTeams) { //adds team names into an observable list.
             teamNames.add(t.getName());
         }
         teamChooser.setItems(teamNames);
         teamChooser.setValue(teamNames.get(0)); //show first value in box
-
         currentlySelectedTeamIndex = 0;
         teamChooserListener();
     }
@@ -74,20 +76,18 @@ public class InventoryController implements Initializable {
             for (Team t : currentUsersTeams) {
                 if (t.getName().equals(teamChooser.getItems().get(newIndex))) {
                     currentlySelectedTeamIndex = newIndex;
-                    currentlySelectedTeam = t;
+                    StorageSystem.setCurrentTeam(t);
                     refreshItems();
                     break;
                 }
             }
         });
-
     }
 
     private void refreshItems() {
-
+        currentlySelectedTeam = StorageSystem.getCurrentTeam();
         inventory = currentlySelectedTeam.getAllItems();
-        itemPane.getChildren().remove(0,itemPane.getChildren().size());
-
+        itemPane.getChildren().remove(0, itemPane.getChildren().size());
         for (Item i : inventory) {
             itemPane.getChildren().add(new InventoryListItemController(i));
         }
