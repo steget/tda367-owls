@@ -1,23 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!-- Author: Hugo Stegrell -->
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root fx:id="rootPane" maxHeight="250.0" maxWidth="180.0" minHeight="250.0" minWidth="180.0" prefHeight="250.0" prefWidth="180.0" style="-fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 6px; -fx-background-color: green;" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="rootPane" maxHeight="250.0" maxWidth="180.0" minHeight="250.0" minWidth="180.0" onMouseClicked="#handlePanePressed" prefHeight="250.0" prefWidth="180.0" style="-fx-border-color: black; -fx-border-width: 2px; -fx-border-radius: 6px; -fx-background-color: green;" stylesheets="@basicStyles.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fx:id="itemImage" fitHeight="160.0" fitWidth="160.0" layoutX="400.0" layoutY="-5.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
          <image>
             <Image url="@../../../resources/art.png" />
          </image>
       </ImageView>
-      <Label fx:id="itemNameLabel" alignment="CENTER" layoutX="73.0" layoutY="170.0" mouseTransparent="true" text="Item name" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <Label fx:id="itemNameLabel" alignment="CENTER" layoutY="170.0" mouseTransparent="true" prefHeight="84.0" prefWidth="172.0" text="Item name" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <font>
             <Font size="20.0" />
          </font>
+         <padding>
+            <Insets bottom="3.0" left="3.0" right="3.0" />
+         </padding>
       </Label>
    </children>
 </fx:root>

@@ -116,4 +116,16 @@ public class Organisation {
         this.name = name;
     }
 
+    public Team getItemOwner(IReservable item) {
+        for (Team t :
+                teams) {
+            for (Item i :
+                    t.getAllItems()) {
+                if (i.equals(item)){
+                    return t;
+                }
+            }
+        }
+        throw new NoSuchElementException("Item owner could not be found");
+    }
 }
