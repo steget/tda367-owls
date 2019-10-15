@@ -11,8 +11,14 @@ import storagesystem.model.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A runnable class with static attributes.
+ * This is the main class.
+ * @author TDA367-Owls
+ */
+
 public class StorageSystem extends Application {
-    private static List<Organisation> organisations = new ArrayList<>();
+    private static final List<Organisation> organisations = new ArrayList<>();
     private static User currentUser;
     private static Organisation currentOrganisation;
 

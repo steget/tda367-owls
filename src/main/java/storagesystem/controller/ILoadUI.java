@@ -2,6 +2,7 @@ package storagesystem.controller;
 
 /**
  * An interface for controllers with one method to avoid code repetition.
+ * @author Jonathan Eksberg
  */
 public interface ILoadUI{
 

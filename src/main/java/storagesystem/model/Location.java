@@ -6,6 +6,7 @@ import javafx.scene.image.Image;
  * Location tells us information about a place.
  * Description contains information about the location, such as how to get to the location and other information.
  * Image shows the user a picture of the location.
+ * @author Jonathan Eksberg, Carl Lindh
  */
 
 public class Location {
