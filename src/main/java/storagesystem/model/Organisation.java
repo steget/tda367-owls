@@ -1,5 +1,7 @@
 package storagesystem.model;
 
+import javafx.scene.image.Image;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -9,10 +11,11 @@ import java.util.NoSuchElementException;
  * The teams that belong to an organisation should be relevant to one another.
  * An Organisation should keep track of all the reservations between its teams.
  */
-public class Organisation {
+public class Organisation implements IHasImageAndName{
     private final List<Team> teams = new ArrayList<>();
     private final List<User> users = new ArrayList<>();
     private String name;
+    private Image image;
     //todo reservationHandler
 
     public Organisation(String name) {
@@ -111,8 +114,15 @@ public class Organisation {
         return name;
     }
 
-    void setName(String name) {
+    public void setName(String name) {
         this.name = name;
+    }
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
     }
 
 }

@@ -1,5 +1,7 @@
 package storagesystem.model;
 
+import javafx.scene.image.Image;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,14 +9,14 @@ import java.util.List;
  * A team has a list of users that belong to the same team.
  * A team has an inventory of items which it can browse.
  */
-public class Team {
+public class Team implements IHasImageAndName{
     private String name;
     private final List<Item> inventory = new ArrayList<>(); //todo itemIDs instead
     private final List<Integer> memberIDs = new ArrayList<>();
     private String termsAndConditions;
     private int teamID;
     private static int nextID;
-
+    private Image image;
     public Team(String teamName) {
         this.name = teamName;
         //todo fill stuff from db
@@ -71,5 +73,13 @@ public class Team {
 
     public int getTeamID() {
         return teamID;
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
     }
 }

@@ -2,7 +2,7 @@ package storagesystem.model;
 
 import javafx.scene.image.Image;
 
-public class Item implements IReservable {
+public class Item implements IReservable, IHasImageAndName{
 /**
  * A class that represents an item. An item can be added by a team to their own inventory.
  * description consists of a short text about the item and what can be done with it.

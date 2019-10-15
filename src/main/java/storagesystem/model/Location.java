@@ -8,7 +8,7 @@ import javafx.scene.image.Image;
  * Image shows the user a picture of the location.
  */
 
-public class Location {
+public class Location implements IHasImageAndName{
 
     private String name;
     private String description;

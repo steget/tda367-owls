@@ -78,9 +78,9 @@ public class StorageSystem extends Application {
         itemList.add(gloves);
 
         GSONHandler.clearJson(itemFile.getPath());
-        GSONHandler.addToJson(shoes, itemFile.getPath());
-        GSONHandler.addToJson(gloves, itemFile.getPath());
-        GSONHandler.addListToJson(itemList, itemFile.getPath());
+        GSONHandler.addToJson(shoes);
+        GSONHandler.addToJson(gloves);
+        GSONHandler.addListToJson(itemList);
 
         //items = GSONHandler.getListFromJson(itemFile.getPath(), Item.class);
 
