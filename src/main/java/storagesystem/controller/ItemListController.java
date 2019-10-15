@@ -5,7 +5,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
-import storagesystem.StorageSystem;
+import storagesystem.StoreIT;
 import storagesystem.model.IReservable;
 
 import java.net.URL;
@@ -39,7 +39,7 @@ public class ItemListController implements Initializable {
 
     private void createAllSmallItemPanels() {
         for (IReservable reservableItem :
-                StorageSystem.getCurrentOrganisation().getAllItems()) {
+                StoreIT.getCurrentOrganisation().getAllItems()) {
             allSmallItemPanels.add(new SmallItemPanel(reservableItem));
         }
     }

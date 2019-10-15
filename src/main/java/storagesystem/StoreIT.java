@@ -14,7 +14,7 @@ import storagesystem.model.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StorageSystem extends Application {
+public class StoreIT extends Application {
     private static List<Organisation> organisations = new ArrayList<>();
     private static User currentUser;
     private static Organisation currentOrganisation;
@@ -98,11 +98,11 @@ public class StorageSystem extends Application {
     }
 
     public static void setCurrentUser(User currentUser) {
-        StorageSystem.currentUser = currentUser;
+        StoreIT.currentUser = currentUser;
     }
 
     public static void setCurrentOrganisation(Organisation currentOrganisation) {
-        StorageSystem.currentOrganisation = currentOrganisation;
+        StoreIT.currentOrganisation = currentOrganisation;
     }
 
     public static List<Organisation> getOrganisations() {

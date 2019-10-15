@@ -16,7 +16,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import storagesystem.StorageSystem;
+import storagesystem.StoreIT;
 import storagesystem.model.Organisation;
 import storagesystem.model.User;
 
@@ -58,7 +58,7 @@ public class LoginPageController implements Initializable {
         //Fill list with organisations from database
         ObservableList<String> organisationNames = FXCollections.observableArrayList();
         for (Organisation org :
-                StorageSystem.getOrganisations()) {
+                StoreIT.getOrganisations()) {
             organisationNames.add(org.getName());
         }
 
@@ -104,8 +104,8 @@ public class LoginPageController implements Initializable {
         //check username and password against database
         if (doesUserExist()) {
             //set current user
-            StorageSystem.setCurrentUser(loginUser);
-            StorageSystem.setCurrentOrganisation(getSelectedOrganisation());
+            StoreIT.setCurrentUser(loginUser);
+            StoreIT.setCurrentOrganisation(getSelectedOrganisation());
 
             //open dashboard
             Parent root = FXMLLoader.load(getClass().getResource("/framework.fxml"));
@@ -141,7 +141,7 @@ public class LoginPageController implements Initializable {
     private Organisation getSelectedOrganisation() throws NullPointerException {
         String selectedOrganisation = organisationChoiceBox.getValue().toString();
         for (Organisation org :
-                StorageSystem.getOrganisations()) {
+                StoreIT.getOrganisations()) {
             if (org.getName().equals(selectedOrganisation)) {
                 return org;
             }
