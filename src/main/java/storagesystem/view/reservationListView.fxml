@@ -6,7 +6,7 @@
 
 
 <fx:root fx:id="rootPane" onMouseClicked="#clicked" prefHeight="30.0" prefWidth="950.0"
-         style="-fx-background-color: purple;" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1"
+         style="-fx-background-color: purple;" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.201"
          xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <Label fx:id="borrowerLabel" layoutX="362.0" minWidth="-Infinity" prefHeight="30.0" prefWidth="304.0"
