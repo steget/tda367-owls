@@ -49,9 +49,10 @@ public class FrameworkController implements Initializable, ILoadUI {
     }
 
     @FXML
-    void settingsButtonPressed(){
-        loadUI("/settings");
-    }
+    void userButtonPressed(){ loadUI("/userPage"); }
+
+    @FXML
+    void teamButtonPressed(){ loadUI("/teamPage"); }
 
     @FXML
     void allItemsButtonPressed(){

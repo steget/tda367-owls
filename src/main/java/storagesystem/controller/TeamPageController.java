@@ -5,7 +5,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import storagesystem.StorageSystem;
@@ -19,22 +18,13 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 /**
- * Control a settings page
- * @author Hugo Stegrell, Pär Aronsson
+ * Control the  teamPage
+ * @author Hugo Stegrell, Pär Aronsson, Jonathan Eksberg
  */
-public class SettingsController extends AnchorPane implements Initializable {
+public class TeamPageController extends AnchorPane implements Initializable {
 
     @FXML
     private AnchorPane settingsTeamAnchorPane;
-
-    @FXML
-    private AnchorPane settingsUserAnchorPane;
-
-    @FXML
-    private Label settingsUserLabel;
-
-    @FXML
-    private Label settingsTeamLabel;
 
     @FXML
     private TextField settingsAddUserInput;
@@ -43,19 +33,10 @@ public class SettingsController extends AnchorPane implements Initializable {
     private TextField settingsRemoveUserInput;
 
     @FXML
-    private TextField settingsNameInput;
-
-    @FXML
     private TextField settingsTeamNameInput;
     //todo change this to a TextArea so we can set the text to wrap
     @FXML
     private TextField settingsTeamContractInput;
-
-    @FXML
-    private TextField settingsContactInput;
-
-    @FXML
-    private TextField settingsDescriptionInput;
 
     @FXML
     private ChoiceBox<String> settingsChooseTeamInput;
@@ -80,11 +61,6 @@ public class SettingsController extends AnchorPane implements Initializable {
             fillTeamAttributes();
         }
 
-        //fill user text boxes
-        settingsNameInput.setText(currentUser.getName());
-        settingsDescriptionInput.setText(currentUser.getDescription());
-        settingsContactInput.setText(currentUser.getContactInformation());
-
         assignListeners();
     }
 
@@ -92,23 +68,6 @@ public class SettingsController extends AnchorPane implements Initializable {
      * Adds listeners to the User and Team labels, aswell as the dropdown for teams
      */
     private void assignListeners() {
-        //when user is clicked the users settings should show
-        settingsUserLabel.setOnMouseClicked((event -> {
-            if (!settingsUserAnchorPane.isVisible()) {
-                settingsUserAnchorPane.setVisible(true);
-                settingsTeamAnchorPane.setVisible(false);
-            }
-        }));
-
-        //when team is clicked the teams settings should show
-        if (isUserPartOfTeam) {
-            settingsTeamLabel.setOnMouseClicked((event -> {
-                if (settingsUserAnchorPane.isVisible()) {
-                    settingsUserAnchorPane.setVisible(false);
-                    settingsTeamAnchorPane.setVisible(true);
-                }
-            }));
-        }
 
         //checks when the users changes team in the dropdown
         settingsChooseTeamInput.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
@@ -163,15 +122,7 @@ public class SettingsController extends AnchorPane implements Initializable {
         updateTeamsChoicebox();
     }
 
-    /**
-     * Save the current users data that was put in.
-     */
-    @FXML
-    public void saveUser() {
-        currentUser.setName(settingsNameInput.getText());
-        currentUser.setDescription(settingsDescriptionInput.getText());
-        currentUser.setContactInformation(settingsContactInput.getText());
-    }
+
 
     /**
      * Updates the View when called. It does this by refreshing the values that is shown in boxes.
@@ -248,7 +199,6 @@ public class SettingsController extends AnchorPane implements Initializable {
             System.out.println("Could not remove user since user is not a part of the team.");
         }
     }
-
     /**
      * Compares the input with all users in the organisation. If a match is made the userID is returned. Returns -1 otherwise which will never be any user's  ID.
      *

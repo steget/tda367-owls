@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<!-- @author Jonathan Eksberg, Pär Aronsson, Hugo Stegrell -->
+
+<AnchorPane fx:id="settingsUserAnchorPane" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: red;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="storagesystem.controller.UserPageController">
+   <children>
+      <TextField fx:id="settingsDescriptionInput" alignment="TOP_LEFT" layoutX="178.0" layoutY="161.0" prefHeight="268.0" prefWidth="407.0" promptText="Write something about yourself..." style="-fx-background-color: white;" />
+      <Text layoutX="10.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20px;" text="Description of yourself:" textAlignment="RIGHT" wrappingWidth="131.10546875" />
+      <Text layoutX="47.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20px;" text="Name:" textAlignment="RIGHT" wrappingWidth="95.10546875" />
+      <TextField fx:id="settingsNameInput" layoutX="178.0" layoutY="49.0" prefHeight="26.0" prefWidth="230.0" promptText="Input Name" style="-fx-background-color: white;" />
+      <TextField fx:id="settingsContactInput" layoutX="178.0" layoutY="107.0" prefHeight="26.0" prefWidth="230.0" promptText="Input E-Mail" style="-fx-background-color: white;" />
+      <Text layoutX="47.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20px;" text="Contact:" textAlignment="RIGHT" wrappingWidth="95.10546875" />
+      <Button layoutX="747.0" layoutY="368.0" mnemonicParsing="false" onAction="#saveUser" prefHeight="70.0" prefWidth="250.0" text="SAVE " AnchorPane.bottomAnchor="59.0" AnchorPane.rightAnchor="71.0" />
+   </children>
+</AnchorPane>
