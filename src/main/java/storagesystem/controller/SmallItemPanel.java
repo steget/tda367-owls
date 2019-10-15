@@ -2,8 +2,6 @@ package storagesystem.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -11,8 +9,6 @@ import storagesystem.StorageSystem;
 import storagesystem.model.IReservable;
 
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * @author Hugo Stegrell
@@ -59,7 +55,7 @@ public class SmallItemPanel extends AnchorPane {
     void handlePanePressed() {
         AnchorPane parent = (AnchorPane) rootPane.getScene().lookup("#itemListRootPane");
 
-        ItemPageController detailedItemView = new ItemPageController(reservableItem, StorageSystem.getCurrentOrganisation().getItemOwner(reservableItem));
+        DetailedItemViewController detailedItemView = new DetailedItemViewController(reservableItem, StorageSystem.getCurrentOrganisation().getItemOwner(reservableItem));
 
         parent.getChildren().add(detailedItemView);
     }

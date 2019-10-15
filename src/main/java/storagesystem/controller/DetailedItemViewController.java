@@ -21,8 +21,7 @@ import java.io.IOException;
  *
  * @author Jonathan Eksberg, Carl Lindh
  */
-public class ItemPageController extends AnchorPane {
-
+public class DetailedItemViewController extends AnchorPane {
     private final IReservable reservableItem;
     private final Team itemOwner;
 
@@ -55,11 +54,11 @@ public class ItemPageController extends AnchorPane {
     @FXML
     private Button itemPageReserveBtn;
 
-    ItemPageController(IReservable reservableItem, Team itemOwner) {
+    DetailedItemViewController(IReservable reservableItem, Team itemOwner) {
         this.reservableItem = reservableItem;
         this.itemOwner = itemOwner;
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/itemPage.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/detailedItemView.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 
