@@ -8,29 +8,28 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: blue;" stylesheets="@basicStyles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="storagesystem.controller.ReservationsController">
+<AnchorPane fx:id="reservationsRootPane" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: blue;" stylesheets="@basicStyles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="storagesystem.controller.ReservationsController">
    <children>
       <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" text="Time borrowed" textAlignment="CENTER">
-               <HBox.margin>
-                  <Insets left="20.0" />
-               </HBox.margin></Label>
-            <Region prefHeight="200.0" prefWidth="200.0" />
             <Label minHeight="-Infinity" minWidth="-Infinity" text="Item" />
             <Region prefHeight="200.0" prefWidth="200.0" />
             <Label minHeight="-Infinity" minWidth="-Infinity" text="Borrower">
                <HBox.margin>
                   <Insets right="20.0" />
                </HBox.margin></Label>
+            <Region prefHeight="200.0" prefWidth="200.0" />
+            <Label alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" text="Time borrowed" textAlignment="CENTER">
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin></Label>
          </children>
       </HBox>
-      <AnchorPane prefWidth="600.0" />
-      <ScrollPane layoutY="33.0" prefHeight="367.0" prefWidth="600.0" style="-fx-background-color: green;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="33.0">
+      <ScrollPane layoutY="33.0" style="-fx-background-color: green;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="33.0">
         <content>
-          <AnchorPane style="-fx-background-color: yellow;">
+          <AnchorPane prefHeight="100.0" prefWidth="1000.0" style="-fx-background-color: yellow;">
                <children>
-                  <FlowPane fx:id="reservationListFlowPane" prefHeight="56.0" prefWidth="600.0" style="-fx-background-color: orange;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-200.0" />
+                  <FlowPane fx:id="reservationListFlowPane" prefHeight="50.0" prefWidth="1000.0" style="-fx-background-color: orange;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
         </content>

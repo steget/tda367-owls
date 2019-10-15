@@ -1,17 +1,44 @@
-.appbar{
-    -fx-background-color: #212121
+/**
+
+ */
+
+*{
+    primaryColor: #424242;
+    secondaryColor: #212121;
 }
+
+.appbar{
+    -fx-background-color: secondaryColor;
+}
+
+.nonEditableField{
+    -fx-cursor: default;
+    -fx-background-color: rgba(0,0,0,0);
+    -fx-text-fill: white;
+    -fx-font-size: 20;
+
+}
+
 
 .background{
     -fx-background-color: #303030;
 }
 
+.lightbox{
+    -fx-background-color: rgba(0,0,0,0.75);
+}
+
+.lightboxContent{
+    -fx-background-color: primaryColor;
+    -fx-background-radius: 20;
+}
+
 .dialogs{
-    -fx-background-color: #424242;
+    -fx-background-color: primaryColor;
 }
 
 .menuButton{
-    -fx-background-color: #424242;
+    -fx-background-color: primaryColor;
     border: solid #FFFFFF;
     -fx-text-fill: #FFFFFF;
     height:75px;
@@ -24,7 +51,9 @@
     -fx-background-color: #4d4d4d;
 }
 
-.label{
+.smallLabel{
     -fx-font-size: 20;
+    -fx-text-fill: white;
 }
+
 

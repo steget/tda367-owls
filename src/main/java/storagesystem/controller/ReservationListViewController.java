@@ -2,14 +2,13 @@ package storagesystem.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import storagesystem.model.IReservation;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ReservationListViewController extends AnchorPane {
 
@@ -17,13 +16,18 @@ public class ReservationListViewController extends AnchorPane {
     IReservation reservation;
 
     @FXML
-    Label itemLabel;
+    private AnchorPane rootPane;
 
     @FXML
-    Label borrowerLabel;
+    private Label itemLabel;
 
     @FXML
-    Label intervalLabel;
+    private Label borrowerLabel;
+
+    @FXML
+    private Label intervalLabel;
+
+    private List<ReservationClickedListener> reservationClickedListenersList = new ArrayList<>();
 
 
 
@@ -47,5 +51,21 @@ public class ReservationListViewController extends AnchorPane {
         intervalLabel.setText(reservation.getReadableInterval());
     }
 
+    @FXML
+    private void clicked(){
+        this.itemLabel.setText("Clicked");
+
+        for(ReservationClickedListener listener : reservationClickedListenersList){
+            listener.reservationClicked(reservation);
+        }
+    }
+
+    interface ReservationClickedListener {
+        void reservationClicked(IReservation res);
+    }
+
+    public void addReservationClickedListener(ReservationClickedListener listener){
+        reservationClickedListenersList.add(listener);
+    }
 
 }

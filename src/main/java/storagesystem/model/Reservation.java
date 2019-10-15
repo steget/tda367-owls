@@ -116,6 +116,10 @@ public class Reservation implements IReservation {
         return id == that.id;
     }
 
+    /**
+     * Converts the interval to a string that can be easily read.
+     * @return
+     */
     @Override
     public String getReadableInterval() {
         DateTime start = interval.getStart();
@@ -134,19 +138,34 @@ public class Reservation implements IReservation {
         int endMinute = end.getMinuteOfHour();
 
         StringBuilder sb = new StringBuilder();
-        sb.append(startYear + "-" + startMonth + "-" + startDay + " " + startHour +":" + startMinute + " - ");
-        if(startYear != endYear)
-            sb.append(endYear + "-" + endMonth + "-" + endDay + " " + endHour + ":" + endMinute);
-        else if(startMonth!=endMonth)
-            sb.append(endMonth + "-" + endDay + " " + endHour + ":" + endMinute);
-        else if(startDay != endDay)
-            sb.append(endDay + " " + endHour + ":" + endMinute);
+        if(startYear != new DateTime().getYear())
+            sb.append(startYear + "." + startMonth + "." + startDay + " " + startHour +":" + getToDoubleZero(startMinute) + " - ");
         else
-            sb.append(endHour + ":" + endMinute);
+            sb.append(startMonth + "." + startDay + " " + startHour +":" + getToDoubleZero(startMinute) + " - ");
+
+
+        if(startYear != endYear)
+            sb.append(endYear + "." + endMonth + "." + endDay + " " + endHour + ":" + getToDoubleZero(endMinute));
+        else if(startMonth!=endMonth)
+            sb.append(endMonth + "." + endDay + " " + endHour + ":" + getToDoubleZero(endMinute));
+        else if(startDay != endDay)
+            sb.append(endMonth + "." + endDay + " " + endHour + ":" + getToDoubleZero(endMinute));
+        else{
+            sb.append(endHour + ":" + getToDoubleZero(endMinute));
+        }
 
         String readable = sb.toString();
 
         return readable;
+    }
+
+    private String getToDoubleZero(int startMinute) {
+
+        if(startMinute== 0){
+            return "00";
+        }
+        return Integer.toString(startMinute);
+
     }
 
     private String getMonth(int nr){

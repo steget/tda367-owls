@@ -38,6 +38,10 @@ public class StorageSystem extends Application {
      * Loads all data into the program. Should be run at start.
      */
     private void initializeBackend() {
+        mockData();
+    }
+
+    private static void mockData(){
         //Hardcoded stuff for testing
         Organisation informationsteknik = new Organisation("Informationsteknik");
         Organisation data = new Organisation("Data");
@@ -72,11 +76,14 @@ public class StorageSystem extends Application {
 
 
 
-        Interval interval = new Interval(new DateTime(), new DateTime().plusDays(1));
-        IReservation res = new Reservation(informationsteknik.getUsers().get(0),interval, mockItem, ReservationStatus.APPROVED);
+        Interval interval1 = new Interval(new DateTime(2019, 9, 10, 12, 40), new DateTime(2019,9,10,15,0));
+        Interval interval2 = new Interval(new DateTime(2019,9,12,17,30), new DateTime(2019,10,16,20,0));
+        IReservation res = new Reservation(informationsteknik.getUsers().get(0),interval1, mockItem, ReservationStatus.APPROVED);
+        IReservation res2 = new Reservation(informationsteknik.getUsers().get(0),interval2, mockItem, ReservationStatus.APPROVED);
         ReservationHandler resHandler = informationsteknik.getReservationHandler();
         List<IReservation> reservations = resHandler.getReservations();
         reservations.add(res);
+        reservations.add(res2);
 
         organisations.add(informationsteknik);
         organisations.add(data);
