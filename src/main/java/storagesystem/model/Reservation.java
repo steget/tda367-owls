@@ -7,11 +7,11 @@ import org.joda.time.Interval;
 import java.util.Objects;
 
 /**
+ * @author William Albertsson
  * A reservation most importantly contains a object that is reserved, a time of reservation and who the borrower is
  */
 
 public class Reservation implements IReservation {
-
 
 
     static int NXT_RES_ID = 0;
@@ -20,7 +20,6 @@ public class Reservation implements IReservation {
     private Interval interval;
     private IReservable reservedObject;
     private ReservationStatus status;
-
 
 
     public Reservation(IBorrower borrower, Interval interval, IReservable reservedObject, ReservationStatus status) {
@@ -35,6 +34,7 @@ public class Reservation implements IReservation {
 
     /**
      * Should not be used. Created for testing purposes.
+     *
      * @param id
      * @param borrower
      * @param interval
@@ -50,11 +50,11 @@ public class Reservation implements IReservation {
         this.status = status;
     }
 
-    private Reservation(IReservation res){
+    private Reservation(IReservation res) {
         this(res.getID(), res.getBorrower(), res.getInterval(), res.getReservedObject(), res.getStatus());
     }
 
-    public Reservation copy(){
+    public Reservation copy() {
         return new Reservation(this);
     }
 
@@ -105,6 +105,7 @@ public class Reservation implements IReservation {
 
     /**
      * Compares ID's if o is a reservation
+     *
      * @param o
      * @return
      */
@@ -118,6 +119,7 @@ public class Reservation implements IReservation {
 
     /**
      * Converts the interval to a string that can be easily read.
+     *
      * @return
      */
     @Override
@@ -138,19 +140,19 @@ public class Reservation implements IReservation {
         int endMinute = end.getMinuteOfHour();
 
         StringBuilder sb = new StringBuilder();
-        if(startYear != new DateTime().getYear())
-            sb.append(startYear + "." + startMonth + "." + startDay + " " + startHour +":" + getToDoubleZero(startMinute) + " - ");
+        if (startYear != new DateTime().getYear())
+            sb.append(startYear + "." + startMonth + "." + startDay + " " + startHour + ":" + getToDoubleZero(startMinute) + " - ");
         else
-            sb.append(startMonth + "." + startDay + " " + startHour +":" + getToDoubleZero(startMinute) + " - ");
+            sb.append(startMonth + "." + startDay + " " + startHour + ":" + getToDoubleZero(startMinute) + " - ");
 
 
-        if(startYear != endYear)
+        if (startYear != endYear)
             sb.append(endYear + "." + endMonth + "." + endDay + " " + endHour + ":" + getToDoubleZero(endMinute));
-        else if(startMonth!=endMonth)
+        else if (startMonth != endMonth)
             sb.append(endMonth + "." + endDay + " " + endHour + ":" + getToDoubleZero(endMinute));
-        else if(startDay != endDay)
+        else if (startDay != endDay)
             sb.append(endMonth + "." + endDay + " " + endHour + ":" + getToDoubleZero(endMinute));
-        else{
+        else {
             sb.append(endHour + ":" + getToDoubleZero(endMinute));
         }
 
@@ -161,15 +163,15 @@ public class Reservation implements IReservation {
 
     private String getToDoubleZero(int startMinute) {
 
-        if(startMinute== 0){
+        if (startMinute == 0) {
             return "00";
         }
         return Integer.toString(startMinute);
 
     }
 
-    private String getMonth(int nr){
-        switch (nr){
+    private String getMonth(int nr) {
+        switch (nr) {
             case 1:
                 return "Jan";
             case 2:

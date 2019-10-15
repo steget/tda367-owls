@@ -20,7 +20,7 @@ public class Location {
         this.image = image;
     }
 
-    public Location(String name, String description){
+    public Location(String name, String description) {
         this.name = name;
         this.description = description;
     }
@@ -37,7 +37,9 @@ public class Location {
         return image;
     }
 
-    public void setName(String name) { this.name = name; }
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public void setDescription(String description) {
         this.description = description;

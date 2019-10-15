@@ -10,6 +10,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author William Albertsson
+ */
+
 public class ReservationListViewController extends AnchorPane {
 
 
@@ -30,9 +34,7 @@ public class ReservationListViewController extends AnchorPane {
     private List<ReservationClickedListener> reservationClickedListenersList = new ArrayList<>();
 
 
-
-
-    public ReservationListViewController(IReservation res){
+    public ReservationListViewController(IReservation res) {
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/reservationListView.fxml"));
         fxmlLoader.setRoot(this);
@@ -52,10 +54,10 @@ public class ReservationListViewController extends AnchorPane {
     }
 
     @FXML
-    private void clicked(){
+    private void clicked() {
         this.itemLabel.setText("Clicked");
 
-        for(ReservationClickedListener listener : reservationClickedListenersList){
+        for (ReservationClickedListener listener : reservationClickedListenersList) {
             listener.reservationClicked(reservation);
         }
     }
@@ -64,7 +66,7 @@ public class ReservationListViewController extends AnchorPane {
         void reservationClicked(IReservation res);
     }
 
-    public void addReservationClickedListener(ReservationClickedListener listener){
+    public void addReservationClickedListener(ReservationClickedListener listener) {
         reservationClickedListenersList.add(listener);
     }
 

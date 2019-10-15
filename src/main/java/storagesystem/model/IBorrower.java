@@ -2,11 +2,11 @@ package storagesystem.model;
 
 
 /**
+ * @author William Albertsson
  * Interface to use for classes that should have the ability to borrow objects.
  */
 public interface IBorrower {
     /**
-     *
      * @return An unique ID.
      */
     int getID();
@@ -15,6 +15,7 @@ public interface IBorrower {
 
     /**
      * Should be implemented by all implementors
+     *
      * @param o An object which to test against
      * @return True if o is instance of and has the same ID's as this IBorrower.
      */

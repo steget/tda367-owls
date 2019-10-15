@@ -16,6 +16,7 @@ import java.util.ResourceBundle;
 
 /**
  * Controls a view showing all reservable items
+ *
  * @author Hugo Stegrell
  */
 public class ItemListController implements Initializable {

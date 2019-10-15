@@ -67,7 +67,7 @@ public class LoginPageController implements Initializable {
 
         assignHandlers();
 
-        Platform.runLater(()->userNameTextField.requestFocus()); //Need to do this since Stage is not set yet when in initialize
+        Platform.runLater(() -> userNameTextField.requestFocus()); //Need to do this since Stage is not set yet when in initialize
     }
 
     /**
@@ -139,7 +139,7 @@ public class LoginPageController implements Initializable {
      * @return The actual organisation from the database
      */
     private Organisation getSelectedOrganisation() throws NullPointerException {
-        String selectedOrganisation = organisationChoiceBox.getValue().toString();
+        String selectedOrganisation = organisationChoiceBox.getValue();
         for (Organisation org :
                 StoreIT.getOrganisations()) {
             if (org.getName().equals(selectedOrganisation)) {

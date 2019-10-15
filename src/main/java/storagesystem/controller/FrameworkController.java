@@ -51,17 +51,17 @@ public class FrameworkController implements Initializable, ILoadUI {
     }
 
     @FXML
-    void settingsButtonPressed(){
+    void settingsButtonPressed() {
         loadUI("settings");
     }
 
     @FXML
-    void allItemsButtonPressed(){
+    void allItemsButtonPressed() {
         loadUI("itemList");
     }
 
     @FXML
-    void reservationsButtonPressed(){
+    void reservationsButtonPressed() {
         loadUI("reservations");
 
     }
@@ -69,14 +69,15 @@ public class FrameworkController implements Initializable, ILoadUI {
 
     /**
      * Method to avoid repetetive code.
+     *
      * @param ui The url to a fxml file.
      */
     @Override
-    public void loadUI(String ui){
+    public void loadUI(String ui) {
         Parent root = null;
-        try{
-            root = FXMLLoader.load(getClass().getResource("/"+ui+".fxml"));
-        } catch (IOException e){
+        try {
+            root = FXMLLoader.load(getClass().getResource("/" + ui + ".fxml"));
+        } catch (IOException e) {
             Logger.getLogger(FrameworkController.class.getName()).log(Level.SEVERE, null, e);
         }
         borderPane.setCenter(root);

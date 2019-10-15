@@ -20,6 +20,7 @@ import java.util.ResourceBundle;
 
 /**
  * Control a settings page
+ *
  * @author Hugo Stegrell, Pär Aronsson
  */
 public class SettingsController extends AnchorPane implements Initializable {
@@ -205,8 +206,8 @@ public class SettingsController extends AnchorPane implements Initializable {
         for (User user : StoreIT.getCurrentOrganisation().getUsers()) {
             if (user.getName().equals(settingsAddUserInput.getText())) {
                 doesUserExist = true;
-                    if (currentlySelectedTeam.getAllMemberIDs().contains(user.getID())) {
-                        //todo print in program
+                if (currentlySelectedTeam.getAllMemberIDs().contains(user.getID())) {
+                    //todo print in program
                     System.out.println("User is already a part of this team.");
                 } else {
                     currentlySelectedTeam.addMember(user.getID());

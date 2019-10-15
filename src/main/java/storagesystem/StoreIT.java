@@ -41,7 +41,7 @@ public class StoreIT extends Application {
         mockData();
     }
 
-    private static void mockData(){
+    private static void mockData() {
         //Hardcoded stuff for testing
         Organisation informationsteknik = new Organisation("Informationsteknik");
         Organisation data = new Organisation("Data");
@@ -75,11 +75,10 @@ public class StoreIT extends Application {
                 2, Condition.GOOD, true, location, new Image("art.png"));
 
 
-
-        Interval interval1 = new Interval(new DateTime(2019, 9, 10, 12, 40), new DateTime(2019,9,10,15,0));
-        Interval interval2 = new Interval(new DateTime(2019,9,12,17,30), new DateTime(2019,10,16,20,0));
-        IReservation res = new Reservation(informationsteknik.getUsers().get(0),interval1, mockItem, ReservationStatus.APPROVED);
-        IReservation res2 = new Reservation(informationsteknik.getUsers().get(0),interval2, mockItem, ReservationStatus.APPROVED);
+        Interval interval1 = new Interval(new DateTime(2019, 9, 10, 12, 40), new DateTime(2019, 9, 10, 15, 0));
+        Interval interval2 = new Interval(new DateTime(2019, 9, 12, 17, 30), new DateTime(2019, 10, 16, 20, 0));
+        IReservation res = new Reservation(informationsteknik.getUsers().get(0), interval1, mockItem, ReservationStatus.APPROVED);
+        IReservation res2 = new Reservation(informationsteknik.getUsers().get(0), interval2, mockItem, ReservationStatus.APPROVED);
         ReservationHandler resHandler = informationsteknik.getReservationHandler();
         List<IReservation> reservations = resHandler.getReservations();
         reservations.add(res);

@@ -12,8 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ReservationsController implements Initializable {
+/**
+ * @author William Albertsson
+ */
 
+public class ReservationsController implements Initializable {
 
 
     List<ReservationListViewController> reservationViews = new ArrayList<>();
@@ -24,8 +27,8 @@ public class ReservationsController implements Initializable {
     @FXML
     private FlowPane reservationListFlowPane;
 
-    private ReservationDetailViewController detailView;
 
+    private ReservationDetailViewController detailView;
 
 
     @Override
@@ -36,17 +39,15 @@ public class ReservationsController implements Initializable {
     }
 
 
-
-
     private void createListViews() {
-        for(IReservation res : StoreIT.getCurrentOrganisation().getReservationHandler().getReservations()){
+        for (IReservation res : StoreIT.getCurrentOrganisation().getReservationHandler().getReservations()) {
             ReservationListViewController listView = new ReservationListViewController(res);
             reservationViews.add(listView);
             listView.addReservationClickedListener(this::listViewClicked);
         }
     }
 
-    private void listViewClicked(IReservation res){
+    private void listViewClicked(IReservation res) {
 
         detailView = new ReservationDetailViewController(res);
 
@@ -56,7 +57,7 @@ public class ReservationsController implements Initializable {
 
     }
 
-    private void reservationDetailViewClosed(){
+    private void reservationDetailViewClosed() {
         detailView.setVisible(false);
     }
 

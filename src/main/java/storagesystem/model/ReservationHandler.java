@@ -7,12 +7,12 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 /**
+ * @author William Albertsson
  * A handler taking care of all reservations for one organisation. Methods for creating and retrieving reservations
  */
 
 public class ReservationHandler {
 
-    //TODO Understand exceptions and implement correctly
 
 
     private List<IReservation> reservations = new ArrayList<>();
@@ -22,7 +22,7 @@ public class ReservationHandler {
         this.reservations = reservations;
     }
 
-    public ReservationHandler(){
+    public ReservationHandler() {
         reservations = new ArrayList<>();
     }
 
@@ -30,7 +30,6 @@ public class ReservationHandler {
     public void setReservations(List<IReservation> reservations) {
         this.reservations = reservations;
     }
-
 
 
     /**
@@ -75,16 +74,15 @@ public class ReservationHandler {
     }
 
     /**
-     *
      * @param borrower
      * @return A list with all known reservations with specific borrower.
      */
-    public List<IReservation> getReservations(IBorrower borrower){
+    public List<IReservation> getReservations(IBorrower borrower) {
 
         List<IReservation> borrowersReservations = new ArrayList<>();
 
-        for(IReservation res : this.reservations){
-            if(borrower.equals(res.getBorrower())){
+        for (IReservation res : this.reservations) {
+            if (borrower.equals(res.getBorrower())) {
                 borrowersReservations.add(res);
             }
         }
@@ -93,7 +91,8 @@ public class ReservationHandler {
     }
 
 
-    /**Checks too see if an interval overlaps the reservations of an object.
+    /**
+     * Checks too see if an interval overlaps the reservations of an object.
      *
      * @param object   Object to test
      * @param interval Interval to test object against
@@ -116,7 +115,7 @@ public class ReservationHandler {
      *
      * @param borrower The party which want to borrow object
      * @param interval The interval in which to reserve the object.
-     * @param object The object which is to be reserved.
+     * @param object   The object which is to be reserved.
      */
     public void createReservation(IBorrower borrower, Interval interval, IReservable object) {
         if (!isObjectReservedBetween(object, interval)) {
@@ -127,19 +126,21 @@ public class ReservationHandler {
     }
 
     /**
-     *  Get the last created reservation
+     * Get the last created reservation
+     *
      * @return Null if no reservation found
      */
-    public IReservation getLastReservation() throws NoSuchElementException{
+    public IReservation getLastReservation() throws NoSuchElementException {
         int lenght = reservations.size();
         if (lenght == 0) {
             throw new NoSuchElementException("No reservations exists");
         }
-        return reservations.get(lenght-1);
+        return reservations.get(lenght - 1);
     }
 
     /**
      * Removes reservation matching id
+     *
      * @param id
      */
     public void removeReservation(int id) {
@@ -149,6 +150,7 @@ public class ReservationHandler {
 
     /**
      * Removes first found reservation with same ID as res
+     *
      * @param res
      */
     private void removeReservation(IReservation res) {
