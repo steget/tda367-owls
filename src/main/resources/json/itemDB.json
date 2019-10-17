@@ -1,12 +1,12 @@
 [
   {
-    "name": "Shoes",
-    "description": "Wear them",
-    "userRequirements": "Dont break them",
-    "ID": 1,
-    "amount": 2,
+    "name": "name",
+    "description": "description",
+    "userRequirements": "UserReq",
+    "ID": 10,
+    "amount": 10,
     "condition": "BAD",
-    "reservable": true,
+    "reservable": false,
     "location": {
       "name": "Mock Location",
       "description": "This is a temporary location"
@@ -16,7 +16,7 @@
     "name": "name",
     "description": "description",
     "userRequirements": "UserReq",
-    "ID": 2,
+    "ID": 11,
     "amount": 10,
     "condition": "GREAT",
     "reservable": false,

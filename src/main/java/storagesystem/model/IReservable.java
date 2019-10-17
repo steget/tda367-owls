@@ -4,6 +4,8 @@ import javafx.scene.image.Image;
 
 /**
  * Interface to use for classes that represent something that can be borrowed.
+ *
+ * @author William Albertsson
  */
 
 public interface IReservable {
@@ -21,17 +23,17 @@ public interface IReservable {
     @Override
     boolean equals(Object o);
 
-    public String getUserRequirements();
+    String getUserRequirements();
 
-    public int getAmount();
+    int getAmount();
 
-    public Condition getCondition();
+    Condition getCondition();
 
-    public boolean isReservable();
+    boolean isReservable();
 
-    public Location getLocation();
+    Location getLocation();
 
-    public Image getImage();
+    Image getImage();
 
-    public String getName();
+    String getName();
 }
