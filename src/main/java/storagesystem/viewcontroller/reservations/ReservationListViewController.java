@@ -1,4 +1,4 @@
-package storagesystem.controller;
+package storagesystem.viewcontroller.reservations;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -37,7 +37,7 @@ public class ReservationListViewController extends AnchorPane {
 
     public ReservationListViewController(IReservation res) {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/reservationListView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/reservations/reservationListView.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 
