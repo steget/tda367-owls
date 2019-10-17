@@ -169,7 +169,6 @@ public class Reservation implements IReservation {
         return Integer.toString(startMinute);
 
 
-
     }
 
     private String getMonth(int nr) {

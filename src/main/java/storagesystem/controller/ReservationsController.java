@@ -14,6 +14,7 @@ import java.util.ResourceBundle;
 
 /**
  * Shows a list of reservations using ReservationListViewController. A lightbox with details about reservations is shown when listitem is clicked.
+ *
  * @author William Albertsson
  */
 

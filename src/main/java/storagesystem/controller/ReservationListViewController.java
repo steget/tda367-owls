@@ -12,6 +12,7 @@ import java.util.List;
 
 /**
  * View meant to be used in ReservationsController. Represents a reservation in a small item meant to be used in a list.
+ *
  * @author William Albertsson
  */
 
@@ -61,6 +62,7 @@ public class ReservationListViewController extends AnchorPane {
             listener.reservationClicked(reservation);
         }
     }
+
     /**
      * Used together with "listeners" list as an observer pattern.
      */

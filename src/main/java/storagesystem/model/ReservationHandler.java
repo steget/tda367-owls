@@ -114,12 +114,8 @@ public class ReservationHandler {
      * @param object   The object which is to be reserved.
      */
     public void createReservation(IBorrower borrower, Interval interval, IReservable object) {
-        if (!isObjectReservedBetween(object, interval)) {
-            Reservation reservation = new Reservation(borrower, interval, object, ReservationStatus.PENDING);
-            reservations.add(reservation);
-
-
-        }
+        Reservation reservation = new Reservation(borrower, interval, object, ReservationStatus.PENDING);
+        reservations.add(reservation);
     }
 
     /**
