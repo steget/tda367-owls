@@ -7,7 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import storagesystem.StorageSystem;
+import storagesystem.StoreIT;
 import storagesystem.model.Organisation;
 import storagesystem.model.Team;
 import storagesystem.model.User;
@@ -52,10 +52,10 @@ public class TeamPageController extends AnchorPane implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        currentOrganisation = StorageSystem.getCurrentOrganisation();
-        currentUser = StorageSystem.getCurrentUser();
+        currentOrganisation = StoreIT.getCurrentOrganisation();
+        currentUser = StoreIT.getCurrentUser();
 
-        isUserPartOfTeam = StorageSystem.getCurrentOrganisation().getUsersTeams(currentUser).size() > 0;
+        isUserPartOfTeam = StoreIT.getCurrentOrganisation().getUsersTeams(currentUser).size() > 0;
 
         if (isUserPartOfTeam) {
             fillTeamAttributes();
@@ -94,7 +94,7 @@ public class TeamPageController extends AnchorPane implements Initializable {
      */
     private void fillTeamAttributes() {
 
-        currentUsersTeams = StorageSystem.getCurrentOrganisation().getUsersTeams(currentUser);
+        currentUsersTeams = StoreIT.getCurrentOrganisation().getUsersTeams(currentUser);
         currentlySelectedTeam = currentUsersTeams.get(0);
 
         for (Team t : currentUsersTeams) { //adds team names into an observable list.
@@ -153,11 +153,11 @@ public class TeamPageController extends AnchorPane implements Initializable {
     @FXML
     private void addMemberButtonPressed() {
         boolean doesUserExist = false;
-        for (User user : StorageSystem.getCurrentOrganisation().getUsers()) {
+        for (User user : StoreIT.getCurrentOrganisation().getUsers()) {
             if (user.getName().equals(settingsAddUserInput.getText())) {
                 doesUserExist = true;
-                    if (currentlySelectedTeam.getAllMemberIDs().contains(user.getID())) {
-                        //todo print in program
+                if (currentlySelectedTeam.getAllMemberIDs().contains(user.getID())) {
+                    //todo print in program
                     System.out.println("User is already a part of this team.");
                 } else {
                     currentlySelectedTeam.addMember(user.getID());
