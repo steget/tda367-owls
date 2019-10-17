@@ -14,7 +14,7 @@ public interface IReservation {
     int getID();
 
     /**
-     * @return The party that borrows the object in Resercation
+     * @return The party that borrows the object in Reservation
      */
     IBorrower getBorrower();
 

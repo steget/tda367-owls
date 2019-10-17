@@ -168,6 +168,8 @@ public class Reservation implements IReservation {
         }
         return Integer.toString(startMinute);
 
+
+
     }
 
     private String getMonth(int nr) {
@@ -197,7 +199,7 @@ public class Reservation implements IReservation {
             case 12:
                 return "Dec";
             default:
-                return "NaN";
+                return "Not a valid month";
         }
     }
 

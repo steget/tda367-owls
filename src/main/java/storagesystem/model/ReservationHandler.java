@@ -13,9 +13,10 @@ import java.util.NoSuchElementException;
 
 public class ReservationHandler {
 
+    //TODO Understand exceptions and make sure they are used properly
 
 
-    private List<IReservation> reservations = new ArrayList<>();
+    private final List<IReservation> reservations;
 
 
     public ReservationHandler(List<IReservation> reservations) {
@@ -24,11 +25,6 @@ public class ReservationHandler {
 
     public ReservationHandler() {
         reservations = new ArrayList<>();
-    }
-
-
-    public void setReservations(List<IReservation> reservations) {
-        this.reservations = reservations;
     }
 
 
@@ -122,6 +118,7 @@ public class ReservationHandler {
             Reservation reservation = new Reservation(borrower, interval, object, ReservationStatus.PENDING);
             reservations.add(reservation);
 
+
         }
     }
 
@@ -131,11 +128,11 @@ public class ReservationHandler {
      * @return Null if no reservation found
      */
     public IReservation getLastReservation() throws NoSuchElementException {
-        int lenght = reservations.size();
-        if (lenght == 0) {
+        int length = reservations.size();
+        if (length == 0) {
             throw new NoSuchElementException("No reservations exists");
         }
-        return reservations.get(lenght - 1);
+        return reservations.get(length - 1);
     }
 
     /**
@@ -159,5 +156,5 @@ public class ReservationHandler {
 
     }
 
-
 }
+

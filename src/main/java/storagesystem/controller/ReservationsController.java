@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 /**
+ * Shows a list of reservations using ReservationListViewController. A lightbox with details about reservations is shown when listitem is clicked.
  * @author William Albertsson
  */
 
@@ -50,15 +51,14 @@ public class ReservationsController implements Initializable {
     private void listViewClicked(IReservation res) {
 
         detailView = new ReservationDetailViewController(res);
-
         reservationsRootPane.getChildren().add(detailView);
+
         detailView.addReservationDetailViewClosedListener(this::reservationDetailViewClosed);
-        detailView.setVisible(true);
 
     }
 
     private void reservationDetailViewClosed() {
-        detailView.setVisible(false);
+        reservationsRootPane.getChildren().remove(detailView);
     }
 
 
