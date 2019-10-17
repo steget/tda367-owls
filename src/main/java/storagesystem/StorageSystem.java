@@ -62,9 +62,9 @@ public class StorageSystem extends Application {
         tempTeam2.addMember(informationsteknik.getUsers().get(0).getID());
         tempTeam2.addMember(informationsteknik.getUsers().get(1).getID());
 
-        Location location = new Location("MockLocation", "This location does not exist", new Image("creepy.jpg"));
+        Location location = new Location("MockLocation", "This location does not exist");
         Item mockItem = new Item("mockItem", "Jag tillhör sexNollK", "Behave please.",
-                2, Condition.GOOD, true, location, location.getImage());
+                2, Condition.GOOD, true, location, new Image("creepy.jpg"));
         Item mockItem2 = new Item("mockItem nr 2", "This is a description", "Behave please.",
                 2, Condition.GOOD, true, location, new Image("art.png"));
 

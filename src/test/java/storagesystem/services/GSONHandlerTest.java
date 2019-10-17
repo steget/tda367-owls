@@ -1,5 +1,6 @@
 package storagesystem.services;
 
+import javafx.scene.image.Image;
 import org.junit.Assert;
 import org.junit.Test;
 import storagesystem.model.Condition;
@@ -21,8 +22,8 @@ public class GSONHandlerTest {
         Location location = new Location("Mock Location", "This is a temporary location");
         List<Item> itemList = new ArrayList();
 
-        Item item1 = new Item("name", "description", "UserReq", 10, Condition.BAD, false, location, location.getImage());
-        Item item2 = new Item("name", "description", "UserReq", 10, Condition.GREAT, false, location, location.getImage());
+        Item item1 = new Item("name", "description", "UserReq", 10, Condition.BAD, false, location, new Image("creepy.jpg"));
+        Item item2 = new Item("name", "description", "UserReq", 10, Condition.GREAT, false, location, new Image("creepy.jpg"));
 
         itemList.add(item1);
         itemList.add(item2);

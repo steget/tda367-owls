@@ -6,9 +6,17 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import storagesystem.StorageSystem;
+import storagesystem.model.IReservable;
 import storagesystem.model.Item;
 
+import javax.xml.bind.Marshaller;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * @author Pär Aronsson
+ */
 
 public class InventoryListItemController extends AnchorPane {
 
@@ -29,6 +37,9 @@ public class InventoryListItemController extends AnchorPane {
     }
 
     @FXML
+    private AnchorPane rootPane;
+
+    @FXML
     private Label name;
 
     @FXML
@@ -39,9 +50,6 @@ public class InventoryListItemController extends AnchorPane {
 
     @FXML
     private Label condition;
-
-    @FXML
-    AnchorPane rootPane;
 
     Item thisItem;
 
@@ -59,18 +67,38 @@ public class InventoryListItemController extends AnchorPane {
 
         this.name.setText(item.getName());
         this.amount.setText("" + item.getAmount());
-        this.itemLocation.setText("" + item.getLocation());
+        this.itemLocation.setText("" + item.getLocation().getName());
         this.condition.setText("" + item.getCondition());
 
-      //  this.rootPane = rootpane;
         this.thisItem = item;
     }
 
-    @FXML
-    private void onClick(){
 
-      //  rootPane.getChildren().add(new ItemPageController(this.thisItem, StorageSystem.getCurrentTeam()));
+    /**
+     * listener method
+     */
+    @FXML
+    void listItemPressed() {
+
+        for (InventoryListItemListener l : listeners) {
+            l.inventoryListItemClicked(thisItem);
+        }
 
     }
+
+    /**
+     * below contains listener configs
+     */
+    List<InventoryListItemListener> listeners = new ArrayList<>();
+
+    public void addListener(InventoryListItemListener listener) {
+        listeners.add(listener);
+    }
+
+    interface InventoryListItemListener {
+
+        void inventoryListItemClicked(IReservable item);
+    }
+
 
 }

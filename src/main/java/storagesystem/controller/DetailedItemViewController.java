@@ -10,11 +10,15 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import storagesystem.StorageSystem;
 import storagesystem.model.Condition;
 import storagesystem.model.IReservable;
+import storagesystem.model.Item;
 import storagesystem.model.Team;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Controls a detailed view of an item. Can be used to book an item.
@@ -34,7 +38,7 @@ public class DetailedItemViewController extends AnchorPane {
     @FXML
     private ImageView closeButtonImageView;
     @FXML
-    private Label itemPageNameLabel;
+    private TextArea itemPageNameTA;
     @FXML
     private Label itemPageIDLabel;
     @FXML
@@ -52,7 +56,9 @@ public class DetailedItemViewController extends AnchorPane {
     @FXML
     private TextArea itemPageUserRequirementsTA;
     @FXML
-    private Button itemPageReserveBtn;
+    Button itemPageReserveBtn;
+    @FXML
+    Button itemPageSaveButton;
 
     DetailedItemViewController(IReservable reservableItem, Team itemOwner) {
         this.reservableItem = reservableItem;
@@ -103,8 +109,9 @@ public class DetailedItemViewController extends AnchorPane {
 
     @FXML
     private void closeDetailView() {
-        AnchorPane parent = (AnchorPane) rootPane.getScene().lookup("#itemListRootPane");
-        parent.getChildren().remove(this);
+        for (DetailedItemViewListener l : detailListeners) {
+            l.detailItemViewClicked();
+        }
     }
 
     private void setConditionSlider(Condition condition) {
@@ -125,6 +132,32 @@ public class DetailedItemViewController extends AnchorPane {
         itemPageConditionSlider.setValue(value);
     }
 
+    /**
+     * this method creates a new item and registers it to the current team.
+     *
+     * @author Pär Aronsson
+     */
+    public void editItem() {
+
+        itemPageDescriptionTA.setEditable(true);
+        itemPageUserRequirementsTA.setEditable(true);
+        itemPageNameTA.setEditable(true);
+
+    }
+
+    public void saveItem(){
+
+        reservableItem.setName(itemPageNameTA.getText());
+        reservableItem.setDescription(itemPageDescriptionTA.getText());
+        reservableItem.setUserRequirements(itemPageUserRequirementsTA.getText());
+
+        for(saveButtonClickedListener l: saveButtonListeners){
+            l.saveButtonClicked();
+
+        }
+    }
+
+
     private void setDescription(String string) {
         itemPageDescriptionTA.setText(string);
     }
@@ -138,7 +171,7 @@ public class DetailedItemViewController extends AnchorPane {
     }
 
     private void setNameLabel(String name) {
-        itemPageNameLabel.setText(name);
+        itemPageNameTA.setText(name);
     }
 
     private void setIDLabel(String id) {
@@ -163,6 +196,41 @@ public class DetailedItemViewController extends AnchorPane {
 
     private void setReservableBtn(boolean reservable) {
         itemPageReserveBtn.setDisable(!reservable);
+    }
+
+    /**
+     * Below this line contains listener methods
+     */
+    private List<DetailedItemViewListener> detailListeners = new ArrayList<>();
+    private List<saveButtonClickedListener> saveButtonListeners = new ArrayList<>();
+
+
+    /**
+     * adds a listener to this object.
+     *
+     * @param listener
+     */
+    public void addDetailListener(DetailedItemViewListener listener) {
+        detailListeners.add(listener);
+    }
+    public void addSaveButtonListener(saveButtonClickedListener listener) {
+        saveButtonListeners.add(listener);
+    }
+
+
+
+    /**
+     * listener method.
+     */
+    interface DetailedItemViewListener {
+        void detailItemViewClicked();
+    }
+
+    /**
+     * listens to the savebutton
+     */
+    interface saveButtonClickedListener{
+       void saveButtonClicked();
     }
 }
 

@@ -14,10 +14,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import storagesystem.StorageSystem;
-import storagesystem.model.Item;
-import storagesystem.model.Organisation;
-import storagesystem.model.Team;
-import storagesystem.model.User;
+import storagesystem.model.*;
 
 import java.io.IOException;
 import java.net.URL;
@@ -41,11 +38,17 @@ public class InventoryController implements Initializable {
     private int currentlySelectedTeamIndex;
     private boolean isUserPartOfTeam;
 
+    private DetailedItemViewController detailView;
+
     @FXML
     FlowPane itemPane;
 
     @FXML
+    AnchorPane rootPane;
+
+    @FXML
     ChoiceBox teamChooser;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -58,6 +61,9 @@ public class InventoryController implements Initializable {
         refreshItems();
     }
 
+    /**
+     * if a user is apart of a team. then this method fills the choicebox.
+     */
     private void fillTeamAttributes() {
         currentlySelectedTeam = currentUsersTeams.get(0);
         for (Team t : currentUsersTeams) { //adds team names into an observable list.
@@ -69,6 +75,9 @@ public class InventoryController implements Initializable {
         teamChooserListener();
     }
 
+    /**
+     * choicebox that listens for change, selects new team & refreshes the list.
+     */
     //checks when the users changes team in the dropdown
     private void teamChooserListener() {
         teamChooser.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
@@ -84,12 +93,53 @@ public class InventoryController implements Initializable {
         });
     }
 
+    /**
+     * refreshed the list of items in the inventory.
+     * It removes all the items in list and renews with new items.
+     */
     private void refreshItems() {
         currentlySelectedTeam = StorageSystem.getCurrentTeam();
         inventory = currentlySelectedTeam.getAllItems();
         itemPane.getChildren().remove(0, itemPane.getChildren().size());
         for (Item i : inventory) {
-            itemPane.getChildren().add(new InventoryListItemController(i));
+            InventoryListItemController listItem = new InventoryListItemController(i);
+            listItem.addListener(this::listItemClicked);
+            itemPane.getChildren().add(listItem);
         }
     }
+
+    /**
+     * opens up a detailed view of the pressed item.
+     * @param item
+     */
+    private void listItemClicked(IReservable item){
+        detailView = new DetailedItemViewController(item, StorageSystem.getCurrentOrganisation().getItemOwner(item));
+        modifyDetailView(detailView);
+        rootPane.getChildren().add(detailView);
+        detailView.addDetailListener(this::detailItemViewClicked);
+        detailView.addSaveButtonListener(this::saveButtonClicked);
+        detailView.editItem();
+    }
+
+    /**
+     * modifies a DetailedItemViewController so that it can be used to create items instead of reserving them.
+     * @param detailView
+     */
+    private void modifyDetailView(DetailedItemViewController detailView) {
+        detailView.itemPageReserveBtn.setVisible(false);
+        detailView.itemPageSaveButton.setVisible(true);
+    }
+
+    /**
+     * removes the detailed itemView from rootPane.
+     */
+    private void detailItemViewClicked() {
+        rootPane.getChildren().remove(detailView);
+    }
+
+    private void saveButtonClicked(){
+        refreshItems();
+    }
+
+
 }

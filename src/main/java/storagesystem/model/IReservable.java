@@ -36,4 +36,21 @@ public interface IReservable {
     public String getName();
 
     public String getDescription();
+
+    public void setName(String name);
+
+    public void setDescription(String description);
+
+    public void setUserRequirements(String userRequirements);
+
+    public void setAmount(int amount);
+
+    public void setCondition(Condition condition);
+
+    public void setReservable(boolean reservable);
+
+    public void setLocation(Location location);
+
+    public void setImage(Image image);
+
 }
