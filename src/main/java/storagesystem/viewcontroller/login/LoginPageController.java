@@ -68,6 +68,7 @@ public class LoginPageController implements Initializable {
         assignHandlers();
 
         Platform.runLater(() -> userNameTextField.requestFocus()); //Need to do this since Stage is not set yet when in initialize
+        userNameTextField.setText("admin");
     }
 
     /**
