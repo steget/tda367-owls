@@ -6,7 +6,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import org.joda.time.DateTime;
+import org.joda.time.Interval;
 import storagesystem.model.*;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,8 +20,8 @@ import java.util.List;
  * @author TDA367-Owls
  */
 
-public class StorageSystem extends Application {
-    private static final List<Organisation> organisations = new ArrayList<>();
+public class StoreIT extends Application {
+    private static List<Organisation> organisations = new ArrayList<>();
     private static User currentUser;
     private static Organisation currentOrganisation;
 
@@ -41,6 +44,10 @@ public class StorageSystem extends Application {
      * Loads all data into the program. Should be run at start.
      */
     private void initializeBackend() {
+        mockData();
+    }
+
+    private static void mockData() {
         //Hardcoded stuff for testing
         Organisation informationsteknik = new Organisation("Informationsteknik");
         Organisation data = new Organisation("Data");
@@ -73,8 +80,19 @@ public class StorageSystem extends Application {
         Item mockItem2 = new Item("mockItem nr 2", "This is a description", "Behave please.",
                 2, Condition.GOOD, true, location, new Image("art.png"));
 
+
+        Interval interval1 = new Interval(new DateTime(2019, 9, 10, 12, 40), new DateTime(2019, 9, 10, 15, 0));
+        Interval interval2 = new Interval(new DateTime(2019, 9, 12, 17, 30), new DateTime(2019, 10, 16, 20, 0));
+        IReservation res = new Reservation(informationsteknik.getUsers().get(0), interval1, mockItem, ReservationStatus.APPROVED);
+        IReservation res2 = new Reservation(informationsteknik.getUsers().get(0), interval2, mockItem, ReservationStatus.APPROVED);
+        ReservationHandler resHandler = informationsteknik.getReservationHandler();
+        List<IReservation> reservations = resHandler.getReservations();
+        reservations.add(res);
+        reservations.add(res2);
+
         organisations.add(informationsteknik);
         organisations.add(data);
+        setCurrentOrganisation(informationsteknik);
 
         tempTeam.addItemToInventory(mockItem);
         tempTeam.addItemToInventory(mockItem2);
@@ -85,11 +103,11 @@ public class StorageSystem extends Application {
     }
 
     public static void setCurrentUser(User currentUser) {
-        StorageSystem.currentUser = currentUser;
+        StoreIT.currentUser = currentUser;
     }
 
     public static void setCurrentOrganisation(Organisation currentOrganisation) {
-        StorageSystem.currentOrganisation = currentOrganisation;
+        StoreIT.currentOrganisation = currentOrganisation;
     }
 
     public static List<Organisation> getOrganisations() {

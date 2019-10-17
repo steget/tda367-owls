@@ -3,7 +3,7 @@ package storagesystem.controller;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
-import storagesystem.StorageSystem;
+import storagesystem.StoreIT;
 import storagesystem.model.User;
 
 import java.net.URL;
@@ -30,7 +30,7 @@ public class UserPageController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        currentUser = StorageSystem.getCurrentUser();
+        currentUser = StoreIT.getCurrentUser();
 
         //fill user text boxes
         settingsNameInput.setText(currentUser.getName());
