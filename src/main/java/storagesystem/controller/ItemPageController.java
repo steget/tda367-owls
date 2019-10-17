@@ -10,7 +10,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import storagesystem.model.Condition;
-import storagesystem.model.Item;
+import storagesystem.model.IReservable;
 import storagesystem.model.Team;
 
 import java.io.IOException;
@@ -24,7 +24,7 @@ import java.util.ResourceBundle;
  */
 public class ItemPageController {
 
-    private final Item item;
+    private final IReservable item;
     private final Team itemOwner;
 
     @FXML
@@ -50,7 +50,7 @@ public class ItemPageController {
     @FXML
     private Button itemPageReserveBtn;
 
-    public ItemPageController(Item item, Team itemOwner) {
+    public ItemPageController(IReservable item, Team itemOwner) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("itemPage.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
@@ -83,11 +83,6 @@ public class ItemPageController {
         setReservableLabel(item.isReservable() + "");
         setReservableBtn(item.isReservable());
         setLocationLabel(item.getLocation().getName());
-        setReservableLabel(item.isReservable() + "");
-        setNameLabel(item.getName());
-        setConditionSlider(item.getCondition());
-        setDescription(item.getDescription());
-        setUserRequirements(item.getUserRequirements());
         setImage(item.getImage());
     }
 

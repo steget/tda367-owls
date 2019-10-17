@@ -38,8 +38,8 @@ public class Organisation {
     /**
      * @return List of all the items from all the teams.
      */
-    public List<Item> getAllItems() {
-        List<Item> allItems = new ArrayList<Item>();
+    public List<IReservable> getAllItems() {
+        List<IReservable> allItems = new ArrayList<IReservable>();
         for (Team t :
                 teams) {
             allItems.addAll(t.getAllItems());
@@ -54,10 +54,10 @@ public class Organisation {
      * @return the requested item if found
      * @throws NoSuchElementException if item ID not found
      */
-    public Item getItem(int ID) throws NoSuchElementException {
+    IReservable getItem(int ID) throws NoSuchElementException {
         for (Team t :
                 teams) {
-            for (Item i :
+            for (IReservable i :
                     t.getAllItems()) {
                 if (i.getID() == ID) {
                     System.out.println("Item found");

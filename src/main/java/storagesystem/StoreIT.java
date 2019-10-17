@@ -69,9 +69,9 @@ public class StoreIT extends Application {
         tempTeam2.addMember(informationsteknik.getUsers().get(1).getID());
 
         Location location = new Location("MockLocation", "This location does not exist", new Image("creepy.jpg"));
-        Item mockItem = new Item("mockItem", "This is a description", "Behave please.",
+        IReservable mockItem = IReservableFactory.createReservableItem("mockItem", "This is a description", "Behave please.",
                 2, Condition.GOOD, true, location, location.getImage());
-        Item mockItem2 = new Item("mockItem nr 2", "This is a description", "Behave please.",
+        IReservable mockItem2 = IReservableFactory.createReservableItem("mockItem nr 2", "This is a description", "Behave please.",
                 2, Condition.GOOD, true, location, new Image("art.png"));
 
 
