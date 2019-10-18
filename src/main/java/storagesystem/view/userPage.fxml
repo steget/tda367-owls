@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
@@ -16,11 +15,10 @@
       <AnchorPane fx:id="editProfileAnchorPane" prefHeight="700.0" prefWidth="1000.0" styleClass="background">
          <children>
             <Text fill="WHITE" layoutX="261.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="settingsLabel" text="Name:" textAlignment="RIGHT" underline="true" wrappingWidth="69.0000057220459" AnchorPane.leftAnchor="255.0" AnchorPane.topAnchor="135.0" />
-            <Text fill="WHITE" layoutX="231.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="settingsLabel" text="Contact:" textAlignment="RIGHT" underline="true" wrappingWidth="88.1054699420929" AnchorPane.leftAnchor="235.0" AnchorPane.topAnchor="200.0" />
-            <Text fill="WHITE" layoutX="184.0" layoutY="289.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="settingsLabel" text="Organisation:" underline="true" wrappingWidth="141.36327803134918" AnchorPane.leftAnchor="182.0" AnchorPane.topAnchor="265.0" />
+            <Text fill="WHITE" layoutX="231.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="settingsLabel" text="Contact:" textAlignment="RIGHT" underline="true" wrappingWidth="88.1054699420929" AnchorPane.leftAnchor="235.0" AnchorPane.topAnchor="235.0" />
             <Text fill="WHITE" layoutX="195.0" layoutY="321.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="settingsLabel" text="Description:" textAlignment="RIGHT" underline="true" wrappingWidth="125.70704519748688" AnchorPane.leftAnchor="198.0" AnchorPane.topAnchor="335.0" />
             <TextField fx:id="profileNameInput" layoutX="340.0" layoutY="135.0" prefHeight="26.0" prefWidth="230.0" promptText="Input Name" style="-fx-background-color: white;" AnchorPane.leftAnchor="340.0" AnchorPane.topAnchor="135.0" />
-            <TextField fx:id="profileContactInput" layoutX="340.0" layoutY="187.0" prefHeight="26.0" prefWidth="230.0" promptText="Input Contact Information" style="-fx-background-color: white;" AnchorPane.leftAnchor="340.0" AnchorPane.topAnchor="200.0" />
+            <TextField fx:id="profileContactInput" layoutX="340.0" layoutY="187.0" prefHeight="26.0" prefWidth="230.0" promptText="Input Contact Information" style="-fx-background-color: white;" AnchorPane.leftAnchor="340.0" AnchorPane.topAnchor="235.0" />
             <Button layoutX="836.0" layoutY="580.0" mnemonicParsing="false" onAction="#saveUser" prefHeight="70.0" prefWidth="126.0" styleClass="inAppButton" text="Save" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0">
                <font>
                   <Font size="18.0" />
@@ -39,12 +37,27 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <ChoiceBox layoutX="340.0" layoutY="242.0" prefHeight="31.0" prefWidth="230.0" AnchorPane.leftAnchor="340.0" AnchorPane.topAnchor="265.0" />
+            <Label fx:id="profileOrganisationLabel1" layoutX="752.0" layoutY="47.0" styleClass="settingsLabel" text="Informationsteknik" textFill="WHITE" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Text fill="WHITE" layoutX="780.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="settingsLabel" text="Organisation:" underline="true" AnchorPane.rightAnchor="78.0" AnchorPane.topAnchor="20.0" />
+            <Text fx:id="nameInputEmptyError" fill="RED" layoutX="587.0" layoutY="157.0" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fill in a name!">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text fx:id="contactInputEmptyError" fill="RED" layoutX="587.0" layoutY="258.0" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fill in contact information!">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="viewProfileAnchorPane" prefHeight="700.0" prefWidth="1000.0" styleClass="background">
          <children>
-            <TextArea fx:id="profileDescriptionTextArea" layoutX="340.0" layoutY="295.0" prefHeight="250.0" prefWidth="400.0" promptText="A nice person" wrapText="true" AnchorPane.leftAnchor="340.0" AnchorPane.topAnchor="335.0">
+            <TextArea fx:id="profileDescriptionTextArea" editable="false" layoutX="340.0" layoutY="295.0" prefHeight="250.0" prefWidth="400.0" wrapText="true" AnchorPane.leftAnchor="340.0" AnchorPane.topAnchor="335.0">
                <font>
                   <Font size="18.0" />
                </font>
@@ -57,26 +70,27 @@
             <Button fx:id="editProfileButton" layoutX="833.0" layoutY="578.0" mnemonicParsing="false" onAction="#editProfileButtonPressed" prefHeight="70.0" prefWidth="126.0" styleClass="inAppButton" text="Edit profile" textFill="WHITE" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0">
                <font>
                   <Font size="18.0" />
-               </font></Button>
+               </font>
+            </Button>
             <Label fx:id="profileNameLabel" layoutX="366.0" layoutY="133.0" styleClass="settingsLabel" text="Jonathan" textFill="WHITE" AnchorPane.leftAnchor="340.0" AnchorPane.topAnchor="135.0">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label fx:id="profileContactLabel" layoutX="340.0" layoutY="185.0" styleClass="settingsLabel" text="eke.coolastistan@gangstamail.com" textFill="WHITE" AnchorPane.leftAnchor="340.0" AnchorPane.topAnchor="200.0">
+            <Label fx:id="profileContactLabel" layoutX="340.0" layoutY="185.0" styleClass="settingsLabel" text="eke.coolastistan@gangstamail.com" textFill="WHITE" AnchorPane.leftAnchor="340.0" AnchorPane.topAnchor="235.0">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
-            <Label fx:id="profileOrganisationLabel" layoutX="340.0" layoutY="240.0" styleClass="settingsLabel" text="Informationsteknik" textFill="WHITE" AnchorPane.leftAnchor="340.0" AnchorPane.topAnchor="265.0">
+            <Label fx:id="profileOrganisationLabel" layoutX="751.0" layoutY="45.0" styleClass="settingsLabel" text="Informationsteknik" textFill="WHITE" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
                <font>
                   <Font size="24.0" />
                </font>
             </Label>
             <Text fill="WHITE" layoutX="246.0" layoutY="156.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="settingsLabel" text="Name:" underline="true" AnchorPane.leftAnchor="255.0" AnchorPane.topAnchor="135.0" />
-            <Text fill="WHITE" layoutX="235.0" layoutY="226.8984375" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="settingsLabel" text="Contact:" underline="true" wrappingWidth="88.10548412799835" AnchorPane.leftAnchor="236.0" AnchorPane.topAnchor="200.0" />
-            <Text fill="WHITE" layoutX="182.0" layoutY="266.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="settingsLabel" text="Organisation:" underline="true" wrappingWidth="141.36329293251038" AnchorPane.leftAnchor="182.0" AnchorPane.topAnchor="265.0" />
+            <Text fill="WHITE" layoutX="235.0" layoutY="226.8984375" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="settingsLabel" text="Contact:" underline="true" wrappingWidth="88.10548412799835" AnchorPane.leftAnchor="236.0" AnchorPane.topAnchor="235.0" />
             <Text fill="WHITE" layoutX="198.0" layoutY="359.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="settingsLabel" text="Description:" underline="true" wrappingWidth="125.70704519748688" AnchorPane.leftAnchor="198.0" AnchorPane.topAnchor="335.0" />
+            <Text fill="WHITE" layoutX="780.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="settingsLabel" text="Organisation:" underline="true" AnchorPane.rightAnchor="78.0" AnchorPane.topAnchor="20.0" />
          </children>
       </AnchorPane>
    </children>

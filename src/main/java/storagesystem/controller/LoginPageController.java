@@ -1,21 +1,17 @@
 package storagesystem.controller;
 
-import javafx.animation.FadeTransition;
-import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import storagesystem.StoreIT;
 import storagesystem.model.Organisation;
 import storagesystem.model.User;
@@ -25,7 +21,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class LoginPageController implements Initializable {
+public class LoginPageController extends AbstractFader implements Initializable {
 
     @FXML
     private TextField userNameTextField;
@@ -180,23 +176,5 @@ public class LoginPageController implements Initializable {
      */
     private void setLoginUser(User user) {
         loginUser = user;
-    }
-
-    /**
-     * Takes in a JavaFX Node and starts with setting the opacity to full and fading out to 0 so the Node no longer shows.
-     *
-     * @param node          Thing to be faded
-     * @param timeInSeconds How long it should take for the opacity to go from full to not visible.
-     */
-    private void fadeTransition(Node node, int timeInSeconds) {
-        TranslateTransition transition = new TranslateTransition();
-
-        transition.setOnFinished((e) -> {
-            FadeTransition fadeOut = new FadeTransition(Duration.seconds(timeInSeconds), node);
-            fadeOut.setFromValue(1.0);
-            fadeOut.setToValue(0.0);
-            fadeOut.play();
-        });
-        transition.play();
     }
 }

@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import storagesystem.StoreIT;
 import storagesystem.model.User;
 
@@ -18,7 +19,7 @@ import java.util.ResourceBundle;
  * @author Jonathan Eksberg, Pär Aronsson, Hugo Stegrell
  */
 
-public class UserPageController implements Initializable {
+public class UserPageController extends AbstractFader implements Initializable {
 
     @FXML
     private AnchorPane editProfileAnchorPane;
@@ -37,6 +38,12 @@ public class UserPageController implements Initializable {
 
     @FXML
     private TextArea profileDescriptionTextArea;
+
+    @FXML
+    private Text nameInputEmptyError;
+
+    @FXML
+    private Text contactInputEmptyError;
 
     @FXML
     private Label profileNameLabel;
@@ -67,17 +74,31 @@ public class UserPageController implements Initializable {
      */
     @FXML
     public void saveUser() {
-        currentUser.setName(profileNameInput.getText());
-        currentUser.setDescription(profileDescriptionInput.getText());
-        currentUser.setContactInformation(profileContactInput.getText());
-        writeProfileInfo();
-        viewProfileAnchorPane.toFront();
+        if(validateInfo(nameInputEmptyError, profileNameInput) && validateInfo(contactInputEmptyError, profileContactInput)){
+            currentUser.setName(profileNameInput.getText());
+            currentUser.setDescription(profileDescriptionInput.getText());
+            currentUser.setContactInformation(profileContactInput.getText());
+            writeProfileInfo();
+            viewProfileAnchorPane.toFront();
+        }
     }
 
     private void writeProfileInfo(){
         profileNameLabel.setText(currentUser.getName());
         profileContactLabel.setText(currentUser.getContactInformation());
         profileDescriptionTextArea.setText(currentUser.getDescription());
+        profileOrganisationLabel.setText(StoreIT.getCurrentOrganisation().getName());
+        profileNameInput.setText(currentUser.getName());
+        profileContactInput.setText(currentUser.getContactInformation());
+        profileDescriptionInput.setText(currentUser.getDescription());
+    }
+
+    private boolean validateInfo(Text text, TextField textField){
+        if(textField.getText().trim().isEmpty()){
+            fadeTransition(text, 3);
+            return false;
+        }
+        return true;
     }
 
     @FXML
