@@ -19,11 +19,15 @@ public class StoreIT extends Application {
     private static User currentUser;
     private static Organisation currentOrganisation;
 
+    public static void main(String[] args) {
+        launch(args);
+    }
+
     @Override
     public void start(Stage stage) throws Exception {
         initializeBackend();
 
-        Parent root = FXMLLoader.load(getClass().getResource("/loginPage.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/login/loginPage.fxml"));
 
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -68,17 +72,17 @@ public class StoreIT extends Application {
         tempTeam2.addMember(informationsteknik.getUsers().get(0).getID());
         tempTeam2.addMember(informationsteknik.getUsers().get(1).getID());
 
-        Location location = new Location("MockLocation", "This location does not exist", new Image("creepy.jpg"));
-        Item mockItem = new Item("mockItem", "This is a description", "Behave please.",
+        Location location = new Location("MockLocation", "This location does not exist", new Image("pictures/creepy.jpg"));
+        IReservable mockItem = IReservableFactory.createReservableItem("mockItem", "This is a description", "Behave please.",
                 2, Condition.GOOD, true, location, location.getImage());
-        Item mockItem2 = new Item("mockItem nr 2", "This is a description", "Behave please.",
-                2, Condition.GOOD, true, location, new Image("art.png"));
+        IReservable mockItem2 = IReservableFactory.createReservableItem("mockItem nr 2", "This is a description", "Behave please.",
+                2, Condition.GOOD, true, location, new Image("pictures/art.png"));
 
 
         Interval interval1 = new Interval(new DateTime(2019, 9, 10, 12, 40), new DateTime(2019, 9, 10, 15, 0));
         Interval interval2 = new Interval(new DateTime(2019, 9, 12, 17, 30), new DateTime(2019, 10, 16, 20, 0));
         IReservation res = new Reservation(informationsteknik.getUsers().get(0), interval1, mockItem, ReservationStatus.APPROVED);
-        IReservation res2 = new Reservation(informationsteknik.getUsers().get(0), interval2, mockItem, ReservationStatus.APPROVED);
+        IReservation res2 = new Reservation(informationsteknik.getUsers().get(0), interval2, mockItem2, ReservationStatus.APPROVED);
         ReservationHandler resHandler = informationsteknik.getReservationHandler();
         List<IReservation> reservations = resHandler.getReservations();
         reservations.add(res);
@@ -90,10 +94,6 @@ public class StoreIT extends Application {
 
         tempTeam.addItemToInventory(mockItem);
         tempTeam.addItemToInventory(mockItem2);
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 
     public static void setCurrentUser(User currentUser) {

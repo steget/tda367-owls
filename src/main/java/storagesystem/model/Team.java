@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class Team {
     private String name;
-    private final List<Item> inventory = new ArrayList<>(); //todo itemIDs instead
+    private final List<IReservable> inventory = new ArrayList<>(); //todo itemIDs instead
     private final List<Integer> memberIDs = new ArrayList<>();
     private String termsAndConditions;
     private int teamID;
@@ -51,7 +51,7 @@ public class Team {
         return name;
     }
 
-    public void addItemToInventory(Item itemToAdd) {
+    public void addItemToInventory(IReservable itemToAdd) {
         inventory.add(itemToAdd);
     }
 
@@ -67,7 +67,7 @@ public class Team {
         return termsAndConditions;
     }
 
-    List<Item> getAllItems() {
+    List<IReservable> getAllItems() {
         return inventory;
     }
 
