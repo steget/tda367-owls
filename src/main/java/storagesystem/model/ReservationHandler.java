@@ -106,6 +106,8 @@ public class ReservationHandler {
     }
 
 
+
+
     /**
      * Creates a new reservation and saves in this ReservationHandler. Firsts tests to see if object isn't already reserved.
      *
