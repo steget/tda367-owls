@@ -2,7 +2,7 @@ package storagesystem.model;
 
 import org.junit.Test;
 
-import java.lang.reflect.Member;
+import java.io.IOException;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -10,19 +10,19 @@ import static org.junit.Assert.*;
 public class TeamTest {
 
     @Test
-    public void getAllItems() {
-        Team testTeam = new Team("owls");
-        List<Item> allItems = testTeam.getAllItems();
+    public void getAllItems() throws IOException {
+        Organisation testOrg = new Organisation("IT");
+        List<Item> allItems = testOrg.getAllItems();
         assertEquals(0, allItems.size());
         Location hasen = new Location("hasen","ha senare", null);
 
-        Item mockItem = new Item("mockItem", "desc","requirements",1,Condition.GREAT,true, hasen, null);
+        Item mockItem = new Item("mockItem", "desc","requirements",1,Condition.GREAT,true, hasen.getID(), null);
         allItems.add(mockItem);
         assertEquals(1, allItems.size());
     }
 
     @Test
-    public void addMember() {
+    public void addMember() throws IOException{
         Team testTeam = new Team("owls");
         int ID = 12;
         testTeam.addMember(ID);
@@ -32,7 +32,7 @@ public class TeamTest {
     }
 
     @Test
-    public void removeMember() {
+    public void removeMember() throws IOException {
         Team testTeam = new Team("owls");
         testTeam.addMember(12);
 
@@ -42,7 +42,7 @@ public class TeamTest {
     }
 
     @Test
-    public void getAllMemberIDs() {
+    public void getAllMemberIDs() throws IOException {
         Team testTeam = new Team("owls");
         int id1 = 15;
         int id2 = 16;

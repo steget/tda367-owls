@@ -26,10 +26,10 @@ public class Item implements IReservable, IHasImageAndName {
     private int amount;
     private Condition condition;
     private boolean reservable;
-    private Location location;
+    private int locationID;
     private Image image;
 
-    public Item(String name, String description, String userRequirements, int amount, Condition condition, boolean reservable, Location location, Image image) {
+    public Item(String name, String description, String userRequirements, int amount, Condition condition, boolean reservable, int locationID, Image image) {
         this.name = name;
         this.description = description;
         this.userRequirements = userRequirements;
@@ -38,7 +38,7 @@ public class Item implements IReservable, IHasImageAndName {
         this.amount = amount;
         this.condition = condition;
         this.reservable = reservable;
-        this.location = location;
+        this.locationID = locationID;
         this.image = image;
     }
 
@@ -94,12 +94,12 @@ public class Item implements IReservable, IHasImageAndName {
         this.reservable = reservable;
     }
 
-    public Location getLocation() {
-        return location;
+    public int getLocationID() {
+        return locationID;
     }
 
-    public void setLocation(Location location) {
-        this.location = location;
+    public void setLocation(int locationID) {
+        this.locationID = locationID;
     }
 
     public Image getImage() {
@@ -120,6 +120,6 @@ public class Item implements IReservable, IHasImageAndName {
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, description, userRequirements, ID, amount, condition, reservable, location, image);
+        return Objects.hash(name, description, userRequirements, ID, amount, condition, reservable, locationID, image);
     }
 }

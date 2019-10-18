@@ -1,7 +1,10 @@
 package storagesystem.model;
 
 import javafx.scene.image.Image;
+import storagesystem.services.GSONHandler;
 
+import java.awt.image.ImagingOpException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -13,25 +16,42 @@ import java.util.NoSuchElementException;
  *
  * @author Hugo Stegrell, Pär Aronsson
  */
-public class Organisation implements IHasImageAndName{
-    private final List<Team> teams = new ArrayList<>();
-    private final List<User> users = new ArrayList<>();
+public class Organisation implements IHasImageAndName {
+    private transient final List<Item> items = new ArrayList<>();
+    private transient final List<Team> teams = new ArrayList<>();
+    private transient final List<User> users = new ArrayList<>();
+    private transient final List<Location> locations = new ArrayList<>();
     private String name;
     private ReservationHandler reservationHandler;
     private Image image;
     //todo reservationHandler
 
-    public Organisation(String name) {
+    public Organisation(String name) throws IOException {
         this.name = name;
         this.reservationHandler = new ReservationHandler();
-        //todo fill stuff from db
+        List<Location> locationList = GSONHandler.getListFromJson(Location.class);
+        locations.addAll(locationList);
+        List<Item> itemList = GSONHandler.getListFromJson(Item.class);
+        items.addAll(itemList);
+        List<Team> teamList = GSONHandler.getListFromJson(Team.class);
+        teams.addAll(teamList);
+        List<User> userList = GSONHandler.getListFromJson(User.class);
+        users.addAll(userList);
+
     }
 
-    private Organisation(Organisation organisationToCopy) {
+    private Organisation(Organisation organisationToCopy) throws IOException {
         this.name = organisationToCopy.name;
         this.teams.addAll(organisationToCopy.getTeams());
         this.users.addAll(organisationToCopy.getUsers());
-        //todo load from db
+        List<Location> locationList = GSONHandler.getListFromJson(Location.class);
+        locations.addAll(locationList);
+        List<Item> itemList = GSONHandler.getListFromJson(Item.class);
+        items.addAll(itemList);
+        List<Team> teamList = GSONHandler.getListFromJson(Team.class);
+        teams.addAll(teamList);
+        List<User> userList = GSONHandler.getListFromJson(User.class);
+        users.addAll(userList);
         reservationHandler = new ReservationHandler();
     }
 
@@ -40,15 +60,10 @@ public class Organisation implements IHasImageAndName{
     }
 
     /**
-     * @return List of all the items from all the teams.
+     * @return List of all items.
      */
     public List<Item> getAllItems() {
-        List<Item> allItems = new ArrayList<Item>();
-        for (Team t :
-                teams) {
-            allItems.addAll(t.getAllItems());
-        }
-        return allItems;
+        return items;
     }
 
     /**
@@ -59,14 +74,26 @@ public class Organisation implements IHasImageAndName{
      * @throws NoSuchElementException if item ID not found
      */
     public Item getItem(int ID) throws NoSuchElementException {
-        for (Team t :
-                teams) {
-            for (Item i :
-                    t.getAllItems()) {
-                if (i.getID() == ID) {
-                    System.out.println("Item found");
-                    return i;
-                }
+        for(Item item : items) {
+            if(item.getID() == ID) {
+                System.out.println("Item found");
+                return item;
+            }
+        }
+        throw new NoSuchElementException("ItemID not found in list of items");
+    }
+    /**
+     * Get a specific location.
+     *
+     * @param ID The ID of the location to get
+     * @return the requested item if found
+     * @throws NoSuchElementException if item ID not found
+     */
+    public Location getLocation(int ID) throws NoSuchElementException {
+        for(Location location : locations) {
+            if(location.getID() == ID) {
+                System.out.println("Item found");
+                return location;
             }
         }
         throw new NoSuchElementException("ItemID not found in list of items");
@@ -80,7 +107,7 @@ public class Organisation implements IHasImageAndName{
      * @return List of teams that the sent in user is a part of
      */
     public List<Team> getUsersTeams(User user) {
-        List<Team> usersTeams = new ArrayList<Team>();
+        List<Team> usersTeams = new ArrayList<>();
         for (Team t : teams) {
             for (int memberID : t.getAllMemberIDs()) {
                 if (user.getID() == memberID) {
@@ -102,6 +129,9 @@ public class Organisation implements IHasImageAndName{
         return teams;
     }
 
+    public List<Location> getLocations() {
+        return locations;
+    }
 
     /**
      * Creates a new user with only a name
@@ -116,7 +146,7 @@ public class Organisation implements IHasImageAndName{
      * Creates a new user with all the possible information
      *
      * @param name               Name of the User
-     * @param description        Some information the user provides about themself
+     * @param description        Some information the user provides about themselves
      * @param contactInformation Some sort of way to contact the User, preferably phone/mail
      */
     public void createUser(String name, String description, String contactInformation) {
@@ -139,6 +169,7 @@ public class Organisation implements IHasImageAndName{
     public void setName(String name) {
         this.name = name;
     }
+
     public Image getImage() {
         return image;
     }

@@ -2,29 +2,35 @@
   {
     "id": 0,
     "borrower": {
-      "CLASSNAME": "storagesystem.model.User",
+      "CLASSNAME": "storagesystem.model.Team",
       "DATA": {
-        "name": "Alberto",
-        "description": "",
-        "contactInformation": "",
-        "ID": 0
+        "name": "MockTeam",
+        "itemIDs": [
+          1,
+          2
+        ],
+        "memberIDs": [
+          0,
+          0,
+          1,
+          2
+        ],
+        "termsAndConditions": "",
+        "teamID": 1
       }
     },
-    "interval": "2019-10-18T11:11:42.801+02:00/2019-10-19T11:11:42.801+02:00",
+    "interval": "2019-10-18T16:46:24.571+02:00/2019-10-19T16:46:24.571+02:00",
     "reservedObject": {
       "CLASSNAME": "storagesystem.model.Item",
       "DATA": {
-        "name": "Shoes",
-        "description": "Wear them",
-        "userRequirements": "Dont break them",
-        "ID": 1,
-        "amount": 2,
+        "name": "name",
+        "description": "description",
+        "userRequirements": "UserReq",
+        "ID": 3,
+        "amount": 10,
         "condition": "BAD",
-        "reservable": true,
-        "location": {
-          "name": "Mock Location",
-          "description": "This is a temporary location"
-        }
+        "reservable": false,
+        "locationID": 3
       }
     },
     "status": "PENDING"

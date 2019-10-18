@@ -22,11 +22,11 @@ public class GSONHandlerTest {
         JFXPanel mockJfxPanel = new JFXPanel(); //Stupid line to prevent "java.lang.RuntimeException: Internal graphics not initialized yet"
 
         GSONHandler.clearJson("src/main/resources/json/itemDB.json");
-        Location location = new Location("Mock Location", "This is a temporary location");
+        Location location = new Location("Mock Location", "This is a temporary location", null);
         List<Item> itemList = new ArrayList<>();
 
-        Item item1 = new Item("name", "description", "UserReq", 10, Condition.BAD, false, location, location.getImage());
-        Item item2 = new Item("name", "description", "UserReq", 10, Condition.GREAT, false, location, location.getImage());
+        Item item1 = new Item("name", "description", "UserReq", 10, Condition.BAD, false, location.getID(), location.getImage());
+        Item item2 = new Item("name", "description", "UserReq", 10, Condition.GREAT, false, location.getID(), location.getImage());
 
         itemList.add(item1);
         itemList.add(item2);
@@ -51,7 +51,7 @@ public class GSONHandlerTest {
 
         GSONHandler.clearJson("src/main/resources/json/locationDB.json");
 
-        Location location1 = new Location("Location without Image", "Outside of my mind");
+        Location location1 = new Location("Location without Image", "Outside of my mind", null);
         Location location2 = new Location("Test Location With Image", "Inside of my mind", new Image("pictures/art.png"));
 
         List<Location> locationList = new ArrayList<>();
@@ -66,12 +66,41 @@ public class GSONHandlerTest {
             Assert.assertTrue(listFromJson.get(i).getName().equals(locationList.get(i).getName()));
         }
     }
+
     @Test
     public void shouldAddOrganisationsToJSON() throws IOException {
         JFXPanel mockJfxPanel = new JFXPanel(); //Stupid line to prevent "java.lang.RuntimeException: Internal graphics not initialized yet"
 
 
         GSONHandler.clearJson("src/main/resources/json/organisationDB.json");
+
+        Image image = new Image("pictures/art.png");
+
+
+        Location location1 = new Location("Location without Image", "Outside of my mind", null);
+        Location location2 = new Location("Test Location With Image", "Inside of my mind", image);
+
+        List<Location> locationList = new ArrayList<>();
+
+        locationList.add(location1);
+        locationList.add(location2);
+
+
+        GSONHandler.addListToJson(locationList);
+        GSONHandler.addListToJson(locationList);
+        GSONHandler.addListToJson(locationList);
+
+
+        List<Item> itemList = new ArrayList<>();
+
+        Item item2 = new Item("name", "description", "UserReq", 10, Condition.GREAT, false, location2.getID(), location2.getImage());
+
+        itemList.add(item2);
+
+        GSONHandler.addToJson(item2);
+        GSONHandler.addListToJson(itemList);
+
+        GSONHandler.addToJson(new Team("MockTeam"));
 
         Organisation organisation1 = new Organisation("mockOrganisation");
         Organisation organisation2 = new Organisation("another Mock Organisation (with image)");
@@ -122,14 +151,24 @@ public class GSONHandlerTest {
 
         GSONHandler.clearJson("src/main/resources/json/userDB.json");
         GSONHandler.clearJson("src/main/resources/json/reservationDB.json");
+
+        User user = new User("Bert");
+
+        GSONHandler.addToJson(user);
+
+        Team team = new Team("TestTeam");
+
+        GSONHandler.addToJson(team);
+
         Organisation mockOrg = new Organisation("IT");
 
         mockOrg.createUser("Alberto");
         mockOrg.createUser("Alberto2");
 
         GSONHandler.addListToJson(mockOrg.getUsers());
-        Team team = new Team("team");
-        Item item = new Item();
+
+        List<Location> locationList = GSONHandler.getListFromJson(Location.class);
+        Item item = new Item("name", "description", "UserReq", 10, Condition.BAD, false, locationList.get(0).getID(), locationList.get(0).getImage());
 
         ReservationHandler reservationHandler = new ReservationHandler(new ArrayList<>());
 
@@ -138,18 +177,15 @@ public class GSONHandlerTest {
         Interval interval1 = new Interval(time1, time2);
 
 
-        reservationHandler.createReservation(mockOrg.getUsers().get(0), interval1, item);
+        reservationHandler.createReservation(mockOrg.getTeams().get(0), interval1, item);
 
-        List<IReservation> reservations = new ArrayList<>();
-        reservations.addAll(reservationHandler.getReservations());
+        List<IReservation> reservations = new ArrayList<>(reservationHandler.getReservations());
         addToJson(reservations.get(0));
 
-        List<IReservation> reservations2 = new ArrayList<>();
+        List<IReservation> reservations2 = new ArrayList<>(getListFromJson(Reservation.class));
 
-        reservations2.addAll(getListFromJson(Reservation.class));
 
-        Assert.assertTrue(reservations.get(0).equals(reservations2.get(0)));
-
+        Assert.assertEquals(reservations.get(0), reservations2.get(0));
 
 
     }

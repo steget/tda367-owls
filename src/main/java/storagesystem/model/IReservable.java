@@ -31,7 +31,7 @@ public interface IReservable {
 
     boolean isReservable();
 
-    Location getLocation();
+    int getLocationID();
 
     Image getImage();
 

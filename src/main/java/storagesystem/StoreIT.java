@@ -11,6 +11,7 @@ import org.joda.time.Interval;
 import storagesystem.model.*;
 
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,11 +38,11 @@ public class StoreIT extends Application {
     /**
      * Loads all data into the program. Should be run at start.
      */
-    private void initializeBackend() {
+    private void initializeBackend() throws IOException {
         mockData();
     }
 
-    private static void mockData() {
+    private static void mockData() throws IOException {
         //Hardcoded stuff for testing
         Organisation informationsteknik = new Organisation("Informationsteknik");
         Organisation data = new Organisation("Data");
@@ -70,15 +71,15 @@ public class StoreIT extends Application {
 
         Location location = new Location("MockLocation", "This location does not exist", new Image("creepy.jpg"));
         Item mockItem = new Item("mockItem", "This is a description", "Behave please.",
-                2, Condition.GOOD, true, location, location.getImage());
+                2, Condition.GOOD, true, location.getID(), location.getImage());
         Item mockItem2 = new Item("mockItem nr 2", "This is a description", "Behave please.",
-                2, Condition.GOOD, true, location, new Image("art.png"));
+                2, Condition.GOOD, true, location.getID(), new Image("art.png"));
 
 
         Interval interval1 = new Interval(new DateTime(2019, 9, 10, 12, 40), new DateTime(2019, 9, 10, 15, 0));
         Interval interval2 = new Interval(new DateTime(2019, 9, 12, 17, 30), new DateTime(2019, 10, 16, 20, 0));
-        IReservation res = new Reservation(informationsteknik.getUsers().get(0), interval1, mockItem, ReservationStatus.APPROVED);
-        IReservation res2 = new Reservation(informationsteknik.getUsers().get(0), interval2, mockItem, ReservationStatus.APPROVED);
+        IReservation res = new Reservation(informationsteknik.getTeams().get(0), interval1, mockItem, ReservationStatus.APPROVED);
+        IReservation res2 = new Reservation(informationsteknik.getTeams().get(0), interval2, mockItem, ReservationStatus.APPROVED);
         ReservationHandler resHandler = informationsteknik.getReservationHandler();
         List<IReservation> reservations = resHandler.getReservations();
         reservations.add(res);

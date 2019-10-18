@@ -1,7 +1,9 @@
 package storagesystem.model;
 
 import javafx.scene.image.Image;
+import storagesystem.services.GSONHandler;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,17 +13,25 @@ import java.util.List;
  *
  * @author Hugo Stegrell, Pär Aronsson
  */
-public class Team implements IHasImageAndName{
+public class Team implements IHasImageAndName, IBorrower {
     private String name;
-    private final List<Item> inventory = new ArrayList<>(); //todo itemIDs instead
+    private final List<Integer> itemIDs = new ArrayList<>();
     private final List<Integer> memberIDs = new ArrayList<>();
     private String termsAndConditions;
     private int teamID;
     private static int nextID;
     private Image image;
-    public Team(String teamName) {
+
+    public Team(String teamName) throws IOException {
         this.name = teamName;
-        //todo fill stuff from db
+        List<Item> itemList = GSONHandler.getListFromJson(Item.class);
+        for (int i = 0; i < itemList.size(); i++) {
+            itemIDs.add(itemList.get(i).getID());
+        }
+        List<User> userList = GSONHandler.getListFromJson(User.class);
+        for (int i = 0; i < userList.size(); i++) {
+            memberIDs.add(userList.get(i).getID());
+        }
         termsAndConditions = "";
         teamID = nextID;
         nextID++;
@@ -54,7 +64,7 @@ public class Team implements IHasImageAndName{
     }
 
     public void addItemToInventory(Item itemToAdd) {
-        inventory.add(itemToAdd);
+        itemIDs.add(itemToAdd.getID());
     }
 
     public void setName(String name) {
@@ -69,11 +79,11 @@ public class Team implements IHasImageAndName{
         return termsAndConditions;
     }
 
-    List<Item> getAllItems() {
-        return inventory;
+    List<Integer> getAllItemIDs() {
+        return itemIDs;
     }
 
-    public int getTeamID() {
+    public int getID() {
         return teamID;
     }
 

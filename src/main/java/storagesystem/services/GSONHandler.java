@@ -140,13 +140,12 @@ public class GSONHandler {
      */
 
     private static JsonObject createJsonObjectFromIHasImageAndName(IHasImageAndName o, Gson gson) throws IOException {
-        Image imageCopy = o.getImage(); //throws NullPointerException if Image is not set
         BufferedImage bImage = SwingFXUtils.fromFXImage(o.getImage(), null);
         File newImageFile = createNewImageFile(o);
         ImageIO.write(bImage, "jpg", newImageFile);
         byte[] imageInBinary = FileUtils.readFileToByteArray(newImageFile);
         String encodedString = Base64.getEncoder().encodeToString(imageInBinary);
-
+        Image imageCopy = o.getImage(); //throws NullPointerException if Image is not set
         o.setImage(null); //Set image to null to avoid invalid data in Json
         JsonObject jsonObject = (JsonObject) gson.toJsonTree(o);
         o.setImage(imageCopy); //Reset image

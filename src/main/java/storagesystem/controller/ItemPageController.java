@@ -9,6 +9,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import storagesystem.StoreIT;
 import storagesystem.model.Condition;
 import storagesystem.model.Item;
 import storagesystem.model.Team;
@@ -82,7 +83,7 @@ public class ItemPageController {
         setConditionSlider(item.getCondition());
         setReservableLabel(item.isReservable() + "");
         setReservableBtn(item.isReservable());
-        setLocationLabel(item.getLocation().getName());
+        setLocationLabel(StoreIT.getCurrentOrganisation().getLocation(item.getLocationID()).getName());
         setReservableLabel(item.isReservable() + "");
         setNameLabel(item.getName());
         setConditionSlider(item.getCondition());

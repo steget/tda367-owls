@@ -3,13 +3,15 @@ package storagesystem.model;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.io.IOException;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class OrganisationTest {
 
     @Test
-    public void nameTest() {
+    public void nameTest() throws IOException {
         String name = "big Long namz3";
         String name2 = "short";
         Organisation org = new Organisation(name);
@@ -21,7 +23,7 @@ public class OrganisationTest {
     }
 
     @Test
-    public void getAllItemTest() {
+    public void getAllItemTest() throws IOException {
         Organisation org = new Organisation("name");
         Assert.assertTrue(org.getAllItems().isEmpty());
     }
@@ -31,7 +33,7 @@ public class OrganisationTest {
         Organisation informationsteknik = new Organisation("Informationsteknik");
         Team tempTeam = new Team("sexNollK");
         informationsteknik.addTeam(tempTeam);
-        Item mockItem = new Item("mockItem", "This is a description", "Behave please.", 2, Condition.GOOD, true, new Location("testLocation", "test desc", null), null);
+        Item mockItem = new Item("mockItem", "This is a description", "Behave please.", 2, Condition.GOOD, true, new Location("testLocation", "test desc", null).getID(), null);
 
         assertEquals(0, informationsteknik.getAllItems().size());
         tempTeam.addItemToInventory(mockItem);
@@ -42,7 +44,7 @@ public class OrganisationTest {
     }
 
     @Test
-    public void createUserTest() {
+    public void createUserTest() throws IOException {
         Organisation informationsteknik = new Organisation("Informationsteknik");
         Team tempTeam = new Team("sexNollK");
         informationsteknik.createUser("Albert");
@@ -55,7 +57,7 @@ public class OrganisationTest {
     }
 
     @Test
-    public void getUsersTeamsTest() {
+    public void getUsersTeamsTest() throws IOException {
         Organisation informationsteknik = new Organisation("Informationsteknik");
         Team tempTeam = new Team("sexNollK");
         Team tempTeam2 = new Team("team2");

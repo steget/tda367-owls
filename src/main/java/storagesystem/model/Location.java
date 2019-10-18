@@ -8,21 +8,20 @@ import javafx.scene.image.Image;
  * Image shows the user a picture of the location.
  */
 
-public class Location implements IHasImageAndName{
+public class Location implements IHasImageAndName {
 
     private String name;
     private String description;
     private Image image;
+    private final int ID;
+    private static int nextID;
 
     public Location(String name, String description, Image image) {
         this.name = name;
         this.description = description;
         this.image = image;
-    }
-
-    public Location(String name, String description) {
-        this.name = name;
-        this.description = description;
+        this.ID = nextID;
+        nextID++;
     }
 
     public String getName() {
@@ -37,6 +36,10 @@ public class Location implements IHasImageAndName{
         return image;
     }
 
+    public int getID() {
+        return ID;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -48,4 +51,6 @@ public class Location implements IHasImageAndName{
     public void setImage(Image image) {
         this.image = image;
     }
+
+
 }

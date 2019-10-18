@@ -7,7 +7,7 @@ import java.util.Objects;
  *
  * @author Hugo Stegrell, Pär Aronsson
  */
-public class User implements IBorrower {
+public class User {
     private String name;
     private String description;
     private String contactInformation;
