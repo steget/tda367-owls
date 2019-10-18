@@ -94,7 +94,7 @@ public class ReservationHandler {
      * @param interval Interval to test object against
      * @return True if there is overlap, false otherwise.
      */
-    private boolean isObjectReservedBetween(IReservable object, Interval interval) {
+    public boolean isObjectReservedBetween(IReservable object, Interval interval) {
         List<IReservation> reservations = getReservations(object);
 
         for (IReservation res : reservations) {

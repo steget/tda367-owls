@@ -1,4 +1,4 @@
-package storagesystem.controller;
+package storagesystem.viewcontroller.login;
 
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;

@@ -1,4 +1,4 @@
-package storagesystem.controller;
+package storagesystem.viewcontroller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -52,23 +52,22 @@ public class FrameworkController implements Initializable, ILoadUI {
 
     @FXML
     void settingsButtonPressed() {
-        loadUI("settings");
+        loadUI("settings/settings");
     }
 
     @FXML
     void allItemsButtonPressed() {
-        loadUI("itemList");
+        loadUI("itemview/itemList");
     }
 
     @FXML
     void reservationsButtonPressed() {
-        loadUI("reservations");
-
+        loadUI("reservations/reservations");
     }
 
 
     /**
-     * Method to avoid repetetive code.
+     * Method to avoid repetitive code.
      *
      * @param ui The url to a fxml file.
      */
