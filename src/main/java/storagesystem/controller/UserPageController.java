@@ -59,7 +59,7 @@ public class UserPageController extends AbstractFader implements Initializable {
 
     @FXML
     private Button cancelButton;
-    
+
     private User currentUser;
 
 
@@ -70,7 +70,7 @@ public class UserPageController extends AbstractFader implements Initializable {
     }
 
     /**
-     * Save the current users data that was put in.
+     * If the textfields are filled in, save the current users data that was put in.
      */
     @FXML
     public void saveUser() {
@@ -83,6 +83,9 @@ public class UserPageController extends AbstractFader implements Initializable {
         }
     }
 
+    /**
+     * Sets the information from the current user.
+     */
     private void writeProfileInfo(){
         profileNameLabel.setText(currentUser.getName());
         profileContactLabel.setText(currentUser.getContactInformation());
@@ -93,6 +96,12 @@ public class UserPageController extends AbstractFader implements Initializable {
         profileDescriptionInput.setText(currentUser.getDescription());
     }
 
+    /**
+     * Checks if a texfield is empty
+     * @param text The error message that will show if an empty field is found.
+     * @param textField The field that is being checked.
+     * @return If empty fields are found, return false, else true.
+     */
     private boolean validateInfo(Text text, TextField textField){
         if(textField.getText().trim().isEmpty()){
             fadeTransition(text, 3);
