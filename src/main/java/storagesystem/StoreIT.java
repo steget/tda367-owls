@@ -27,6 +27,8 @@ public class StoreIT extends Application {
     public void start(Stage stage) throws Exception {
         initializeBackend();
 
+        stage.setTitle("StoreIT");
+        
         Parent root = FXMLLoader.load(getClass().getResource("/login/loginPage.fxml"));
 
         Scene scene = new Scene(root);
@@ -35,7 +37,6 @@ public class StoreIT extends Application {
         stage.setHeight(800);
         stage.setResizable(false);
         stage.show();
-
     }
 
     /**

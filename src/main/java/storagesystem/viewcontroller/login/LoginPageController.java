@@ -51,6 +51,21 @@ public class LoginPageController implements Initializable {
     @FXML
     private Label userAlreadyExistsLabel;
 
+    @FXML
+    private TextField regUserNameTextField;
+
+    @FXML
+    private TextField regPasswordTextField;
+
+    @FXML
+    private ChoiceBox<String> regOrganisationChoiceBox;
+
+    @FXML
+    private TextField regContactInfoTextField;
+
+    @FXML
+    private TextArea regUserDescriptionTextArea;
+
     private User loginUser;
 
     @Override
@@ -62,8 +77,12 @@ public class LoginPageController implements Initializable {
             organisationNames.add(org.getName());
         }
 
+        //load all organisation names into the choiceboxes
         organisationChoiceBox.setItems(organisationNames);
-        organisationChoiceBox.setValue(organisationNames.get(0)); //show first value in box
+        regOrganisationChoiceBox.setItems(organisationNames);
+        //show first value in box
+        organisationChoiceBox.setValue(organisationNames.get(0));
+        regOrganisationChoiceBox.setValue(organisationNames.get(0));
 
         assignHandlers();
 
@@ -102,11 +121,12 @@ public class LoginPageController implements Initializable {
      */
     @FXML
     private void loginButtonPressed() throws IOException {
+        Organisation selectedOrganisation = getSelectedLoginOrganisation();
         //check username and password against database
-        if (doesUserExist()) {
+        if (doesUserExist(selectedOrganisation, userNameTextField.getText())) {
             //set current user
             StoreIT.setCurrentUser(loginUser);
-            StoreIT.setCurrentOrganisation(getSelectedOrganisation());
+            StoreIT.setCurrentOrganisation(selectedOrganisation);
 
             //open dashboard
             Parent root = FXMLLoader.load(getClass().getResource("/framework.fxml"));
@@ -123,11 +143,15 @@ public class LoginPageController implements Initializable {
      */
     @FXML
     private void registerButtonPressed() {
+        Organisation selectedOrganisation = getSelectedRegisterOrganisation();
         //make sure there is no user with the name
-        if (!doesUserExist()) {
-            String name = userNameTextField.getText();
-            getSelectedOrganisation().createUser(name);
-            fadeTransition(userRegisteredLabel, 3);
+        if (!doesUserExist(selectedOrganisation, regUserNameTextField.getText())) {
+            String name = regUserNameTextField.getText();
+            String password = regPasswordTextField.getText();
+            String desc = regUserDescriptionTextArea.getText();
+            String contactInfo = regContactInfoTextField.getText();
+            selectedOrganisation.createUser(name, password, desc, contactInfo);
+            fadeTransition(userRegisteredLabel, 2);
         } else {
             fadeTransition(userAlreadyExistsLabel, 3);
             System.out.println("A user with that name already exists");
@@ -135,15 +159,27 @@ public class LoginPageController implements Initializable {
     }
 
     /**
-     * Check if selected value in the Organisation Choicebox actually corresponds to an existing organisation in the database and then get it
+     * Check if selected value in the Login Organisation Choicebox actually corresponds to an existing organisation in the database and then get it
      *
      * @return The actual organisation from the database
      */
-    private Organisation getSelectedOrganisation() throws NullPointerException {
-        String selectedOrganisation = organisationChoiceBox.getValue();
+    private Organisation getSelectedLoginOrganisation() {
+        return findOrganisation(organisationChoiceBox.getValue());
+    }
+
+    /**
+     * Check if selected value in the Register Organisation Choicebox actually corresponds to an existing organisation in the database and then get it
+     *
+     * @return The actual organisation from the database
+     */
+    private Organisation getSelectedRegisterOrganisation() {
+        return findOrganisation(regOrganisationChoiceBox.getValue());
+    }
+
+    private Organisation findOrganisation(String organisationName) throws NullPointerException {
         for (Organisation org :
                 StoreIT.getOrganisations()) {
-            if (org.getName().equals(selectedOrganisation)) {
+            if (org.getName().equals(organisationName)) {
                 return org;
             }
         }
@@ -155,19 +191,13 @@ public class LoginPageController implements Initializable {
      *
      * @return If the written username exists within the selected Organisation
      */
-    private boolean doesUserExist() {
-        Organisation selectedOrganisation = getSelectedOrganisation();
-
-        //is an organisation selected?
-        if (selectedOrganisation != null) {
-            //check if user exists in the organisation
-            for (User user :
-                    selectedOrganisation.getUsers()) {
-                if (user.getName().equals(userNameTextField.getText())) { //todo check ID instead?
-                    setLoginUser(user);
-                    //todo password?
-                    return true;
-                }
+    private boolean doesUserExist(Organisation organisationToSearch, String name) {
+        for (User user :
+                organisationToSearch.getUsers()) {
+            if (user.getName().equals(name)) { //todo check ID instead?
+                setLoginUser(user);
+                //todo password?
+                return true;
             }
         }
         setLoginUser(null); //to prevent someone from logging in with a previous users credentials

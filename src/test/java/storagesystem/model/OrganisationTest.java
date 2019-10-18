@@ -50,7 +50,7 @@ public class OrganisationTest {
         assertEquals(1, informationsteknik.getUsers().size());
         assertEquals("Albert", informationsteknik.getUsers().get(0).getName());
 
-        informationsteknik.createUser("asd", "desc", "112");
+        informationsteknik.createUser("asd", "pass", "desc", "112");
         assertEquals("desc", informationsteknik.getUsers().get(1).getDescription());
     }
 

@@ -56,4 +56,15 @@
     -fx-text-fill: white;
 }
 
+.errorMessage {
+    -fx-text-fill: red;
+}
 
+.goodMessage {
+    -fx-text-fill: #00ff0f;
+}
+
+#loginButton {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
