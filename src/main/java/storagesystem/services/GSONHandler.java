@@ -21,7 +21,7 @@ import java.util.List;
 
 
 /**
- * GSONHandler is a handler with static methods with which it is possible to write and read from a json file of choice.
+ * GSONHandler is a handler with static methods with which it is possible to write and read from the json files corresponding to the Strings declared.
  */
 
 public class GSONHandler {
@@ -34,7 +34,7 @@ public class GSONHandler {
     private static String userDB = "src/main/resources/json/userDB.json";
 
     /**
-     * addToJson() adds an object of choice to a json file of choice without erasing the contents that are already in the json file.
+     * addToJson() automatically adds an Object to the corresponding json file without erasing its contents, if it exists.
      *
      * @param objectToAdd
      * @throws IOException
@@ -59,6 +59,12 @@ public class GSONHandler {
         addToJson(objectToAdd, fileName);
     }
 
+    /**
+     * Writes an Object to the json file corresponding to fileName
+     * @param objectToAdd
+     * @param fileName
+     * @throws IOException
+     */
     private static void addToJson(Object objectToAdd, String fileName) throws IOException {
         GsonBuilder gsonBuilder = Converters
                 .registerDateMidnight(Converters
@@ -117,7 +123,11 @@ public class GSONHandler {
         }
     }
 
-
+    /**
+     * @param listToAdd
+     * @param database
+     * @throws IOException
+     */
     private static void addList(List listToAdd, String database) throws IOException {
         for (Object object : listToAdd) {
             addToJson(object, database);
@@ -138,8 +148,8 @@ public class GSONHandler {
         return jsonObject;
     }
 
-        /**
-     * clearJson() clears the json file completely.
+    /**
+     * clearJson() clears a json file completely.
      *
      * @param fileName
      * @throws IOException
@@ -153,10 +163,9 @@ public class GSONHandler {
 
 
     /**
-     * getListFromJson() returns a list with objects from a json file corresponding to the type of list chosen.
-     *
+     * Uses private methods to get a list.
      * @param typeOfList
-     * @return
+     * @return a list with objects from a json file corresponding to typeOfList
      * @throws IOException
      */
 
@@ -178,12 +187,12 @@ public class GSONHandler {
         }
     }
 
+    /**
+     * @return a list of Items from the itemDB file
+     * @throws IOException
+     */
     private static List getItemList() throws IOException {
-        GsonBuilder gsonBuilder = Converters
-                .registerDateMidnight(Converters
-                        .registerLocalTime(Converters
-                                .registerDateTime(Converters.registerInterval(new GsonBuilder()))));
-        Gson gson = gsonBuilder.setPrettyPrinting().create();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
         JsonArray jsonList = gson.fromJson(new FileReader(itemDB), JsonArray.class);
         List<Item> itemList = new ArrayList<>();
         for (Object o : jsonList) {
@@ -193,12 +202,12 @@ public class GSONHandler {
         return itemList;
     }
 
+    /**
+     * @return a list of Locations from the locationDB file
+     * @throws IOException
+     */
     private static List getLocationList() throws IOException {
-        GsonBuilder gsonBuilder = Converters
-                .registerDateMidnight(Converters
-                        .registerLocalTime(Converters
-                                .registerDateTime(Converters.registerInterval(new GsonBuilder()))));
-        Gson gson = gsonBuilder.setPrettyPrinting().create();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
         JsonArray jsonList = gson.fromJson(new FileReader(locationDB), JsonArray.class);
         List<Location> locationList = new ArrayList<>();
         for (Object o : jsonList) {
@@ -208,12 +217,12 @@ public class GSONHandler {
         return locationList;
     }
 
+    /**
+     * @return a list of Organisations from the organisationDB file
+     * @throws IOException
+     */
     private static List getOrganisationList() throws IOException {
-        GsonBuilder gsonBuilder = Converters
-                .registerDateMidnight(Converters
-                        .registerLocalTime(Converters
-                                .registerDateTime(Converters.registerInterval(new GsonBuilder()))));
-        Gson gson = gsonBuilder.setPrettyPrinting().create();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
         JsonArray jsonList = gson.fromJson(new FileReader(organisationDB), JsonArray.class);
         List<Organisation> organisationList = new ArrayList<>();
         for (Object o : jsonList) {
@@ -223,29 +232,33 @@ public class GSONHandler {
         return organisationList;
     }
 
+    /**
+     * Handles IBorrower and IReservable interface types through BorrowerSerialiser and ReservableSerialiser classes. Handles org.joda.time.Interval through Converters.registerInterval()
+     * @return a list of Reservations from the reservationDB file
+     * @throws IOException
+     */
+
     private static List getReservationList() throws IOException {
-        GsonBuilder gsonBuilder = Converters
-                .registerDateMidnight(Converters
-                        .registerLocalTime(Converters
-                                .registerDateTime(Converters.registerInterval(new GsonBuilder()))));
-        gsonBuilder.registerTypeAdapter(IBorrower.class, new BorrowerSerialiser());
-        gsonBuilder.registerTypeAdapter(IReservable.class, new ReservableSerialiser());
+        GsonBuilder gsonBuilder = Converters.registerInterval(new GsonBuilder()); //Needed to handle Interval in Reservation
+        gsonBuilder.registerTypeAdapter(IBorrower.class, new BorrowerSerialiser()); //Needed to handle IBorrower in Reservation
+        gsonBuilder.registerTypeAdapter(IReservable.class, new ReservableSerialiser()); //Needed to handle IReservable in Reservation
         Gson gson = gsonBuilder.setPrettyPrinting().create();
-        List<Reservation> list = new ArrayList<>();
+        List<Reservation> reservationList = new ArrayList<>();
         JsonArray jsonList = gson.fromJson(new FileReader(reservationDB), JsonArray.class);
         for (Object o : jsonList) {
-            list.add(gson.fromJson(o.toString(), Reservation.class));
+            reservationList.add(gson.fromJson(o.toString(), Reservation.class));
         }
-        return list;
+        return reservationList;
     }
 
+    /**
+     *
+     * @return a list of Teams from the teamDB file
+     * @throws IOException
+     */
 
     private static List getTeamList() throws IOException {
-        GsonBuilder gsonBuilder = Converters
-                .registerDateMidnight(Converters
-                        .registerLocalTime(Converters
-                                .registerDateTime(Converters.registerInterval(new GsonBuilder()))));
-        Gson gson = gsonBuilder.setPrettyPrinting().create();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
         JsonArray jsonList = gson.fromJson(new FileReader(teamDB), JsonArray.class);
         List<Team> teamList = new ArrayList<>();
         for (Object o : jsonList) {
@@ -255,19 +268,28 @@ public class GSONHandler {
         return teamList;
     }
 
+    /**
+     *
+     * @return a list of Users from the userDB file
+     * @throws IOException
+     */
+
     private static List getUserList() throws IOException {
-        GsonBuilder gsonBuilder = Converters
-                .registerDateMidnight(Converters
-                        .registerLocalTime(Converters
-                                .registerDateTime(Converters.registerInterval(new GsonBuilder()))));
-        Gson gson = gsonBuilder.setPrettyPrinting().create();
-        List<Object> list = new ArrayList<>();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        List<User> userList = new ArrayList<>();
         JsonArray jsonList = gson.fromJson(new FileReader(userDB), JsonArray.class);
         for (Object o : jsonList) {
-            list.add(gson.fromJson(o.toString(), User.class));
+            userList.add(gson.fromJson(o.toString(), User.class));
         }
-        return list;
+        return userList;
     }
+
+    /**
+     * Decodes the imageData from base64 to an Image. Assigns that image to IHasImageAndName o
+     * @param o
+     * @param imageData
+     * @throws IOException
+     */
 
     private static void assignImage(IHasImageAndName o, String imageData) throws IOException {
         byte[] decodedBytes = Base64.getDecoder().decode(imageData);
@@ -277,14 +299,27 @@ public class GSONHandler {
         o.setImage(itemImage);
     }
 
+    /**
+     * Assigns multiple images from jsonList to list through assignImage()
+     * @param list
+     * @param jsonList
+     * @throws IOException
+     */
+
     private static void assignImages(List list, JsonArray jsonList) throws IOException {
         for (int i = 0; i < jsonList.size(); i++) {
             String imageData = jsonList.get(i).getAsJsonObject().get("imageData").getAsString();
             if (!imageData.isEmpty()) {//If imageData is not empty, create an image with the data.
-                assignImage((IHasImageAndName)list.get(i), imageData);
+                assignImage((IHasImageAndName) list.get(i), imageData);
             }
         }
     }
+
+    /**
+     * Creates a new image file in the corresponding folder of IHasImageAndName o
+     * @param o
+     * @return the newly created .jpg File
+     */
 
     private static File createNewImageFile(IHasImageAndName o) {
         String itemPictureFolder = "src/main/resources/pictures/item/";
@@ -303,6 +338,4 @@ public class GSONHandler {
             throw new IllegalArgumentException("Object does not have a corresponding json file.");
         }
     }
-
-
 }
