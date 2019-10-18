@@ -13,6 +13,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import storagesystem.StorageSystem;
 import storagesystem.model.Condition;
@@ -68,7 +69,8 @@ public class DetailedItemViewController extends AnchorPane {
     Button itemPageReserveBtn;
     @FXML
     Button itemPageSaveButton;
-
+    @FXML
+    Text changeImageTEXT;
     private boolean isInEditMode;
 
     private PictureHandler pictureHandler = new PictureHandler();
@@ -218,14 +220,20 @@ public class DetailedItemViewController extends AnchorPane {
         itemPageDescriptionTA.setEditable(true);
         itemPageUserRequirementsTA.setEditable(true);
         itemPageNameTA.setEditable(true);
+        changeImageTEXT.setVisible(true);
 
         itemPageImageView.setOnMouseClicked(event -> {
             changeItemImage();
         });
 
 
+
+
     }
 
+    /**
+     * saves the changes to the current item.
+     */
     public void saveItem(){
 
         reservableItem.setName(itemPageNameTA.getText());
@@ -252,7 +260,8 @@ public class DetailedItemViewController extends AnchorPane {
         if(selectedFile != null){
             try {
                 BufferedImage selectedImage = ImageIO.read(selectedFile);
-                pictureHandler.saveProfilePic(selectedImage, itemPageNameTA.getText());
+                pictureHandler.saveItemImagePic(selectedImage, ""+reservableItem.getID(), itemPageNameTA.getText() );
+                itemPageImageView.setImage(pictureHandler.getItemImage(""+reservableItem.getID(), itemPageNameTA.getText()));
 
             } catch(IOException exception){
                 System.out.println("Can't read image: " + selectedFile.getPath());

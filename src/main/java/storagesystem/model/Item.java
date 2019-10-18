@@ -1,6 +1,7 @@
 package storagesystem.model;
 
 import javafx.scene.image.Image;
+import storagesystem.services.PictureHandler;
 
 import java.util.Objects;
 
@@ -25,6 +26,7 @@ public class Item implements IReservable {
     private boolean reservable;
     private Location location;
     private Image image;
+
 
     public Item(String name, String description, String userRequirements, int amount, Condition condition, boolean reservable, Location location, Image image) {
         this.name = name;

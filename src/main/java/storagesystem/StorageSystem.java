@@ -64,7 +64,7 @@ public class StorageSystem extends Application {
 
         Location location = new Location("MockLocation", "This location does not exist");
         Item mockItem = new Item("mockItem", "Jag tillhör sexNollK", "Behave please.",
-                2, Condition.GOOD, true, location, new Image("creepy.jpg"));
+                2, Condition.GOOD, true, location, new Image("/creepy.jpg"));
         Item mockItem2 = new Item("mockItem nr 2", "This is a description", "Behave please.",
                 2, Condition.GOOD, true, location, new Image("art.png"));
 
