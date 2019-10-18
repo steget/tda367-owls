@@ -2,7 +2,11 @@ package storagesystem.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import storagesystem.StoreIT;
 import storagesystem.model.User;
 
@@ -17,13 +21,38 @@ import java.util.ResourceBundle;
 public class UserPageController implements Initializable {
 
     @FXML
-    private TextField settingsNameInput;
+    private AnchorPane editProfileAnchorPane;
 
     @FXML
-    private TextField settingsContactInput;
+    private AnchorPane viewProfileAnchorPane;
 
     @FXML
-    private TextField settingsDescriptionInput;
+    private TextField profileNameInput;
+
+    @FXML
+    private TextField profileContactInput;
+
+    @FXML
+    private TextField profileDescriptionInput;
+
+    @FXML
+    private TextArea profileDescriptionTextArea;
+
+    @FXML
+    private Label profileNameLabel;
+
+    @FXML
+    private Label profileContactLabel;
+
+    @FXML
+    private Label profileOrganisationLabel;
+
+    @FXML
+    private Button editProfileButton;
+
+    @FXML
+    private Button cancelButton;
+
 
     private User currentUser;
 
@@ -31,11 +60,7 @@ public class UserPageController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         currentUser = StoreIT.getCurrentUser();
-
-        //fill user text boxes
-        settingsNameInput.setText(currentUser.getName());
-        settingsDescriptionInput.setText(currentUser.getDescription());
-        settingsContactInput.setText(currentUser.getContactInformation());
+        writeProfileInfo();
     }
 
     /**
@@ -43,8 +68,27 @@ public class UserPageController implements Initializable {
      */
     @FXML
     public void saveUser() {
-        currentUser.setName(settingsNameInput.getText());
-        currentUser.setDescription(settingsDescriptionInput.getText());
-        currentUser.setContactInformation(settingsContactInput.getText());
+        currentUser.setName(profileNameInput.getText());
+        currentUser.setDescription(profileDescriptionInput.getText());
+        currentUser.setContactInformation(profileContactInput.getText());
+        writeProfileInfo();
+        viewProfileAnchorPane.toFront();
     }
+
+    private void writeProfileInfo(){
+        profileNameLabel.setText(currentUser.getName());
+        profileContactLabel.setText(currentUser.getContactInformation());
+        profileDescriptionTextArea.setText(currentUser.getDescription());
+    }
+
+    @FXML
+    public void editProfileButtonPressed(){
+        editProfileAnchorPane.toFront();
+    }
+
+    @FXML
+    public void cancelButtonPressed(){
+        viewProfileAnchorPane.toFront();
+    }
+
 }
