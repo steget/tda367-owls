@@ -16,7 +16,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import storagesystem.StorageSystem;
+import storagesystem.StoreIT;
 import storagesystem.model.Organisation;
 import storagesystem.model.User;
 
@@ -58,7 +58,7 @@ public class LoginPageController implements Initializable {
         //Fill list with organisations from database
         ObservableList<String> organisationNames = FXCollections.observableArrayList();
         for (Organisation org :
-                StorageSystem.getOrganisations()) {
+                StoreIT.getOrganisations()) {
             organisationNames.add(org.getName());
         }
 
@@ -67,7 +67,7 @@ public class LoginPageController implements Initializable {
 
         assignHandlers();
 
-        Platform.runLater(()->userNameTextField.requestFocus()); //Need to do this since Stage is not set yet when in initialize
+        Platform.runLater(() -> userNameTextField.requestFocus()); //Need to do this since Stage is not set yet when in initialize
     }
 
     /**
@@ -104,11 +104,11 @@ public class LoginPageController implements Initializable {
         //check username and password against database
         if (doesUserExist()) {
             //set current user
-            StorageSystem.setCurrentUser(loginUser);
-            StorageSystem.setCurrentOrganisation(getSelectedOrganisation());
+            StoreIT.setCurrentUser(loginUser);
+            StoreIT.setCurrentOrganisation(getSelectedOrganisation());
 
             //open dashboard
-            Parent root = FXMLLoader.load(getClass().getResource("/dashboard.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/framework.fxml"));
             Stage stage = (Stage) rootPane.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.show();
@@ -139,9 +139,9 @@ public class LoginPageController implements Initializable {
      * @return The actual organisation from the database
      */
     private Organisation getSelectedOrganisation() throws NullPointerException {
-        String selectedOrganisation = organisationChoiceBox.getValue().toString();
+        String selectedOrganisation = organisationChoiceBox.getValue();
         for (Organisation org :
-                StorageSystem.getOrganisations()) {
+                StoreIT.getOrganisations()) {
             if (org.getName().equals(selectedOrganisation)) {
                 return org;
             }

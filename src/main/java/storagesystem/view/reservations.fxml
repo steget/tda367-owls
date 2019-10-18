@@ -1,14 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Author: William Albertsson -->
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="storagesystem.view.Reservations"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane fx:id="reservationsRootPane" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: blue;"
+            stylesheets="@basicStyles.css" xmlns="http://javafx.com/javafx/8.0.201" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="storagesystem.controller.ReservationsController">
+    <children>
+        <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0"
+              AnchorPane.rightAnchor="0.0">
+            <children>
+                <Label minHeight="-Infinity" minWidth="-Infinity" text="Item"/>
+                <Region prefHeight="200.0" prefWidth="200.0"/>
+                <Label minHeight="-Infinity" minWidth="-Infinity" text="Borrower">
+                    <HBox.margin>
+                        <Insets right="20.0"/>
+                    </HBox.margin>
+                </Label>
+                <Region prefHeight="200.0" prefWidth="200.0"/>
+                <Label alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity"
+                       text="Time borrowed" textAlignment="CENTER">
+                    <HBox.margin>
+                        <Insets left="20.0"/>
+                    </HBox.margin>
+                </Label>
+            </children>
+        </HBox>
+        <ScrollPane layoutY="33.0" style="-fx-background-color: green;" AnchorPane.bottomAnchor="0.0"
+                    AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="33.0">
+            <content>
+                <AnchorPane prefHeight="100.0" prefWidth="1000.0" style="-fx-background-color: yellow;">
+                    <children>
+                        <FlowPane fx:id="reservationListFlowPane" prefHeight="50.0" prefWidth="1000.0"
+                                  style="-fx-background-color: orange;" AnchorPane.bottomAnchor="0.0"
+                                  AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
+                    </children>
+                </AnchorPane>
+            </content>
+        </ScrollPane>
+    </children>
 </AnchorPane>

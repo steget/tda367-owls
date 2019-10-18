@@ -8,6 +8,8 @@ import java.util.List;
 /**
  * A team has a list of users that belong to the same team.
  * A team has an inventory of items which it can browse.
+ *
+ * @author Hugo Stegrell, Pär Aronsson
  */
 public class Team implements IHasImageAndName{
     private String name;
@@ -43,16 +45,16 @@ public class Team implements IHasImageAndName{
         memberIDs.remove((Object) memberToBeRemoved); //needs to use object to make sure index is not chosen
     }
 
-    void addItemToInventory(Item item) { //todo maybe just an ID instead and get the item from DB?
-        inventory.add(item);
-    }
-
     public List<Integer> getAllMemberIDs() {
         return memberIDs;
     }
 
     public String getName() {
         return name;
+    }
+
+    public void addItemToInventory(Item itemToAdd) {
+        inventory.add(itemToAdd);
     }
 
     public void setName(String name) {

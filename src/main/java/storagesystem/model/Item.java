@@ -3,6 +3,8 @@ package storagesystem.model;
 import javafx.scene.image.Image;
 
 public class Item implements IReservable, IHasImageAndName{
+import java.util.Objects;
+
 /**
  * A class that represents an item. An item can be added by a team to their own inventory.
  * description consists of a short text about the item and what can be done with it.
@@ -13,40 +15,29 @@ public class Item implements IReservable, IHasImageAndName{
  * Reservable tells us if an item is able to be borrowed or not.
  * Location has the information about where the item is located
  */
-
+public class Item implements IReservable {
     private String name;
     private String description;
     private String userRequirements;
-    private int ID;
+    private final int ID;
+    private static int nextID;
     private int amount;
     private Condition condition;
     private boolean reservable;
     private Location location;
     private Image image;
 
-    public Item(String name, String description, String userRequirements, int ID, int amount, Condition condition, boolean reservable, Location location, Image image) {
+    public Item(String name, String description, String userRequirements, int amount, Condition condition, boolean reservable, Location location, Image image) {
         this.name = name;
         this.description = description;
         this.userRequirements = userRequirements;
-        this.ID = ID;
+        this.ID = nextID;
+        nextID++;
         this.amount = amount;
         this.condition = condition;
         this.reservable = reservable;
         this.location = location;
         this.image = image;
-    }
-
-    public Item(){
-        Location mockLocation = new Location("Mock Location", "This is a temporary location");
-        this.name = "Shoes";
-        this.description = "Wear them";
-        this.userRequirements = "Dont break them";
-        this.ID = 1;
-        this.amount = 2;
-        this.condition = Condition.BAD;
-        this.reservable = true;
-        this.location = mockLocation;
-        this.image = mockLocation.getImage();
     }
 
     public String getName() {
@@ -76,8 +67,6 @@ public class Item implements IReservable, IHasImageAndName{
     public int getID() {
         return ID;
     }
-
-    public void setID(int ID) { this.ID = ID; }
 
     public int getAmount() {
         return amount;
@@ -119,18 +108,16 @@ public class Item implements IReservable, IHasImageAndName{
         this.image = image;
     }
 
-
     @Override
     public boolean equals(Object o) {
-        if (o == this) {
-            return true;
-        }
-        if (!(o instanceof Item)) {
-            return false;
-        }
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Item item = (Item) o;
+        return ID == item.ID;
+    }
 
-        Item i = (Item) o;
-
-        return i.getID() == this.getID();
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, description, userRequirements, ID, amount, condition, reservable, location, image);
     }
 }

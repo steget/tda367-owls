@@ -25,8 +25,8 @@ public class GSONHandlerTest {
         Location location = new Location("Mock Location", "This is a temporary location");
         List<Item> itemList = new ArrayList<>();
 
-        Item item1 = new Item();
-        Item item2 = new Item("name", "description", "UserReq", 2, 10, Condition.GREAT, false, location, new Image("pictures/art.png"));
+        Item item1 = new Item("name", "description", "UserReq", 10, Condition.BAD, false, location, location.getImage());
+        Item item2 = new Item("name", "description", "UserReq", 10, Condition.GREAT, false, location, location.getImage());
 
         itemList.add(item1);
         itemList.add(item2);

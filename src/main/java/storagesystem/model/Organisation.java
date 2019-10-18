@@ -10,23 +10,39 @@ import java.util.NoSuchElementException;
  * An Organisation holds a collection of teams with the purpose being that the teams can communicate with each other.
  * The teams that belong to an organisation should be relevant to one another.
  * An Organisation should keep track of all the reservations between its teams.
+ *
+ * @author Hugo Stegrell, Pär Aronsson
  */
 public class Organisation implements IHasImageAndName{
     private final List<Team> teams = new ArrayList<>();
     private final List<User> users = new ArrayList<>();
     private String name;
+    private ReservationHandler reservationHandler;
     private Image image;
     //todo reservationHandler
 
     public Organisation(String name) {
         this.name = name;
+        this.reservationHandler = new ReservationHandler();
         //todo fill stuff from db
+    }
+
+    private Organisation(Organisation organisationToCopy) {
+        this.name = organisationToCopy.name;
+        this.teams.addAll(organisationToCopy.getTeams());
+        this.users.addAll(organisationToCopy.getUsers());
+        //todo load from db
+        reservationHandler = new ReservationHandler();
+    }
+
+    public ReservationHandler getReservationHandler() {
+        return reservationHandler;
     }
 
     /**
      * @return List of all the items from all the teams.
      */
-    List<Item> getAllItems() {
+    public List<Item> getAllItems() {
         List<Item> allItems = new ArrayList<Item>();
         for (Team t :
                 teams) {
@@ -82,6 +98,11 @@ public class Organisation implements IHasImageAndName{
         return users;
     }
 
+    public List<Team> getTeams() {
+        return teams;
+    }
+
+
     /**
      * Creates a new user with only a name
      *
@@ -110,6 +131,7 @@ public class Organisation implements IHasImageAndName{
     public void addTeam(Team teamToBeAdded) {
         teams.add(teamToBeAdded);
     }
+
     public String getName() {
         return name;
     }

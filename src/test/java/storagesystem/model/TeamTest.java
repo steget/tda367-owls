@@ -16,7 +16,7 @@ public class TeamTest {
         assertEquals(0, allItems.size());
         Location hasen = new Location("hasen","ha senare", null);
 
-        Item mockItem = new Item("mockItem", "desc","requirements",1,1,Condition.GREAT,true, hasen, null);
+        Item mockItem = new Item("mockItem", "desc","requirements",1,Condition.GREAT,true, hasen, null);
         allItems.add(mockItem);
         assertEquals(1, allItems.size());
     }

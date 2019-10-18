@@ -4,6 +4,8 @@ import java.util.Objects;
 
 /**
  * A user should represent a person.
+ *
+ * @author Hugo Stegrell, Pär Aronsson
  */
 public class User implements IBorrower {
     private String name;
