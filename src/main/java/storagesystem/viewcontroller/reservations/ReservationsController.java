@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
-import storagesystem.StoreIT;
+import storagesystem.model.StoreIT;
 import storagesystem.model.IReservation;
 
 import java.net.URL;
