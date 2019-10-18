@@ -1,4 +1,4 @@
-package storagesystem.controller;
+package storagesystem.viewcontroller.settings;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

@@ -13,7 +13,7 @@
 <AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
             prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: teal;"
             xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="storagesystem.controller.SettingsController">
+            fx:controller="storagesystem.viewcontroller.settings.SettingsController">
     <children>
         <Label fx:id="settingsUserLabel" layoutX="165.0" layoutY="107.0" style="-fx-font-size: 20;" text="USER"
                AnchorPane.rightAnchor="165.0">
