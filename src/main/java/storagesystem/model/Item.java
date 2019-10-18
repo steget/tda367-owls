@@ -2,8 +2,8 @@ package storagesystem.model;
 
 import javafx.scene.image.Image;
 
-public class Item implements IReservable, IHasImageAndName{
 import java.util.Objects;
+
 
 /**
  * A class that represents an item. An item can be added by a team to their own inventory.
@@ -15,7 +15,9 @@ import java.util.Objects;
  * Reservable tells us if an item is able to be borrowed or not.
  * Location has the information about where the item is located
  */
-public class Item implements IReservable {
+
+public class Item implements IReservable, IHasImageAndName {
+
     private String name;
     private String description;
     private String userRequirements;

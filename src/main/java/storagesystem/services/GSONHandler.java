@@ -131,16 +131,25 @@ public class GSONHandler {
         }
     }
 
+    /**
+     * Creates an Image file through createNewImageFile(), converts the image data to a Base64 String and adds imageData to Json
+     * @param o
+     * @param gson
+     * @return
+     * @throws IOException
+     */
+
     private static JsonObject createJsonObjectFromIHasImageAndName(IHasImageAndName o, Gson gson) throws IOException {
+        Image imageCopy = o.getImage(); //throws NullPointerException if Image is not set
         BufferedImage bImage = SwingFXUtils.fromFXImage(o.getImage(), null);
         File newImageFile = createNewImageFile(o);
         ImageIO.write(bImage, "jpg", newImageFile);
         byte[] imageInBinary = FileUtils.readFileToByteArray(newImageFile);
         String encodedString = Base64.getEncoder().encodeToString(imageInBinary);
-        Image imageCopy = o.getImage();
-        o.setImage(null);
+
+        o.setImage(null); //Set image to null to avoid invalid data in Json
         JsonObject jsonObject = (JsonObject) gson.toJsonTree(o);
-        o.setImage(imageCopy);
+        o.setImage(imageCopy); //Reset image
         jsonObject.addProperty("imageData", encodedString);
         return jsonObject;
     }
