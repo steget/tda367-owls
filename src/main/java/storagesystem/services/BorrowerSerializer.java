@@ -5,7 +5,7 @@ import storagesystem.model.IBorrower;
 
 import java.lang.reflect.Type;
 
-public class BorrowerSerialiser implements JsonSerializer<IBorrower>, JsonDeserializer<IBorrower> {
+public class BorrowerSerializer implements JsonSerializer<IBorrower>, JsonDeserializer<IBorrower> {
 
     private static final String CLASSNAME = "CLASSNAME";
     private static final String DATA = "DATA";

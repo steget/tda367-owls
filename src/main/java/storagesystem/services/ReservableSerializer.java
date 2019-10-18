@@ -5,7 +5,7 @@ import storagesystem.model.IReservable;
 
 import java.lang.reflect.Type;
 
-public class ReservableSerialiser implements JsonSerializer<IReservable>, JsonDeserializer<IReservable> {
+public class ReservableSerializer implements JsonSerializer<IReservable>, JsonDeserializer<IReservable> {
 
     private static final String CLASSNAME = "CLASSNAME";
     private static final String DATA = "DATA";
