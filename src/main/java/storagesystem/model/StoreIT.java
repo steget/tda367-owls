@@ -7,6 +7,7 @@ import org.joda.time.Interval;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class StoreIT {
     private static List<Organisation> organisations = new ArrayList<>();
@@ -91,12 +92,18 @@ public class StoreIT {
         return currentUser;
     }
 
-    public static Organisation findOrganisation(String organisationName) throws NullPointerException {
+    /**
+     * Searches through the organisations and tries to find one with the input String
+     * @param organisationName Name to search after
+     * @return Organisation with @param name
+     * @throws NoSuchElementException If no such organisation could be found
+     */
+    public static Organisation findOrganisation(String organisationName) throws NoSuchElementException {
         for (Organisation org : organisations) {
             if (org.getName().equals(organisationName)) {
                 return org;
             }
         }
-        throw new NullPointerException("Organisation cannot be found");
+        throw new NoSuchElementException("Organisation cannot be found");
     }
 }
