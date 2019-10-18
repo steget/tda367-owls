@@ -52,8 +52,7 @@ public class UserPageController implements Initializable {
 
     @FXML
     private Button cancelButton;
-
-
+    
     private User currentUser;
 
 
