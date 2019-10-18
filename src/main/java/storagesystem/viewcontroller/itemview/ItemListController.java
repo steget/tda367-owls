@@ -1,4 +1,4 @@
-package storagesystem.controller;
+package storagesystem.viewcontroller.itemview;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
