@@ -54,10 +54,6 @@ public class Reservation implements IReservation {
         this(res.getID(), res.getBorrower(), res.getInterval(), res.getReservedObject(), res.getStatus());
     }
 
-    public Reservation copy() {
-        return new Reservation(this);
-    }
-
     @Override
     public int getID() {
         return id;
@@ -143,7 +139,7 @@ public class Reservation implements IReservation {
         if (startYear != new DateTime().getYear())
             sb.append(startYear + "." + startMonth + "." + startDay + " " + startHour + ":" + getToDoubleZero(startMinute) + " - ");
         else
-            sb.append(startMonth + "." + startDay + " " + startHour + ":" + getToDoubleZero(startMinute) + " - ");
+            sb.append(startMonth + "/" + startDay + " " + startHour + ":" + getToDoubleZero(startMinute) + " - ");
 
 
         if (startYear != endYear)
@@ -156,9 +152,7 @@ public class Reservation implements IReservation {
             sb.append(endHour + ":" + getToDoubleZero(endMinute));
         }
 
-        String readable = sb.toString();
-
-        return readable;
+        return sb.toString();
     }
 
     private String getToDoubleZero(int startMinute) {
