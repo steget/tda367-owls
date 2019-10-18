@@ -16,10 +16,11 @@
           2
         ],
         "termsAndConditions": "",
-        "teamID": 1
+        "teamID": 1,
+        "imageUrl": null
       }
     },
-    "interval": "2019-10-18T16:46:24.571+02:00/2019-10-19T16:46:24.571+02:00",
+    "interval": "2019-10-18T18:50:51.880+02:00/2019-10-19T18:50:51.880+02:00",
     "reservedObject": {
       "CLASSNAME": "storagesystem.model.Item",
       "DATA": {
@@ -30,7 +31,8 @@
         "amount": 10,
         "condition": "BAD",
         "reservable": false,
-        "locationID": 3
+        "locationID": 3,
+        "imageUrl": "pictures/cute-owl.jpg"
       }
     },
     "status": "PENDING"

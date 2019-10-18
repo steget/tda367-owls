@@ -16,7 +16,7 @@ import java.util.Objects;
  * Location has the information about where the item is located
  */
 
-public class Item implements IReservable, IHasImageAndName {
+public class Item implements IReservable{
 
     private String name;
     private String description;
@@ -27,9 +27,9 @@ public class Item implements IReservable, IHasImageAndName {
     private Condition condition;
     private boolean reservable;
     private int locationID;
-    private Image image;
+    private String imageUrl;
 
-    public Item(String name, String description, String userRequirements, int amount, Condition condition, boolean reservable, int locationID, Image image) {
+    public Item(String name, String description, String userRequirements, int amount, Condition condition, boolean reservable, int locationID, String imageUrl) {
         this.name = name;
         this.description = description;
         this.userRequirements = userRequirements;
@@ -39,7 +39,7 @@ public class Item implements IReservable, IHasImageAndName {
         this.condition = condition;
         this.reservable = reservable;
         this.locationID = locationID;
-        this.image = image;
+        this.imageUrl = imageUrl;
     }
 
     public String getName() {
@@ -102,12 +102,12 @@ public class Item implements IReservable, IHasImageAndName {
         this.locationID = locationID;
     }
 
-    public Image getImage() {
-        return image;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setImage(Image image) {
-        this.image = image;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     @Override
@@ -120,6 +120,6 @@ public class Item implements IReservable, IHasImageAndName {
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, description, userRequirements, ID, amount, condition, reservable, locationID, image);
+        return Objects.hash(name, description, userRequirements, ID, amount, condition, reservable, locationID, imageUrl);
     }
 }

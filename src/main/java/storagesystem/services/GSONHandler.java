@@ -69,6 +69,7 @@ public class GSONHandler {
         GsonBuilder gsonBuilder = Converters.registerInterval(new GsonBuilder());
         gsonBuilder.registerTypeAdapter(IBorrower.class, new BorrowerSerializer());
         gsonBuilder.registerTypeAdapter(IReservable.class, new ReservableSerializer());
+        gsonBuilder.serializeNulls();
         Gson gson = gsonBuilder.setPrettyPrinting().create();
         JsonArray jsonContent = gson.fromJson(new FileReader(fileName), JsonArray.class);
         Writer writer = new FileWriter(fileName);
@@ -76,6 +77,7 @@ public class GSONHandler {
         if (jsonContent == null) {
             jsonContent = new JsonArray();
         }
+        /*
         if (objectToAdd instanceof IHasImageAndName) {//If the objectToAdd has an Image, add imageData to jsonObject
             try {
                 jsonObject = createJsonObjectFromIHasImageAndName((IHasImageAndName) objectToAdd, gson); //will throw NullPointerException if image isn't set.
@@ -83,7 +85,7 @@ public class GSONHandler {
                 jsonObject = (JsonObject) gson.toJsonTree(objectToAdd);
                 jsonObject.addProperty("imageData", "");
             }
-        } else { //if objectToAdd hasn't got an Image, add to jsonObject
+        } else*/ { //if objectToAdd hasn't got an Image, add to jsonObject
             jsonObject = (JsonObject) gson.toJsonTree(objectToAdd);
         }
         jsonContent.add(jsonObject);
@@ -139,7 +141,7 @@ public class GSONHandler {
      * @throws IOException
      */
 
-    private static JsonObject createJsonObjectFromIHasImageAndName(IHasImageAndName o, Gson gson) throws IOException {
+    /*private static JsonObject createJsonObjectFromIHasImageAndName(IHasImageAndName o, Gson gson) throws IOException {
         BufferedImage bImage = SwingFXUtils.fromFXImage(o.getImage(), null);
         File newImageFile = createNewImageFile(o);
         ImageIO.write(bImage, "jpg", newImageFile);
@@ -152,7 +154,7 @@ public class GSONHandler {
         jsonObject.addProperty("imageData", encodedString);
         return jsonObject;
     }
-
+*/
     /**
      * clearJson() clears a json file completely.
      *
@@ -164,6 +166,14 @@ public class GSONHandler {
         Writer writer = new FileWriter(fileName);
         writer.flush();
         writer.close();
+    }
+    public static void clearAllJsonFiles() throws IOException {
+        clearJson(itemDB);
+        clearJson(locationDB);
+        clearJson(organisationDB);
+        clearJson(reservationDB);
+        clearJson(teamDB);
+        clearJson(userDB);
     }
 
 
@@ -203,7 +213,7 @@ public class GSONHandler {
         for (Object o : jsonList) {
             itemList.add(gson.fromJson(o.toString(), Item.class));
         }
-        assignImages(itemList, jsonList);
+        //assignImages(itemList, jsonList);
         return itemList;
     }
 
@@ -218,7 +228,7 @@ public class GSONHandler {
         for (Object o : jsonList) {
             locationList.add(gson.fromJson(o.toString(), Location.class));
         }
-        assignImages(locationList, jsonList);
+        //assignImages(locationList, jsonList);
         return locationList;
     }
 
@@ -233,7 +243,7 @@ public class GSONHandler {
         for (Object o : jsonList) {
             organisationList.add(gson.fromJson(o.toString(), Organisation.class));
         }
-        assignImages(organisationList, jsonList);
+        //assignImages(organisationList, jsonList);
         return organisationList;
     }
 
@@ -269,7 +279,7 @@ public class GSONHandler {
         for (Object o : jsonList) {
             teamList.add(gson.fromJson(o.toString(), Team.class));
         }
-        assignImages(teamList, jsonList);
+        //assignImages(teamList, jsonList);
         return teamList;
     }
 

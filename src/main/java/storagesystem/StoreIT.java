@@ -69,11 +69,11 @@ public class StoreIT extends Application {
         tempTeam2.addMember(informationsteknik.getUsers().get(0).getID());
         tempTeam2.addMember(informationsteknik.getUsers().get(1).getID());
 
-        Location location = new Location("MockLocation", "This location does not exist", new Image("creepy.jpg"));
+        Location location = new Location("MockLocation", "This location does not exist", "creepy.jpg");
         Item mockItem = new Item("mockItem", "This is a description", "Behave please.",
-                2, Condition.GOOD, true, location.getID(), location.getImage());
+                2, Condition.GOOD, true, location.getID(), "pictures/art.png");
         Item mockItem2 = new Item("mockItem nr 2", "This is a description", "Behave please.",
-                2, Condition.GOOD, true, location.getID(), new Image("art.png"));
+                2, Condition.GOOD, true, location.getID(), "art.png");
 
 
         Interval interval1 = new Interval(new DateTime(2019, 9, 10, 12, 40), new DateTime(2019, 9, 10, 15, 0));

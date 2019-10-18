@@ -5,21 +5,21 @@ import javafx.scene.image.Image;
 /**
  * Location tells us information about a place.
  * Description contains information about the location, such as how to get to the location and other information.
- * Image shows the user a picture of the location.
+ * ImageUrl is the url to an image which shows the user a picture of the location.
  */
 
-public class Location implements IHasImageAndName {
+public class Location {
 
     private String name;
     private String description;
-    private Image image;
+    private String imageUrl;
     private final int ID;
     private static int nextID;
 
-    public Location(String name, String description, Image image) {
+    public Location(String name, String description, String imageUrl) {
         this.name = name;
         this.description = description;
-        this.image = image;
+        this.imageUrl = imageUrl;
         this.ID = nextID;
         nextID++;
     }
@@ -32,8 +32,8 @@ public class Location implements IHasImageAndName {
         return description;
     }
 
-    public Image getImage() {
-        return image;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
     public int getID() {
@@ -48,8 +48,8 @@ public class Location implements IHasImageAndName {
         this.description = description;
     }
 
-    public void setImage(Image image) {
-        this.image = image;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
 

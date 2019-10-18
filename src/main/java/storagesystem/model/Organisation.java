@@ -16,14 +16,14 @@ import java.util.NoSuchElementException;
  *
  * @author Hugo Stegrell, Pär Aronsson
  */
-public class Organisation implements IHasImageAndName {
+public class Organisation {
     private transient final List<Item> items = new ArrayList<>();
-    private transient final List<Team> teams = new ArrayList<>();
-    private transient final List<User> users = new ArrayList<>();
-    private transient final List<Location> locations = new ArrayList<>();
+    private final List<Team> teams = new ArrayList<>();
+    private final List<User> users = new ArrayList<>();
+    private final List<Location> locations = new ArrayList<>();
     private String name;
     private ReservationHandler reservationHandler;
-    private Image image;
+    private String imageUrl;
     //todo reservationHandler
 
     public Organisation(String name) throws IOException {
@@ -170,12 +170,12 @@ public class Organisation implements IHasImageAndName {
         this.name = name;
     }
 
-    public Image getImage() {
-        return image;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setImage(Image image) {
-        this.image = image;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
 }

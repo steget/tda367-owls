@@ -33,7 +33,7 @@ public interface IReservable {
 
     int getLocationID();
 
-    Image getImage();
+    String getImageUrl();
 
     String getName();
 }

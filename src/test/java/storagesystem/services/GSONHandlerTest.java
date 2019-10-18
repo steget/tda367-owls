@@ -1,7 +1,6 @@
 package storagesystem.services;
 
 import javafx.embed.swing.JFXPanel;
-import javafx.scene.image.Image;
 import org.joda.time.DateTime;
 import org.joda.time.Interval;
 import org.junit.Assert;
@@ -25,8 +24,8 @@ public class GSONHandlerTest {
         Location location = new Location("Mock Location", "This is a temporary location", null);
         List<Item> itemList = new ArrayList<>();
 
-        Item item1 = new Item("name", "description", "UserReq", 10, Condition.BAD, false, location.getID(), location.getImage());
-        Item item2 = new Item("name", "description", "UserReq", 10, Condition.GREAT, false, location.getID(), location.getImage());
+        Item item1 = new Item("name", "description", "UserReq", 10, Condition.BAD, false, location.getID(), "pictures/art.png");
+        Item item2 = new Item("name", "description", "UserReq", 10, Condition.GREAT, false, location.getID(), "pictures/creepy.jpg");
 
         itemList.add(item1);
         itemList.add(item2);
@@ -52,7 +51,7 @@ public class GSONHandlerTest {
         GSONHandler.clearJson("src/main/resources/json/locationDB.json");
 
         Location location1 = new Location("Location without Image", "Outside of my mind", null);
-        Location location2 = new Location("Test Location With Image", "Inside of my mind", new Image("pictures/art.png"));
+        Location location2 = new Location("Test Location With Image", "Inside of my mind", "pictures/art.png");
 
         List<Location> locationList = new ArrayList<>();
 
@@ -74,7 +73,7 @@ public class GSONHandlerTest {
 
         GSONHandler.clearJson("src/main/resources/json/organisationDB.json");
 
-        Image image = new Image("pictures/art.png");
+        String image = "pictures/art.png";
 
 
         Location location1 = new Location("Location without Image", "Outside of my mind", null);
@@ -93,7 +92,7 @@ public class GSONHandlerTest {
 
         List<Item> itemList = new ArrayList<>();
 
-        Item item2 = new Item("name", "description", "UserReq", 10, Condition.GREAT, false, location2.getID(), location2.getImage());
+        Item item2 = new Item("name", "description", "UserReq", 10, Condition.GREAT, false, location2.getID(), null);
 
         itemList.add(item2);
 
@@ -107,7 +106,7 @@ public class GSONHandlerTest {
 
         List<Organisation> organisations = new ArrayList<>();
         organisations.add(organisation1);
-        organisation2.setImage(new Image("pictures/informationstekniklogga.png"));
+        organisation2.setImageUrl("pictures/informationstekniklogga.png");
         organisations.add(organisation2);
 
         addListToJson(organisations);
@@ -132,7 +131,7 @@ public class GSONHandlerTest {
 
         List<Team> teams = new ArrayList<>();
         teams.add(team1);
-        team2.setImage(new Image("pictures/creepy.jpg"));
+        team2.setImageUrl("pictures/creepy.jpg");
         teams.add(team2);
 
         addListToJson(teams);
@@ -168,7 +167,7 @@ public class GSONHandlerTest {
         GSONHandler.addListToJson(mockOrg.getUsers());
 
         List<Location> locationList = GSONHandler.getListFromJson(Location.class);
-        Item item = new Item("name", "description", "UserReq", 10, Condition.BAD, false, locationList.get(0).getID(), locationList.get(0).getImage());
+        Item item = new Item("name", "description", "UserReq", 10, Condition.BAD, false, locationList.get(0).getID(), "pictures/cute-owl.jpg");
 
         ReservationHandler reservationHandler = new ReservationHandler(new ArrayList<>());
 
@@ -184,7 +183,8 @@ public class GSONHandlerTest {
 
         List<IReservation> reservations2 = new ArrayList<>(getListFromJson(Reservation.class));
 
-
+        Item item4 = new Item("imageitem", "Desc", "userreq", 13, Condition.GREAT, true, locationList.get(0).getID(), "pictures/art.png");
+        addToJson(item4);
         Assert.assertEquals(reservations.get(0), reservations2.get(0));
 
 

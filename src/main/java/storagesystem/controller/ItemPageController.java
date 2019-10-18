@@ -89,7 +89,7 @@ public class ItemPageController {
         setConditionSlider(item.getCondition());
         setDescription(item.getDescription());
         setUserRequirements(item.getUserRequirements());
-        setImage(item.getImage());
+        setImage(new Image(item.getImageUrl()));
     }
 
     @FXML

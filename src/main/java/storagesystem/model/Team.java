@@ -13,14 +13,14 @@ import java.util.List;
  *
  * @author Hugo Stegrell, Pär Aronsson
  */
-public class Team implements IHasImageAndName, IBorrower {
+public class Team implements IBorrower {
     private String name;
     private final List<Integer> itemIDs = new ArrayList<>();
     private final List<Integer> memberIDs = new ArrayList<>();
     private String termsAndConditions;
     private int teamID;
     private static int nextID;
-    private Image image;
+    private String imageUrl;
 
     public Team(String teamName) throws IOException {
         this.name = teamName;
@@ -87,11 +87,11 @@ public class Team implements IHasImageAndName, IBorrower {
         return teamID;
     }
 
-    public Image getImage() {
-        return image;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setImage(Image image) {
-        this.image = image;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }
