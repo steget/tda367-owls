@@ -13,6 +13,7 @@ import storagesystem.model.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class StoreIT extends Application {
     private static List<Organisation> organisations = new ArrayList<>();
@@ -27,6 +28,8 @@ public class StoreIT extends Application {
     public void start(Stage stage) throws Exception {
         initializeBackend();
 
+        stage.setTitle("StoreIT");
+        
         Parent root = FXMLLoader.load(getClass().getResource("/login/loginPage.fxml"));
 
         Scene scene = new Scene(root);
@@ -35,7 +38,6 @@ public class StoreIT extends Application {
         stage.setHeight(800);
         stage.setResizable(false);
         stage.show();
-
     }
 
     /**
@@ -114,5 +116,20 @@ public class StoreIT extends Application {
 
     public static User getCurrentUser() {
         return currentUser;
+    }
+
+    /**
+     * Searches through the organisations and tries to find one with the input String
+     * @param organisationName Name to search after
+     * @return Organisation with @param name
+     * @throws NoSuchElementException If no such organisation could be found
+     */
+    public static Organisation findOrganisation(String organisationName) throws NoSuchElementException {
+        for (Organisation org : organisations) {
+            if (org.getName().equals(organisationName)) {
+                return org;
+            }
+        }
+        throw new NoSuchElementException("Organisation cannot be found");
     }
 }
