@@ -1,6 +1,9 @@
 package storagesystem.controller;
 
+import javafx.embed.swing.SwingFXUtils;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -10,13 +13,19 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
 import storagesystem.StorageSystem;
 import storagesystem.model.Condition;
 import storagesystem.model.IReservable;
 import storagesystem.model.Item;
 import storagesystem.model.Team;
+import storagesystem.services.PictureHandler;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
+import java.nio.Buffer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,6 +68,10 @@ public class DetailedItemViewController extends AnchorPane {
     Button itemPageReserveBtn;
     @FXML
     Button itemPageSaveButton;
+
+    private boolean isInEditMode;
+
+    private PictureHandler pictureHandler = new PictureHandler();
 
     DetailedItemViewController(IReservable reservableItem, Team itemOwner) {
         this.reservableItem = reservableItem;
@@ -132,32 +145,6 @@ public class DetailedItemViewController extends AnchorPane {
         itemPageConditionSlider.setValue(value);
     }
 
-    /**
-     * this method creates a new item and registers it to the current team.
-     *
-     * @author Pär Aronsson
-     */
-    public void editItem() {
-
-        itemPageDescriptionTA.setEditable(true);
-        itemPageUserRequirementsTA.setEditable(true);
-        itemPageNameTA.setEditable(true);
-
-    }
-
-    public void saveItem(){
-
-        reservableItem.setName(itemPageNameTA.getText());
-        reservableItem.setDescription(itemPageDescriptionTA.getText());
-        reservableItem.setUserRequirements(itemPageUserRequirementsTA.getText());
-
-        for(saveButtonClickedListener l: saveButtonListeners){
-            l.saveButtonClicked();
-
-        }
-    }
-
-
     private void setDescription(String string) {
         itemPageDescriptionTA.setText(string);
     }
@@ -215,6 +202,63 @@ public class DetailedItemViewController extends AnchorPane {
     }
     public void addSaveButtonListener(saveButtonClickedListener listener) {
         saveButtonListeners.add(listener);
+    }
+
+/******************************************************************************************************
+ * methods below is about creating and saving an iReservable.
+ ******************************************************************************************************/
+
+    /**
+     * this method creates a new item and registers it to the current team.
+     *
+     * @author Pär Aronsson
+     */
+    public void editItem() {
+
+        itemPageDescriptionTA.setEditable(true);
+        itemPageUserRequirementsTA.setEditable(true);
+        itemPageNameTA.setEditable(true);
+
+        itemPageImageView.setOnMouseClicked(event -> {
+            changeItemImage();
+        });
+
+
+    }
+
+    public void saveItem(){
+
+        reservableItem.setName(itemPageNameTA.getText());
+        reservableItem.setDescription(itemPageDescriptionTA.getText());
+        reservableItem.setUserRequirements(itemPageUserRequirementsTA.getText());
+        reservableItem.setImage(itemPageImageView.getImage());
+
+
+        //todo koppla ihop changeprofilepic metoden så man kan redigera den i realtid.
+
+        for(saveButtonClickedListener l: saveButtonListeners){
+            l.saveButtonClicked();
+        }
+    }
+
+
+    @FXML
+    void changeItemImage(){
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("jpg", "*.jpg"), new FileChooser.ExtensionFilter("png", "*.png"), new FileChooser.ExtensionFilter("jpeg", "*.jpg"));
+        File selectedFile = fileChooser.showOpenDialog(null);
+
+        if(selectedFile != null){
+            try {
+                BufferedImage selectedImage = ImageIO.read(selectedFile);
+                pictureHandler.saveProfilePic(selectedImage, itemPageNameTA.getText());
+
+            } catch(IOException exception){
+                System.out.println("Can't read image: " + selectedFile.getPath());
+            }
+        }
+
     }
 
 
