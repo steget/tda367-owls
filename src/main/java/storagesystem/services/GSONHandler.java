@@ -66,12 +66,9 @@ public class GSONHandler {
      * @throws IOException
      */
     private static void addToJson(Object objectToAdd, String fileName) throws IOException {
-        GsonBuilder gsonBuilder = Converters
-                .registerDateMidnight(Converters
-                        .registerLocalTime(Converters
-                                .registerDateTime(Converters.registerInterval(new GsonBuilder()))));
-        gsonBuilder.registerTypeAdapter(IBorrower.class, new BorrowerSerialiser());
-        gsonBuilder.registerTypeAdapter(IReservable.class, new ReservableSerialiser());
+        GsonBuilder gsonBuilder = Converters.registerInterval(new GsonBuilder());
+        gsonBuilder.registerTypeAdapter(IBorrower.class, new BorrowerSerializer());
+        gsonBuilder.registerTypeAdapter(IReservable.class, new ReservableSerializer());
         Gson gson = gsonBuilder.setPrettyPrinting().create();
         JsonArray jsonContent = gson.fromJson(new FileReader(fileName), JsonArray.class);
         Writer writer = new FileWriter(fileName);
@@ -240,8 +237,8 @@ public class GSONHandler {
 
     private static List getReservationList() throws IOException {
         GsonBuilder gsonBuilder = Converters.registerInterval(new GsonBuilder()); //Needed to handle Interval in Reservation
-        gsonBuilder.registerTypeAdapter(IBorrower.class, new BorrowerSerialiser()); //Needed to handle IBorrower in Reservation
-        gsonBuilder.registerTypeAdapter(IReservable.class, new ReservableSerialiser()); //Needed to handle IReservable in Reservation
+        gsonBuilder.registerTypeAdapter(IBorrower.class, new BorrowerSerializer()); //Needed to handle IBorrower in Reservation
+        gsonBuilder.registerTypeAdapter(IReservable.class, new ReservableSerializer()); //Needed to handle IReservable in Reservation
         Gson gson = gsonBuilder.setPrettyPrinting().create();
         List<Reservation> reservationList = new ArrayList<>();
         JsonArray jsonList = gson.fromJson(new FileReader(reservationDB), JsonArray.class);
