@@ -1,0 +1,32 @@
+[
+  {
+    "id": 0,
+    "borrower": {
+      "CLASSNAME": "storagesystem.model.User",
+      "DATA": {
+        "name": "Alberto",
+        "description": "",
+        "contactInformation": "",
+        "ID": 0
+      }
+    },
+    "interval": "2019-10-18T10:10:43.775+02:00/2019-10-19T10:10:43.775+02:00",
+    "reservedObject": {
+      "CLASSNAME": "storagesystem.model.Item",
+      "DATA": {
+        "name": "Shoes",
+        "description": "Wear them",
+        "userRequirements": "Dont break them",
+        "ID": 1,
+        "amount": 2,
+        "condition": "BAD",
+        "reservable": true,
+        "location": {
+          "name": "Mock Location",
+          "description": "This is a temporary location"
+        }
+      }
+    },
+    "status": "PENDING"
+  }
+]

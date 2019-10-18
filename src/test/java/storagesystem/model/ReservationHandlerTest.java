@@ -1,4 +1,4 @@
-package storagesystem.model;
+/*package storagesystem.model;
 
 import org.joda.time.DateTime;
 import org.joda.time.Interval;
@@ -119,3 +119,5 @@ public class ReservationHandlerTest {
     }
 
 }
+
+ */

@@ -1,5 +1,6 @@
 package storagesystem.services;
 
+import com.fatboyindustrial.gsonjodatime.Converters;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
@@ -13,7 +14,6 @@ import storagesystem.model.*;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
-import java.lang.reflect.Field;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Base64;
@@ -47,7 +47,7 @@ public class GSONHandler {
             fileName = locationDB;
         } else if (objectToAdd instanceof Organisation) {
             fileName = organisationDB;
-        } else if (objectToAdd instanceof Reservation) {
+        } else if (objectToAdd instanceof IReservation) {
             fileName = reservationDB;
         } else if (objectToAdd instanceof Team) {
             fileName = teamDB;
@@ -60,7 +60,13 @@ public class GSONHandler {
     }
 
     private static void addToJson(Object objectToAdd, String fileName) throws IOException {
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        GsonBuilder gsonBuilder = Converters
+                .registerDateMidnight(Converters
+                        .registerLocalTime(Converters
+                                .registerDateTime(Converters.registerInterval(new GsonBuilder()))));
+        gsonBuilder.registerTypeAdapter(IBorrower.class, new BorrowerSerialiser());
+        gsonBuilder.registerTypeAdapter(IReservable.class, new ReservableSerialiser());
+        Gson gson = gsonBuilder.setPrettyPrinting().create();
         JsonArray jsonContent = gson.fromJson(new FileReader(fileName), JsonArray.class);
         Writer writer = new FileWriter(fileName);
         JsonObject jsonObject;
@@ -173,7 +179,11 @@ public class GSONHandler {
     }
 
     private static List getItemList() throws IOException {
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        GsonBuilder gsonBuilder = Converters
+                .registerDateMidnight(Converters
+                        .registerLocalTime(Converters
+                                .registerDateTime(Converters.registerInterval(new GsonBuilder()))));
+        Gson gson = gsonBuilder.setPrettyPrinting().create();
         JsonArray jsonList = gson.fromJson(new FileReader(itemDB), JsonArray.class);
         List<Item> itemList = new ArrayList<>();
         for (Object o : jsonList) {
@@ -184,7 +194,11 @@ public class GSONHandler {
     }
 
     private static List getLocationList() throws IOException {
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        GsonBuilder gsonBuilder = Converters
+                .registerDateMidnight(Converters
+                        .registerLocalTime(Converters
+                                .registerDateTime(Converters.registerInterval(new GsonBuilder()))));
+        Gson gson = gsonBuilder.setPrettyPrinting().create();
         JsonArray jsonList = gson.fromJson(new FileReader(locationDB), JsonArray.class);
         List<Location> locationList = new ArrayList<>();
         for (Object o : jsonList) {
@@ -195,7 +209,11 @@ public class GSONHandler {
     }
 
     private static List getOrganisationList() throws IOException {
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        GsonBuilder gsonBuilder = Converters
+                .registerDateMidnight(Converters
+                        .registerLocalTime(Converters
+                                .registerDateTime(Converters.registerInterval(new GsonBuilder()))));
+        Gson gson = gsonBuilder.setPrettyPrinting().create();
         JsonArray jsonList = gson.fromJson(new FileReader(organisationDB), JsonArray.class);
         List<Organisation> organisationList = new ArrayList<>();
         for (Object o : jsonList) {
@@ -206,8 +224,14 @@ public class GSONHandler {
     }
 
     private static List getReservationList() throws IOException {
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        List<Object> list = new ArrayList<>();
+        GsonBuilder gsonBuilder = Converters
+                .registerDateMidnight(Converters
+                        .registerLocalTime(Converters
+                                .registerDateTime(Converters.registerInterval(new GsonBuilder()))));
+        gsonBuilder.registerTypeAdapter(IBorrower.class, new BorrowerSerialiser());
+        gsonBuilder.registerTypeAdapter(IReservable.class, new ReservableSerialiser());
+        Gson gson = gsonBuilder.setPrettyPrinting().create();
+        List<Reservation> list = new ArrayList<>();
         JsonArray jsonList = gson.fromJson(new FileReader(reservationDB), JsonArray.class);
         for (Object o : jsonList) {
             list.add(gson.fromJson(o.toString(), Reservation.class));
@@ -217,7 +241,11 @@ public class GSONHandler {
 
 
     private static List getTeamList() throws IOException {
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        GsonBuilder gsonBuilder = Converters
+                .registerDateMidnight(Converters
+                        .registerLocalTime(Converters
+                                .registerDateTime(Converters.registerInterval(new GsonBuilder()))));
+        Gson gson = gsonBuilder.setPrettyPrinting().create();
         JsonArray jsonList = gson.fromJson(new FileReader(teamDB), JsonArray.class);
         List<Team> teamList = new ArrayList<>();
         for (Object o : jsonList) {
@@ -228,7 +256,11 @@ public class GSONHandler {
     }
 
     private static List getUserList() throws IOException {
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        GsonBuilder gsonBuilder = Converters
+                .registerDateMidnight(Converters
+                        .registerLocalTime(Converters
+                                .registerDateTime(Converters.registerInterval(new GsonBuilder()))));
+        Gson gson = gsonBuilder.setPrettyPrinting().create();
         List<Object> list = new ArrayList<>();
         JsonArray jsonList = gson.fromJson(new FileReader(userDB), JsonArray.class);
         for (Object o : jsonList) {

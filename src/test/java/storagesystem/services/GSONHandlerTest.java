@@ -2,11 +2,11 @@ package storagesystem.services;
 
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.image.Image;
+import org.joda.time.DateTime;
+import org.joda.time.Interval;
 import org.junit.Assert;
 import org.junit.Test;
-import storagesystem.model.Condition;
-import storagesystem.model.Item;
-import storagesystem.model.Location;
+import storagesystem.model.*;
 
 
 import java.io.IOException;
@@ -65,6 +65,92 @@ public class GSONHandlerTest {
         for (int i = 0; i < locationList.size(); i++) {
             Assert.assertTrue(listFromJson.get(i).getName().equals(locationList.get(i).getName()));
         }
+    }
+    @Test
+    public void shouldAddOrganisationsToJSON() throws IOException {
+        JFXPanel mockJfxPanel = new JFXPanel(); //Stupid line to prevent "java.lang.RuntimeException: Internal graphics not initialized yet"
+
+
+        GSONHandler.clearJson("src/main/resources/json/organisationDB.json");
+
+        Organisation organisation1 = new Organisation("mockOrganisation");
+        Organisation organisation2 = new Organisation("another Mock Organisation (with image)");
+
+        List<Organisation> organisations = new ArrayList<>();
+        organisations.add(organisation1);
+        organisation2.setImage(new Image("pictures/informationstekniklogga.png"));
+        organisations.add(organisation2);
+
+        addListToJson(organisations);
+
+        List<Organisation> listFromJson = getListFromJson(Organisation.class);
+
+        for (int i = 0; i < organisations.size(); i++) {
+            Assert.assertTrue(listFromJson.get(i).getName().equals(organisations.get(i).getName()));
+        }
+
+
+    }
+
+    @Test
+    public void shouldAddTeamsToJSON() throws IOException {
+        JFXPanel mockJfxPanel = new JFXPanel(); //Stupid line to prevent "java.lang.RuntimeException: Internal graphics not initialized yet"
+
+        GSONHandler.clearJson("src/main/resources/json/teamDB.json");
+
+        Team team1 = new Team("MockTeam");
+        Team team2 = new Team("Team With Image");
+
+        List<Team> teams = new ArrayList<>();
+        teams.add(team1);
+        team2.setImage(new Image("pictures/creepy.jpg"));
+        teams.add(team2);
+
+        addListToJson(teams);
+
+        List<Team> listFromJson = getListFromJson(Team.class);
+
+        for (int i = 0; i < teams.size(); i++) {
+            Assert.assertTrue(listFromJson.get(i).getName().equals(teams.get(i).getName()));
+        }
+
+    }
+
+    @Test
+    public void shouldAddUsersAndReservations() throws IOException {
+        JFXPanel mockJfxPanel = new JFXPanel(); //Stupid line to prevent "java.lang.RuntimeException: Internal graphics not initialized yet"
+
+        GSONHandler.clearJson("src/main/resources/json/userDB.json");
+        GSONHandler.clearJson("src/main/resources/json/reservationDB.json");
+        Organisation mockOrg = new Organisation("IT");
+
+        mockOrg.createUser("Alberto");
+        mockOrg.createUser("Alberto2");
+
+        GSONHandler.addListToJson(mockOrg.getUsers());
+        Team team = new Team("team");
+        Item item = new Item();
+
+        ReservationHandler reservationHandler = new ReservationHandler(new ArrayList<>());
+
+        DateTime time1 = new DateTime();
+        DateTime time2 = time1.plusDays(1);
+        Interval interval1 = new Interval(time1, time2);
+
+
+        reservationHandler.createReservation(mockOrg.getUsers().get(0), interval1, item);
+
+        List<IReservation> reservations = new ArrayList<>();
+        reservations.addAll(reservationHandler.getReservations());
+        addToJson(reservations.get(0));
+
+        List<IReservation> reservations2 = new ArrayList<>();
+
+        reservations2.addAll(getListFromJson(Reservation.class));
+
+        Assert.assertTrue(reservations.get(0).equals(reservations2.get(0)));
+
+
 
     }
 }
