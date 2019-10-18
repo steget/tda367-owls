@@ -116,4 +116,13 @@ public class StoreIT extends Application {
     public static User getCurrentUser() {
         return currentUser;
     }
+
+    public static Organisation findOrganisation(String organisationName) throws NullPointerException {
+        for (Organisation org : organisations) {
+            if (org.getName().equals(organisationName)) {
+                return org;
+            }
+        }
+        throw new NullPointerException("Organisation cannot be found");
+    }
 }

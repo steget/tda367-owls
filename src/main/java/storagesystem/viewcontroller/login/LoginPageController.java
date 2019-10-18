@@ -166,7 +166,7 @@ public class LoginPageController implements Initializable {
      * @return The actual organisation from the database
      */
     private Organisation getSelectedLoginOrganisation() {
-        return findOrganisation(organisationChoiceBox.getValue());
+        return StoreIT.findOrganisation(organisationChoiceBox.getValue());
     }
 
     /**
@@ -175,18 +175,10 @@ public class LoginPageController implements Initializable {
      * @return The actual organisation from the database
      */
     private Organisation getSelectedRegisterOrganisation() {
-        return findOrganisation(regOrganisationChoiceBox.getValue());
+        return StoreIT.findOrganisation(regOrganisationChoiceBox.getValue());
     }
 
-    private Organisation findOrganisation(String organisationName) throws NullPointerException {
-        for (Organisation org :
-                StoreIT.getOrganisations()) {
-            if (org.getName().equals(organisationName)) {
-                return org;
-            }
-        }
-        throw new NullPointerException("Organisation cannot be found");
-    }
+
 
     /**
      * Checks in the selected organisation if there is an user with the name currently written in the Username textfield
