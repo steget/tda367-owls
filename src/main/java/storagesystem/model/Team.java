@@ -24,17 +24,23 @@ public class Team implements IBorrower {
 
     public Team(String teamName) throws IOException {
         this.name = teamName;
-        List<Item> itemList = GSONHandler.getListFromJson(Item.class);
-        for (int i = 0; i < itemList.size(); i++) {
-            itemIDs.add(itemList.get(i).getID());
-        }
+        termsAndConditions = "";
+        teamID = nextID;
+        nextID++;
+    }
+
+    public void addUsers() throws IOException {
         List<User> userList = GSONHandler.getListFromJson(User.class);
         for (int i = 0; i < userList.size(); i++) {
             memberIDs.add(userList.get(i).getID());
         }
-        termsAndConditions = "";
-        teamID = nextID;
-        nextID++;
+    }
+
+    public void addItems() throws IOException {
+        List<Item> itemList = GSONHandler.getListFromJson(Item.class);
+        for (int i = 0; i < itemList.size(); i++) {
+            itemIDs.add(itemList.get(i).getID());
+        }
     }
 
     /**

@@ -1,14 +1,8 @@
 [
   {
-    "name": "Location without Image",
-    "description": "Outside of my mind",
-    "imageUrl": null,
-    "ID": 3
-  },
-  {
-    "name": "Test Location With Image",
-    "description": "Inside of my mind",
-    "imageUrl": "pictures/art.png",
-    "ID": 4
+    "name": "MockLocation",
+    "description": "This location does not exist",
+    "imageUrl": "creepy.jpg",
+    "ID": 0
   }
 ]

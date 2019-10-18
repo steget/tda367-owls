@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import org.joda.time.DateTime;
 import org.joda.time.Interval;
 import storagesystem.model.*;
+import storagesystem.services.GSONHandler;
 
 
 import java.io.IOException;
@@ -39,16 +40,45 @@ public class StoreIT extends Application {
      * Loads all data into the program. Should be run at start.
      */
     private void initializeBackend() throws IOException {
-        mockData();
+        //mockData();
+
+
+        organisations.addAll(GSONHandler.getListFromJson(Organisation.class));
+        currentOrganisation = organisations.get(0);
+    }
+
+    @Override
+    public void stop() throws IOException {
+        GSONHandler.clearAllJsonFiles();
+        GSONHandler.addListToJson(organisations);
+        GSONHandler.addListToJson(currentOrganisation.getUsers());
+        GSONHandler.addListToJson(currentOrganisation.getTeams());
+        GSONHandler.addListToJson(currentOrganisation.getAllItems());
+        GSONHandler.addListToJson(currentOrganisation.getLocations());
+        GSONHandler.addListToJson(currentOrganisation.getReservationHandler().getReservations());
+
     }
 
     private static void mockData() throws IOException {
         //Hardcoded stuff for testing
-        Organisation informationsteknik = new Organisation("Informationsteknik");
-        Organisation data = new Organisation("Data");
+
+        Location location = new Location("MockLocation", "This location does not exist", "creepy.jpg");
+        Item mockItem = new Item("mockItem", "This is a description", "Behave please.",
+                2, Condition.GOOD, true, location.getID(), "pictures/art.png");
+        Item mockItem2 = new Item("mockItem nr 2", "This is a description", "Behave please.",
+                2, Condition.GOOD, true, location.getID(), "art.png");
+        GSONHandler.addToJson(location);
+        GSONHandler.addToJson(mockItem);
+        GSONHandler.addToJson(mockItem2);
 
         Team tempTeam = new Team("sexNollK");
         Team tempTeam2 = new Team("P.R.NollK");
+        GSONHandler.addToJson(tempTeam);
+        GSONHandler.addToJson(tempTeam2);
+
+        Organisation informationsteknik = new Organisation("Informationsteknik");
+        Organisation data = new Organisation("Data");
+
 
         informationsteknik.createUser("Albert");
         informationsteknik.createUser("admin");
@@ -69,12 +99,6 @@ public class StoreIT extends Application {
         tempTeam2.addMember(informationsteknik.getUsers().get(0).getID());
         tempTeam2.addMember(informationsteknik.getUsers().get(1).getID());
 
-        Location location = new Location("MockLocation", "This location does not exist", "creepy.jpg");
-        Item mockItem = new Item("mockItem", "This is a description", "Behave please.",
-                2, Condition.GOOD, true, location.getID(), "pictures/art.png");
-        Item mockItem2 = new Item("mockItem nr 2", "This is a description", "Behave please.",
-                2, Condition.GOOD, true, location.getID(), "art.png");
-
 
         Interval interval1 = new Interval(new DateTime(2019, 9, 10, 12, 40), new DateTime(2019, 9, 10, 15, 0));
         Interval interval2 = new Interval(new DateTime(2019, 9, 12, 17, 30), new DateTime(2019, 10, 16, 20, 0));
@@ -91,6 +115,10 @@ public class StoreIT extends Application {
 
         tempTeam.addItemToInventory(mockItem);
         tempTeam.addItemToInventory(mockItem2);
+
+
+
+
     }
 
     public static void main(String[] args) {

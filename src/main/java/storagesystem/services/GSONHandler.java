@@ -69,6 +69,7 @@ public class GSONHandler {
         GsonBuilder gsonBuilder = Converters.registerInterval(new GsonBuilder());
         gsonBuilder.registerTypeAdapter(IBorrower.class, new BorrowerSerializer());
         gsonBuilder.registerTypeAdapter(IReservable.class, new ReservableSerializer());
+        gsonBuilder.registerTypeAdapter(IReservation.class, new ReservationSerializer());
         gsonBuilder.serializeNulls();
         Gson gson = gsonBuilder.setPrettyPrinting().create();
         JsonArray jsonContent = gson.fromJson(new FileReader(fileName), JsonArray.class);
@@ -237,7 +238,11 @@ public class GSONHandler {
      * @throws IOException
      */
     private static List getOrganisationList() throws IOException {
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        GsonBuilder gsonBuilder = Converters.registerInterval(new GsonBuilder()); //Needed to handle Interval in Reservation
+        gsonBuilder.registerTypeAdapter(IBorrower.class, new BorrowerSerializer()); //Needed to handle IBorrower in Reservation
+        gsonBuilder.registerTypeAdapter(IReservable.class, new ReservableSerializer()); //Needed to handle IReservable in Reservation
+        gsonBuilder.registerTypeAdapter(IReservation.class, new ReservationSerializer());
+        Gson gson = gsonBuilder.setPrettyPrinting().create();
         JsonArray jsonList = gson.fromJson(new FileReader(organisationDB), JsonArray.class);
         List<Organisation> organisationList = new ArrayList<>();
         for (Object o : jsonList) {
@@ -257,6 +262,7 @@ public class GSONHandler {
         GsonBuilder gsonBuilder = Converters.registerInterval(new GsonBuilder()); //Needed to handle Interval in Reservation
         gsonBuilder.registerTypeAdapter(IBorrower.class, new BorrowerSerializer()); //Needed to handle IBorrower in Reservation
         gsonBuilder.registerTypeAdapter(IReservable.class, new ReservableSerializer()); //Needed to handle IReservable in Reservation
+        gsonBuilder.registerTypeAdapter(IReservation.class, new ReservationSerializer());
         Gson gson = gsonBuilder.setPrettyPrinting().create();
         List<Reservation> reservationList = new ArrayList<>();
         JsonArray jsonList = gson.fromJson(new FileReader(reservationDB), JsonArray.class);

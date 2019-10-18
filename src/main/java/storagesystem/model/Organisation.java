@@ -17,26 +17,26 @@ import java.util.NoSuchElementException;
  * @author Hugo Stegrell, Pär Aronsson
  */
 public class Organisation {
-    private transient final List<Item> items = new ArrayList<>();
+    private String name;
+    private String imageUrl;
+    private final List<Item> items = new ArrayList<>();
     private final List<Team> teams = new ArrayList<>();
     private final List<User> users = new ArrayList<>();
     private final List<Location> locations = new ArrayList<>();
-    private String name;
     private ReservationHandler reservationHandler;
-    private String imageUrl;
     //todo reservationHandler
 
     public Organisation(String name) throws IOException {
         this.name = name;
         this.reservationHandler = new ReservationHandler();
         List<Location> locationList = GSONHandler.getListFromJson(Location.class);
-        locations.addAll(locationList);
+        this.locations.addAll(locationList);
         List<Item> itemList = GSONHandler.getListFromJson(Item.class);
-        items.addAll(itemList);
+        this.items.addAll(itemList);
         List<Team> teamList = GSONHandler.getListFromJson(Team.class);
-        teams.addAll(teamList);
+        this.teams.addAll(teamList);/*
         List<User> userList = GSONHandler.getListFromJson(User.class);
-        users.addAll(userList);
+        users.addAll(userList);*/
 
     }
 
