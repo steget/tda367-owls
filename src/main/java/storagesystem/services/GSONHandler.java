@@ -4,10 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import storagesystem.model.Condition;
-import storagesystem.model.Item;
-
-
 import java.io.*;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
