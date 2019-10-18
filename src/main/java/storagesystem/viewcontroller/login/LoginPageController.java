@@ -28,6 +28,9 @@ import java.util.ResourceBundle;
 public class LoginPageController implements Initializable {
 
     @FXML
+    private Label loginErrorMessage;
+
+    @FXML
     private TextField userNameTextField;
 
     @FXML
@@ -116,7 +119,7 @@ public class LoginPageController implements Initializable {
 
     /**
      * Attempts to login with the entered credentials in userNameTextField and passwordTextField.
-     * If the user doesn't exist a message prints to the console.
+     * If the user doesn't exist a message shows up and fades out in the view.
      * If the login is successful the dashboard will open.
      */
     @FXML
@@ -134,7 +137,7 @@ public class LoginPageController implements Initializable {
             stage.setScene(new Scene(root));
             stage.show();
         } else {
-            System.out.println("User with name \"" + userNameTextField.getText() + "\" does not exist");
+            fadeTransition(loginErrorMessage, 10);
         }
     }
 
@@ -154,7 +157,6 @@ public class LoginPageController implements Initializable {
             fadeTransition(userRegisteredLabel, 2);
         } else {
             fadeTransition(userAlreadyExistsLabel, 3);
-            System.out.println("A user with that name already exists");
         }
     }
 

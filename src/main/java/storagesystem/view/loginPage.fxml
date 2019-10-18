@@ -29,6 +29,7 @@
                 <Label layoutX="505.0" layoutY="97.0" styleClass="smallLabel" text="Password" textAlignment="RIGHT" AnchorPane.rightAnchor="611.0" />
                 <Label layoutX="476.0" layoutY="145.0" styleClass="smallLabel" text="Organisation" textAlignment="RIGHT" AnchorPane.rightAnchor="610.0" />
             <Line endX="1100.0" startX="100.0" stroke="#727272" AnchorPane.bottomAnchor="20.0" />
+            <Label fx:id="loginErrorMessage" layoutX="982.0" layoutY="66.0" opacity="0.0" prefHeight="89.0" prefWidth="204.0" styleClass="errorMessage" text="Wrong credentials entered" wrapText="true" />
             </children>
         </AnchorPane>
         <AnchorPane fx:id="registerPane" layoutY="171.0" prefHeight="355.0" prefWidth="1200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="370.0">
