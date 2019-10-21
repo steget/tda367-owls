@@ -5,18 +5,12 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import javafx.embed.swing.SwingFXUtils;
-import javafx.scene.image.Image;
-import org.apache.commons.io.FileUtils;
 import storagesystem.model.*;
 
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
 import java.io.*;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.List;
 
 
@@ -61,6 +55,7 @@ public class GSONHandler {
 
     /**
      * Writes an Object to the json file corresponding to fileName
+     *
      * @param objectToAdd
      * @param fileName
      * @throws IOException
@@ -78,17 +73,7 @@ public class GSONHandler {
         if (jsonContent == null) {
             jsonContent = new JsonArray();
         }
-        /*
-        if (objectToAdd instanceof IHasImageAndName) {//If the objectToAdd has an Image, add imageData to jsonObject
-            try {
-                jsonObject = createJsonObjectFromIHasImageAndName((IHasImageAndName) objectToAdd, gson); //will throw NullPointerException if image isn't set.
-            } catch (NullPointerException e) {
-                jsonObject = (JsonObject) gson.toJsonTree(objectToAdd);
-                jsonObject.addProperty("imageData", "");
-            }
-        } else*/ { //if objectToAdd hasn't got an Image, add to jsonObject
-            jsonObject = (JsonObject) gson.toJsonTree(objectToAdd);
-        }
+        jsonObject = (JsonObject) gson.toJsonTree(objectToAdd);
         jsonContent.add(jsonObject);
         gson.toJson(jsonContent, writer);
 
@@ -135,28 +120,6 @@ public class GSONHandler {
     }
 
     /**
-     * Creates an Image file through createNewImageFile(), converts the image data to a Base64 String and adds imageData to Json
-     * @param o
-     * @param gson
-     * @return
-     * @throws IOException
-     */
-
-    /*private static JsonObject createJsonObjectFromIHasImageAndName(IHasImageAndName o, Gson gson) throws IOException {
-        BufferedImage bImage = SwingFXUtils.fromFXImage(o.getImage(), null);
-        File newImageFile = createNewImageFile(o);
-        ImageIO.write(bImage, "jpg", newImageFile);
-        byte[] imageInBinary = FileUtils.readFileToByteArray(newImageFile);
-        String encodedString = Base64.getEncoder().encodeToString(imageInBinary);
-        Image imageCopy = o.getImage(); //throws NullPointerException if Image is not set
-        o.setImage(null); //Set image to null to avoid invalid data in Json
-        JsonObject jsonObject = (JsonObject) gson.toJsonTree(o);
-        o.setImage(imageCopy); //Reset image
-        jsonObject.addProperty("imageData", encodedString);
-        return jsonObject;
-    }
-*/
-    /**
      * clearJson() clears a json file completely.
      *
      * @param fileName
@@ -168,6 +131,13 @@ public class GSONHandler {
         writer.flush();
         writer.close();
     }
+
+    /**
+     * clearAllJsonFiles() clears all json files declared completely.
+     *
+     * @throws IOException
+     */
+
     public static void clearAllJsonFiles() throws IOException {
         clearJson(itemDB);
         clearJson(locationDB);
@@ -180,6 +150,7 @@ public class GSONHandler {
 
     /**
      * Uses private methods to get a list.
+     *
      * @param typeOfList
      * @return a list with objects from a json file corresponding to typeOfList
      * @throws IOException
@@ -214,7 +185,6 @@ public class GSONHandler {
         for (Object o : jsonList) {
             itemList.add(gson.fromJson(o.toString(), Item.class));
         }
-        //assignImages(itemList, jsonList);
         return itemList;
     }
 
@@ -229,11 +199,12 @@ public class GSONHandler {
         for (Object o : jsonList) {
             locationList.add(gson.fromJson(o.toString(), Location.class));
         }
-        //assignImages(locationList, jsonList);
         return locationList;
     }
 
     /**
+     * Handles IBorrower, IReservable and IReservation interface types through BorrowerSerialiser, ReservableSerialiser and ReservationSerializer classes. Handles org.joda.time.Interval through Converters.registerInterval()
+     *
      * @return a list of Organisations from the organisationDB file
      * @throws IOException
      */
@@ -241,19 +212,19 @@ public class GSONHandler {
         GsonBuilder gsonBuilder = Converters.registerInterval(new GsonBuilder()); //Needed to handle Interval in Reservation
         gsonBuilder.registerTypeAdapter(IBorrower.class, new BorrowerSerializer()); //Needed to handle IBorrower in Reservation
         gsonBuilder.registerTypeAdapter(IReservable.class, new ReservableSerializer()); //Needed to handle IReservable in Reservation
-        gsonBuilder.registerTypeAdapter(IReservation.class, new ReservationSerializer());
+        gsonBuilder.registerTypeAdapter(IReservation.class, new ReservationSerializer()); //Needed to handle IReservation in Organisation
         Gson gson = gsonBuilder.setPrettyPrinting().create();
         JsonArray jsonList = gson.fromJson(new FileReader(organisationDB), JsonArray.class);
         List<Organisation> organisationList = new ArrayList<>();
         for (Object o : jsonList) {
             organisationList.add(gson.fromJson(o.toString(), Organisation.class));
         }
-        //assignImages(organisationList, jsonList);
         return organisationList;
     }
 
     /**
      * Handles IBorrower and IReservable interface types through BorrowerSerialiser and ReservableSerialiser classes. Handles org.joda.time.Interval through Converters.registerInterval()
+     *
      * @return a list of Reservations from the reservationDB file
      * @throws IOException
      */
@@ -273,7 +244,6 @@ public class GSONHandler {
     }
 
     /**
-     *
      * @return a list of Teams from the teamDB file
      * @throws IOException
      */
@@ -285,12 +255,10 @@ public class GSONHandler {
         for (Object o : jsonList) {
             teamList.add(gson.fromJson(o.toString(), Team.class));
         }
-        //assignImages(teamList, jsonList);
         return teamList;
     }
 
     /**
-     *
      * @return a list of Users from the userDB file
      * @throws IOException
      */
@@ -305,58 +273,4 @@ public class GSONHandler {
         return userList;
     }
 
-    /**
-     * Decodes the imageData from base64 to an Image. Assigns that image to IHasImageAndName o
-     * @param o
-     * @param imageData
-     * @throws IOException
-     */
-
-    private static void assignImage(IHasImageAndName o, String imageData) throws IOException {
-        byte[] decodedBytes = Base64.getDecoder().decode(imageData);
-        File newImageFile = createNewImageFile(o);
-        FileUtils.writeByteArrayToFile(newImageFile, decodedBytes);
-        Image itemImage = new Image(newImageFile.toURI().toString());
-        o.setImage(itemImage);
-    }
-
-    /**
-     * Assigns multiple images from jsonList to list through assignImage()
-     * @param list
-     * @param jsonList
-     * @throws IOException
-     */
-
-    private static void assignImages(List list, JsonArray jsonList) throws IOException {
-        for (int i = 0; i < jsonList.size(); i++) {
-            String imageData = jsonList.get(i).getAsJsonObject().get("imageData").getAsString();
-            if (!imageData.isEmpty()) {//If imageData is not empty, create an image with the data.
-                assignImage((IHasImageAndName) list.get(i), imageData);
-            }
-        }
-    }
-
-    /**
-     * Creates a new image file in the corresponding folder of IHasImageAndName o
-     * @param o
-     * @return the newly created .jpg File
-     */
-
-    private static File createNewImageFile(IHasImageAndName o) {
-        String itemPictureFolder = "src/main/resources/pictures/item/";
-        String locationPictureFolder = "src/main/resources/pictures/location/";
-        String organisationPictureFolder = "src/main/resources/pictures/organisation/";
-        String teamPictureFolder = "src/main/resources/pictures/team/";
-        if (o instanceof Item) {
-            return new File(itemPictureFolder + ((Item) o).getID() + ".jpg");
-        } else if (o instanceof Location) {
-            return new File(locationPictureFolder + o.getName() + ".jpg");
-        } else if (o instanceof Organisation) {
-            return new File(organisationPictureFolder + o.getName() + ".jpg");
-        } else if (o instanceof Team) {
-            return new File(teamPictureFolder + o.getName() + ".jpg");
-        } else {
-            throw new IllegalArgumentException("Object does not have a corresponding json file.");
-        }
-    }
 }
