@@ -78,4 +78,18 @@ public class User implements IBorrower {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    /**
+     * Compares ID's if o is a reservation
+     *
+     * @param   obj   the reference object with which to compare.
+     * @return  {@code true} if this object is the same as the obj argument; {@code false} otherwise.
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        User comparingUser = (User) obj;
+        return ID == comparingUser.ID;
+    }
 }
