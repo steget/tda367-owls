@@ -1,8 +1,41 @@
 [
   {
-    "name": "mockOrganisation",
+    "name": "Informationsteknik",
     "imageUrl": null,
     "items": [
+      {
+        "name": "name",
+        "description": "description",
+        "userRequirements": "UserReq",
+        "ID": 1,
+        "amount": 10,
+        "condition": "BAD",
+        "reservable": false,
+        "locationID": 2,
+        "imageUrl": "pictures/art.png"
+      },
+      {
+        "name": "name",
+        "description": "description",
+        "userRequirements": "UserReq",
+        "ID": 2,
+        "amount": 10,
+        "condition": "GREAT",
+        "reservable": false,
+        "locationID": 2,
+        "imageUrl": "pictures/creepy.jpg"
+      },
+      {
+        "name": "imageitem",
+        "description": "Desc",
+        "userRequirements": "userreq",
+        "ID": 4,
+        "amount": 13,
+        "condition": "GREAT",
+        "reservable": true,
+        "locationID": 3,
+        "imageUrl": "pictures/art.png"
+      },
       {
         "name": "mockItem",
         "description": "This is a description",
@@ -24,31 +57,33 @@
         "reservable": true,
         "locationID": 0,
         "imageUrl": "art.png"
-      },
-      {
-        "name": "name",
-        "description": "description",
-        "userRequirements": "UserReq",
-        "ID": 0,
-        "amount": 10,
-        "condition": "GREAT",
-        "reservable": false,
-        "locationID": 1,
-        "imageUrl": null
-      },
-      {
-        "name": "name",
-        "description": "description",
-        "userRequirements": "UserReq",
-        "ID": 0,
-        "amount": 10,
-        "condition": "GREAT",
-        "reservable": false,
-        "locationID": 1,
-        "imageUrl": null
       }
     ],
     "teams": [
+      {
+        "name": "MockTeam",
+        "itemIDs": [],
+        "memberIDs": [],
+        "termsAndConditions": "",
+        "teamID": 1,
+        "imageUrl": null
+      },
+      {
+        "name": "Team With Image",
+        "itemIDs": [],
+        "memberIDs": [],
+        "termsAndConditions": "",
+        "teamID": 2,
+        "imageUrl": "pictures/creepy.jpg"
+      },
+      {
+        "name": "TestTeam",
+        "itemIDs": [],
+        "memberIDs": [],
+        "termsAndConditions": "",
+        "teamID": 3,
+        "imageUrl": null
+      },
       {
         "name": "sexNollK",
         "itemIDs": [],
@@ -86,8 +121,374 @@
           0,
           1
         ],
-        "termsAndConditions": "this is another cuking account",
+        "termsAndConditions": "text 2",
         "teamID": 1,
+        "imageUrl": null
+      }
+    ],
+    "users": [
+      {
+        "name": "Albert",
+        "description": "",
+        "contactInformation": "",
+        "ID": 0
+      },
+      {
+        "name": "admin",
+        "description": "",
+        "contactInformation": "",
+        "ID": 1
+      },
+      {
+        "name": "eke",
+        "description": "",
+        "contactInformation": "",
+        "ID": 2
+      },
+      {
+        "name": "kvick",
+        "description": "",
+        "contactInformation": "",
+        "ID": 3
+      },
+      {
+        "name": "sponken",
+        "description": "",
+        "contactInformation": "",
+        "ID": 4
+      },
+      {
+        "name": "giff",
+        "description": "",
+        "contactInformation": "",
+        "ID": 5
+      },
+      {
+        "name": "steget",
+        "description": "",
+        "contactInformation": "",
+        "ID": 6
+      },
+      {
+        "name": "Nisse69",
+        "description": "",
+        "contactInformation": "",
+        "ID": 7
+      },
+      {
+        "name": "NewUser14",
+        "description": "New user to test next ID",
+        "contactInformation": "",
+        "ID": 8
+      },
+      {
+        "name": "newuser69",
+        "description": "Helloj my name is newuser69 beastmastery is the shite",
+        "contactInformation": "",
+        "ID": 9
+      }
+    ],
+    "locations": [
+      {
+        "name": "Location without Image",
+        "description": "Outside of my mind",
+        "imageUrl": null,
+        "ID": 3
+      },
+      {
+        "name": "Test Location With Image",
+        "description": "Inside of my mind",
+        "imageUrl": "pictures/art.png",
+        "ID": 4
+      },
+      {
+        "name": "MockLocation",
+        "description": "This location does not exist",
+        "imageUrl": "creepy.jpg",
+        "ID": 0
+      }
+    ],
+    "reservationHandler": {
+      "reservations": [
+        {
+          "CLASSNAME": "storagesystem.model.Reservation",
+          "DATA": {
+            "id": 0,
+            "borrower": {
+              "CLASSNAME": "storagesystem.model.Team",
+              "DATA": {
+                "name": "MockTeam",
+                "itemIDs": [],
+                "memberIDs": [],
+                "termsAndConditions": "",
+                "teamID": 1,
+                "imageUrl": null
+              }
+            },
+            "interval": "2019-09-10T12:40:00.000+02:00/2019-09-10T15:00:00.000+02:00",
+            "reservedObject": {
+              "CLASSNAME": "storagesystem.model.Item",
+              "DATA": {
+                "name": "mockItem",
+                "description": "This is a description",
+                "userRequirements": "Behave please.",
+                "ID": 0,
+                "amount": 2,
+                "condition": "GOOD",
+                "reservable": true,
+                "locationID": 0,
+                "imageUrl": "pictures/art.png"
+              }
+            },
+            "status": "APPROVED"
+          }
+        },
+        {
+          "CLASSNAME": "storagesystem.model.Reservation",
+          "DATA": {
+            "id": 1,
+            "borrower": {
+              "CLASSNAME": "storagesystem.model.Team",
+              "DATA": {
+                "name": "MockTeam",
+                "itemIDs": [],
+                "memberIDs": [],
+                "termsAndConditions": "",
+                "teamID": 1,
+                "imageUrl": null
+              }
+            },
+            "interval": "2019-09-12T17:30:00.000+02:00/2019-10-16T20:00:00.000+02:00",
+            "reservedObject": {
+              "CLASSNAME": "storagesystem.model.Item",
+              "DATA": {
+                "name": "mockItem",
+                "description": "This is a description",
+                "userRequirements": "Behave please.",
+                "ID": 0,
+                "amount": 2,
+                "condition": "GOOD",
+                "reservable": true,
+                "locationID": 0,
+                "imageUrl": "pictures/art.png"
+              }
+            },
+            "status": "APPROVED"
+          }
+        }
+      ]
+    }
+  },
+  {
+    "name": "Data",
+    "imageUrl": null,
+    "items": [
+      {
+        "name": "name",
+        "description": "description",
+        "userRequirements": "UserReq",
+        "ID": 1,
+        "amount": 10,
+        "condition": "BAD",
+        "reservable": false,
+        "locationID": 2,
+        "imageUrl": "pictures/art.png"
+      },
+      {
+        "name": "name",
+        "description": "description",
+        "userRequirements": "UserReq",
+        "ID": 2,
+        "amount": 10,
+        "condition": "GREAT",
+        "reservable": false,
+        "locationID": 2,
+        "imageUrl": "pictures/creepy.jpg"
+      },
+      {
+        "name": "imageitem",
+        "description": "Desc",
+        "userRequirements": "userreq",
+        "ID": 4,
+        "amount": 13,
+        "condition": "GREAT",
+        "reservable": true,
+        "locationID": 3,
+        "imageUrl": "pictures/art.png"
+      },
+      {
+        "name": "mockItem",
+        "description": "This is a description",
+        "userRequirements": "Behave please.",
+        "ID": 0,
+        "amount": 2,
+        "condition": "GOOD",
+        "reservable": true,
+        "locationID": 0,
+        "imageUrl": "pictures/art.png"
+      },
+      {
+        "name": "mockItem nr 2",
+        "description": "This is a description",
+        "userRequirements": "Behave please.",
+        "ID": 1,
+        "amount": 2,
+        "condition": "GOOD",
+        "reservable": true,
+        "locationID": 0,
+        "imageUrl": "art.png"
+      }
+    ],
+    "teams": [
+      {
+        "name": "MockTeam",
+        "itemIDs": [],
+        "memberIDs": [],
+        "termsAndConditions": "",
+        "teamID": 1,
+        "imageUrl": null
+      },
+      {
+        "name": "Team With Image",
+        "itemIDs": [],
+        "memberIDs": [],
+        "termsAndConditions": "",
+        "teamID": 2,
+        "imageUrl": "pictures/creepy.jpg"
+      },
+      {
+        "name": "TestTeam",
+        "itemIDs": [],
+        "memberIDs": [],
+        "termsAndConditions": "",
+        "teamID": 3,
+        "imageUrl": null
+      },
+      {
+        "name": "sexNollK",
+        "itemIDs": [],
+        "memberIDs": [],
+        "termsAndConditions": "",
+        "teamID": 0,
+        "imageUrl": null
+      },
+      {
+        "name": "P.R.NollK",
+        "itemIDs": [],
+        "memberIDs": [],
+        "termsAndConditions": "",
+        "teamID": 1,
+        "imageUrl": null
+      }
+    ],
+    "users": [],
+    "locations": [
+      {
+        "name": "Location without Image",
+        "description": "Outside of my mind",
+        "imageUrl": null,
+        "ID": 3
+      },
+      {
+        "name": "Test Location With Image",
+        "description": "Inside of my mind",
+        "imageUrl": "pictures/art.png",
+        "ID": 4
+      },
+      {
+        "name": "MockLocation",
+        "description": "This location does not exist",
+        "imageUrl": "creepy.jpg",
+        "ID": 0
+      }
+    ],
+    "reservationHandler": {
+      "reservations": []
+    }
+  },
+  {
+    "name": "mockOrganisation",
+    "imageUrl": null,
+    "items": [
+      {
+        "name": "name",
+        "description": "description",
+        "userRequirements": "UserReq",
+        "ID": 1,
+        "amount": 10,
+        "condition": "BAD",
+        "reservable": false,
+        "locationID": 2,
+        "imageUrl": "pictures/art.png"
+      },
+      {
+        "name": "name",
+        "description": "description",
+        "userRequirements": "UserReq",
+        "ID": 2,
+        "amount": 10,
+        "condition": "GREAT",
+        "reservable": false,
+        "locationID": 2,
+        "imageUrl": "pictures/creepy.jpg"
+      },
+      {
+        "name": "imageitem",
+        "description": "Desc",
+        "userRequirements": "userreq",
+        "ID": 4,
+        "amount": 13,
+        "condition": "GREAT",
+        "reservable": true,
+        "locationID": 3,
+        "imageUrl": "pictures/art.png"
+      },
+      {
+        "name": "name",
+        "description": "description",
+        "userRequirements": "UserReq",
+        "ID": 0,
+        "amount": 10,
+        "condition": "GREAT",
+        "reservable": false,
+        "locationID": 1,
+        "imageUrl": null
+      },
+      {
+        "name": "name",
+        "description": "description",
+        "userRequirements": "UserReq",
+        "ID": 0,
+        "amount": 10,
+        "condition": "GREAT",
+        "reservable": false,
+        "locationID": 1,
+        "imageUrl": null
+      }
+    ],
+    "teams": [
+      {
+        "name": "MockTeam",
+        "itemIDs": [],
+        "memberIDs": [],
+        "termsAndConditions": "",
+        "teamID": 1,
+        "imageUrl": null
+      },
+      {
+        "name": "Team With Image",
+        "itemIDs": [],
+        "memberIDs": [],
+        "termsAndConditions": "",
+        "teamID": 2,
+        "imageUrl": "pictures/creepy.jpg"
+      },
+      {
+        "name": "TestTeam",
+        "itemIDs": [],
+        "memberIDs": [],
+        "termsAndConditions": "",
+        "teamID": 3,
         "imageUrl": null
       },
       {
@@ -102,10 +503,16 @@
     "users": [],
     "locations": [
       {
-        "name": "MockLocation",
-        "description": "This location does not exist",
-        "imageUrl": "creepy.jpg",
-        "ID": 0
+        "name": "Location without Image",
+        "description": "Outside of my mind",
+        "imageUrl": null,
+        "ID": 3
+      },
+      {
+        "name": "Test Location With Image",
+        "description": "Inside of my mind",
+        "imageUrl": "pictures/art.png",
+        "ID": 4
       },
       {
         "name": "Location without Image",
@@ -153,26 +560,37 @@
     "imageUrl": "pictures/informationstekniklogga.png",
     "items": [
       {
-        "name": "mockItem",
-        "description": "This is a description",
-        "userRequirements": "Behave please.",
-        "ID": 0,
-        "amount": 2,
-        "condition": "GOOD",
-        "reservable": true,
-        "locationID": 0,
+        "name": "name",
+        "description": "description",
+        "userRequirements": "UserReq",
+        "ID": 1,
+        "amount": 10,
+        "condition": "BAD",
+        "reservable": false,
+        "locationID": 2,
         "imageUrl": "pictures/art.png"
       },
       {
-        "name": "mockItem nr 2",
-        "description": "This is a description",
-        "userRequirements": "Behave please.",
-        "ID": 1,
-        "amount": 2,
-        "condition": "GOOD",
+        "name": "name",
+        "description": "description",
+        "userRequirements": "UserReq",
+        "ID": 2,
+        "amount": 10,
+        "condition": "GREAT",
+        "reservable": false,
+        "locationID": 2,
+        "imageUrl": "pictures/creepy.jpg"
+      },
+      {
+        "name": "imageitem",
+        "description": "Desc",
+        "userRequirements": "userreq",
+        "ID": 4,
+        "amount": 13,
+        "condition": "GREAT",
         "reservable": true,
-        "locationID": 0,
-        "imageUrl": "art.png"
+        "locationID": 3,
+        "imageUrl": "pictures/art.png"
       },
       {
         "name": "name",
@@ -199,15 +617,7 @@
     ],
     "teams": [
       {
-        "name": "sexNollK",
-        "itemIDs": [],
-        "memberIDs": [],
-        "termsAndConditions": "",
-        "teamID": 0,
-        "imageUrl": null
-      },
-      {
-        "name": "P.R.NollK",
+        "name": "MockTeam",
         "itemIDs": [],
         "memberIDs": [],
         "termsAndConditions": "",
@@ -215,28 +625,19 @@
         "imageUrl": null
       },
       {
-        "name": "sexNollK",
-        "itemIDs": [
-          0,
-          1
-        ],
-        "memberIDs": [
-          0,
-          1
-        ],
-        "termsAndConditions": "För att låna våra prylar måste prylen vara i samma skick som den var när den lånades ut. Behövs den diskas så diska den osv. Prylen ska också vara tillbaka på samma plats igen",
-        "teamID": 0,
-        "imageUrl": null
+        "name": "Team With Image",
+        "itemIDs": [],
+        "memberIDs": [],
+        "termsAndConditions": "",
+        "teamID": 2,
+        "imageUrl": "pictures/creepy.jpg"
       },
       {
-        "name": "P.R.NollK",
+        "name": "TestTeam",
         "itemIDs": [],
-        "memberIDs": [
-          0,
-          1
-        ],
-        "termsAndConditions": "this is another cuking account",
-        "teamID": 1,
+        "memberIDs": [],
+        "termsAndConditions": "",
+        "teamID": 3,
         "imageUrl": null
       },
       {
@@ -251,10 +652,16 @@
     "users": [],
     "locations": [
       {
-        "name": "MockLocation",
-        "description": "This location does not exist",
-        "imageUrl": "creepy.jpg",
-        "ID": 0
+        "name": "Location without Image",
+        "description": "Outside of my mind",
+        "imageUrl": null,
+        "ID": 3
+      },
+      {
+        "name": "Test Location With Image",
+        "description": "Inside of my mind",
+        "imageUrl": "pictures/art.png",
+        "ID": 4
       },
       {
         "name": "Location without Image",

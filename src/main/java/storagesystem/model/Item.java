@@ -1,7 +1,5 @@
 package storagesystem.model;
 
-import javafx.scene.image.Image;
-
 import java.util.Objects;
 
 
@@ -108,6 +106,10 @@ public class Item implements IReservable{
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public static void setNextID(int nextID) {
+        Item.nextID = nextID;
     }
 
     @Override

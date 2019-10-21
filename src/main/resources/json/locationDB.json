@@ -10,5 +10,11 @@
     "description": "Inside of my mind",
     "imageUrl": "pictures/art.png",
     "ID": 4
+  },
+  {
+    "name": "MockLocation",
+    "description": "This location does not exist",
+    "imageUrl": "creepy.jpg",
+    "ID": 0
   }
 ]

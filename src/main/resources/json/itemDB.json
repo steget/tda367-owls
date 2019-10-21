@@ -31,5 +31,27 @@
     "reservable": true,
     "locationID": 3,
     "imageUrl": "pictures/art.png"
+  },
+  {
+    "name": "mockItem",
+    "description": "This is a description",
+    "userRequirements": "Behave please.",
+    "ID": 0,
+    "amount": 2,
+    "condition": "GOOD",
+    "reservable": true,
+    "locationID": 0,
+    "imageUrl": "pictures/art.png"
+  },
+  {
+    "name": "mockItem nr 2",
+    "description": "This is a description",
+    "userRequirements": "Behave please.",
+    "ID": 1,
+    "amount": 2,
+    "condition": "GOOD",
+    "reservable": true,
+    "locationID": 0,
+    "imageUrl": "art.png"
   }
 ]

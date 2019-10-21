@@ -10,10 +10,13 @@ import org.joda.time.DateTime;
 import org.joda.time.Interval;
 import storagesystem.model.*;
 import storagesystem.services.GSONHandler;
+import storagesystem.services.IDHandler;
 
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class StoreIT extends Application {
@@ -42,10 +45,13 @@ public class StoreIT extends Application {
     private void initializeBackend() throws IOException {
         //mockData();
 
-
         organisations.addAll(GSONHandler.getListFromJson(Organisation.class));
+        IDHandler.updateAllIDs(organisations);
         currentOrganisation = organisations.get(0);
     }
+
+
+
 
     @Override
     public void stop() throws IOException {
@@ -115,8 +121,6 @@ public class StoreIT extends Application {
 
         tempTeam.addItemToInventory(mockItem);
         tempTeam.addItemToInventory(mockItem2);
-
-
 
 
     }

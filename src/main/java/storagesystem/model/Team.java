@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author Hugo Stegrell, Pär Aronsson
  */
-public class Team implements IBorrower {
+public class Team implements IBorrower{
     private String name;
     private final List<Integer> itemIDs = new ArrayList<>();
     private final List<Integer> memberIDs = new ArrayList<>();
@@ -99,5 +99,9 @@ public class Team implements IBorrower {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public static void setNextID(int nextID) {
+        Team.nextID = nextID;
     }
 }

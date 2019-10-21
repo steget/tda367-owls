@@ -20,7 +20,7 @@ public class User {
         this.contactInformation = contactInformation;
 
         //set ID and update lastID
-        ID = nextID; //Todo: ID Resets to 0 after each run, no matter how many Users there are.
+        ID = nextID;
         nextID++;
     }
 
@@ -61,5 +61,9 @@ public class User {
 
     public int getID() {
         return ID;
+    }
+
+    public static void setNextID(int nextID) {
+        User.nextID = nextID;
     }
 }
