@@ -1,24 +1,23 @@
 package storagesystem.controller;
 
-import javafx.embed.swing.SwingFXUtils;
-import javafx.event.ActionEvent;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import storagesystem.StorageSystem;
 import storagesystem.model.Condition;
 import storagesystem.model.IReservable;
-import storagesystem.model.Item;
+import storagesystem.model.Location;
 import storagesystem.model.Team;
 import storagesystem.services.PictureHandler;
 
@@ -26,7 +25,6 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.nio.Buffer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,12 +33,15 @@ import java.util.List;
  *
  * @author Jonathan Eksberg, Carl Lindh
  */
+
+//todo refactor and make code good looking.
 public class DetailedItemViewController extends AnchorPane {
     private final IReservable reservableItem;
     private final Team itemOwner;
+    private List<Location> locationList;
+    private boolean isInEditMode;
+    ObservableList<String> locationNames;
 
-    @FXML
-    private AnchorPane rootPane;
     @FXML
     private AnchorPane contentPane;
     @FXML
@@ -52,13 +53,7 @@ public class DetailedItemViewController extends AnchorPane {
     @FXML
     private Label itemPageIDLabel;
     @FXML
-    private Label itemPageAmountLabel;
-    @FXML
-    private Label itemPageLocationLabel;
-    @FXML
     private Label itemPageTeamOwnerLabel;
-    @FXML
-    private Label itemPageReservableLabel;
     @FXML
     private Slider itemPageConditionSlider;
     @FXML
@@ -66,12 +61,19 @@ public class DetailedItemViewController extends AnchorPane {
     @FXML
     private TextArea itemPageUserRequirementsTA;
     @FXML
+    private ChoiceBox isReservableChoiceBox;
+    @FXML
+    private TextArea itemPageAmountTA;
+    @FXML
+    private ChoiceBox itemPageLocationChoicebox;
+
+
+    @FXML
     Button itemPageReserveBtn;
     @FXML
     Button itemPageSaveButton;
     @FXML
-    Text changeImageTEXT;
-    private boolean isInEditMode;
+    private Pane editPane;
 
     private PictureHandler pictureHandler = new PictureHandler();
 
@@ -93,11 +95,39 @@ public class DetailedItemViewController extends AnchorPane {
     }
 
     private void initialize() {
+        locationList = StorageSystem.getCurrentOrganisation().getLocations();
+        isReservableChoiceBox.setItems(FXCollections.observableArrayList("True", "False"));
         updateAllVisibleFields();
         closeButtonImageView.setImage(new Image("pictures/close-button.png"));
+        switch (reservableItem.getCondition()) {
+            case BAD:
+                itemPageConditionSlider.setValue(0);
+                break;
+            case GOOD:
+                itemPageConditionSlider.setValue(1);
+                break;
+            case GREAT:
+                itemPageConditionSlider.setValue(2);
+                break;
+        }
+        /**
+         * listens to change in amount textArea.
+         * if its a letter it doesn't write anything.
+         */
+        itemPageAmountTA.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue,
+                                String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    itemPageAmountTA.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
 
         //consume click so the box doesn't close itself
         contentPane.setOnMouseClicked(Event::consume);
+
+
     }
 
     /**
@@ -110,11 +140,36 @@ public class DetailedItemViewController extends AnchorPane {
         setIDLabel("" + reservableItem.getID());
         setAmountLabel("" + reservableItem.getAmount());
         setConditionSlider(reservableItem.getCondition());
-        setReservableLabel("" + reservableItem.isReservable());
         setReservableBtn(reservableItem.isReservable());
-        setLocationLabel(reservableItem.getLocation().getName());
         setImage(reservableItem.getImage());
         setTeamOwnerLabel(itemOwner.getName());
+        setReservableChoiceBox();
+        setLocationChoicebox();
+    }
+
+    private void setLocationChoicebox() {
+        ObservableList<String> locationNames = FXCollections.observableArrayList();
+        for (Location l : locationList) {
+            locationNames.add(l.getName());
+        }
+        itemPageLocationChoicebox.setItems(locationNames);
+
+        for (String s : locationNames) {
+            if (s.equals(reservableItem.getLocation().getName())) {
+                itemPageLocationChoicebox.getSelectionModel().select(s);
+            }
+        }
+
+
+    }
+
+    private void setReservableChoiceBox() {
+        if (reservableItem.isReservable()) {
+            isReservableChoiceBox.getSelectionModel().select(0);
+        } else {
+            isReservableChoiceBox.getSelectionModel().select(1);
+        }
+
     }
 
     @FXML
@@ -168,19 +223,12 @@ public class DetailedItemViewController extends AnchorPane {
     }
 
     private void setAmountLabel(String amount) {
-        itemPageAmountLabel.setText("Amount: " + amount);
+        itemPageAmountTA.setText(amount);
     }
 
-    private void setLocationLabel(String location) {
-        itemPageLocationLabel.setText("Location: " + location);
-    }
 
     private void setTeamOwnerLabel(String teamOwner) {
         itemPageTeamOwnerLabel.setText("Owner: " + teamOwner);
-    }
-
-    private void setReservableLabel(String reservable) {
-        itemPageReservableLabel.setText("Reservable: " + reservable);
     }
 
     private void setReservableBtn(boolean reservable) {
@@ -202,12 +250,13 @@ public class DetailedItemViewController extends AnchorPane {
     public void addDetailListener(DetailedItemViewListener listener) {
         detailListeners.add(listener);
     }
+
     public void addSaveButtonListener(saveButtonClickedListener listener) {
         saveButtonListeners.add(listener);
     }
 
 /******************************************************************************************************
- * methods below is about creating and saving an iReservable.
+ * methods below is about EDITITNG and SAVING an iReservable.
  ******************************************************************************************************/
 
     /**
@@ -217,59 +266,87 @@ public class DetailedItemViewController extends AnchorPane {
      */
     public void editItem() {
 
+        itemPageReserveBtn.setVisible(false);
+        itemPageAmountTA.setEditable(true);
+        itemPageSaveButton.setVisible(true);
         itemPageDescriptionTA.setEditable(true);
         itemPageUserRequirementsTA.setEditable(true);
         itemPageNameTA.setEditable(true);
-        changeImageTEXT.setVisible(true);
-
+        isReservableChoiceBox.setDisable(false);
+        editPane.toFront();
+        itemPageConditionSlider.setDisable(false);
         itemPageImageView.setOnMouseClicked(event -> {
             changeItemImage();
         });
-
-
-
-
     }
 
     /**
      * saves the changes to the current item.
      */
-    public void saveItem(){
+    public void saveItem() {
 
         reservableItem.setName(itemPageNameTA.getText());
         reservableItem.setDescription(itemPageDescriptionTA.getText());
         reservableItem.setUserRequirements(itemPageUserRequirementsTA.getText());
         reservableItem.setImage(itemPageImageView.getImage());
-
-
-        //todo koppla ihop changeprofilepic metoden så man kan redigera den i realtid.
-
-        for(saveButtonClickedListener l: saveButtonListeners){
+        reservableItem.setReservable(isReservableChoiceBox.getSelectionModel().getSelectedIndex() == 0);
+        saveCondition((int) itemPageConditionSlider.getValue());
+        saveLocation(itemPageLocationChoicebox.getValue().toString());
+        reservableItem.setAmount(Integer.valueOf(itemPageAmountTA.getText()));
+        for (saveButtonClickedListener l : saveButtonListeners) {
             l.saveButtonClicked();
         }
+
     }
 
+    /**
+     * checks if the choicebox string value is equal to the location name and if so, it saves the location to the item.
+     *
+     * @param s
+     */
+    private void saveLocation(String s) {
 
-    @FXML
-    void changeItemImage(){
-
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("jpg", "*.jpg"), new FileChooser.ExtensionFilter("png", "*.png"), new FileChooser.ExtensionFilter("jpeg", "*.jpg"));
-        File selectedFile = fileChooser.showOpenDialog(null);
-
-        if(selectedFile != null){
-            try {
-                BufferedImage selectedImage = ImageIO.read(selectedFile);
-                pictureHandler.saveItemImagePic(selectedImage, ""+reservableItem.getID(), itemPageNameTA.getText() );
-                itemPageImageView.setImage(pictureHandler.getItemImage(""+reservableItem.getID(), itemPageNameTA.getText()));
-
-            } catch(IOException exception){
-                System.out.println("Can't read image: " + selectedFile.getPath());
+        for (Location l : locationList) {
+            if (l.getName().equals(s)) {
+                reservableItem.setLocation(l);
             }
         }
 
     }
 
+    private void saveCondition(int value) {
+        switch (value) {
+            case 0:
+                reservableItem.setCondition(Condition.BAD);
+                break;
+            case 1:
+                reservableItem.setCondition(Condition.GOOD);
+                break;
+            case 2:
+                reservableItem.setCondition(Condition.GREAT);
+                break;
+        }
+    }
+
+
+    @FXML
+    void changeItemImage() {
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("jpg", "*.jpg"), new FileChooser.ExtensionFilter("png", "*.png"), new FileChooser.ExtensionFilter("jpeg", "*.jpg"));
+        File selectedFile = fileChooser.showOpenDialog(null);
+
+        if (selectedFile != null) {
+            try {
+                BufferedImage selectedImage = ImageIO.read(selectedFile);
+                pictureHandler.saveItemImagePic(selectedImage, "" + reservableItem.getID(), itemPageNameTA.getText());
+                itemPageImageView.setImage(pictureHandler.getItemImage("" + reservableItem.getID(), itemPageNameTA.getText()));
+
+            } catch (IOException exception) {
+                System.out.println("Can't read image: " + selectedFile.getPath());
+            }
+        }
+    }
 
 
     /**
@@ -282,12 +359,7 @@ public class DetailedItemViewController extends AnchorPane {
     /**
      * listens to the savebutton
      */
-    interface saveButtonClickedListener{
-       void saveButtonClicked();
+    interface saveButtonClickedListener {
+        void saveButtonClicked();
     }
 }
-
-
-
-
-

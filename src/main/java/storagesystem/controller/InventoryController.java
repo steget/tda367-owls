@@ -114,21 +114,13 @@ public class InventoryController implements Initializable {
      */
     private void listItemClicked(IReservable item){
         detailView = new DetailedItemViewController(item, StorageSystem.getCurrentOrganisation().getItemOwner(item));
-        modifyDetailView(detailView);
         rootPane.getChildren().add(detailView);
         detailView.addDetailListener(this::detailItemViewClicked);
         detailView.addSaveButtonListener(this::saveButtonClicked);
         detailView.editItem();
     }
 
-    /**
-     * modifies a DetailedItemViewController so that it can be used to create items instead of reserving them.
-     * @param detailView
-     */
-    private void modifyDetailView(DetailedItemViewController detailView) {
-        detailView.itemPageReserveBtn.setVisible(false);
-        detailView.itemPageSaveButton.setVisible(true);
-    }
+
 
     /**
      * removes the detailed itemView from rootPane.

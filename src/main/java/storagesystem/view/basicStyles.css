@@ -32,3 +32,7 @@
 .largeLabel{
     -fx-font-size: 36px;
 }
+.choice-box{}
+.choice-box .label {
+     -fx-text-fill: black;
+}

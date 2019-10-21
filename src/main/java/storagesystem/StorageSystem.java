@@ -2,6 +2,7 @@ package storagesystem;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.LoadException;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -16,7 +17,7 @@ public class StorageSystem extends Application {
     private static User currentUser;
     private static Organisation currentOrganisation;
     private static Team currentTeam;
-
+    // added a static list of locations that can be accessed everywhere.
     @Override
     public void start(Stage stage) throws Exception {
         initializeBackend();
@@ -62,11 +63,15 @@ public class StorageSystem extends Application {
         tempTeam2.addMember(informationsteknik.getUsers().get(0).getID());
         tempTeam2.addMember(informationsteknik.getUsers().get(1).getID());
 
-        Location location = new Location("MockLocation", "This location does not exist");
+        Location MockLocation = new Location("Hubben", "This location does not exist");
+        Location MockLocation2 = new Location("Garaget", "This location is unavailable");
+        //temporary new location
+        informationsteknik.getLocations().add(MockLocation);
+        informationsteknik.getLocations().add(MockLocation2);
         Item mockItem = new Item("mockItem", "Jag tillhör sexNollK", "Behave please.",
-                2, Condition.GOOD, true, location, new Image("/creepy.jpg"));
+                2, Condition.GOOD, true, MockLocation, new Image("/pictures/items/0-mockItem.jpg"));
         Item mockItem2 = new Item("mockItem nr 2", "This is a description", "Behave please.",
-                2, Condition.GOOD, true, location, new Image("art.png"));
+                2, Condition.GREAT, false, MockLocation2, new Image("art.png"));
 
         organisations.add(informationsteknik);
         organisations.add(data);
@@ -106,5 +111,7 @@ public class StorageSystem extends Application {
     public static void setCurrentTeam(Team currentTeam) {
         StorageSystem.currentTeam = currentTeam;
     }
+
+
 }
 

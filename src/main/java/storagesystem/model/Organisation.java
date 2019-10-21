@@ -13,6 +13,11 @@ import java.util.NoSuchElementException;
 public class Organisation {
     private final List<Team> teams = new ArrayList<>();
     private final List<User> users = new ArrayList<>();
+
+
+
+    private List<Location> locations = new ArrayList<>();
+
     private String name;
     //todo reservationHandler
 
@@ -128,4 +133,8 @@ public class Organisation {
         }
         throw new NoSuchElementException("Item owner could not be found");
     }
+    public List<Location> getLocations() {
+        return locations;
+    }
+
 }

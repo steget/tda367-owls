@@ -17,6 +17,7 @@ import java.util.ArrayList;
 public class PictureHandler {
     /**
      * Retrieves the items searchpath.
+     *
      * @param itemID
      * @param itemName
      * @return the image URL that can be used to read/write the file
@@ -24,11 +25,12 @@ public class PictureHandler {
     private String getImageFilePath(String itemID, String itemName) {
         //String myFile = ".src" + File.separatorChar + "main" + File.separatorChar resources\pictures";
 
-        return "src/main/resources/pictures/items" + File.separatorChar + itemID + "-"+ itemName + ".jpg";
+        return "src/main/resources/pictures/items" + File.separatorChar + itemID + "-" + itemName + ".jpg";
     }
 
     /**
      * convertes a file to an image that can be used.
+     *
      * @param itemID
      * @param itemName
      * @return the file requested as an image
@@ -36,16 +38,18 @@ public class PictureHandler {
     public Image getItemImage(String itemID, String itemName) {
         Image img = null;
         try {
-            img = SwingFXUtils.toFXImage(ImageIO.read(new File(getImageFilePath(itemID, itemName)  )  ),null);
+            img = SwingFXUtils.toFXImage(ImageIO.read(new File(getImageFilePath(itemID, itemName))), null);
         } catch (IOException o) {
             System.out.println("Could not read file: " + getImageFilePath(itemID, itemName));
         }
+
         return img;
 
     }
 
     /**
      * Saves a requested file to the pictures/items folder and renames it to the items ID-name.jpg
+     *
      * @param file
      * @param itemID
      * @param itemName
@@ -59,4 +63,5 @@ public class PictureHandler {
 
         }
     }
+
 }
