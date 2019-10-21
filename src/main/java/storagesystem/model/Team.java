@@ -69,7 +69,7 @@ public class Team implements IBorrower{
         return name;
     }
 
-    public void addItemToInventory(Item itemToAdd) {
+    public void addItemToInventory(IReservable itemToAdd) {
         itemIDs.add(itemToAdd.getID());
     }
 

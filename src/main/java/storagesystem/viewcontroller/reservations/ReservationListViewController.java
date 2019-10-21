@@ -1,4 +1,4 @@
-package storagesystem.controller;
+package storagesystem.viewcontroller.reservations;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,13 +12,13 @@ import java.util.List;
 
 /**
  * View meant to be used in ReservationsController. Represents a reservation in a small item meant to be used in a list.
+ *
  * @author William Albertsson
  */
 
 public class ReservationListViewController extends AnchorPane {
 
-
-    IReservation reservation;
+    private IReservation reservation;
 
     @FXML
     private AnchorPane rootPane;
@@ -35,9 +35,9 @@ public class ReservationListViewController extends AnchorPane {
     private List<ReservationClickedListener> reservationClickedListenersList = new ArrayList<>();
 
 
-    public ReservationListViewController(IReservation res) {
+    ReservationListViewController(IReservation res) {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/reservationListView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/reservations/reservationListView.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 
@@ -56,11 +56,11 @@ public class ReservationListViewController extends AnchorPane {
 
     @FXML
     private void clicked() {
-
         for (ReservationClickedListener listener : reservationClickedListenersList) {
             listener.reservationClicked(reservation);
         }
     }
+
     /**
      * Used together with "listeners" list as an observer pattern.
      */
@@ -68,7 +68,7 @@ public class ReservationListViewController extends AnchorPane {
         void reservationClicked(IReservation res);
     }
 
-    public void addReservationClickedListener(ReservationClickedListener listener) {
+    void addReservationClickedListener(ReservationClickedListener listener) {
         reservationClickedListenersList.add(listener);
     }
 

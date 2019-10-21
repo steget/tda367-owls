@@ -36,4 +36,6 @@ public interface IReservable {
     String getImageUrl();
 
     String getName();
+
+    String getDescription();
 }

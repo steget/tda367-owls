@@ -62,8 +62,13 @@ public class Organisation {
     /**
      * @return List of all items.
      */
-    public List<Item> getAllItems() {
-        return items;
+    public List<IReservable> getAllItems() {
+        List<IReservable> allItems = new ArrayList<IReservable>();
+        for (Team t :
+                teams) {
+            allItems.addAll(t.getAllItems());
+        }
+        return allItems;
     }
 
     /**
@@ -73,11 +78,15 @@ public class Organisation {
      * @return the requested item if found
      * @throws NoSuchElementException if item ID not found
      */
-    public Item getItem(int ID) throws NoSuchElementException {
-        for(Item item : items) {
-            if(item.getID() == ID) {
-                System.out.println("Item found");
-                return item;
+    IReservable getItem(int ID) throws NoSuchElementException {
+        for (Team t :
+                teams) {
+            for (IReservable i :
+                    t.getAllItems()) {
+                if (i.getID() == ID) {
+                    System.out.println("Item found");
+                    return i;
+                }
             }
         }
         throw new NoSuchElementException("ItemID not found in list of items");
@@ -146,11 +155,12 @@ public class Organisation {
      * Creates a new user with all the possible information
      *
      * @param name               Name of the User
-     * @param description        Some information the user provides about themselves
+     * @param password           Password for login
+     * @param description        Some information the user provides about themself
      * @param contactInformation Some sort of way to contact the User, preferably phone/mail
      */
-    public void createUser(String name, String description, String contactInformation) {
-        users.add(new User(name, description, contactInformation));
+    public void createUser(String name, String password, String description, String contactInformation) {
+        users.add(new User(name, password, description, contactInformation));
     }
 
     /**

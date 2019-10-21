@@ -22,10 +22,10 @@ public class GSONHandlerTest {
 
         GSONHandler.clearJson("src/main/resources/json/itemDB.json");
         Location location = new Location("Mock Location", "This is a temporary location", null);
-        List<Item> itemList = new ArrayList<>();
+        List<IReservable> itemList = new ArrayList<>();
 
-        Item item1 = new Item("name", "description", "UserReq", 10, Condition.BAD, false, location.getID(), "pictures/art.png");
-        Item item2 = new Item("name", "description", "UserReq", 10, Condition.GREAT, false, location.getID(), "pictures/creepy.jpg");
+        IReservable item1 = IReservableFactory.createReservableItem("name", "description", "UserReq", 10, Condition.BAD, false, location.getID(), "pictures/art.png";
+        IReservable item2 = IReservableFactory.createReservableItem("name", "description", "UserReq", 10, Condition.GREAT, false, location.getID(), "pictures/creepy.jpg";
 
         itemList.add(item1);
         itemList.add(item2);
@@ -34,7 +34,7 @@ public class GSONHandlerTest {
         //Item item3 = new Item();
 
         //GSONHandler.addToJson(item3);
-        List<Item> listFromJson = getListFromJson(Item.class);
+        List<IReservable> listFromJson = getListFromJson(Item.class);
 
 
         Assert.assertTrue(listFromJson.get(0).getName().equals(itemList.get(0).getName()));

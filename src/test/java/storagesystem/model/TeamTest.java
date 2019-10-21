@@ -10,13 +10,13 @@ import static org.junit.Assert.*;
 public class TeamTest {
 
     @Test
-    public void getAllItems() throws IOException {
-        Organisation testOrg = new Organisation("IT");
-        List<Item> allItems = testOrg.getAllItems();
+    public void getAllItems() {
+        Team testTeam = new Team("owls");
+        List<IReservable> allItems = testTeam.getAllItems();
         assertEquals(0, allItems.size());
         Location hasen = new Location("hasen","ha senare", null);
 
-        Item mockItem = new Item("mockItem", "desc","requirements",1,Condition.GREAT,true, hasen.getID(), null);
+        IReservable mockItem = IReservableFactory.createReservableItem("mockItem", "desc","requirements",1,Condition.GREAT,true, hasen.getID(), null);
         allItems.add(mockItem);
         assertEquals(1, allItems.size());
     }

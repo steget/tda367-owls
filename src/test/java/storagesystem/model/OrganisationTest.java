@@ -33,7 +33,7 @@ public class OrganisationTest {
         Organisation informationsteknik = new Organisation("Informationsteknik");
         Team tempTeam = new Team("sexNollK");
         informationsteknik.addTeam(tempTeam);
-        Item mockItem = new Item("mockItem", "This is a description", "Behave please.", 2, Condition.GOOD, true, new Location("testLocation", "test desc", null).getID(), null);
+        IReservable mockItem = IReservableFactory.createReservableItem("mockItem", "This is a description", "Behave please.", 2, Condition.GOOD, true, new Location("testLocation", "test desc", null), null);
 
         assertEquals(0, informationsteknik.getAllItems().size());
         tempTeam.addItemToInventory(mockItem);
@@ -52,7 +52,7 @@ public class OrganisationTest {
         assertEquals(1, informationsteknik.getUsers().size());
         assertEquals("Albert", informationsteknik.getUsers().get(0).getName());
 
-        informationsteknik.createUser("asd", "desc", "112");
+        informationsteknik.createUser("asd", "pass", "desc", "112");
         assertEquals("desc", informationsteknik.getUsers().get(1).getDescription());
     }
 
