@@ -38,8 +38,8 @@ public class Organisation {
     /**
      * @return List of all the items from all the teams.
      */
-    public List<Item> getAllItems() {
-        List<Item> allItems = new ArrayList<Item>();
+    public List<IReservable> getAllItems() {
+        List<IReservable> allItems = new ArrayList<IReservable>();
         for (Team t :
                 teams) {
             allItems.addAll(t.getAllItems());
@@ -54,10 +54,10 @@ public class Organisation {
      * @return the requested item if found
      * @throws NoSuchElementException if item ID not found
      */
-    public Item getItem(int ID) throws NoSuchElementException {
+    IReservable getItem(int ID) throws NoSuchElementException {
         for (Team t :
                 teams) {
-            for (Item i :
+            for (IReservable i :
                     t.getAllItems()) {
                 if (i.getID() == ID) {
                     System.out.println("Item found");
@@ -112,11 +112,12 @@ public class Organisation {
      * Creates a new user with all the possible information
      *
      * @param name               Name of the User
+     * @param password           Password for login
      * @param description        Some information the user provides about themself
      * @param contactInformation Some sort of way to contact the User, preferably phone/mail
      */
-    public void createUser(String name, String description, String contactInformation) {
-        users.add(new User(name, description, contactInformation));
+    public void createUser(String name, String password, String description, String contactInformation) {
+        users.add(new User(name, password, description, contactInformation));
     }
 
     /**

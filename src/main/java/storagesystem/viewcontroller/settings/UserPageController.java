@@ -1,4 +1,4 @@
-package storagesystem.controller;
+package storagesystem.viewcontroller.settings;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -8,8 +8,9 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
-import storagesystem.StoreIT;
+import storagesystem.model.StoreIT;
 import storagesystem.model.User;
+import storagesystem.viewcontroller.AbstractFader;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,7 +20,7 @@ import java.util.ResourceBundle;
  * @author Jonathan Eksberg, Pär Aronsson, Hugo Stegrell
  */
 
-public class UserPageController extends AbstractFader implements Initializable {
+public class UserPageController implements Initializable {
 
     @FXML
     private AnchorPane editProfileAnchorPane;
@@ -104,7 +105,7 @@ public class UserPageController extends AbstractFader implements Initializable {
      */
     private boolean validateInfo(Text text, TextField textField){
         if(textField.getText().trim().isEmpty()){
-            fadeTransition(text, 3);
+            AbstractFader.fadeTransition(text, 3);
             return false;
         }
         return true;

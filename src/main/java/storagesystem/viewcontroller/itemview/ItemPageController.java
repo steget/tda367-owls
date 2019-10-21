@@ -1,8 +1,7 @@
-package storagesystem.controller;
+package storagesystem.viewcontroller.itemview;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
@@ -10,21 +9,20 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import storagesystem.model.Condition;
-import storagesystem.model.Item;
+import storagesystem.model.IReservable;
 import storagesystem.model.Team;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 /**
  * Controls a detailed view of an item. Can be used to book an item.
  *
  * @author Jonathan Eksberg, Carl Lindh
+ * @revised by Hugo Stegrell
  */
 public class ItemPageController {
 
-    private final Item item;
+    private final IReservable item;
     private final Team itemOwner;
 
     @FXML
@@ -50,7 +48,7 @@ public class ItemPageController {
     @FXML
     private Button itemPageReserveBtn;
 
-    public ItemPageController(Item item, Team itemOwner) {
+    public ItemPageController(IReservable item, Team itemOwner) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("itemPage.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
@@ -83,11 +81,6 @@ public class ItemPageController {
         setReservableLabel(item.isReservable() + "");
         setReservableBtn(item.isReservable());
         setLocationLabel(item.getLocation().getName());
-        setReservableLabel(item.isReservable() + "");
-        setNameLabel(item.getName());
-        setConditionSlider(item.getCondition());
-        setDescription(item.getDescription());
-        setUserRequirements(item.getUserRequirements());
         setImage(item.getImage());
     }
 

@@ -1,4 +1,4 @@
-package storagesystem.controller;
+package storagesystem.viewcontroller;
 
 import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
@@ -13,7 +13,9 @@ public abstract class AbstractFader {
      * @param node          Thing to be faded
      * @param timeInSeconds How long it should take for the opacity to go from full to not visible.
      */
-    void fadeTransition(Node node, int timeInSeconds) {
+
+
+    public static void fadeTransition(Node node, int timeInSeconds) {
         TranslateTransition transition = new TranslateTransition();
 
         transition.setOnFinished((e) -> {

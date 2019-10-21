@@ -1,4 +1,4 @@
-package storagesystem.controller;
+package storagesystem.viewcontroller;
 
 /**
  * An interface for controllers with one method to avoid code repetition.

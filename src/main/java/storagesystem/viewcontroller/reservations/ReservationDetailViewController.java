@@ -1,11 +1,10 @@
-package storagesystem.controller;
+package storagesystem.viewcontroller.reservations;
 
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import storagesystem.StoreIT;
 import storagesystem.model.IReservation;
 
 import java.io.IOException;
@@ -14,6 +13,7 @@ import java.util.List;
 
 /**
  * Shows detail about a reservation including borrowed item, time and date, status etc. Intended to be used as a lightbox.
+ *
  * @author William Albertsson
  */
 
@@ -44,7 +44,7 @@ public class ReservationDetailViewController extends AnchorPane {
 
 
     public ReservationDetailViewController(IReservation res) {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/reservationDetailView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/reservations/reservationDetailView.fxml"));
         fxmlLoader.setController(this);
         fxmlLoader.setRoot(this);
 

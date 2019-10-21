@@ -94,7 +94,7 @@ public class ReservationHandler {
      * @param interval Interval to test object against
      * @return True if there is overlap, false otherwise.
      */
-    private boolean isObjectReservedBetween(IReservable object, Interval interval) {
+    public boolean isObjectReservedBetween(IReservable object, Interval interval) {
         List<IReservation> reservations = getReservations(object);
 
         for (IReservation res : reservations) {
@@ -106,6 +106,8 @@ public class ReservationHandler {
     }
 
 
+
+
     /**
      * Creates a new reservation and saves in this ReservationHandler. Firsts tests to see if object isn't already reserved.
      *
@@ -114,12 +116,8 @@ public class ReservationHandler {
      * @param object   The object which is to be reserved.
      */
     public void createReservation(IBorrower borrower, Interval interval, IReservable object) {
-        if (!isObjectReservedBetween(object, interval)) {
-            Reservation reservation = new Reservation(borrower, interval, object, ReservationStatus.PENDING);
-            reservations.add(reservation);
-
-
-        }
+        Reservation reservation = new Reservation(borrower, interval, object, ReservationStatus.PENDING);
+        reservations.add(reservation);
     }
 
     /**

@@ -1,49 +1,23 @@
-package storagesystem;
+package storagesystem.model;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.stage.Stage;
 import org.joda.time.DateTime;
 import org.joda.time.Interval;
-import storagesystem.model.*;
 
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
-/**
- * A runnable class with static attributes.
- * This is the main class.
- * @author TDA367-Owls
- */
-
-public class StoreIT extends Application {
+public class StoreIT {
     private static List<Organisation> organisations = new ArrayList<>();
     private static User currentUser;
     private static Organisation currentOrganisation;
 
-    @Override
-    public void start(Stage stage) throws Exception {
-        initializeBackend();
-
-        Parent root = FXMLLoader.load(getClass().getResource("/loginPage.fxml"));
-
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.setWidth(1200);
-        stage.setHeight(800);
-        stage.setResizable(false);
-        stage.show();
-
-    }
-
     /**
      * Loads all data into the program. Should be run at start.
      */
-    private void initializeBackend() {
+    public void initializeBackend() {
         mockData();
     }
 
@@ -74,17 +48,17 @@ public class StoreIT extends Application {
         tempTeam2.addMember(informationsteknik.getUsers().get(0).getID());
         tempTeam2.addMember(informationsteknik.getUsers().get(1).getID());
 
-        Location location = new Location("MockLocation", "This location does not exist", new Image("creepy.jpg"));
-        Item mockItem = new Item("mockItem", "This is a description", "Behave please.",
+        Location location = new Location("MockLocation", "This location does not exist", new Image("pictures/creepy.jpg"));
+        IReservable mockItem = IReservableFactory.createReservableItem("mockItem", "This is a description", "Behave please.",
                 2, Condition.GOOD, true, location, location.getImage());
-        Item mockItem2 = new Item("mockItem nr 2", "This is a description", "Behave please.",
-                2, Condition.GOOD, true, location, new Image("art.png"));
+        IReservable mockItem2 = IReservableFactory.createReservableItem("mockItem nr 2", "This is a description", "Behave please.",
+                2, Condition.GOOD, true, location, new Image("pictures/art.png"));
 
 
         Interval interval1 = new Interval(new DateTime(2019, 9, 10, 12, 40), new DateTime(2019, 9, 10, 15, 0));
         Interval interval2 = new Interval(new DateTime(2019, 9, 12, 17, 30), new DateTime(2019, 10, 16, 20, 0));
         IReservation res = new Reservation(informationsteknik.getUsers().get(0), interval1, mockItem, ReservationStatus.APPROVED);
-        IReservation res2 = new Reservation(informationsteknik.getUsers().get(0), interval2, mockItem, ReservationStatus.APPROVED);
+        IReservation res2 = new Reservation(informationsteknik.getUsers().get(0), interval2, mockItem2, ReservationStatus.APPROVED);
         ReservationHandler resHandler = informationsteknik.getReservationHandler();
         List<IReservation> reservations = resHandler.getReservations();
         reservations.add(res);
@@ -96,10 +70,6 @@ public class StoreIT extends Application {
 
         tempTeam.addItemToInventory(mockItem);
         tempTeam.addItemToInventory(mockItem2);
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 
     public static void setCurrentUser(User currentUser) {
@@ -120,5 +90,20 @@ public class StoreIT extends Application {
 
     public static User getCurrentUser() {
         return currentUser;
+    }
+
+    /**
+     * Searches through the organisations and tries to find one with the input String
+     * @param organisationName Name to search after
+     * @return Organisation with @param name
+     * @throws NoSuchElementException If no such organisation could be found
+     */
+    public static Organisation findOrganisation(String organisationName) throws NoSuchElementException {
+        for (Organisation org : organisations) {
+            if (org.getName().equals(organisationName)) {
+                return org;
+            }
+        }
+        throw new NoSuchElementException("Organisation cannot be found");
     }
 }
