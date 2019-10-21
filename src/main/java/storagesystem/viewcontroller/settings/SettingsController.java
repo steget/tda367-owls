@@ -69,7 +69,6 @@ public class SettingsController extends AnchorPane implements Initializable {
     private Organisation currentOrganisation;
     private boolean isUserPartOfTeam;
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         currentOrganisation = StoreIT.getCurrentOrganisation();

@@ -123,5 +123,4 @@ public class Organisation {
     void setName(String name) {
         this.name = name;
     }
-
 }

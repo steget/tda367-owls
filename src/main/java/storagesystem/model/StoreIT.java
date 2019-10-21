@@ -71,8 +71,14 @@ public class StoreIT {
         tempTeam.addItemToInventory(mockItem2);
     }
 
-    public static void setCurrentUser(User currentUser) {
-        StoreIT.currentUser = currentUser;
+    public static void setCurrentUser(String username) {
+        for (User u :
+                currentOrganisation.getUsers()) {
+            if (u.getName().equals(username)) {
+                currentUser = u;
+                break;
+            }
+        }
     }
 
     public static void setCurrentOrganisation(Organisation currentOrganisation) {
@@ -108,15 +114,6 @@ public class StoreIT {
     }
 
     /**
-     * Creates a new user with only a name
-     *
-     * @param name Name of the User
-     */
-    public static void createUser(String name) {
-        currentOrganisation.addUser(new User(name));
-    }
-
-    /**
      * Creates a new user with all the possible information
      *
      * @param name               Name of the User
@@ -130,6 +127,7 @@ public class StoreIT {
 
     /**
      * Compares with params if there is such a user
+     *
      * @param username Name to find in the database
      * @param password Password supposed to match with the username
      * @return {@code True} if the username and password matches, {@code False} if there is no match
@@ -138,6 +136,7 @@ public class StoreIT {
         for (User user :
                 currentOrganisation.getUsers()) {
             if (user.getName().equals(username) && user.getPassword().equals(password)) {
+                currentUser = user;
                 return true;
             }
         }

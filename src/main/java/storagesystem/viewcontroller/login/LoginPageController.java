@@ -94,6 +94,7 @@ public class LoginPageController implements Initializable {
 
         Platform.runLater(() -> userNameTextField.requestFocus()); //Need to do this since Stage is not set yet when in initialize
         userNameTextField.setText("admin");
+        passwordField.setText("1");
     }
 
     /**
@@ -132,7 +133,7 @@ public class LoginPageController implements Initializable {
         //check username and password against database
         if (checkLoginCredentials()) {
             //set current user
-            StoreIT.setCurrentUser(loginUser);
+            StoreIT.setCurrentUser(userNameTextField.getText());
 
             //open dashboard
             Parent root = FXMLLoader.load(getClass().getResource("/framework.fxml"));
@@ -170,10 +171,10 @@ public class LoginPageController implements Initializable {
     }
 
     private boolean isAllRegisterFieldsEntered() {
-        return (regUserNameTextField.getLength()>0 &&
-                regPasswordTextField.getLength()>0 &&
-                regUserDescriptionTextArea.getLength()>0 &&
-                regContactInfoTextField.getLength()>0 &&
+        return (regUserNameTextField.getLength() > 0 &&
+                regPasswordTextField.getLength() > 0 &&
+                regUserDescriptionTextArea.getLength() > 0 &&
+                regContactInfoTextField.getLength() > 0 &&
                 regOrganisationChoiceBox.getValue() != null);
     }
 
@@ -195,10 +196,10 @@ public class LoginPageController implements Initializable {
         return StoreIT.findOrganisation(regOrganisationChoiceBox.getValue());
     }
 
-    private boolean checkLoginCredentials(){
-        if(userNameTextField.getLength()>0 && passwordField.getLength()>0){
+    private boolean checkLoginCredentials() {
+        if (userNameTextField.getLength() > 0 && passwordField.getLength() > 0) {
             return StoreIT.doesLoginMatch(userNameTextField.getText(), passwordField.getText());
-        }else {
+        } else {
             return false;
         }
     }
