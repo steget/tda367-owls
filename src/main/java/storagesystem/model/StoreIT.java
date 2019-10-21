@@ -29,13 +29,13 @@ public class StoreIT {
         organisations.add(data);
         setCurrentOrganisation(informationsteknik);
 
-        createUser("Albert");
-        createUser("admin");
-        createUser("eke");
-        createUser("kvick");
-        createUser("sponken");
-        createUser("giff");
-        createUser("steget");
+        createUser("Albert", "1", "1", "1");
+        createUser("admin", "1", "1", "1");
+        createUser("eke", "1", "1", "1");
+        createUser("kvick", "1", "1", "1");
+        createUser("sponken", "1", "1", "1");
+        createUser("giff", "1", "1", "1");
+        createUser("steget", "1", "1", "1");
 
         Team tempTeam = new Team("sexNollK");
         Team tempTeam2 = new Team("P.R.NollK");
@@ -126,5 +126,36 @@ public class StoreIT {
      */
     public static void createUser(String name, String password, String description, String contactInformation) {
         currentOrganisation.addUser(new User(name, password, description, contactInformation));
+    }
+
+    /**
+     * Compares with params if there is such a user
+     * @param username Name to find in the database
+     * @param password Password supposed to match with the username
+     * @return {@code True} if the username and password matches, {@code False} if there is no match
+     */
+    public static boolean doesLoginMatch(String username, String password) {
+        for (User user :
+                currentOrganisation.getUsers()) {
+            if (user.getName().equals(username) && user.getPassword().equals(password)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Checks in the selected organisation if there is an user with the name currently written in the Username textfield
+     *
+     * @return If the written username exists within the selected Organisation
+     */
+    public static boolean doesUserExist(Organisation organisationToSearch, String name) {
+        for (User user :
+                organisationToSearch.getUsers()) {
+            if (user.getName().equals(name)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

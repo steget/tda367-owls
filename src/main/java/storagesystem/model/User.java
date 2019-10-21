@@ -25,17 +25,11 @@ public class User implements IBorrower {
     }
 
     public User(String name, String description, String contactInformation) {
-        this.name = name;
-        this.description = description;
-        this.contactInformation = contactInformation;
-
-        //set ID and update lastID
-        ID = nextID;
-        nextID++;
+        this(name, "", description, contactInformation);
     }
 
     public User(String name) {
-        this(name, "", "");
+        this(name, "", "", "");
     }
 
     public String getName() {
@@ -68,6 +62,10 @@ public class User implements IBorrower {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    String getPassword() {
+        return password;
     }
 
     /**

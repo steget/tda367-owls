@@ -34,7 +34,7 @@ public class LoginPageController implements Initializable {
     private TextField userNameTextField;
 
     @FXML
-    private TextField passwordTextField;
+    private PasswordField passwordField;
 
     @FXML
     private ChoiceBox<String> organisationChoiceBox;
@@ -102,7 +102,7 @@ public class LoginPageController implements Initializable {
     private void assignHandlers() {
         ArrayList<Control> loginFields = new ArrayList<>();
         loginFields.add(userNameTextField);
-        loginFields.add(passwordTextField);
+        loginFields.add(passwordField);
         loginFields.add(loginButton);
         loginFields.add(organisationChoiceBox);
 
@@ -128,11 +128,11 @@ public class LoginPageController implements Initializable {
     @FXML
     private void loginButtonPressed() throws IOException {
         Organisation selectedOrganisation = getSelectedLoginOrganisation();
+        StoreIT.setCurrentOrganisation(selectedOrganisation);
         //check username and password against database
-        if (doesUserExist(selectedOrganisation, userNameTextField.getText())) {
+        if (checkLoginCredentials()) {
             //set current user
             StoreIT.setCurrentUser(loginUser);
-            StoreIT.setCurrentOrganisation(selectedOrganisation);
 
             //open dashboard
             Parent root = FXMLLoader.load(getClass().getResource("/framework.fxml"));
@@ -149,9 +149,8 @@ public class LoginPageController implements Initializable {
      */
     @FXML
     private void registerButtonPressed() {
-        Organisation selectedOrganisation = getSelectedRegisterOrganisation();
         //make sure there is no user with the name
-        if (!doesUserExist(selectedOrganisation, regUserNameTextField.getText())) {
+        if (!doesUserExist(regUserNameTextField.getText())) {
             //make sure there is data in all fields
             if (isAllRegisterFieldsEntered()) {
                 String name = regUserNameTextField.getText();
@@ -159,6 +158,7 @@ public class LoginPageController implements Initializable {
                 String desc = regUserDescriptionTextArea.getText();
                 String contactInfo = regContactInfoTextField.getText();
 
+                StoreIT.setCurrentOrganisation(getSelectedRegisterOrganisation());
                 StoreIT.createUser(name, password, desc, contactInfo);
                 fadeTransition(userRegisteredLabel, 2);
             } else {
@@ -195,32 +195,21 @@ public class LoginPageController implements Initializable {
         return StoreIT.findOrganisation(regOrganisationChoiceBox.getValue());
     }
 
-
-    /**
-     * Checks in the selected organisation if there is an user with the name currently written in the Username textfield
-     *
-     * @return If the written username exists within the selected Organisation
-     */
-    private boolean doesUserExist(Organisation organisationToSearch, String name) {
-        for (User user :
-                organisationToSearch.getUsers()) {
-            if (user.getName().equals(name)) { //todo check ID instead?
-                setLoginUser(user);
-                //todo password?
-                return true;
-            }
+    private boolean checkLoginCredentials(){
+        if(userNameTextField.getLength()>0 && passwordField.getLength()>0){
+            return StoreIT.doesLoginMatch(userNameTextField.getText(), passwordField.getText());
+        }else {
+            return false;
         }
-        setLoginUser(null); //to prevent someone from logging in with a previous users credentials
-        return false;
     }
 
     /**
-     * Save a User which is trying to login
+     * Checks in the selected organisation if there is an user with the name entered
      *
-     * @param user An actual User
+     * @return If the written username exists within the selected Organisation
      */
-    private void setLoginUser(User user) {
-        loginUser = user;
+    private boolean doesUserExist(String name) {
+        return StoreIT.doesUserExist(getSelectedLoginOrganisation(), name);
     }
 
     /**
