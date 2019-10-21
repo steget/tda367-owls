@@ -1,4 +1,4 @@
-package storagesystem.viewcontroller.Inventory;
+package storagesystem.viewcontroller.inventory;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

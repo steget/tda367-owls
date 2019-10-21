@@ -66,7 +66,7 @@ public class FrameworkController implements Initializable, ILoadUI {
 
     @FXML
     void yourInventoryButtonPressed(){
-        loadUI("Inventory/inventory");
+        loadUI("inventory/inventory");
     }
 
 

@@ -1,4 +1,4 @@
-package storagesystem.viewcontroller.Inventory;
+package storagesystem.viewcontroller.inventory;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -34,7 +34,6 @@ public class DetailedItemViewController extends AnchorPane {
     private final IReservable reservableItem;
     private final Team itemOwner;
     private List<Location> locationList;
-    private boolean isInEditMode;
     ObservableList<String> locationNames;
 
     @FXML

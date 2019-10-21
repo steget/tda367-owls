@@ -1,4 +1,4 @@
-package storagesystem.viewcontroller.Inventory;
+package storagesystem.viewcontroller.inventory;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

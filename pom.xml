@@ -5,7 +5,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>owlspack</groupId>
-    <artifactId>StoreIT</artifactId>
+    <artifactId>StorIT</artifactId>
     <version>0.1</version>
     <packaging>jar</packaging>
     <name>Storage System</name>
