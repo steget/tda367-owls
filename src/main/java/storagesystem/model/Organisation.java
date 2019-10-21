@@ -98,35 +98,22 @@ public class Organisation {
         return teams;
     }
 
-
     /**
-     * Creates a new user with only a name
+     * Add a team to the organisations list of teams
      *
-     * @param name
+     * @param teamToBeAdded team which belongs in the organisation
      */
-    public void createUser(String name) {
-        users.add(new User(name));
-    }
-
-    /**
-     * Creates a new user with all the possible information
-     *
-     * @param name               Name of the User
-     * @param password           Password for login
-     * @param description        Some information the user provides about themself
-     * @param contactInformation Some sort of way to contact the User, preferably phone/mail
-     */
-    public void createUser(String name, String password, String description, String contactInformation) {
-        users.add(new User(name, password, description, contactInformation));
-    }
-
-    /**
-     * Add an already existing team to the organisations list of teams
-     *
-     * @param teamToBeAdded
-     */
-    public void addTeam(Team teamToBeAdded) {
+    void addTeam(Team teamToBeAdded) {
         teams.add(teamToBeAdded);
+    }
+
+    /**
+     * Add a user to the organisations list of users
+     *
+     * @param userToBeAdded user which belongs in the organisation
+     */
+    void addUser(User userToBeAdded) {
+        users.add(userToBeAdded);
     }
 
     public String getName() {

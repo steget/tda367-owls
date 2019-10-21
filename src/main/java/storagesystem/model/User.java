@@ -1,7 +1,5 @@
 package storagesystem.model;
 
-import java.util.Objects;
-
 /**
  * A user should represent a person.
  *
@@ -40,13 +38,6 @@ public class User implements IBorrower {
         this(name, "", "");
     }
 
-    private User(User userToCopy) {
-        this.name = userToCopy.name;
-        this.description = userToCopy.description;
-        this.contactInformation = userToCopy.contactInformation;
-        this.ID = userToCopy.ID;
-    }
-
     public String getName() {
         return name;
     }
@@ -82,8 +73,8 @@ public class User implements IBorrower {
     /**
      * Compares ID's if o is a reservation
      *
-     * @param   obj   the reference object with which to compare.
-     * @return  {@code true} if this object is the same as the obj argument; {@code false} otherwise.
+     * @param obj the reference object with which to compare.
+     * @return {@code true} if this object is the same as the obj argument; {@code false} otherwise.
      */
     @Override
     public boolean equals(Object obj) {

@@ -153,7 +153,7 @@ public class LoginPageController implements Initializable {
             String password = regPasswordTextField.getText();
             String desc = regUserDescriptionTextArea.getText();
             String contactInfo = regContactInfoTextField.getText();
-            selectedOrganisation.createUser(name, password, desc, contactInfo);
+            StoreIT.createUser(name, password, desc, contactInfo);
             fadeTransition(userRegisteredLabel, 2);
         } else {
             fadeTransition(userAlreadyExistsLabel, 3);

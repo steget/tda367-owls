@@ -21,21 +21,24 @@ public class StoreIT {
         mockData();
     }
 
-    private static void mockData() {
+    private void mockData() {
         //Hardcoded stuff for testing
         Organisation informationsteknik = new Organisation("Informationsteknik");
         Organisation data = new Organisation("Data");
+        organisations.add(informationsteknik);
+        organisations.add(data);
+        setCurrentOrganisation(informationsteknik);
+
+        createUser("Albert");
+        createUser("admin");
+        createUser("eke");
+        createUser("kvick");
+        createUser("sponken");
+        createUser("giff");
+        createUser("steget");
 
         Team tempTeam = new Team("sexNollK");
         Team tempTeam2 = new Team("P.R.NollK");
-
-        informationsteknik.createUser("Albert");
-        informationsteknik.createUser("admin");
-        informationsteknik.createUser("eke");
-        informationsteknik.createUser("kvick");
-        informationsteknik.createUser("sponken");
-        informationsteknik.createUser("giff");
-        informationsteknik.createUser("steget");
 
         tempTeam.setTermsAndConditions("För att låna våra prylar måste prylen vara i samma skick som den var när den lånades ut. Behövs den diskas så diska den osv. Prylen ska också vara tillbaka på samma plats igen");
         tempTeam2.setTermsAndConditions("text 2");
@@ -64,10 +67,6 @@ public class StoreIT {
         reservations.add(res);
         reservations.add(res2);
 
-        organisations.add(informationsteknik);
-        organisations.add(data);
-        setCurrentOrganisation(informationsteknik);
-
         tempTeam.addItemToInventory(mockItem);
         tempTeam.addItemToInventory(mockItem2);
     }
@@ -94,6 +93,7 @@ public class StoreIT {
 
     /**
      * Searches through the organisations and tries to find one with the input String
+     *
      * @param organisationName Name to search after
      * @return Organisation with @param name
      * @throws NoSuchElementException If no such organisation could be found
@@ -105,5 +105,26 @@ public class StoreIT {
             }
         }
         throw new NoSuchElementException("Organisation cannot be found");
+    }
+
+    /**
+     * Creates a new user with only a name
+     *
+     * @param name Name of the User
+     */
+    public static void createUser(String name) {
+        currentOrganisation.addUser(new User(name));
+    }
+
+    /**
+     * Creates a new user with all the possible information
+     *
+     * @param name               Name of the User
+     * @param password           Password for login
+     * @param description        Some information the user provides about themself
+     * @param contactInformation Some sort of way to contact the User, preferably phone/mail
+     */
+    public static void createUser(String name, String password, String description, String contactInformation) {
+        currentOrganisation.addUser(new User(name, password, description, contactInformation));
     }
 }
