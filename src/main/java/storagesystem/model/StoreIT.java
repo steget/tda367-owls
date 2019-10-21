@@ -3,8 +3,11 @@ package storagesystem.model;
 import javafx.scene.image.Image;
 import org.joda.time.DateTime;
 import org.joda.time.Interval;
+import storagesystem.services.GSONHandler;
+import storagesystem.services.IDHandler;
 
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -17,17 +20,33 @@ public class StoreIT {
     /**
      * Loads all data into the program. Should be run at start.
      */
-    public void initializeBackend() {
-        mockData();
+    public void initializeBackend() throws IOException {
+        //mockData();
+
+        organisations.addAll(GSONHandler.getListFromJson(Organisation.class));
+        IDHandler.updateAllIDs(organisations);
+        currentOrganisation = organisations.get(0);
     }
 
-    private static void mockData() {
+    private static void mockData() throws IOException {
         //Hardcoded stuff for testing
-        Organisation informationsteknik = new Organisation("Informationsteknik");
-        Organisation data = new Organisation("Data");
+        Location location = new Location("MockLocation", "This location does not exist", "creepy.jpg");
+        Item mockItem = new Item("mockItem", "This is a description", "Behave please.",
+                2, Condition.GOOD, true, location.getID(), "pictures/art.png");
+        Item mockItem2 = new Item("mockItem nr 2", "This is a description", "Behave please.",
+                2, Condition.GOOD, true, location.getID(), "art.png");
+        GSONHandler.addToJson(location);
+        GSONHandler.addToJson(mockItem);
+        GSONHandler.addToJson(mockItem2);
 
         Team tempTeam = new Team("sexNollK");
         Team tempTeam2 = new Team("P.R.NollK");
+        GSONHandler.addToJson(tempTeam);
+        GSONHandler.addToJson(tempTeam2);
+
+        Organisation informationsteknik = new Organisation("Informationsteknik");
+        Organisation data = new Organisation("Data");
+
 
         informationsteknik.createUser("Albert");
         informationsteknik.createUser("admin");
@@ -48,17 +67,11 @@ public class StoreIT {
         tempTeam2.addMember(informationsteknik.getUsers().get(0).getID());
         tempTeam2.addMember(informationsteknik.getUsers().get(1).getID());
 
-        Location location = new Location("MockLocation", "This location does not exist", new Image("pictures/creepy.jpg"));
-        IReservable mockItem = IReservableFactory.createReservableItem("mockItem", "This is a description", "Behave please.",
-                2, Condition.GOOD, true, location, location.getImage());
-        IReservable mockItem2 = IReservableFactory.createReservableItem("mockItem nr 2", "This is a description", "Behave please.",
-                2, Condition.GOOD, true, location, new Image("pictures/art.png"));
-
 
         Interval interval1 = new Interval(new DateTime(2019, 9, 10, 12, 40), new DateTime(2019, 9, 10, 15, 0));
         Interval interval2 = new Interval(new DateTime(2019, 9, 12, 17, 30), new DateTime(2019, 10, 16, 20, 0));
-        IReservation res = new Reservation(informationsteknik.getUsers().get(0), interval1, mockItem, ReservationStatus.APPROVED);
-        IReservation res2 = new Reservation(informationsteknik.getUsers().get(0), interval2, mockItem2, ReservationStatus.APPROVED);
+        IReservation res = new Reservation(informationsteknik.getTeams().get(0), interval1, mockItem, ReservationStatus.APPROVED);
+        IReservation res2 = new Reservation(informationsteknik.getTeams().get(0), interval2, mockItem, ReservationStatus.APPROVED);
         ReservationHandler resHandler = informationsteknik.getReservationHandler();
         List<IReservation> reservations = resHandler.getReservations();
         reservations.add(res);

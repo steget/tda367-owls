@@ -19,7 +19,7 @@ import java.util.NoSuchElementException;
 public class Organisation {
     private String name;
     private String imageUrl;
-    private final List<Item> items = new ArrayList<>();
+    private final List<IReservable> items = new ArrayList<>();
     private final List<Team> teams = new ArrayList<>();
     private final List<User> users = new ArrayList<>();
     private final List<Location> locations = new ArrayList<>();
@@ -40,7 +40,7 @@ public class Organisation {
 
     }
 
-    private Organisation(Organisation organisationToCopy) throws IOException {
+    /*private Organisation(Organisation organisationToCopy) throws IOException {
         this.name = organisationToCopy.name;
         this.teams.addAll(organisationToCopy.getTeams());
         this.users.addAll(organisationToCopy.getUsers());
@@ -53,7 +53,7 @@ public class Organisation {
         List<User> userList = GSONHandler.getListFromJson(User.class);
         users.addAll(userList);
         reservationHandler = new ReservationHandler();
-    }
+    }*/
 
     public ReservationHandler getReservationHandler() {
         return reservationHandler;
@@ -63,12 +63,7 @@ public class Organisation {
      * @return List of all items.
      */
     public List<IReservable> getAllItems() {
-        List<IReservable> allItems = new ArrayList<IReservable>();
-        for (Team t :
-                teams) {
-            allItems.addAll(t.getAllItems());
-        }
-        return allItems;
+        return items;
     }
 
     /**
@@ -82,7 +77,7 @@ public class Organisation {
         for (Team t :
                 teams) {
             for (IReservable i :
-                    t.getAllItems()) {
+                    items) {
                 if (i.getID() == ID) {
                     System.out.println("Item found");
                     return i;
@@ -125,6 +120,18 @@ public class Organisation {
             }
         }
         return usersTeams;
+    }
+
+    public List<IReservable> getTeamsItems(Team team) {
+        List<IReservable> teamsItems = new ArrayList<>();
+        for (IReservable item : items) {
+            for (int itemID : team.getAllItemIDs()) {
+                if (item.getID() == itemID) {
+                    teamsItems.add(item);
+                }
+            }
+        }
+        return teamsItems;
     }
 
     /**

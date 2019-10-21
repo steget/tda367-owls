@@ -19,7 +19,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-public class StoreIT extends Application {
+public class StoreIT2 extends Application {
     private static List<Organisation> organisations = new ArrayList<>();
     private static User currentUser;
     private static Organisation currentOrganisation;
@@ -130,11 +130,11 @@ public class StoreIT extends Application {
     }
 
     public static void setCurrentUser(User currentUser) {
-        StoreIT.currentUser = currentUser;
+        StoreIT2.currentUser = currentUser;
     }
 
     public static void setCurrentOrganisation(Organisation currentOrganisation) {
-        StoreIT.currentOrganisation = currentOrganisation;
+        StoreIT2.currentOrganisation = currentOrganisation;
     }
 
     public static List<Organisation> getOrganisations() {

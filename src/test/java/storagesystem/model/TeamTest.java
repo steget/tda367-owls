@@ -10,9 +10,11 @@ import static org.junit.Assert.*;
 public class TeamTest {
 
     @Test
-    public void getAllItems() {
+    public void getAllItems() throws IOException {
+        Organisation org = new Organisation("Test org");
         Team testTeam = new Team("owls");
-        List<IReservable> allItems = testTeam.getAllItems();
+        List<IReservable> allItems = org.getTeamsItems(testTeam);
+
         assertEquals(0, allItems.size());
         Location hasen = new Location("hasen","ha senare", null);
 

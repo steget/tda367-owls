@@ -4,86 +4,35 @@
     "imageUrl": null,
     "items": [
       {
-        "name": "name",
-        "description": "description",
-        "userRequirements": "UserReq",
-        "ID": 1,
-        "amount": 10,
-        "condition": "BAD",
-        "reservable": false,
-        "locationID": 2,
-        "imageUrl": "pictures/art.png"
+        "CLASSNAME": "storagesystem.model.Item",
+        "DATA": {
+          "name": "mockItem",
+          "description": "This is a description",
+          "userRequirements": "Behave please.",
+          "ID": 0,
+          "amount": 2,
+          "condition": "GOOD",
+          "reservable": true,
+          "locationID": 0,
+          "imageUrl": "pictures/art.png"
+        }
       },
       {
-        "name": "name",
-        "description": "description",
-        "userRequirements": "UserReq",
-        "ID": 2,
-        "amount": 10,
-        "condition": "GREAT",
-        "reservable": false,
-        "locationID": 2,
-        "imageUrl": "pictures/creepy.jpg"
-      },
-      {
-        "name": "imageitem",
-        "description": "Desc",
-        "userRequirements": "userreq",
-        "ID": 4,
-        "amount": 13,
-        "condition": "GREAT",
-        "reservable": true,
-        "locationID": 3,
-        "imageUrl": "pictures/art.png"
-      },
-      {
-        "name": "mockItem",
-        "description": "This is a description",
-        "userRequirements": "Behave please.",
-        "ID": 0,
-        "amount": 2,
-        "condition": "GOOD",
-        "reservable": true,
-        "locationID": 0,
-        "imageUrl": "pictures/art.png"
-      },
-      {
-        "name": "mockItem nr 2",
-        "description": "This is a description",
-        "userRequirements": "Behave please.",
-        "ID": 1,
-        "amount": 2,
-        "condition": "GOOD",
-        "reservable": true,
-        "locationID": 0,
-        "imageUrl": "art.png"
+        "CLASSNAME": "storagesystem.model.Item",
+        "DATA": {
+          "name": "mockItem nr 2",
+          "description": "This is a description",
+          "userRequirements": "Behave please.",
+          "ID": 1,
+          "amount": 2,
+          "condition": "GOOD",
+          "reservable": true,
+          "locationID": 0,
+          "imageUrl": "art.png"
+        }
       }
     ],
     "teams": [
-      {
-        "name": "MockTeam",
-        "itemIDs": [],
-        "memberIDs": [],
-        "termsAndConditions": "",
-        "teamID": 1,
-        "imageUrl": null
-      },
-      {
-        "name": "Team With Image",
-        "itemIDs": [],
-        "memberIDs": [],
-        "termsAndConditions": "",
-        "teamID": 2,
-        "imageUrl": "pictures/creepy.jpg"
-      },
-      {
-        "name": "TestTeam",
-        "itemIDs": [],
-        "memberIDs": [],
-        "termsAndConditions": "",
-        "teamID": 3,
-        "imageUrl": null
-      },
       {
         "name": "sexNollK",
         "itemIDs": [],
@@ -121,7 +70,7 @@
           0,
           1
         ],
-        "termsAndConditions": "text 2",
+        "termsAndConditions": "text 5",
         "teamID": 1,
         "imageUrl": null
       }
@@ -129,78 +78,55 @@
     "users": [
       {
         "name": "Albert",
+        "password": null,
         "description": "",
         "contactInformation": "",
         "ID": 0
       },
       {
         "name": "admin",
+        "password": null,
         "description": "",
         "contactInformation": "",
         "ID": 1
       },
       {
         "name": "eke",
+        "password": null,
         "description": "",
         "contactInformation": "",
         "ID": 2
       },
       {
         "name": "kvick",
+        "password": null,
         "description": "",
         "contactInformation": "",
         "ID": 3
       },
       {
         "name": "sponken",
+        "password": null,
         "description": "",
         "contactInformation": "",
         "ID": 4
       },
       {
         "name": "giff",
+        "password": null,
         "description": "",
         "contactInformation": "",
         "ID": 5
       },
       {
         "name": "steget",
+        "password": null,
         "description": "",
         "contactInformation": "",
         "ID": 6
-      },
-      {
-        "name": "Nisse69",
-        "description": "",
-        "contactInformation": "",
-        "ID": 7
-      },
-      {
-        "name": "NewUser14",
-        "description": "New user to test next ID",
-        "contactInformation": "",
-        "ID": 8
-      },
-      {
-        "name": "newuser69",
-        "description": "Helloj my name is newuser69 beastmastery is the shite",
-        "contactInformation": "",
-        "ID": 9
       }
     ],
     "locations": [
-      {
-        "name": "Location without Image",
-        "description": "Outside of my mind",
-        "imageUrl": null,
-        "ID": 3
-      },
-      {
-        "name": "Test Location With Image",
-        "description": "Inside of my mind",
-        "imageUrl": "pictures/art.png",
-        "ID": 4
-      },
       {
         "name": "MockLocation",
         "description": "This location does not exist",
@@ -217,11 +143,11 @@
             "borrower": {
               "CLASSNAME": "storagesystem.model.Team",
               "DATA": {
-                "name": "MockTeam",
+                "name": "sexNollK",
                 "itemIDs": [],
                 "memberIDs": [],
                 "termsAndConditions": "",
-                "teamID": 1,
+                "teamID": 0,
                 "imageUrl": null
               }
             },
@@ -250,11 +176,11 @@
             "borrower": {
               "CLASSNAME": "storagesystem.model.Team",
               "DATA": {
-                "name": "MockTeam",
+                "name": "sexNollK",
                 "itemIDs": [],
                 "memberIDs": [],
                 "termsAndConditions": "",
-                "teamID": 1,
+                "teamID": 0,
                 "imageUrl": null
               }
             },
@@ -284,86 +210,35 @@
     "imageUrl": null,
     "items": [
       {
-        "name": "name",
-        "description": "description",
-        "userRequirements": "UserReq",
-        "ID": 1,
-        "amount": 10,
-        "condition": "BAD",
-        "reservable": false,
-        "locationID": 2,
-        "imageUrl": "pictures/art.png"
+        "CLASSNAME": "storagesystem.model.Item",
+        "DATA": {
+          "name": "mockItem",
+          "description": "This is a description",
+          "userRequirements": "Behave please.",
+          "ID": 0,
+          "amount": 2,
+          "condition": "GOOD",
+          "reservable": true,
+          "locationID": 0,
+          "imageUrl": "pictures/art.png"
+        }
       },
       {
-        "name": "name",
-        "description": "description",
-        "userRequirements": "UserReq",
-        "ID": 2,
-        "amount": 10,
-        "condition": "GREAT",
-        "reservable": false,
-        "locationID": 2,
-        "imageUrl": "pictures/creepy.jpg"
-      },
-      {
-        "name": "imageitem",
-        "description": "Desc",
-        "userRequirements": "userreq",
-        "ID": 4,
-        "amount": 13,
-        "condition": "GREAT",
-        "reservable": true,
-        "locationID": 3,
-        "imageUrl": "pictures/art.png"
-      },
-      {
-        "name": "mockItem",
-        "description": "This is a description",
-        "userRequirements": "Behave please.",
-        "ID": 0,
-        "amount": 2,
-        "condition": "GOOD",
-        "reservable": true,
-        "locationID": 0,
-        "imageUrl": "pictures/art.png"
-      },
-      {
-        "name": "mockItem nr 2",
-        "description": "This is a description",
-        "userRequirements": "Behave please.",
-        "ID": 1,
-        "amount": 2,
-        "condition": "GOOD",
-        "reservable": true,
-        "locationID": 0,
-        "imageUrl": "art.png"
+        "CLASSNAME": "storagesystem.model.Item",
+        "DATA": {
+          "name": "mockItem nr 2",
+          "description": "This is a description",
+          "userRequirements": "Behave please.",
+          "ID": 1,
+          "amount": 2,
+          "condition": "GOOD",
+          "reservable": true,
+          "locationID": 0,
+          "imageUrl": "art.png"
+        }
       }
     ],
     "teams": [
-      {
-        "name": "MockTeam",
-        "itemIDs": [],
-        "memberIDs": [],
-        "termsAndConditions": "",
-        "teamID": 1,
-        "imageUrl": null
-      },
-      {
-        "name": "Team With Image",
-        "itemIDs": [],
-        "memberIDs": [],
-        "termsAndConditions": "",
-        "teamID": 2,
-        "imageUrl": "pictures/creepy.jpg"
-      },
-      {
-        "name": "TestTeam",
-        "itemIDs": [],
-        "memberIDs": [],
-        "termsAndConditions": "",
-        "teamID": 3,
-        "imageUrl": null
-      },
       {
         "name": "sexNollK",
         "itemIDs": [],
@@ -381,323 +256,21 @@
         "imageUrl": null
       }
     ],
-    "users": [],
+    "users": [
+      {
+        "name": "TestUser69",
+        "password": "testpassword",
+        "description": "This is a test user with number 69",
+        "contactInformation": "Does not exist",
+        "ID": 7
+      }
+    ],
     "locations": [
-      {
-        "name": "Location without Image",
-        "description": "Outside of my mind",
-        "imageUrl": null,
-        "ID": 3
-      },
-      {
-        "name": "Test Location With Image",
-        "description": "Inside of my mind",
-        "imageUrl": "pictures/art.png",
-        "ID": 4
-      },
       {
         "name": "MockLocation",
         "description": "This location does not exist",
         "imageUrl": "creepy.jpg",
         "ID": 0
-      }
-    ],
-    "reservationHandler": {
-      "reservations": []
-    }
-  },
-  {
-    "name": "mockOrganisation",
-    "imageUrl": null,
-    "items": [
-      {
-        "name": "name",
-        "description": "description",
-        "userRequirements": "UserReq",
-        "ID": 1,
-        "amount": 10,
-        "condition": "BAD",
-        "reservable": false,
-        "locationID": 2,
-        "imageUrl": "pictures/art.png"
-      },
-      {
-        "name": "name",
-        "description": "description",
-        "userRequirements": "UserReq",
-        "ID": 2,
-        "amount": 10,
-        "condition": "GREAT",
-        "reservable": false,
-        "locationID": 2,
-        "imageUrl": "pictures/creepy.jpg"
-      },
-      {
-        "name": "imageitem",
-        "description": "Desc",
-        "userRequirements": "userreq",
-        "ID": 4,
-        "amount": 13,
-        "condition": "GREAT",
-        "reservable": true,
-        "locationID": 3,
-        "imageUrl": "pictures/art.png"
-      },
-      {
-        "name": "name",
-        "description": "description",
-        "userRequirements": "UserReq",
-        "ID": 0,
-        "amount": 10,
-        "condition": "GREAT",
-        "reservable": false,
-        "locationID": 1,
-        "imageUrl": null
-      },
-      {
-        "name": "name",
-        "description": "description",
-        "userRequirements": "UserReq",
-        "ID": 0,
-        "amount": 10,
-        "condition": "GREAT",
-        "reservable": false,
-        "locationID": 1,
-        "imageUrl": null
-      }
-    ],
-    "teams": [
-      {
-        "name": "MockTeam",
-        "itemIDs": [],
-        "memberIDs": [],
-        "termsAndConditions": "",
-        "teamID": 1,
-        "imageUrl": null
-      },
-      {
-        "name": "Team With Image",
-        "itemIDs": [],
-        "memberIDs": [],
-        "termsAndConditions": "",
-        "teamID": 2,
-        "imageUrl": "pictures/creepy.jpg"
-      },
-      {
-        "name": "TestTeam",
-        "itemIDs": [],
-        "memberIDs": [],
-        "termsAndConditions": "",
-        "teamID": 3,
-        "imageUrl": null
-      },
-      {
-        "name": "MockTeam",
-        "itemIDs": [],
-        "memberIDs": [],
-        "termsAndConditions": "",
-        "teamID": 0,
-        "imageUrl": null
-      }
-    ],
-    "users": [],
-    "locations": [
-      {
-        "name": "Location without Image",
-        "description": "Outside of my mind",
-        "imageUrl": null,
-        "ID": 3
-      },
-      {
-        "name": "Test Location With Image",
-        "description": "Inside of my mind",
-        "imageUrl": "pictures/art.png",
-        "ID": 4
-      },
-      {
-        "name": "Location without Image",
-        "description": "Outside of my mind",
-        "imageUrl": null,
-        "ID": 0
-      },
-      {
-        "name": "Test Location With Image",
-        "description": "Inside of my mind",
-        "imageUrl": "pictures/art.png",
-        "ID": 1
-      },
-      {
-        "name": "Location without Image",
-        "description": "Outside of my mind",
-        "imageUrl": null,
-        "ID": 0
-      },
-      {
-        "name": "Test Location With Image",
-        "description": "Inside of my mind",
-        "imageUrl": "pictures/art.png",
-        "ID": 1
-      },
-      {
-        "name": "Location without Image",
-        "description": "Outside of my mind",
-        "imageUrl": null,
-        "ID": 0
-      },
-      {
-        "name": "Test Location With Image",
-        "description": "Inside of my mind",
-        "imageUrl": "pictures/art.png",
-        "ID": 1
-      }
-    ],
-    "reservationHandler": {
-      "reservations": []
-    }
-  },
-  {
-    "name": "another Mock Organisation (with image)",
-    "imageUrl": "pictures/informationstekniklogga.png",
-    "items": [
-      {
-        "name": "name",
-        "description": "description",
-        "userRequirements": "UserReq",
-        "ID": 1,
-        "amount": 10,
-        "condition": "BAD",
-        "reservable": false,
-        "locationID": 2,
-        "imageUrl": "pictures/art.png"
-      },
-      {
-        "name": "name",
-        "description": "description",
-        "userRequirements": "UserReq",
-        "ID": 2,
-        "amount": 10,
-        "condition": "GREAT",
-        "reservable": false,
-        "locationID": 2,
-        "imageUrl": "pictures/creepy.jpg"
-      },
-      {
-        "name": "imageitem",
-        "description": "Desc",
-        "userRequirements": "userreq",
-        "ID": 4,
-        "amount": 13,
-        "condition": "GREAT",
-        "reservable": true,
-        "locationID": 3,
-        "imageUrl": "pictures/art.png"
-      },
-      {
-        "name": "name",
-        "description": "description",
-        "userRequirements": "UserReq",
-        "ID": 0,
-        "amount": 10,
-        "condition": "GREAT",
-        "reservable": false,
-        "locationID": 1,
-        "imageUrl": null
-      },
-      {
-        "name": "name",
-        "description": "description",
-        "userRequirements": "UserReq",
-        "ID": 0,
-        "amount": 10,
-        "condition": "GREAT",
-        "reservable": false,
-        "locationID": 1,
-        "imageUrl": null
-      }
-    ],
-    "teams": [
-      {
-        "name": "MockTeam",
-        "itemIDs": [],
-        "memberIDs": [],
-        "termsAndConditions": "",
-        "teamID": 1,
-        "imageUrl": null
-      },
-      {
-        "name": "Team With Image",
-        "itemIDs": [],
-        "memberIDs": [],
-        "termsAndConditions": "",
-        "teamID": 2,
-        "imageUrl": "pictures/creepy.jpg"
-      },
-      {
-        "name": "TestTeam",
-        "itemIDs": [],
-        "memberIDs": [],
-        "termsAndConditions": "",
-        "teamID": 3,
-        "imageUrl": null
-      },
-      {
-        "name": "MockTeam",
-        "itemIDs": [],
-        "memberIDs": [],
-        "termsAndConditions": "",
-        "teamID": 0,
-        "imageUrl": null
-      }
-    ],
-    "users": [],
-    "locations": [
-      {
-        "name": "Location without Image",
-        "description": "Outside of my mind",
-        "imageUrl": null,
-        "ID": 3
-      },
-      {
-        "name": "Test Location With Image",
-        "description": "Inside of my mind",
-        "imageUrl": "pictures/art.png",
-        "ID": 4
-      },
-      {
-        "name": "Location without Image",
-        "description": "Outside of my mind",
-        "imageUrl": null,
-        "ID": 0
-      },
-      {
-        "name": "Test Location With Image",
-        "description": "Inside of my mind",
-        "imageUrl": "pictures/art.png",
-        "ID": 1
-      },
-      {
-        "name": "Location without Image",
-        "description": "Outside of my mind",
-        "imageUrl": null,
-        "ID": 0
-      },
-      {
-        "name": "Test Location With Image",
-        "description": "Inside of my mind",
-        "imageUrl": "pictures/art.png",
-        "ID": 1
-      },
-      {
-        "name": "Location without Image",
-        "description": "Outside of my mind",
-        "imageUrl": null,
-        "ID": 0
-      },
-      {
-        "name": "Test Location With Image",
-        "description": "Inside of my mind",
-        "imageUrl": "pictures/art.png",
-        "ID": 1
       }
     ],
     "reservationHandler": {

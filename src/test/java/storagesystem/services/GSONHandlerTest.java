@@ -24,8 +24,8 @@ public class GSONHandlerTest {
         Location location = new Location("Mock Location", "This is a temporary location", null);
         List<IReservable> itemList = new ArrayList<>();
 
-        IReservable item1 = IReservableFactory.createReservableItem("name", "description", "UserReq", 10, Condition.BAD, false, location.getID(), "pictures/art.png";
-        IReservable item2 = IReservableFactory.createReservableItem("name", "description", "UserReq", 10, Condition.GREAT, false, location.getID(), "pictures/creepy.jpg";
+        IReservable item1 = IReservableFactory.createReservableItem("name", "description", "UserReq", 10, Condition.BAD, false, location.getID(), "pictures/art.png");
+        IReservable item2 = IReservableFactory.createReservableItem("name", "description", "UserReq", 10, Condition.GREAT, false, location.getID(), "pictures/creepy.jpg");
 
         itemList.add(item1);
         itemList.add(item2);

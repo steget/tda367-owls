@@ -33,7 +33,8 @@ public class OrganisationTest {
         Organisation informationsteknik = new Organisation("Informationsteknik");
         Team tempTeam = new Team("sexNollK");
         informationsteknik.addTeam(tempTeam);
-        IReservable mockItem = IReservableFactory.createReservableItem("mockItem", "This is a description", "Behave please.", 2, Condition.GOOD, true, new Location("testLocation", "test desc", null), null);
+        Location mockLocation = new Location("MockLocation", "this is a mock location in getItemTest()", null);
+        IReservable mockItem = IReservableFactory.createReservableItem("mockItem", "This is a description", "Behave please.", 2, Condition.GOOD, true, mockLocation.getID(), null);
 
         assertEquals(0, informationsteknik.getAllItems().size());
         tempTeam.addItemToInventory(mockItem);

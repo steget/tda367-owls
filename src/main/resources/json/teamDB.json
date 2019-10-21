@@ -1,29 +1,5 @@
 [
   {
-    "name": "MockTeam",
-    "itemIDs": [],
-    "memberIDs": [],
-    "termsAndConditions": "",
-    "teamID": 1,
-    "imageUrl": null
-  },
-  {
-    "name": "Team With Image",
-    "itemIDs": [],
-    "memberIDs": [],
-    "termsAndConditions": "",
-    "teamID": 2,
-    "imageUrl": "pictures/creepy.jpg"
-  },
-  {
-    "name": "TestTeam",
-    "itemIDs": [],
-    "memberIDs": [],
-    "termsAndConditions": "",
-    "teamID": 3,
-    "imageUrl": null
-  },
-  {
     "name": "sexNollK",
     "itemIDs": [],
     "memberIDs": [],
@@ -36,31 +12,6 @@
     "itemIDs": [],
     "memberIDs": [],
     "termsAndConditions": "",
-    "teamID": 1,
-    "imageUrl": null
-  },
-  {
-    "name": "sexNollK",
-    "itemIDs": [
-      0,
-      1
-    ],
-    "memberIDs": [
-      0,
-      1
-    ],
-    "termsAndConditions": "För att låna våra prylar måste prylen vara i samma skick som den var när den lånades ut. Behövs den diskas så diska den osv. Prylen ska också vara tillbaka på samma plats igen",
-    "teamID": 0,
-    "imageUrl": null
-  },
-  {
-    "name": "P.R.NollK",
-    "itemIDs": [],
-    "memberIDs": [
-      0,
-      1
-    ],
-    "termsAndConditions": "text 2",
     "teamID": 1,
     "imageUrl": null
   }
