@@ -55,6 +55,9 @@ public class LoginPageController implements Initializable {
     private Label userAlreadyExistsLabel;
 
     @FXML
+    private Label enterAllFieldsLabel;
+
+    @FXML
     private TextField regUserNameTextField;
 
     @FXML
@@ -149,15 +152,29 @@ public class LoginPageController implements Initializable {
         Organisation selectedOrganisation = getSelectedRegisterOrganisation();
         //make sure there is no user with the name
         if (!doesUserExist(selectedOrganisation, regUserNameTextField.getText())) {
-            String name = regUserNameTextField.getText();
-            String password = regPasswordTextField.getText();
-            String desc = regUserDescriptionTextArea.getText();
-            String contactInfo = regContactInfoTextField.getText();
-            StoreIT.createUser(name, password, desc, contactInfo);
-            fadeTransition(userRegisteredLabel, 2);
+            //make sure there is data in all fields
+            if (isAllRegisterFieldsEntered()) {
+                String name = regUserNameTextField.getText();
+                String password = regPasswordTextField.getText();
+                String desc = regUserDescriptionTextArea.getText();
+                String contactInfo = regContactInfoTextField.getText();
+
+                StoreIT.createUser(name, password, desc, contactInfo);
+                fadeTransition(userRegisteredLabel, 2);
+            } else {
+                fadeTransition(enterAllFieldsLabel, 3);
+            }
         } else {
             fadeTransition(userAlreadyExistsLabel, 3);
         }
+    }
+
+    private boolean isAllRegisterFieldsEntered() {
+        return (regUserNameTextField.getLength()>0 &&
+                regPasswordTextField.getLength()>0 &&
+                regUserDescriptionTextArea.getLength()>0 &&
+                regContactInfoTextField.getLength()>0 &&
+                regOrganisationChoiceBox.getValue() != null);
     }
 
     /**
