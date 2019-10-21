@@ -1,4 +1,4 @@
-package storagesystem.controller;
+package storagesystem.viewcontroller.Inventory;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -12,13 +12,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
-import storagesystem.StorageSystem;
-import storagesystem.model.Condition;
-import storagesystem.model.IReservable;
-import storagesystem.model.Location;
-import storagesystem.model.Team;
+import storagesystem.model.*;
 import storagesystem.services.PictureHandler;
 
 import javax.imageio.ImageIO;
@@ -81,7 +76,7 @@ public class DetailedItemViewController extends AnchorPane {
         this.reservableItem = reservableItem;
         this.itemOwner = itemOwner;
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/detailedItemView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Inventory/detailedItemView.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 
@@ -95,7 +90,7 @@ public class DetailedItemViewController extends AnchorPane {
     }
 
     private void initialize() {
-        locationList = StorageSystem.getCurrentOrganisation().getLocations();
+        locationList = StoreIT.getCurrentOrganisation().getLocations();
         isReservableChoiceBox.setItems(FXCollections.observableArrayList("True", "False"));
         updateAllVisibleFields();
         closeButtonImageView.setImage(new Image("pictures/close-button.png"));

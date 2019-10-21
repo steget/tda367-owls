@@ -1,22 +1,14 @@
-package storagesystem.controller;
+package storagesystem.viewcontroller.Inventory;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.text.Text;
-import storagesystem.StorageSystem;
 import storagesystem.model.*;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +22,7 @@ public class InventoryController implements Initializable {
     private Organisation currentOrganisation;
     private Team currentlySelectedTeam;
     private User currentUser;
-    private List<Item> inventory;
+    private List<IReservable> inventory;
     private List<Team> currentUsersTeams = new ArrayList<>();
     private ObservableList<String> teamNames = FXCollections.observableArrayList();
 
@@ -52,11 +44,11 @@ public class InventoryController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        currentOrganisation = StorageSystem.getCurrentOrganisation();
-        currentUser = StorageSystem.getCurrentUser();
-        currentlySelectedTeam = StorageSystem.getCurrentTeam();
+        currentOrganisation = StoreIT.getCurrentOrganisation();
+        currentUser = StoreIT.getCurrentUser();
+        currentlySelectedTeam = StoreIT.getCurrentTeam();
         isUserPartOfTeam = currentOrganisation.getUsersTeams(currentUser).size() > 0;
-        currentUsersTeams = StorageSystem.getCurrentOrganisation().getUsersTeams(currentUser);
+        currentUsersTeams = StoreIT.getCurrentOrganisation().getUsersTeams(currentUser);
         fillTeamAttributes();
         refreshItems();
     }
@@ -85,7 +77,7 @@ public class InventoryController implements Initializable {
             for (Team t : currentUsersTeams) {
                 if (t.getName().equals(teamChooser.getItems().get(newIndex))) {
                     currentlySelectedTeamIndex = newIndex;
-                    StorageSystem.setCurrentTeam(t);
+                    StoreIT.setCurrentTeam(t);
                     refreshItems();
                     break;
                 }
@@ -98,10 +90,9 @@ public class InventoryController implements Initializable {
      * It removes all the items in list and renews with new items.
      */
     private void refreshItems() {
-        currentlySelectedTeam = StorageSystem.getCurrentTeam();
         inventory = currentlySelectedTeam.getAllItems();
         itemPane.getChildren().remove(0, itemPane.getChildren().size());
-        for (Item i : inventory) {
+        for (IReservable i : inventory) {
             InventoryListItemController listItem = new InventoryListItemController(i);
             listItem.addListener(this::listItemClicked);
             itemPane.getChildren().add(listItem);
@@ -110,16 +101,16 @@ public class InventoryController implements Initializable {
 
     /**
      * opens up a detailed view of the pressed item.
+     *
      * @param item
      */
-    private void listItemClicked(IReservable item){
-        detailView = new DetailedItemViewController(item, StorageSystem.getCurrentOrganisation().getItemOwner(item));
+    private void listItemClicked(IReservable item) {
+        detailView = new DetailedItemViewController(item, StoreIT.getCurrentOrganisation().getItemOwner(item));
         rootPane.getChildren().add(detailView);
         detailView.addDetailListener(this::detailItemViewClicked);
         detailView.addSaveButtonListener(this::saveButtonClicked);
         detailView.editItem();
     }
-
 
 
     /**

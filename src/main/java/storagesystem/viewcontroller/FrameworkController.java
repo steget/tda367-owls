@@ -1,4 +1,4 @@
-package storagesystem.controller;
+package storagesystem.viewcontroller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -39,6 +39,8 @@ public class FrameworkController implements Initializable, ILoadUI {
     @FXML
     private Button allItemsButton;
     @FXML
+    private Button reservationsButton;
+    @FXML
     private Pane frameTopPane;
     @FXML
     private BorderPane borderPane;
@@ -48,31 +50,37 @@ public class FrameworkController implements Initializable, ILoadUI {
     }
 
     @FXML
-    void settingsButtonPressed(){
-        loadUI("/settings");
+    void settingsButtonPressed() {
+        loadUI("settings/settings");
     }
 
     @FXML
-    void allItemsButtonPressed(){
-        loadUI("/itemList");
+    void allItemsButtonPressed() {
+        loadUI("itemview/itemList");
+    }
+
+    @FXML
+    void reservationsButtonPressed() {
+        loadUI("reservations/reservations");
     }
 
     @FXML
     void yourInventoryButtonPressed(){
-        loadUI("/Inventory");
+        loadUI("Inventory/inventory");
     }
 
 
     /**
-     * Method to avoid repetetive code.
+     * Method to avoid repetitive code.
+     *
      * @param ui The url to a fxml file.
      */
     @Override
-    public void loadUI(String ui){
+    public void loadUI(String ui) {
         Parent root = null;
-        try{
-            root = FXMLLoader.load(getClass().getResource(ui+".fxml"));
-        } catch (IOException e){
+        try {
+            root = FXMLLoader.load(getClass().getResource("/" + ui + ".fxml"));
+        } catch (IOException e) {
             Logger.getLogger(FrameworkController.class.getName()).log(Level.SEVERE, null, e);
         }
         borderPane.setCenter(root);

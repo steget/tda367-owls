@@ -6,11 +6,12 @@ import java.util.List;
 /**
  * A team has a list of users that belong to the same team.
  * A team has an inventory of items which it can browse.
+ *
  * @author Hugo Stegrell, Pär Aronsson
  */
 public class Team {
     private String name;
-    private final List<Item> inventory = new ArrayList<>(); //todo itemIDs instead
+    private final List<IReservable> inventory = new ArrayList<>(); //todo itemIDs instead
     private final List<Integer> memberIDs = new ArrayList<>();
     private String termsAndConditions;
     private int teamID;
@@ -50,7 +51,7 @@ public class Team {
         return name;
     }
 
-    public void addItemToInventory(Item itemToAdd){
+    public void addItemToInventory(IReservable itemToAdd) {
         inventory.add(itemToAdd);
     }
 
@@ -66,8 +67,7 @@ public class Team {
         return termsAndConditions;
     }
 
-    public List<Item> getAllItems() {
-        //todo defensive copy
+    public List<IReservable> getAllItems() {
         return inventory;
     }
 

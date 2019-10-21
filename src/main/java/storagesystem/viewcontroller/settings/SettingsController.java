@@ -1,4 +1,4 @@
-package storagesystem.controller;
+package storagesystem.viewcontroller.settings;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -8,7 +8,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import storagesystem.StorageSystem;
+import storagesystem.model.StoreIT;
 import storagesystem.model.Organisation;
 import storagesystem.model.Team;
 import storagesystem.model.User;
@@ -20,6 +20,7 @@ import java.util.ResourceBundle;
 
 /**
  * Control a settings page
+ *
  * @author Hugo Stegrell, Pär Aronsson
  */
 public class SettingsController extends AnchorPane implements Initializable {
@@ -71,10 +72,10 @@ public class SettingsController extends AnchorPane implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        currentOrganisation = StorageSystem.getCurrentOrganisation();
-        currentUser = StorageSystem.getCurrentUser();
+        currentOrganisation = StoreIT.getCurrentOrganisation();
+        currentUser = StoreIT.getCurrentUser();
 
-        isUserPartOfTeam = StorageSystem.getCurrentOrganisation().getUsersTeams(currentUser).size() > 0;
+        isUserPartOfTeam = StoreIT.getCurrentOrganisation().getUsersTeams(currentUser).size() > 0;
 
         if (isUserPartOfTeam) {
             fillTeamAttributes();
@@ -135,7 +136,7 @@ public class SettingsController extends AnchorPane implements Initializable {
      */
     private void fillTeamAttributes() {
 
-        currentUsersTeams = StorageSystem.getCurrentOrganisation().getUsersTeams(currentUser);
+        currentUsersTeams = StoreIT.getCurrentOrganisation().getUsersTeams(currentUser);
         currentlySelectedTeam = currentUsersTeams.get(0);
 
         for (Team t : currentUsersTeams) { //adds team names into an observable list.
@@ -198,7 +199,7 @@ public class SettingsController extends AnchorPane implements Initializable {
         /**
          * temp thing REMOVE LATER
          */
-        StorageSystem.setCurrentTeam(currentlySelectedTeam);
+        StoreIT.setCurrentTeam(currentlySelectedTeam);
 
     }
 
@@ -208,11 +209,11 @@ public class SettingsController extends AnchorPane implements Initializable {
     @FXML
     private void addMemberButtonPressed() {
         boolean doesUserExist = false;
-        for (User user : StorageSystem.getCurrentOrganisation().getUsers()) {
+        for (User user : StoreIT.getCurrentOrganisation().getUsers()) {
             if (user.getName().equals(settingsAddUserInput.getText())) {
                 doesUserExist = true;
-                    if (currentlySelectedTeam.getAllMemberIDs().contains(user.getID())) {
-                        //todo print in program
+                if (currentlySelectedTeam.getAllMemberIDs().contains(user.getID())) {
+                    //todo print in program
                     System.out.println("User is already a part of this team.");
                 } else {
                     currentlySelectedTeam.addMember(user.getID());

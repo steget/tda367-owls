@@ -1,15 +1,11 @@
-package storagesystem.controller;
+package storagesystem.viewcontroller.Inventory;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Text;
-import storagesystem.StorageSystem;
 import storagesystem.model.IReservable;
-import storagesystem.model.Item;
 
-import javax.xml.bind.Marshaller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,11 +47,11 @@ public class InventoryListItemController extends AnchorPane {
     @FXML
     private Label condition;
 
-    Item thisItem;
+    IReservable thisItem;
 
-    public InventoryListItemController(Item item) {
+    public InventoryListItemController(IReservable item) {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/InventoryListItem.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Inventory/InventoryListItem.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 

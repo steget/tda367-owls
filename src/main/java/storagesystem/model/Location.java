@@ -14,7 +14,7 @@ public class Location {
     private String description;
 
 
-    public Location(String name, String description){
+    public Location(String name, String description) {
         this.name = name;
         this.description = description;
     }

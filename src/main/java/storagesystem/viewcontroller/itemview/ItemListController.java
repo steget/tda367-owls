@@ -1,11 +1,11 @@
-package storagesystem.controller;
+package storagesystem.viewcontroller.itemview;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
-import storagesystem.StorageSystem;
+import storagesystem.model.StoreIT;
 import storagesystem.model.IReservable;
 
 import java.net.URL;
@@ -16,6 +16,7 @@ import java.util.ResourceBundle;
 
 /**
  * Controls a view showing all reservable items
+ *
  * @author Hugo Stegrell
  */
 public class ItemListController implements Initializable {
@@ -39,7 +40,7 @@ public class ItemListController implements Initializable {
 
     private void createAllSmallItemPanels() {
         for (IReservable reservableItem :
-                StorageSystem.getCurrentOrganisation().getAllItems()) {
+                StoreIT.getCurrentOrganisation().getAllItems()) {
             allSmallItemPanels.add(new SmallItemPanel(reservableItem));
         }
     }

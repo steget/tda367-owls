@@ -4,14 +4,27 @@ import java.util.Objects;
 
 /**
  * A user should represent a person.
+ *
  * @author Hugo Stegrell, Pär Aronsson
  */
 public class User implements IBorrower {
     private String name;
+    private String password;
     private String description;
     private String contactInformation;
     private int ID;
     private static int nextID;
+
+    public User(String name, String password, String description, String contactInformation) {
+        this.name = name;
+        this.password = password;
+        this.description = description;
+        this.contactInformation = contactInformation;
+
+        //set ID and update lastID
+        ID = nextID;
+        nextID++;
+    }
 
     public User(String name, String description, String contactInformation) {
         this.name = name;
@@ -60,5 +73,9 @@ public class User implements IBorrower {
 
     public int getID() {
         return ID;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
