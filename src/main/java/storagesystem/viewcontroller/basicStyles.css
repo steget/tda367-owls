@@ -28,6 +28,7 @@
     -fx-background-radius: 20;
 }
 
+
 .dialogs {
     -fx-background-color: primaryColor;
 }
@@ -51,6 +52,11 @@
     -fx-text-fill: white;
 }
 
+.smallText{
+    -fx-font-size: 16px;
+    -fx-text-fill: white;
+}
+
 .loginText {
     -fx-font-size: 16px;
     -fx-text-fill: white;
@@ -64,7 +70,20 @@
     -fx-text-fill: #00ff0f;
 }
 
+.confirmButton{
+    -fx-background-radius: 10;
+    /*TODO Change color to match other buttons*/
+    -fx-background-color: darkgreen;
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+}
+
+.confirmButton:hover{
+    /*TODO Change color to match other buttons*/
+}
+
 #loginButton {
     -fx-font-size: 24px;
     -fx-font-weight: bold;
 }
+

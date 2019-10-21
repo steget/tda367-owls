@@ -14,6 +14,8 @@ public class StoreIT {
     private static User currentUser;
     private static Organisation currentOrganisation;
 
+    //TODO write tests for class
+
     /**
      * Loads all data into the program. Should be run at start.
      */
