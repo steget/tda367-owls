@@ -146,6 +146,7 @@ public class GSONHandler {
         clearJson(reservationDB);
         clearJson(teamDB);
         clearJson(userDB);
+        System.out.println("CLEARED ALL JSON FILES");
     }
 
 

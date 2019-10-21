@@ -21,11 +21,18 @@ public class StoreIT {
      * Loads all data into the program. Should be run at start.
      */
     public void initializeBackend() throws IOException {
+        //GSONHandler.clearAllJsonFiles();
         //mockData();
 
-        organisations.addAll(GSONHandler.getListFromJson(Organisation.class));
+        try {
+            organisations.addAll(GSONHandler.getListFromJson(Organisation.class));
+        } catch (NullPointerException e) {
+            System.out.println("Organisation json is empty.");
+        }
+        System.out.println("Loaded Organisations from json.");
         IDHandler.updateAllIDs(organisations);
         currentOrganisation = organisations.get(0);
+        System.out.println("Current Organisation Set.");
     }
 
     private static void mockData() throws IOException {
@@ -43,6 +50,10 @@ public class StoreIT {
         Team tempTeam2 = new Team("P.R.NollK");
         GSONHandler.addToJson(tempTeam);
         GSONHandler.addToJson(tempTeam2);
+
+        ReservationHandler mockReservationHandler = new ReservationHandler();
+        mockReservationHandler.createReservation(tempTeam, new Interval(new DateTime(2019, 9, 12, 17, 30), new DateTime(2019, 11, 16, 20, 0)), mockItem);
+        GSONHandler.addToJson(mockReservationHandler.getReservation(0));
 
         Organisation informationsteknik = new Organisation("Informationsteknik");
         Organisation data = new Organisation("Data");
@@ -83,6 +94,7 @@ public class StoreIT {
 
         tempTeam.addItemToInventory(mockItem);
         tempTeam.addItemToInventory(mockItem2);
+        System.out.println("Mock Data added.");
     }
 
     public static void setCurrentUser(User currentUser) {

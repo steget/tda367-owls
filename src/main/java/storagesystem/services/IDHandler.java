@@ -14,6 +14,7 @@ public class IDHandler {
         updateNextReservationID(organisations);
         updateNextTeamID(organisations);
         updateNextUserID(organisations);
+        System.out.println("Updated all nextIDs.");
     }
 
     private static void updateNextItemID(List<Organisation> organisations) {

@@ -1,9 +1,72 @@
 [
   {
-    "name": "TestUser69",
-    "password": "testpassword",
-    "description": "This is a test user with number 69",
-    "contactInformation": "Does not exist",
+    "name": "Albert",
+    "password": null,
+    "description": "",
+    "contactInformation": "",
+    "ID": 0
+  },
+  {
+    "name": "admin",
+    "password": null,
+    "description": "",
+    "contactInformation": "",
+    "ID": 1
+  },
+  {
+    "name": "eke",
+    "password": null,
+    "description": "",
+    "contactInformation": "",
+    "ID": 2
+  },
+  {
+    "name": "kvick",
+    "password": null,
+    "description": "",
+    "contactInformation": "",
+    "ID": 3
+  },
+  {
+    "name": "sponken",
+    "password": null,
+    "description": "",
+    "contactInformation": "",
+    "ID": 4
+  },
+  {
+    "name": "giff",
+    "password": null,
+    "description": "",
+    "contactInformation": "",
+    "ID": 5
+  },
+  {
+    "name": "steget",
+    "password": null,
+    "description": "",
+    "contactInformation": "",
+    "ID": 6
+  },
+  {
+    "name": "albert",
+    "password": "",
+    "description": "",
+    "contactInformation": "",
     "ID": 7
+  },
+  {
+    "name": "Albert2",
+    "password": "",
+    "description": "",
+    "contactInformation": "",
+    "ID": 8
+  },
+  {
+    "name": "Albert3",
+    "password": "test123",
+    "description": "Password doesn\u0027t work",
+    "contactInformation": "",
+    "ID": 9
   }
 ]

@@ -28,16 +28,36 @@ public class Organisation {
 
     public Organisation(String name) throws IOException {
         this.name = name;
-        this.reservationHandler = new ReservationHandler();
-        List<Location> locationList = GSONHandler.getListFromJson(Location.class);
-        this.locations.addAll(locationList);
-        List<Item> itemList = GSONHandler.getListFromJson(Item.class);
-        this.items.addAll(itemList);
-        List<Team> teamList = GSONHandler.getListFromJson(Team.class);
-        this.teams.addAll(teamList);/*
-        List<User> userList = GSONHandler.getListFromJson(User.class);
-        users.addAll(userList);*/
-
+        try {
+            this.reservationHandler = new ReservationHandler(GSONHandler.getListFromJson(Reservation.class));
+        } catch (NullPointerException e) {
+            System.out.println("Reservation json is empty.");
+            this.reservationHandler = new ReservationHandler();
+        }
+        try {
+            List<Location> locationList = GSONHandler.getListFromJson(Location.class);
+            this.locations.addAll(locationList);
+        } catch (NullPointerException e) {
+            System.out.println("Location json is empty.");
+        }
+        try {
+            List<Item> itemList = GSONHandler.getListFromJson(Item.class);
+            this.items.addAll(itemList);
+        } catch (NullPointerException e) {
+            System.out.println("Item json is empty.");
+        }
+        try {
+            List<Team> teamList = GSONHandler.getListFromJson(Team.class);
+            this.teams.addAll(teamList);
+        } catch (NullPointerException e) {
+            System.out.println("Team json is empty.");
+        }
+        try {
+            List<User> userList = GSONHandler.getListFromJson(User.class);
+            this.users.addAll(userList);
+        } catch (NullPointerException e) {
+            System.out.println("User json is empty");
+        }
     }
 
     /*private Organisation(Organisation organisationToCopy) throws IOException {
@@ -86,6 +106,7 @@ public class Organisation {
         }
         throw new NoSuchElementException("ItemID not found in list of items");
     }
+
     /**
      * Get a specific location.
      *
@@ -94,8 +115,8 @@ public class Organisation {
      * @throws NoSuchElementException if item ID not found
      */
     public Location getLocation(int ID) throws NoSuchElementException {
-        for(Location location : locations) {
-            if(location.getID() == ID) {
+        for (Location location : locations) {
+            if (location.getID() == ID) {
                 System.out.println("Item found");
                 return location;
             }

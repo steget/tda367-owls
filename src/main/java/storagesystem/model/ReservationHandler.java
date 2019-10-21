@@ -1,7 +1,9 @@
 package storagesystem.model;
 
 import org.joda.time.Interval;
+import storagesystem.services.GSONHandler;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -23,7 +25,7 @@ public class ReservationHandler {
         this.reservations = reservations;
     }
 
-    public ReservationHandler() {
+    public ReservationHandler() throws IOException {
         reservations = new ArrayList<>();
     }
 

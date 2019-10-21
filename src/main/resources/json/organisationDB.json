@@ -70,7 +70,7 @@
           0,
           1
         ],
-        "termsAndConditions": "text 5",
+        "termsAndConditions": "text 2",
         "teamID": 1,
         "imageUrl": null
       }
@@ -124,6 +124,27 @@
         "description": "",
         "contactInformation": "",
         "ID": 6
+      },
+      {
+        "name": "albert",
+        "password": "",
+        "description": "",
+        "contactInformation": "",
+        "ID": 7
+      },
+      {
+        "name": "Albert2",
+        "password": "",
+        "description": "",
+        "contactInformation": "",
+        "ID": 8
+      },
+      {
+        "name": "Albert3",
+        "password": "test123",
+        "description": "Password doesn\u0027t work",
+        "contactInformation": "",
+        "ID": 9
       }
     ],
     "locations": [
@@ -140,6 +161,39 @@
           "CLASSNAME": "storagesystem.model.Reservation",
           "DATA": {
             "id": 0,
+            "borrower": {
+              "CLASSNAME": "storagesystem.model.Team",
+              "DATA": {
+                "name": "sexNollK",
+                "itemIDs": [],
+                "memberIDs": [],
+                "termsAndConditions": "",
+                "teamID": 0,
+                "imageUrl": null
+              }
+            },
+            "interval": "2019-09-12T17:30:00.000+02:00/2019-11-16T20:00:00.000+01:00",
+            "reservedObject": {
+              "CLASSNAME": "storagesystem.model.Item",
+              "DATA": {
+                "name": "mockItem",
+                "description": "This is a description",
+                "userRequirements": "Behave please.",
+                "ID": 0,
+                "amount": 2,
+                "condition": "GOOD",
+                "reservable": true,
+                "locationID": 0,
+                "imageUrl": "pictures/art.png"
+              }
+            },
+            "status": "PENDING"
+          }
+        },
+        {
+          "CLASSNAME": "storagesystem.model.Reservation",
+          "DATA": {
+            "id": 1,
             "borrower": {
               "CLASSNAME": "storagesystem.model.Team",
               "DATA": {
@@ -172,7 +226,7 @@
         {
           "CLASSNAME": "storagesystem.model.Reservation",
           "DATA": {
-            "id": 1,
+            "id": 2,
             "borrower": {
               "CLASSNAME": "storagesystem.model.Team",
               "DATA": {
@@ -256,15 +310,7 @@
         "imageUrl": null
       }
     ],
-    "users": [
-      {
-        "name": "TestUser69",
-        "password": "testpassword",
-        "description": "This is a test user with number 69",
-        "contactInformation": "Does not exist",
-        "ID": 7
-      }
-    ],
+    "users": [],
     "locations": [
       {
         "name": "MockLocation",
@@ -274,7 +320,41 @@
       }
     ],
     "reservationHandler": {
-      "reservations": []
+      "reservations": [
+        {
+          "CLASSNAME": "storagesystem.model.Reservation",
+          "DATA": {
+            "id": 0,
+            "borrower": {
+              "CLASSNAME": "storagesystem.model.Team",
+              "DATA": {
+                "name": "sexNollK",
+                "itemIDs": [],
+                "memberIDs": [],
+                "termsAndConditions": "",
+                "teamID": 0,
+                "imageUrl": null
+              }
+            },
+            "interval": "2019-09-12T17:30:00.000+02:00/2019-11-16T20:00:00.000+01:00",
+            "reservedObject": {
+              "CLASSNAME": "storagesystem.model.Item",
+              "DATA": {
+                "name": "mockItem",
+                "description": "This is a description",
+                "userRequirements": "Behave please.",
+                "ID": 0,
+                "amount": 2,
+                "condition": "GOOD",
+                "reservable": true,
+                "locationID": 0,
+                "imageUrl": "pictures/art.png"
+              }
+            },
+            "status": "PENDING"
+          }
+        }
+      ]
     }
   }
 ]

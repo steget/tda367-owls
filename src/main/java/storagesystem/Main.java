@@ -37,11 +37,16 @@ public class Main extends Application {
     public void stop() throws IOException {
         GSONHandler.clearAllJsonFiles();
         GSONHandler.addListToJson(StoreIT.getOrganisations());
+        System.out.println("Saved Organisations.");
         GSONHandler.addListToJson(StoreIT.getCurrentOrganisation().getUsers());
+        System.out.println("Saved Users.");
         GSONHandler.addListToJson(StoreIT.getCurrentOrganisation().getTeams());
+        System.out.println("Saved Teams.");
         GSONHandler.addListToJson(StoreIT.getCurrentOrganisation().getAllItems());
+        System.out.println("Saved Items.");
         GSONHandler.addListToJson(StoreIT.getCurrentOrganisation().getLocations());
+        System.out.println("Saved Locations.");
         GSONHandler.addListToJson(StoreIT.getCurrentOrganisation().getReservationHandler().getReservations());
-
+        System.out.println("Saved Reservations.");
     }
 }
