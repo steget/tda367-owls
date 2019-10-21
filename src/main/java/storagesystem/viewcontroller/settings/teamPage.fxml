@@ -12,7 +12,7 @@
 
 <!-- @author Jonathan Eksberg, Pär Aronsson, Hugo Stegrell -->
 
-<AnchorPane fx:id="rootPane" prefHeight="700.0" prefWidth="1000.0" styleClass="background" stylesheets="@basicStyles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="storagesystem.controller.TeamPageController">
+<AnchorPane fx:id="rootPane" prefHeight="700.0" prefWidth="1000.0" styleClass="background" stylesheets="@../basicStyles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="storagesystem.viewcontroller.settings.TeamPageController">
    <children>
       <AnchorPane fx:id="editTeamAnchorPane" prefHeight="700.0" prefWidth="1000.0" styleClass="background">
          <children>
@@ -35,10 +35,10 @@
                   <Font size="61.0" />
                </font>
             </Label>
-            <Text fill="WHITE" layoutX="689.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="settingsLabel" text="Manage Members:" underline="true" />
+            <Text fill="WHITE" layoutX="689.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bigLabel" text="Manage Members:" underline="true" />
             <TextArea fx:id="settingsTeamContractInput" layoutX="214.0" layoutY="277.0" prefHeight="302.0" prefWidth="337.0" promptText="Write your team's standard terms and conditions here..." wrapText="true" />
-            <Text fill="WHITE" layoutX="63.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="settingsLabel" text="Team Name:" underline="true" />
-            <Text fill="WHITE" layoutX="76.0" layoutY="303.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="settingsLabel" text="Terms and conditions:" underline="true" wrappingWidth="125.99998712539673" />
+            <Text fill="WHITE" layoutX="63.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bigLabel" text="Team Name:" underline="true" />
+            <Text fill="WHITE" layoutX="76.0" layoutY="303.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bigLabel" text="Terms and conditions:" underline="true" wrappingWidth="125.99998712539673" />
             <Button fx:id="cancelTeamButton" layoutX="44.0" layoutY="615.0" mnemonicParsing="false" onAction="#cancelTeamButtonPressed" prefHeight="70.0" prefWidth="126.0" styleClass="inAppButton" text="Cancel" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" />
          </children>
       </AnchorPane>
@@ -50,10 +50,10 @@
                </font>
             </Label>
             <ChoiceBox fx:id="settingsChooseTeamInput" layoutX="764.0" layoutY="291.0" prefWidth="150.0" />
-            <Text fill="WHITE" layoutX="757.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="settingsLabel" text="Choose a team:" underline="true" />
+            <Text fill="WHITE" layoutX="757.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bigLabel" text="Choose a team:" underline="true" />
             <Button fx:id="editTeamButton" layoutX="866.0" layoutY="574.0" mnemonicParsing="false" onAction="#editTeamButtonPressed" prefHeight="70.0" prefWidth="126.0" styleClass="inAppButton" text="Edit team" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0" />
             <TextArea fx:id="teamToCTextArea" editable="false" layoutX="332.0" layoutY="240.0" prefHeight="325.0" prefWidth="337.0" wrapText="true" />
-            <Text fill="WHITE" layoutX="75.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="settingsLabel" text="Terms and Conditions:" underline="true" />
+            <Text fill="WHITE" layoutX="75.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bigLabel" text="Terms and Conditions:" underline="true" />
             <Label fx:id="teamLabel" contentDisplay="CENTER" layoutX="193.0" text="MockTeam" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                <font>
                   <Font size="61.0" />
