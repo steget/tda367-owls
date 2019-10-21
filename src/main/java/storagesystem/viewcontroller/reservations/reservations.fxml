@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!-- Author: William Albertsson -->
 
 <?import javafx.geometry.Insets?>
@@ -9,40 +10,28 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 
-
-<AnchorPane fx:id="reservationsRootPane" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: blue;"
-            stylesheets="@../basicStyles.css" xmlns="http://javafx.com/javafx/8.0.201" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="storagesystem.viewcontroller.reservations.ReservationsController">
+<AnchorPane fx:id="reservationsRootPane" prefHeight="700.0" prefWidth="1000.0" styleClass="background" stylesheets="@../basicStyles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="storagesystem.viewcontroller.reservations.ReservationsController">
     <children>
-        <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0"
-              AnchorPane.rightAnchor="0.0">
+        <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <children>
-                <Label minHeight="-Infinity" minWidth="-Infinity" text="Item"/>
-                <Region prefHeight="200.0" prefWidth="200.0"/>
-                <Label minHeight="-Infinity" minWidth="-Infinity" text="Borrower">
+                <Label minHeight="-Infinity" minWidth="-Infinity" styleClass="smallLabel" text="Item" />
+                <Region prefHeight="200.0" prefWidth="200.0" />
+                <Label minHeight="-Infinity" minWidth="-Infinity" styleClass="smallLabel" text="Borrower">
                     <HBox.margin>
-                        <Insets right="20.0"/>
+                        <Insets right="20.0" />
                     </HBox.margin>
                 </Label>
-                <Region prefHeight="200.0" prefWidth="200.0"/>
-                <Label alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity"
-                       text="Time borrowed" textAlignment="CENTER">
+                <Region prefHeight="200.0" prefWidth="200.0" />
+                <Label alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" styleClass="smallLabel" text="Time borrowed" textAlignment="CENTER">
                     <HBox.margin>
-                        <Insets left="20.0"/>
+                        <Insets left="20.0" />
                     </HBox.margin>
                 </Label>
             </children>
         </HBox>
-        <ScrollPane layoutY="33.0" style="-fx-background-color: green;" AnchorPane.bottomAnchor="0.0"
-                    AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="33.0">
+        <ScrollPane hbarPolicy="NEVER" layoutY="33.0" styleClass="background" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="33.0">
             <content>
-                <AnchorPane prefHeight="100.0" prefWidth="1000.0" style="-fx-background-color: yellow;">
-                    <children>
-                        <FlowPane fx:id="reservationListFlowPane" prefHeight="50.0" prefWidth="1000.0"
-                                  style="-fx-background-color: orange;" AnchorPane.bottomAnchor="0.0"
-                                  AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
-                    </children>
-                </AnchorPane>
+                <FlowPane fx:id="reservationListFlowPane" prefHeight="665.0" prefWidth="1000.0" styleClass="background" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             </content>
         </ScrollPane>
     </children>

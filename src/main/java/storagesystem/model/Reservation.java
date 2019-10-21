@@ -54,10 +54,6 @@ public class Reservation implements IReservation {
         this(res.getID(), res.getBorrower(), res.getInterval(), res.getReservedObject(), res.getStatus());
     }
 
-    public Reservation copy() {
-        return new Reservation(this);
-    }
-
     @Override
     public int getID() {
         return id;
@@ -143,22 +139,20 @@ public class Reservation implements IReservation {
         if (startYear != new DateTime().getYear())
             sb.append(startYear + "." + startMonth + "." + startDay + " " + startHour + ":" + getToDoubleZero(startMinute) + " - ");
         else
-            sb.append(startMonth + "." + startDay + " " + startHour + ":" + getToDoubleZero(startMinute) + " - ");
+            sb.append(startMonth + "/" + startDay + " " + startHour + ":" + getToDoubleZero(startMinute) + " - ");
 
 
         if (startYear != endYear)
             sb.append(endYear + "." + endMonth + "." + endDay + " " + endHour + ":" + getToDoubleZero(endMinute));
         else if (startMonth != endMonth)
-            sb.append(endMonth + "." + endDay + " " + endHour + ":" + getToDoubleZero(endMinute));
+            sb.append(endMonth + "/" + endDay + " " + endHour + ":" + getToDoubleZero(endMinute));
         else if (startDay != endDay)
-            sb.append(endMonth + "." + endDay + " " + endHour + ":" + getToDoubleZero(endMinute));
+            sb.append(endMonth + "/" + endDay + " " + endHour + ":" + getToDoubleZero(endMinute));
         else {
             sb.append(endHour + ":" + getToDoubleZero(endMinute));
         }
 
-        String readable = sb.toString();
-
-        return readable;
+        return sb.toString();
     }
 
     private String getToDoubleZero(int startMinute) {
