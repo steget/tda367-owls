@@ -179,7 +179,6 @@ public class LoginPageController implements Initializable {
     }
 
 
-
     /**
      * Checks in the selected organisation if there is an user with the name currently written in the Username textfield
      *
