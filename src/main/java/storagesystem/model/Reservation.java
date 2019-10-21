@@ -145,9 +145,9 @@ public class Reservation implements IReservation {
         if (startYear != endYear)
             sb.append(endYear + "." + endMonth + "." + endDay + " " + endHour + ":" + getToDoubleZero(endMinute));
         else if (startMonth != endMonth)
-            sb.append(endMonth + "." + endDay + " " + endHour + ":" + getToDoubleZero(endMinute));
+            sb.append(endMonth + "/" + endDay + " " + endHour + ":" + getToDoubleZero(endMinute));
         else if (startDay != endDay)
-            sb.append(endMonth + "." + endDay + " " + endHour + ":" + getToDoubleZero(endMinute));
+            sb.append(endMonth + "/" + endDay + " " + endHour + ":" + getToDoubleZero(endMinute));
         else {
             sb.append(endHour + ":" + getToDoubleZero(endMinute));
         }
