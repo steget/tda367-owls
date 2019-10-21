@@ -4,7 +4,7 @@
     secondaryColor:  #303030;
     tertiaryColor:#424242;
     quarternaryColor: #545454;
-    mainColor: #BB86FC;
+    appButtonColor: #BB86FC;
 
 }
 
@@ -25,7 +25,7 @@
 }
 
 .inAppButton{
-    -fx-background-color: mainColor;
+    -fx-background-color: appButtonColor;
     -fx-text-fill: primaryColor;
     -fx-text-size: 18;
 }

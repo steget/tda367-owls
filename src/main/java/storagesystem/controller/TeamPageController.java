@@ -4,8 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import storagesystem.StoreIT;
 import storagesystem.model.Organisation;
@@ -24,7 +23,10 @@ import java.util.ResourceBundle;
 public class TeamPageController extends AnchorPane implements Initializable {
 
     @FXML
-    private AnchorPane settingsTeamAnchorPane;
+    private AnchorPane teamAnchorPane;
+
+    @FXML
+    private AnchorPane editTeamAnchorPane;
 
     @FXML
     private TextField settingsAddUserInput;
@@ -36,10 +38,22 @@ public class TeamPageController extends AnchorPane implements Initializable {
     private TextField settingsTeamNameInput;
     //todo change this to a TextArea so we can set the text to wrap
     @FXML
-    private TextField settingsTeamContractInput;
+    private TextArea settingsTeamContractInput;
+
+    @FXML
+    private TextArea teamToCTextArea;
+
+    @FXML
+    private Button saveTeamButton;
+
+    @FXML
+    private Button cancelTeamButton;
 
     @FXML
     private ChoiceBox<String> settingsChooseTeamInput;
+
+    @FXML
+    private Label teamLabel;
 
     private User currentUser;
     private List<Team> currentUsersTeams = new ArrayList<>();
@@ -107,7 +121,8 @@ public class TeamPageController extends AnchorPane implements Initializable {
         //fill text boxes in settings page for team
         settingsTeamNameInput.setText(currentlySelectedTeam.getName());
         settingsTeamContractInput.setText(currentlySelectedTeam.getTermsAndConditions());
-
+        teamLabel.setText(currentlySelectedTeam.getName());
+        teamToCTextArea.setText(currentlySelectedTeam.getTermsAndConditions());
     }
 
     /**
@@ -120,6 +135,7 @@ public class TeamPageController extends AnchorPane implements Initializable {
 
         updateChangedTeamNameInChoicebox();
         updateTeamsChoicebox();
+        teamAnchorPane.toFront();
     }
 
 
@@ -145,6 +161,8 @@ public class TeamPageController extends AnchorPane implements Initializable {
     private void changeTeam() {
         settingsTeamNameInput.setText(currentlySelectedTeam.getName());
         settingsTeamContractInput.setText(currentlySelectedTeam.getTermsAndConditions());
+        teamLabel.setText(currentlySelectedTeam.getName());
+        teamToCTextArea.setText(currentlySelectedTeam.getTermsAndConditions());
     }
 
     /**
@@ -199,6 +217,18 @@ public class TeamPageController extends AnchorPane implements Initializable {
             System.out.println("Could not remove user since user is not a part of the team.");
         }
     }
+
+    @FXML
+    private void editTeamButtonPressed(){
+        editTeamAnchorPane.toFront();
+    }
+
+    @FXML
+    private void cancelTeamButtonPressed(){
+        teamAnchorPane.toFront();
+    }
+
+
     /**
      * Compares the input with all users in the organisation. If a match is made the userID is returned. Returns -1 otherwise which will never be any user's  ID.
      *

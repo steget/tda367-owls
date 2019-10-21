@@ -1,32 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <!-- @author Jonathan Eksberg, Pär Aronsson, Hugo Stegrell -->
-<AnchorPane fx:id="settingsTeamAnchorPane" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: lime;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="storagesystem.controller.TeamPageController">
+
+<AnchorPane fx:id="rootPane" prefHeight="700.0" prefWidth="1000.0" styleClass="background" stylesheets="@basicStyles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="storagesystem.controller.TeamPageController">
    <children>
-      <Button layoutX="738.0" layoutY="224.0" mnemonicParsing="false" onAction="#removeMemberButtonPressed" prefHeight="32.0" prefWidth="194.0" style="-fx-background-color: RED;" text="REMOVE USER FROM TEAM" textAlignment="CENTER" />
-      <TextField fx:id="settingsAddUserInput" layoutX="696.0" layoutY="75.0" prefHeight="26.0" prefWidth="277.0" promptText="Write name of person to add from team" style="-fx-background-color: white;">
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </TextField>
-      <TextField fx:id="settingsTeamContractInput" alignment="TOP_LEFT" layoutX="241.0" layoutY="120.0" prefHeight="271.0" prefWidth="337.0" promptText="Write your teams standard contract here" style="-fx-background-color: white;" />
-      <Text layoutX="106.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20px;" text="Team Name:" textAlignment="RIGHT" />
-      <TextField fx:id="settingsTeamNameInput" layoutX="241.0" layoutY="50.0" prefHeight="26.0" prefWidth="337.0" promptText="Input Team name" style="-fx-background-color: white;" />
-      <Text layoutX="53.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20px;" text="Standard Contract:" textAlignment="RIGHT" />
-      <Text layoutX="622.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add user:" textAlignment="RIGHT" AnchorPane.rightAnchor="315.38525390625" />
-      <Button layoutX="738.0" layoutY="115.0" mnemonicParsing="false" onAction="#addMemberButtonPressed" prefHeight="32.0" prefWidth="194.0" style="-fx-background-color: GREEN;" text="ADD USER TO TEAM" textAlignment="CENTER" />
-      <TextField fx:id="settingsRemoveUserInput" layoutX="696.0" layoutY="180.0" prefHeight="26.0" prefWidth="277.0" promptText="Write name of person to remove from team" style="-fx-background-color: white;">
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </TextField>
-      <Text layoutX="590.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Remove user:" textAlignment="RIGHT" wrappingWidth="95.10546875" />
-      <Button fx:id="saveTeamButton" contentDisplay="BOTTOM" layoutX="688.0" layoutY="321.0" mnemonicParsing="false" onAction="#saveTeam" prefHeight="70.0" prefWidth="250.0" text="SAVE " textAlignment="CENTER" AnchorPane.bottomAnchor="59.0" AnchorPane.rightAnchor="71.0" />
-      <ChoiceBox fx:id="settingsChooseTeamInput" layoutX="122.0" layoutY="520.0" prefWidth="150.0" />
+      <AnchorPane fx:id="editTeamAnchorPane" prefHeight="700.0" prefWidth="1000.0" styleClass="background">
+         <children>
+            <TextField fx:id="settingsAddUserInput" layoutX="598.0" layoutY="180.0" prefHeight="31.0" prefWidth="250.0" promptText="Write name of person to add from team" style="-fx-background-color: white;">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </TextField>
+            <TextField fx:id="settingsTeamNameInput" layoutX="214.0" layoutY="180.0" prefHeight="31.0" prefWidth="229.0" promptText="Input Team name" style="-fx-background-color: white;" />
+            <Button layoutX="859.0" layoutY="178.0" mnemonicParsing="false" onAction="#addMemberButtonPressed" prefHeight="32.0" prefWidth="115.0" styleClass="inAppButton" text="Add user" textAlignment="CENTER" />
+            <TextField fx:id="settingsRemoveUserInput" layoutX="598.0" layoutY="262.0" prefHeight="31.0" prefWidth="250.0" promptText="Write name of person to remove from team" style="-fx-background-color: white;">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </TextField>
+            <Button layoutX="859.0" layoutY="261.0" mnemonicParsing="false" onAction="#removeMemberButtonPressed" prefHeight="32.0" prefWidth="115.0" styleClass="inAppButton" text="Remove user" textAlignment="CENTER" />
+            <Button fx:id="saveTeamButton" contentDisplay="BOTTOM" layoutX="712.0" layoutY="580.0" mnemonicParsing="false" onAction="#saveTeam" prefHeight="70.0" prefWidth="126.0" styleClass="inAppButton" text="Save" textAlignment="CENTER" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0" />
+            <Label layoutX="39.0" layoutY="23.0" text="Edit Team" textFill="WHITE" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="0.0">
+               <font>
+                  <Font size="61.0" />
+               </font>
+            </Label>
+            <Text fill="WHITE" layoutX="689.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="settingsLabel" text="Manage Members:" underline="true" />
+            <TextArea fx:id="settingsTeamContractInput" layoutX="214.0" layoutY="277.0" prefHeight="302.0" prefWidth="337.0" promptText="Write your team's standard terms and conditions here..." wrapText="true" />
+            <Text fill="WHITE" layoutX="63.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="settingsLabel" text="Team Name:" underline="true" />
+            <Text fill="WHITE" layoutX="76.0" layoutY="303.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="settingsLabel" text="Terms and conditions:" underline="true" wrappingWidth="125.99998712539673" />
+            <Button fx:id="cancelTeamButton" layoutX="44.0" layoutY="615.0" mnemonicParsing="false" onAction="#cancelTeamButtonPressed" prefHeight="70.0" prefWidth="126.0" styleClass="inAppButton" text="Cancel" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="teamAnchorPane" prefHeight="700.0" prefWidth="1000.0" styleClass="background">
+         <children>
+            <Label text="Team:" textFill="WHITE" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="0.0">
+               <font>
+                  <Font size="61.0" />
+               </font>
+            </Label>
+            <ChoiceBox fx:id="settingsChooseTeamInput" layoutX="764.0" layoutY="291.0" prefWidth="150.0" />
+            <Text fill="WHITE" layoutX="757.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="settingsLabel" text="Choose a team:" underline="true" />
+            <Button fx:id="editTeamButton" layoutX="866.0" layoutY="574.0" mnemonicParsing="false" onAction="#editTeamButtonPressed" prefHeight="70.0" prefWidth="126.0" styleClass="inAppButton" text="Edit team" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0" />
+            <TextArea fx:id="teamToCTextArea" editable="false" layoutX="332.0" layoutY="240.0" prefHeight="325.0" prefWidth="337.0" wrapText="true" />
+            <Text fill="WHITE" layoutX="75.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="settingsLabel" text="Terms and Conditions:" underline="true" />
+            <Label fx:id="teamLabel" contentDisplay="CENTER" layoutX="193.0" text="MockTeam" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+               <font>
+                  <Font size="61.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
