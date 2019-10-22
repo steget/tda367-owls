@@ -1,7 +1,6 @@
 package storagesystem.model;
 
 import javafx.scene.image.Image;
-import storagesystem.services.PictureHandler;
 
 import java.util.Objects;
 

@@ -1,7 +1,4 @@
 package storagesystem.model;
-
-import javafx.scene.image.Image;
-
 /**
  * Location tells us information about a place.
  * Description contains information about the location, such as how to get to the location and other information.

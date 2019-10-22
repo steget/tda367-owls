@@ -52,11 +52,11 @@ public class StoreIT {
 
         Location MockLocation = new Location("Hubben", "This location does not exist");
         Location MockLocation2 = new Location("Garaget", "This location is unavailable");
-        //temporary new location
+
         informationsteknik.getLocations().add(MockLocation);
         informationsteknik.getLocations().add(MockLocation2);
         IReservable mockItem = IReservableFactory.createReservableItem("mockItem", "This is a description", "Behave please.",
-                2, Condition.GOOD, true, MockLocation, null);
+                2, Condition.GOOD, true, MockLocation, new Image("pictures/art.png"));
         IReservable mockItem2 = IReservableFactory.createReservableItem("mockItem nr 2", "This is a description", "Behave please.",
                 2, Condition.GOOD, true, MockLocation2, new Image("pictures/art.png"));
 
