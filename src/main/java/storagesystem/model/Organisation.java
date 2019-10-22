@@ -102,10 +102,8 @@ public class Organisation {
     public List<IReservable> getTeamsItems(Team team) {
         List<IReservable> teamsItems = new ArrayList<>();
         for (IReservable item : items) {
-            for (int itemID : team.getAllItemIDs()) {
-                if (item.getID() == itemID) {
-                    teamsItems.add(item);
-                }
+            if (team.getAllItemIDs().contains(item.getID())) {
+                teamsItems.add(item);
             }
         }
         return teamsItems;
