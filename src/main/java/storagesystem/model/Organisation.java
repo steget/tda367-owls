@@ -100,6 +100,15 @@ public class Organisation {
     }
 
 
+    public Team getTeamFromName(String teamName){
+        for(Team t : teams){
+            if (t.getName().equals(teamName)){
+                return t;
+            }
+        }
+        return null;
+    }
+
     /**
      * Creates a new user with only a name
      *

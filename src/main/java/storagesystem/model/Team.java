@@ -9,7 +9,7 @@ import java.util.List;
  *
  * @author Hugo Stegrell, Pär Aronsson
  */
-public class Team {
+public class Team implements IBorrower{
     private String name;
     private final List<IReservable> inventory = new ArrayList<>(); //todo itemIDs instead
     private final List<Integer> memberIDs = new ArrayList<>();
@@ -47,6 +47,7 @@ public class Team {
         return memberIDs;
     }
 
+
     public String getName() {
         return name;
     }
@@ -71,7 +72,7 @@ public class Team {
         return inventory;
     }
 
-    public int getTeamID() {
+    public int getID() {
         return teamID;
     }
 }

@@ -34,28 +34,28 @@ public class CreateReservationController {
 
 
     @FXML
-    ChoiceBox teamChoicebox;
+    ChoiceBox<String> teamChoicebox;
 
     @FXML
-    private Spinner startYearSpinner;
+    private Spinner<Integer> startYearSpinner;
     @FXML
-    private Spinner startMonthSpinner;
+    private Spinner<Integer> startMonthSpinner;
     @FXML
-    private Spinner startDaySpinner;
+    private Spinner<Integer> startDaySpinner;
     @FXML
-    private Spinner startHourSpinner;
+    private Spinner<Integer> startHourSpinner;
     @FXML
-    private Spinner startMinuteSpinner;
+    private Spinner<Integer> startMinuteSpinner;
     @FXML
-    private Spinner endYearSpinner;
+    private Spinner<Integer> endYearSpinner;
     @FXML
-    private Spinner endMonthSpinner;
+    private Spinner<Integer> endMonthSpinner;
     @FXML
-    private Spinner endDaySpinner;
+    private Spinner<Integer> endDaySpinner;
     @FXML
-    private Spinner endHourSpinner;
+    private Spinner<Integer> endHourSpinner;
     @FXML
-    private Spinner endMinuteSpinner;
+    private Spinner<Integer> endMinuteSpinner;
 
     @FXML
     private Button confirmButton;
@@ -113,21 +113,26 @@ public class CreateReservationController {
     @FXML
     private void confirm(){
         ReservationHandler resHandler = StoreIT.getCurrentOrganisation().getReservationHandler();
-        resHandler.createReservation(StoreIT.getCurrentUser(), getInterval(), item);
+        resHandler.createReservation(getTeam(), getInterval(), item);
         close();
     }
 
+    private IBorrower getTeam() {
+        String teamName = teamChoicebox.getValue();
+        return StoreIT.getCurrentOrganisation().getTeamFromName(teamName);
+    }
+
     private Interval getInterval() {
-        int startYear = (int) startYearSpinner.getValue();
-        int startMonth = (int) startMonthSpinner.getValue();
-        int startDay = (int) startDaySpinner.getValue();
-        int startHour = (int) startHourSpinner.getValue();
-        int startMinute = (int) startMinuteSpinner.getValue();
-        int endYear = (int) endYearSpinner.getValue();
-        int endMonth = (int) endMonthSpinner.getValue();
-        int endDay = (int) endDaySpinner.getValue();
-        int endHour = (int) endHourSpinner.getValue();
-        int endMinute = (int) endMinuteSpinner.getValue();
+        int startYear = startYearSpinner.getValue();
+        int startMonth = startMonthSpinner.getValue();
+        int startDay = startDaySpinner.getValue();
+        int startHour = startHourSpinner.getValue();
+        int startMinute = startMinuteSpinner.getValue();
+        int endYear = endYearSpinner.getValue();
+        int endMonth = endMonthSpinner.getValue();
+        int endDay =  endDaySpinner.getValue();
+        int endHour = endHourSpinner.getValue();
+        int endMinute = endMinuteSpinner.getValue();
         DateTime start = new DateTime(startYear, startMonth, startDay, startHour, startMinute);
         DateTime end = new DateTime(endYear, endMonth, endDay, endHour, endMinute);
 
