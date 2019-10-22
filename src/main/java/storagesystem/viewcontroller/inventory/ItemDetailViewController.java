@@ -110,7 +110,7 @@ public class ItemDetailViewController extends AnchorPane {
 
 
         // Listener for the Amount textarea.
-        // "\\d" represents a value [0-9] and if the value inputed doesnt include one of those
+        // "\\d" represents a digit. [0-9]  and if the value inputed doesnt include one of those
         // then the program replaces it with empty space
         itemPageAmountTA.textProperty().addListener(new ChangeListener<String>() {
             @Override
