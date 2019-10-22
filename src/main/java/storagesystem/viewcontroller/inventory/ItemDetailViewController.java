@@ -78,7 +78,7 @@ public class ItemDetailViewController extends AnchorPane {
         this.reservableItem = reservableItem;
         this.itemOwner = StoreIT.getCurrentOrganisation().getItemOwner(reservableItem);
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Inventory/detailedItemView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Inventory/ItemDetailView.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 
@@ -110,8 +110,7 @@ public class ItemDetailViewController extends AnchorPane {
 
 
         // Listener for the Amount textarea.
-        // "\\d" represents a digit. [0-9]  and if the value inputed doesnt include one of those
-        // then the program replaces it with empty space
+        // "\\d" represents a digit. [0-9] and if the value is not a digit then the program replaces it with empty space.
         itemPageAmountTA.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue,
