@@ -7,7 +7,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import storagesystem.model.StoreIT;
-import storagesystem.model.Organisation;
 import storagesystem.model.Team;
 import storagesystem.model.User;
 
@@ -55,20 +54,15 @@ public class TeamPageController extends AnchorPane implements Initializable {
     @FXML
     private Label teamLabel;
 
-    private User currentUser;
     private List<Team> currentUsersTeams = new ArrayList<>();
-    private Team currentlySelectedTeam;
     private ObservableList<String> teamNames = FXCollections.observableArrayList();
     private int currentlySelectedTeamIndex;
-    private Organisation currentOrganisation;
-    private boolean isUserPartOfTeam;
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        currentOrganisation = StoreIT.getCurrentOrganisation();
-        currentUser = StoreIT.getCurrentUser();
-
+        boolean isUserPartOfTeam;
+        User currentUser = StoreIT.getCurrentUser();
         isUserPartOfTeam = StoreIT.getCurrentOrganisation().getUsersTeams(currentUser).size() > 0;
 
         if (isUserPartOfTeam) {
@@ -94,7 +88,7 @@ public class TeamPageController extends AnchorPane implements Initializable {
                 for (Team t : currentUsersTeams) {
                     if (t.getName().equals(settingsChooseTeamInput.getItems().get(newIndex))) {
                         currentlySelectedTeamIndex = newIndex;
-                        currentlySelectedTeam = t;
+                        StoreIT.setCurrentTeam(t);
                         changeTeam();
                         break;
                     }
@@ -108,8 +102,8 @@ public class TeamPageController extends AnchorPane implements Initializable {
      */
     private void fillTeamAttributes() {
 
-        currentUsersTeams = StoreIT.getCurrentOrganisation().getUsersTeams(currentUser);
-        currentlySelectedTeam = currentUsersTeams.get(0);
+        currentUsersTeams = StoreIT.getCurrentOrganisation().getUsersTeams(StoreIT.getCurrentUser());
+        Team currentlySelectedTeam = currentUsersTeams.get(0);
 
         for (Team t : currentUsersTeams) { //adds team names into an observable list.
             teamNames.add(t.getName());
@@ -130,8 +124,8 @@ public class TeamPageController extends AnchorPane implements Initializable {
      */
     @FXML
     public void saveTeam() {
-        currentlySelectedTeam.setTermsAndConditions(settingsTeamContractInput.getText());
-        currentlySelectedTeam.setName(settingsTeamNameInput.getText());
+        StoreIT.getCurrentTeam().setTermsAndConditions(settingsTeamContractInput.getText());
+        StoreIT.getCurrentTeam().setName(settingsTeamNameInput.getText());
 
         updateChangedTeamNameInChoicebox();
         updateTeamsChoicebox();
@@ -159,6 +153,7 @@ public class TeamPageController extends AnchorPane implements Initializable {
      * Update the texts in team name and a teams contract to their values.
      */
     private void changeTeam() {
+        Team currentlySelectedTeam = StoreIT.getCurrentTeam();
         settingsTeamNameInput.setText(currentlySelectedTeam.getName());
         settingsTeamContractInput.setText(currentlySelectedTeam.getTermsAndConditions());
         teamLabel.setText(currentlySelectedTeam.getName());
@@ -174,11 +169,11 @@ public class TeamPageController extends AnchorPane implements Initializable {
         for (User user : StoreIT.getCurrentOrganisation().getUsers()) {
             if (user.getName().equals(settingsAddUserInput.getText())) {
                 doesUserExist = true;
-                if (currentlySelectedTeam.getAllMemberIDs().contains(user.getID())) {
+                if (StoreIT.getCurrentTeam().getAllMemberIDs().contains(user.getID())) {
                     //todo print in program
                     System.out.println("User is already a part of this team.");
                 } else {
-                    currentlySelectedTeam.addMember(user.getID());
+                    StoreIT.getCurrentTeam().addMember(user.getID());
                 }
             }
         }
@@ -204,9 +199,9 @@ public class TeamPageController extends AnchorPane implements Initializable {
     private void removeMemberFromTeam(int userID) {
         boolean memberFound = false;
         //remove member from team
-        for (int i : currentlySelectedTeam.getAllMemberIDs()) {
+        for (int i : StoreIT.getCurrentTeam().getAllMemberIDs()) {
             if (i == userID) {
-                currentlySelectedTeam.removeMember(userID);
+                StoreIT.getCurrentTeam().removeMember(userID);
                 memberFound = true;
                 break;
             }
@@ -238,7 +233,7 @@ public class TeamPageController extends AnchorPane implements Initializable {
     private int getUserIDFromName(String userName) {
         int tempUserID = -1;
         //check if user with matching name in textbox exists
-        for (User user : currentOrganisation.getUsers()) {
+        for (User user : StoreIT.getCurrentOrganisation().getUsers()) {
             if (user.getName().equals(userName)) {
                 tempUserID = user.getID();
                 break;

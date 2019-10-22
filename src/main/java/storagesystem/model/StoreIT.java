@@ -12,6 +12,7 @@ import java.util.NoSuchElementException;
 public class StoreIT {
     private static List<Organisation> organisations = new ArrayList<>();
     private static User currentUser;
+    private static Team currentTeam;
     private static Organisation currentOrganisation;
 
     /**
@@ -80,6 +81,10 @@ public class StoreIT {
         StoreIT.currentOrganisation = currentOrganisation;
     }
 
+    public static void setCurrentTeam(Team currentTeam) {
+        StoreIT.currentTeam = currentTeam;
+    }
+
     public static List<Organisation> getOrganisations() {
         return organisations;
     }
@@ -87,6 +92,8 @@ public class StoreIT {
     public static Organisation getCurrentOrganisation() {
         return currentOrganisation;
     }
+
+    public static Team getCurrentTeam() { return currentTeam; }
 
     public static User getCurrentUser() {
         return currentUser;
