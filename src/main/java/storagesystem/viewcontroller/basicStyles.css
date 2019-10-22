@@ -3,6 +3,10 @@
     secondaryColor: #212121;
 }
 
+.root{
+    -fx-text-fill: white;
+}
+
 .appbar {
     -fx-background-color: secondaryColor;
 }
@@ -80,6 +84,10 @@
 
 .confirmButton:hover{
     /*TODO Change color to match other buttons*/
+}
+
+.label{
+    -fx-text-fill: white;
 }
 
 #loginButton {

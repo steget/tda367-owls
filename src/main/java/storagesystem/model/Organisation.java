@@ -7,7 +7,6 @@ import java.util.NoSuchElementException;
 /**
  * An Organisation holds a collection of teams with the purpose being that the teams can communicate with each other.
  * The teams that belong to an organisation should be relevant to one another.
- * An Organisation should keep track of all the reservations between its teams.
  *
  * @author Hugo Stegrell, Pär Aronsson
  */
@@ -15,7 +14,7 @@ public class Organisation {
     private final List<Team> teams = new ArrayList<>();
     private final List<User> users = new ArrayList<>();
     private String name;
-    private ReservationHandler reservationHandler;
+    private final ReservationHandler reservationHandler;
 
     public Organisation(String name) {
         this.name = name;
@@ -67,6 +66,8 @@ public class Organisation {
         }
         throw new NoSuchElementException("ItemID not found in list of items");
     }
+
+
 
     /**
      * Use this to find out which teams one specific User is part of.
