@@ -81,7 +81,7 @@ public class JSONHandler {
     }
 
     /**
-     * clearAllJsonFiles() clears all json files declared completely.
+     * clearAllJsonFiles() clears all json files completely.
      *
      * @throws IOException
      */
