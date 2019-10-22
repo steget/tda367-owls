@@ -10,7 +10,9 @@ public class ReservationTest {
     @Test
     public void reservationsShouldBeEqual(){
         IBorrower borrower = new Team("Team1");
-        IReservable object = IReservableFactory.createReservableItem("mockItem", "desc","requirements",1,Condition.GREAT,true, 0, null);
+        String imageUrl = "/pictures/art.png";
+
+        IReservable object = IReservableFactory.createReservableItem("mockItem", "desc","requirements",1,Condition.GREAT,true, 0, imageUrl);
         DateTime time1 = new DateTime();
         DateTime time2 = time1.plusDays(1);
 
@@ -27,7 +29,9 @@ public class ReservationTest {
     @Test
     public void objectShouldEqual(){
         IBorrower borrower = new Team("Team1");
-        IReservable object = IReservableFactory.createReservableItem("mockItem", "desc","requirements",1,Condition.GREAT,true, 0, null);
+        String imageUrl = "/pictures/art.png";
+
+        IReservable object = IReservableFactory.createReservableItem("mockItem", "desc","requirements",1,Condition.GREAT,true, 0, imageUrl);
         DateTime time1 = new DateTime();
         DateTime time2 = time1.plusDays(1);
 

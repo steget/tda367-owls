@@ -16,9 +16,11 @@ public class TeamTest {
         List<IReservable> allItems = org.getTeamsItems(testTeam);
 
         assertEquals(0, allItems.size());
-        Location hasen = new Location("hasen","ha senare", null);
+        String imageUrl = "/pictures/art.png";
 
-        IReservable mockItem = IReservableFactory.createReservableItem("mockItem", "desc","requirements",1,Condition.GREAT,true, hasen.getID(), null);
+        Location hasen = new Location("hasen","ha senare", imageUrl);
+
+        IReservable mockItem = IReservableFactory.createReservableItem("mockItem", "desc","requirements",1,Condition.GREAT,true, hasen.getID(), imageUrl);
         allItems.add(mockItem);
         assertEquals(1, allItems.size());
     }

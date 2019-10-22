@@ -17,7 +17,9 @@ public class ReservationHandlerTest {
     public void shouldCreateMultipleReservations() {
 
         IBorrower borrower = new Team("Team1");
-        IReservable object = IReservableFactory.createReservableItem("mockItem", "desc","requirements",1,Condition.GREAT,true, 0, null);
+        String imageUrl = "/pictures/art.png";
+
+        IReservable object = IReservableFactory.createReservableItem("mockItem", "desc","requirements",1,Condition.GREAT,true, 0, imageUrl);
         ReservationHandler handler = new ReservationHandler(new ArrayList<>());
 
         DateTime time1 = new DateTime();
@@ -40,8 +42,9 @@ public class ReservationHandlerTest {
     @Test
     public void onlyOneReservationPerObjectAndIntervalShouldExist() {
         IBorrower borrower = new Team("Team1");
-        IReservable object1 = IReservableFactory.createReservableItem("mockItem", "desc","requirements",1,Condition.GREAT,true, 0, null);
-        IReservable object2 = IReservableFactory.createReservableItem("mockItem", "desc","requirements",1,Condition.GREAT,true, 0, null);
+        String imageUrl = "/pictures/art.png";
+        IReservable object1 = IReservableFactory.createReservableItem("mockItem", "desc","requirements",1,Condition.GREAT,true, 0, imageUrl);
+        IReservable object2 = IReservableFactory.createReservableItem("mockItem", "desc","requirements",1,Condition.GREAT,true, 0, imageUrl);
         ReservationHandler handler = new ReservationHandler(new ArrayList<>());
 
         DateTime time1 = new DateTime();
@@ -70,7 +73,8 @@ public class ReservationHandlerTest {
     @Test
     public void shouldGiveID() {
         IBorrower borrower = new Team("Team1");
-        IReservable object = IReservableFactory.createReservableItem("mockItem", "desc","requirements",1,Condition.GREAT,true, 0, null);
+        String imageUrl = "/pictures/art.png";
+        IReservable object = IReservableFactory.createReservableItem("mockItem", "desc","requirements",1,Condition.GREAT,true, 0, imageUrl);
         ReservationHandler handler = new ReservationHandler(new ArrayList<>());
 
         DateTime startTime = new DateTime(1999, 8, 14, 12, 30);
@@ -94,9 +98,10 @@ public class ReservationHandlerTest {
     public void shouldReturnAllBorrowerReservations() {
         IBorrower borrower1 = new Team("Team1");
         IBorrower borrower2 = new Team("Team1");
+        String imageUrl = "/pictures/art.png";
 
-        IReservable object1 = IReservableFactory.createReservableItem("mockItem", "desc","requirements",1,Condition.GREAT,true, 0, null);
-        IReservable object2 = IReservableFactory.createReservableItem("mockItem", "desc","requirements",1,Condition.GREAT,true, 0, null);
+        IReservable object1 = IReservableFactory.createReservableItem("mockItem", "desc","requirements",1,Condition.GREAT,true, 0, imageUrl);
+        IReservable object2 = IReservableFactory.createReservableItem("mockItem", "desc","requirements",1,Condition.GREAT,true, 0, imageUrl);
 
         ReservationHandler handler = new ReservationHandler(new ArrayList<>());
 
