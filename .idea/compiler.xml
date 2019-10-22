@@ -9,5 +9,8 @@
         <module name="StoreIT" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="StoreIT" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

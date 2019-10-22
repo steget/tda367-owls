@@ -63,15 +63,15 @@ public class Team {
         return termsAndConditions;
     }
 
-    public void setTermsAndConditions(String termsAndConditions) {
-        this.termsAndConditions = termsAndConditions;
-    }
-
     public List<IReservable> getAllItems() {
         return inventory;
     }
 
     public int getTeamID() {
         return teamID;
+    }
+
+    void setTermsAndConditions(String termsAndConditions) {
+        this.termsAndConditions = termsAndConditions;
     }
 }
