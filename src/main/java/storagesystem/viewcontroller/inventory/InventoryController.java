@@ -25,11 +25,7 @@ public class InventoryController implements Initializable {
     private List<IReservable> inventory;
     private List<Team> currentUsersTeams = new ArrayList<>();
     private ObservableList<String> teamNames = FXCollections.observableArrayList();
-
-
     private int currentlySelectedTeamIndex;
-    private boolean isUserPartOfTeam;
-
     private DetailedItemViewController detailView;
 
     @FXML
@@ -47,7 +43,6 @@ public class InventoryController implements Initializable {
         currentOrganisation = StoreIT.getCurrentOrganisation();
         currentUser = StoreIT.getCurrentUser();
         currentlySelectedTeam = StoreIT.getCurrentTeam();
-        isUserPartOfTeam = currentOrganisation.getUsersTeams(currentUser).size() > 0;
         currentUsersTeams = StoreIT.getCurrentOrganisation().getUsersTeams(currentUser);
         fillTeamAttributes();
         refreshItems();
@@ -68,9 +63,9 @@ public class InventoryController implements Initializable {
     }
 
     /**
-     * choicebox that listens for change, selects new team & refreshes the list.
+     * Choicebox that listens for change, selects new team & refreshes the list.
+     * checks when the users changes team in the ChoiceBox.
      */
-    //checks when the users changes team in the dropdown
     private void teamChooserListener() {
         teamChooser.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
             int newIndex = newValue.intValue();
@@ -86,7 +81,7 @@ public class InventoryController implements Initializable {
     }
 
     /**
-     * refreshed the list of items in the inventory.
+     * refreshes the list of items in the inventory.
      * It removes all the items in list and renews with new items.
      */
     private void refreshItems() {
@@ -105,7 +100,7 @@ public class InventoryController implements Initializable {
      * @param item
      */
     private void listItemClicked(IReservable item) {
-        detailView = new DetailedItemViewController(item, StoreIT.getCurrentOrganisation().getItemOwner(item));
+        detailView = new DetailedItemViewController(item);
         rootPane.getChildren().add(detailView);
         detailView.addDetailListener(this::detailItemViewClicked);
         detailView.addSaveButtonListener(this::saveButtonClicked);
@@ -120,7 +115,7 @@ public class InventoryController implements Initializable {
         rootPane.getChildren().remove(detailView);
     }
 
-    private void saveButtonClicked(){
+    private void saveButtonClicked() {
         refreshItems();
     }
 

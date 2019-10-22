@@ -12,21 +12,20 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="rootPane" prefHeight="680.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="storagesystem.viewcontroller.inventory.InventoryController">
+<AnchorPane fx:id="rootPane" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="storagesystem.viewcontroller.inventory.InventoryController">
    <children>
-      <Line endX="1024.0" endY="800.0" startY="800.0" strokeWidth="15.0" AnchorPane.bottomAnchor="494.46446228027344" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-      <Text layoutX="419.0" layoutY="73.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="INVENTORY" textAlignment="CENTER" AnchorPane.leftAnchor="420.0" AnchorPane.rightAnchor="420.0" AnchorPane.topAnchor="35.2314453125">
+      <Text layoutX="419.0" layoutY="73.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="INVENTORY" textAlignment="CENTER">
          <font>
             <Font size="35.0" />
          </font>
       </Text>
-      <GridPane gridLinesVisible="true" layoutY="130.0" prefHeight="47.0" prefWidth="1064.0" style="-fx-background-color: gray;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <GridPane alignment="TOP_CENTER" layoutY="92.0" maxWidth="1010.0" minWidth="1000.0" prefHeight="50.0" prefWidth="1010.0" style="-fx-background-color: gray;">
         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="200.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="200.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="200.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="200.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="200.0" />
         </columnConstraints>
         <rowConstraints>
             <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
@@ -36,15 +35,16 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Amount" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Location" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Condition" textAlignment="CENTER" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Current renter" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.halignment="CENTER" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Bookable" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.halignment="CENTER" />
          </children>
       </GridPane>
-      <ScrollPane layoutX="337.0" layoutY="281.0" prefHeight="494.0" prefWidth="1073.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <ScrollPane layoutY="144.0" prefHeight="556.0" prefWidth="1010.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <content>
-            <FlowPane fx:id="itemPane" prefHeight="490.0" prefWidth="1039.0" />
+            <FlowPane fx:id="itemPane" prefHeight="549.0" prefWidth="1000.0" />
          </content>
       </ScrollPane>
       <ChoiceBox fx:id="teamChooser" layoutX="14.0" layoutY="35.0" prefWidth="150.0" />
-      <Button layoutX="938.0" layoutY="35.0" mnemonicParsing="false" text="Add Item" />
+      <Button layoutX="882.0" layoutY="35.0" mnemonicParsing="false" text="Add Item" />
+      <Line endX="1000.0" endY="-23.0" layoutX="109.0" layoutY="165.0" startY="-23.0" strokeWidth="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
    </children>
 </AnchorPane>

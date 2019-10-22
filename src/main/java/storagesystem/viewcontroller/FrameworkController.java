@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import storagesystem.model.StoreIT;
 
 import java.io.IOException;
 import java.net.URL;
@@ -66,7 +67,11 @@ public class FrameworkController implements Initializable, ILoadUI {
 
     @FXML
     void yourInventoryButtonPressed(){
-        loadUI("inventory/inventory");
+
+        if(StoreIT.getCurrentOrganisation().isUserPartOfTeam(StoreIT.getCurrentUser())){
+            //todo add note "Youre not part of a team" that fades away
+            loadUI("inventory/inventory");
+        }
     }
 
 

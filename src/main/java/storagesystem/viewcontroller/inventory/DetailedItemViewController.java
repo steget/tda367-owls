@@ -26,7 +26,7 @@ import java.util.List;
 /**
  * Controls a detailed view of an item. Can be used to book an item.
  *
- * @author Jonathan Eksberg, Carl Lindh
+ * @author Jonathan Eksberg, Carl Lindh, Pär Aronsson
  */
 
 //todo refactor and make code good looking.
@@ -34,7 +34,10 @@ public class DetailedItemViewController extends AnchorPane {
     private final IReservable reservableItem;
     private final Team itemOwner;
     private List<Location> locationList;
-    ObservableList<String> locationNames;
+    private ObservableList<String> locationNames;
+    private List<DetailedItemViewListener> detailListeners = new ArrayList<>();
+    private List<saveButtonClickedListener> saveButtonListeners = new ArrayList<>();
+
 
     @FXML
     private AnchorPane contentPane;
@@ -60,6 +63,8 @@ public class DetailedItemViewController extends AnchorPane {
     private TextArea itemPageAmountTA;
     @FXML
     private ChoiceBox itemPageLocationChoicebox;
+    @FXML
+    private Label imageErrorMsgLabel;
 
 
     @FXML
@@ -69,11 +74,10 @@ public class DetailedItemViewController extends AnchorPane {
     @FXML
     private Pane editPane;
 
-    private PictureHandler pictureHandler = new PictureHandler();
 
-    DetailedItemViewController(IReservable reservableItem, Team itemOwner) {
+    DetailedItemViewController(IReservable reservableItem) {
         this.reservableItem = reservableItem;
-        this.itemOwner = itemOwner;
+        this.itemOwner = StoreIT.getCurrentOrganisation().getItemOwner(reservableItem);
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Inventory/detailedItemView.fxml"));
         fxmlLoader.setRoot(this);
@@ -104,10 +108,11 @@ public class DetailedItemViewController extends AnchorPane {
                 itemPageConditionSlider.setValue(2);
                 break;
         }
-        /**
-         * listens to change in amount textArea.
-         * if its a letter it doesn't write anything.
-         */
+
+
+        // Listener for the Amount textarea.
+        // "\\d" represents a value [0-9] and if the value inputed doesnt include one of those
+        // then the program replaces it with empty space
         itemPageAmountTA.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue,
@@ -229,16 +234,9 @@ public class DetailedItemViewController extends AnchorPane {
         itemPageReserveBtn.setDisable(!reservable);
     }
 
-    /**
-     * Below this line contains listener methods
-     */
-    private List<DetailedItemViewListener> detailListeners = new ArrayList<>();
-    private List<saveButtonClickedListener> saveButtonListeners = new ArrayList<>();
-
 
     /**
      * adds a listener to this object.
-     *
      * @param listener
      */
     public void addDetailListener(DetailedItemViewListener listener) {
@@ -249,14 +247,11 @@ public class DetailedItemViewController extends AnchorPane {
         saveButtonListeners.add(listener);
     }
 
-/******************************************************************************************************
- * methods below is about EDITITNG and SAVING an iReservable.
- ******************************************************************************************************/
 
     /**
-     * this method creates a new item and registers it to the current team.
-     *
-     * @author Pär Aronsson
+     * This method is called when user is in its own inventory.
+     * It changes all variables so that they can be edited by the user.
+     * The default setting is that the variables are non-editable.
      */
     public void editItem() {
 
@@ -275,7 +270,7 @@ public class DetailedItemViewController extends AnchorPane {
     }
 
     /**
-     * saves the changes to the current item.
+     * Saves the changes to the current item.
      */
     public void saveItem() {
 
@@ -294,14 +289,14 @@ public class DetailedItemViewController extends AnchorPane {
     }
 
     /**
-     * checks if the choicebox string value is equal to the location name and if so, it saves the location to the item.
-     *
-     * @param s
+     * Recieves a string. loops through the location lists' name. If the strings match,
+     * it saves the location that matched the string as the new location to the item.
+     * @param locationName is used to get the correct location from the list of locations.
      */
-    private void saveLocation(String s) {
+    private void saveLocation(String locationName) {
 
         for (Location l : locationList) {
-            if (l.getName().equals(s)) {
+            if (l.getName().equals(locationName)) {
                 reservableItem.setLocation(l);
             }
         }
@@ -322,7 +317,12 @@ public class DetailedItemViewController extends AnchorPane {
         }
     }
 
-
+    /**
+     * This method opens the clickers filemanager in which the user may choose an image.
+     * The image then get saved as a bufferedImage which then becomes an Image that can be displayed to the item.
+     * The method also writes the bufferedImage to the location "recources/pictures/items"
+     * where it then can be called from.
+     */
     @FXML
     void changeItemImage() {
 
@@ -333,25 +333,26 @@ public class DetailedItemViewController extends AnchorPane {
         if (selectedFile != null) {
             try {
                 BufferedImage selectedImage = ImageIO.read(selectedFile);
-                pictureHandler.saveItemImagePic(selectedImage, "" + reservableItem.getID(), itemPageNameTA.getText());
-                itemPageImageView.setImage(pictureHandler.getItemImage("" + reservableItem.getID(), itemPageNameTA.getText()));
+                PictureHandler.saveItemImagePic(selectedImage, reservableItem.getID(), itemPageNameTA.getText());
+                itemPageImageView.setImage(PictureHandler.getItemImage(reservableItem.getID(), itemPageNameTA.getText()));
 
             } catch (IOException exception) {
                 System.out.println("Can't read image: " + selectedFile.getPath());
+                //todo add an animation for when an image cant be read.
             }
         }
     }
 
 
     /**
-     * listener method.
+     * Listener interface for DetailedItemView
      */
     interface DetailedItemViewListener {
         void detailItemViewClicked();
     }
 
     /**
-     * listens to the savebutton
+     * Listener interface for saveButtonClicked
      */
     interface saveButtonClickedListener {
         void saveButtonClicked();
