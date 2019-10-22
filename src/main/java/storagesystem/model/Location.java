@@ -29,20 +29,20 @@ public class Location {
         return name;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public Image getImage() {
-        return image;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Image getImage() {
+        return image;
     }
 
     public void setImage(Image image) {

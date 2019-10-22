@@ -8,8 +8,8 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import storagesystem.model.StoreIT;
 import storagesystem.model.Organisation;
+import storagesystem.model.StoreIT;
 import storagesystem.model.Team;
 import storagesystem.model.User;
 

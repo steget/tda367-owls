@@ -16,8 +16,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import storagesystem.model.StoreIT;
 import storagesystem.model.Organisation;
+import storagesystem.model.StoreIT;
 import storagesystem.model.User;
 
 import java.io.IOException;

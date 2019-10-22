@@ -48,7 +48,7 @@ public class OrganisationTest {
         informationsteknik.addUser(new User("asd", "pass", "desc", "112"));
 
         assertEquals(1, informationsteknik.getUsers().size());
-        assertEquals("Albert", informationsteknik.getUsers().get(0).getName());
+        assertEquals("asd", informationsteknik.getUsers().get(0).getName());
 
         informationsteknik.addUser(new User("asd", "pass", "desc", "112"));
         assertEquals("desc", informationsteknik.getUsers().get(1).getDescription());

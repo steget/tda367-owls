@@ -15,11 +15,11 @@ import java.util.Objects;
  * Location has the information about where the item is located
  */
 public class Item implements IReservable {
+    private static int nextID;
+    private final int ID;
     private String name;
     private String description;
     private String userRequirements;
-    private final int ID;
-    private static int nextID;
     private int amount;
     private Condition condition;
     private boolean reservable;
