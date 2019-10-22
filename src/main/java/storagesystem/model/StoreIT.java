@@ -126,16 +126,16 @@ public class StoreIT {
     }
 
     /**
-     * Compares with params if there is such a user
+     * Compares the username and password and then returns if there is a user in the currentOrganisation with those credentials
      *
-     * @param username Name to find in the database
+     * @param username Name to find in the currently selected Organisation
      * @param password Password supposed to match with the username
      * @return {@code True} if the username and password matches, {@code False} if there is no match
      */
     public static boolean doesLoginMatch(String username, String password) {
         for (User user :
                 currentOrganisation.getUsers()) {
-            if (user.getName().equals(username) && user.getPassword().equals(password)) {
+            if (user.getName().toLowerCase().equals(username.toLowerCase()) && user.getPassword().equals(password)) {
                 currentUser = user;
                 return true;
             }
@@ -151,7 +151,7 @@ public class StoreIT {
     public static boolean doesUserExist(Organisation organisationToSearch, String name) {
         for (User user :
                 organisationToSearch.getUsers()) {
-            if (user.getName().equals(name)) {
+            if (user.getName().toLowerCase().equals(name)) {
                 return true;
             }
         }
