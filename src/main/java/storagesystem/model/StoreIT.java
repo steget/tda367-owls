@@ -40,7 +40,7 @@ public class StoreIT {
 
     private static void mockData() throws IOException {
         //Hardcoded stuff for testing
-        Location location = new Location("MockLocation", "This location does not exist", "creepy.jpg");
+        Location location = new Location("MockLocation", "This location does not exist", "pictures/art.png");
         Item mockItem = new Item("mockItem", "This is a description", "Behave please.",
                 2, Condition.GOOD, true, location.getID(), "pictures/art.png");
         Item mockItem2 = new Item("mockItem nr 2", "This is a description", "Behave please.",
