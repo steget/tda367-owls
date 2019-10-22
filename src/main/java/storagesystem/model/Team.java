@@ -67,7 +67,7 @@ public class Team {
         return termsAndConditions;
     }
 
-    List<IReservable> getAllItems() {
+    public List<IReservable> getAllItems() {
         return inventory;
     }
 

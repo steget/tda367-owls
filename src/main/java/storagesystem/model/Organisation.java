@@ -14,6 +14,8 @@ import java.util.NoSuchElementException;
 public class Organisation {
     private final List<Team> teams = new ArrayList<>();
     private final List<User> users = new ArrayList<>();
+    private final List<Location> locations = new ArrayList<>();
+
     private String name;
     private ReservationHandler reservationHandler;
 
@@ -69,13 +71,24 @@ public class Organisation {
     }
 
     /**
+     * Checks if the selected user is a part of any team.
+     * @param user
+     * @return true if a user is part of a team.
+     */
+    public boolean isUserPartOfTeam(IBorrower user){
+
+        return StoreIT.getCurrentOrganisation().getUsersTeams(user).size() > 0;
+    }
+
+
+    /**
      * Use this to find out which teams one specific User is part of.
      * Can be used for example if the user wants to switch which team it is currently doing an action for.
      *
      * @param user
      * @return List of teams that the sent in user is a part of
      */
-    public List<Team> getUsersTeams(User user) {
+    public List<Team> getUsersTeams(IBorrower user) {
         List<Team> usersTeams = new ArrayList<Team>();
         for (Team t : teams) {
             for (int memberID : t.getAllMemberIDs()) {
@@ -135,6 +148,22 @@ public class Organisation {
 
     void setName(String name) {
         this.name = name;
+    }
+
+    public Team getItemOwner(IReservable item) {
+        for (Team t :
+                teams) {
+            for (IReservable i :
+                    t.getAllItems()) {
+                if (i.equals(item)){
+                    return t;
+                }
+            }
+        }
+        throw new NoSuchElementException("Item owner could not be found");
+    }
+    public List<Location> getLocations() {
+        return locations;
     }
 
 }
