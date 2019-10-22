@@ -29,6 +29,8 @@ public class InventoryListItemController extends AnchorPane {
     private Label itemLocation;
     @FXML
     private Label condition;
+    @FXML
+    private Label bookable;
 
     public InventoryListItemController(IReservable item) {
 
@@ -45,6 +47,7 @@ public class InventoryListItemController extends AnchorPane {
         this.amount.setText("" + item.getAmount());
         this.itemLocation.setText("" + item.getLocation().getName());
         this.condition.setText("" + item.getCondition());
+        this.bookable.setText("" +item.isReservable());
         this.thisItem = item;
     }
 

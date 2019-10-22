@@ -24,7 +24,7 @@
             <Label fx:id="amount" text="amount" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
             <Label fx:id="itemLocation" text="Location" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
             <Label fx:id="condition" text="condition" GridPane.columnIndex="3" GridPane.halignment="CENTER" />
-            <Label fx:id="currentRenter" text="bookable" GridPane.columnIndex="4" GridPane.halignment="CENTER" />
+            <Label fx:id="bookable" text="bookable" GridPane.columnIndex="4" GridPane.halignment="CENTER" />
          </children>
       </GridPane>
    </children>
