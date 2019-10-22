@@ -225,7 +225,7 @@ public class JSONHandler {
     }
 
     /**
-     * Handles IBorrower and IReservable interface types through BorrowerSerialiser and ReservableSerialiser classes. Handles org.joda.time.Interval through Converters.registerInterval()
+     * Handles IBorrower, IReservable and IReservation interface types through BorrowerSerialiser, ReservableSerialiser and ReservationSerializer classes. Handles org.joda.time.Interval through Converters.registerInterval()
      *
      * @return a list of Reservations from the reservationDB file
      * @throws IOException
@@ -235,7 +235,7 @@ public class JSONHandler {
         GsonBuilder gsonBuilder = Converters.registerInterval(new GsonBuilder()); //Needed to handle Interval in Reservation
         gsonBuilder.registerTypeAdapter(IBorrower.class, new BorrowerSerializer()); //Needed to handle IBorrower in Reservation
         gsonBuilder.registerTypeAdapter(IReservable.class, new ReservableSerializer()); //Needed to handle IReservable in Reservation
-        gsonBuilder.registerTypeAdapter(IReservation.class, new ReservationSerializer());
+        gsonBuilder.registerTypeAdapter(IReservation.class, new ReservationSerializer()); //Needed to handle IReservation
         Gson gson = gsonBuilder.setPrettyPrinting().create();
         List<Reservation> reservationList = new ArrayList<>();
         JsonArray jsonList = gson.fromJson(new FileReader(reservationDB), JsonArray.class);
