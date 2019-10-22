@@ -21,7 +21,7 @@ public class JSONHandlerTest {
         JFXPanel mockJfxPanel = new JFXPanel(); //Stupid line to prevent "java.lang.RuntimeException: Internal graphics not initialized yet"
 
         JSONHandler.clearJson("src/main/resources/json/itemDB.json");
-        Location location = new Location("Mock Location", "This is a temporary location", null);
+        Location location = new Location("Mock Location", "This is a temporary location", "pictures/art.png");
         List<IReservable> itemList = new ArrayList<>();
 
         IReservable item1 = IReservableFactory.createReservableItem("name", "description", "UserReq", 10, Condition.BAD, false, location.getID(), "pictures/art.png");
@@ -50,7 +50,7 @@ public class JSONHandlerTest {
 
         JSONHandler.clearJson("src/main/resources/json/locationDB.json");
 
-        Location location1 = new Location("Location without Image", "Outside of my mind", null);
+        Location location1 = new Location("Location without Image", "Outside of my mind", "pictures/art.png");
         Location location2 = new Location("Test Location With Image", "Inside of my mind", "pictures/art.png");
 
         List<Location> locationList = new ArrayList<>();
@@ -76,7 +76,7 @@ public class JSONHandlerTest {
         String image = "pictures/art.png";
 
 
-        Location location1 = new Location("Location without Image", "Outside of my mind", null);
+        Location location1 = new Location("Location without Image", "Outside of my mind", "pictures/art.png");
         Location location2 = new Location("Test Location With Image", "Inside of my mind", image);
 
         List<Location> locationList = new ArrayList<>();
@@ -92,7 +92,7 @@ public class JSONHandlerTest {
 
         List<Item> itemList = new ArrayList<>();
 
-        Item item2 = new Item("name", "description", "UserReq", 10, Condition.GREAT, false, location2.getID(), null);
+        Item item2 = new Item("name", "description", "UserReq", 10, Condition.GREAT, false, location2.getID(), "pictures/art.png");
 
         itemList.add(item2);
 
