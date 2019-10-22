@@ -21,7 +21,7 @@ public class Team implements IBorrower{
     private static int nextID;
     private String imageUrl;
 
-    public Team(String teamName) throws IOException {
+    public Team(String teamName) {
         this.name = teamName;
         termsAndConditions = "";
         teamID = nextID;

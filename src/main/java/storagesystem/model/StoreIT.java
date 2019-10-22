@@ -20,7 +20,7 @@ public class StoreIT {
      * Loads all data into the program. Should be run at start.
      */
     public void initializeBackend() throws IOException {
-        //JSONHandler.clearAllJsonFiles();
+        //JSONHandler.clearAllJsonFiles(); //Run with mockData() if fresh start or after tests!!!
         //mockData();
 
         try {
@@ -47,8 +47,6 @@ public class StoreIT {
 
         Team tempTeam = new Team("sexNollK");
         Team tempTeam2 = new Team("P.R.NollK");
-        JSONHandler.addToJson(tempTeam);
-        JSONHandler.addToJson(tempTeam2);
 
         ReservationHandler mockReservationHandler = new ReservationHandler();
         mockReservationHandler.createReservation(tempTeam, new Interval(new DateTime(2019, 9, 12, 17, 30), new DateTime(2019, 11, 16, 20, 0)), mockItem);

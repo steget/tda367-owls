@@ -35,9 +35,15 @@
       "CLASSNAME": "storagesystem.model.Team",
       "DATA": {
         "name": "sexNollK",
-        "itemIDs": [],
-        "memberIDs": [],
-        "termsAndConditions": "",
+        "itemIDs": [
+          0,
+          1
+        ],
+        "memberIDs": [
+          0,
+          1
+        ],
+        "termsAndConditions": "För att låna våra prylar måste prylen vara i samma skick som den var när den lånades ut. Behövs den diskas så diska den osv. Prylen ska också vara tillbaka på samma plats igen",
         "teamID": 0,
         "imageUrl": null
       }
@@ -65,9 +71,15 @@
       "CLASSNAME": "storagesystem.model.Team",
       "DATA": {
         "name": "sexNollK",
-        "itemIDs": [],
-        "memberIDs": [],
-        "termsAndConditions": "",
+        "itemIDs": [
+          0,
+          1
+        ],
+        "memberIDs": [
+          0,
+          1
+        ],
+        "termsAndConditions": "För att låna våra prylar måste prylen vara i samma skick som den var när den lånades ut. Behövs den diskas så diska den osv. Prylen ska också vara tillbaka på samma plats igen",
         "teamID": 0,
         "imageUrl": null
       }

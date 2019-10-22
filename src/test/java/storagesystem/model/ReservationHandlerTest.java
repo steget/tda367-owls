@@ -1,4 +1,4 @@
-/*package storagesystem.model;
+package storagesystem.model;
 
 import org.joda.time.DateTime;
 import org.joda.time.Interval;
@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,8 +17,8 @@ public class ReservationHandlerTest {
     @Test
     public void shouldCreateMultipleReservations() {
 
-        IBorrower borrower = new User("John Doe", "Developer", "Call me");
-        IReservable object = IReservableFactory.createReservableItem("mockItem", "desc","requirements",1,Condition.GREAT,true, null, null);
+        IBorrower borrower = new Team("Team1");
+        IReservable object = IReservableFactory.createReservableItem("mockItem", "desc","requirements",1,Condition.GREAT,true, 0, null);
         ReservationHandler handler = new ReservationHandler(new ArrayList<>());
 
         DateTime time1 = new DateTime();
@@ -40,9 +40,9 @@ public class ReservationHandlerTest {
 
     @Test
     public void onlyOneReservationPerObjectAndIntervalShouldExist() {
-        IBorrower borrower = new User("John Doe", "Developer", "Call me");
-        IReservable object1 = IReservableFactory.createReservableItem("mockItem", "desc","requirements",1,Condition.GREAT,true, null, null);
-        IReservable object2 = IReservableFactory.createReservableItem("mockItem", "desc","requirements",1,Condition.GREAT,true, null, null);
+        IBorrower borrower = new Team("Team1");
+        IReservable object1 = IReservableFactory.createReservableItem("mockItem", "desc","requirements",1,Condition.GREAT,true, 0, null);
+        IReservable object2 = IReservableFactory.createReservableItem("mockItem", "desc","requirements",1,Condition.GREAT,true, 0, null);
         ReservationHandler handler = new ReservationHandler(new ArrayList<>());
 
         DateTime time1 = new DateTime();
@@ -70,8 +70,8 @@ public class ReservationHandlerTest {
 
     @Test
     public void shouldGiveID() {
-        IBorrower borrower = new User("John Doe", "Developer", "Call me");
-        IReservable object = IReservableFactory.createReservableItem("mockItem", "desc","requirements",1,Condition.GREAT,true, null, null);
+        IBorrower borrower = new Team("Team1");
+        IReservable object = IReservableFactory.createReservableItem("mockItem", "desc","requirements",1,Condition.GREAT,true, 0, null);
         ReservationHandler handler = new ReservationHandler(new ArrayList<>());
 
         DateTime startTime = new DateTime(1999, 8, 14, 12, 30);
@@ -93,11 +93,11 @@ public class ReservationHandlerTest {
 
     @Test
     public void shouldReturnAllBorrowerReservations() {
-        IBorrower borrower1 = new User("John Doe", "Developer", "Call me");
-        IBorrower borrower2 = new User("William", "Admin", "Mail me");
+        IBorrower borrower1 = new Team("Team1");
+        IBorrower borrower2 = new Team("Team1");
 
-        IReservable object1 = IReservableFactory.createReservableItem("mockItem", "desc","requirements",1,Condition.GREAT,true, null, null);
-        IReservable object2 = IReservableFactory.createReservableItem("mockItem", "desc","requirements",1,Condition.GREAT,true, null, null);
+        IReservable object1 = IReservableFactory.createReservableItem("mockItem", "desc","requirements",1,Condition.GREAT,true, 0, null);
+        IReservable object2 = IReservableFactory.createReservableItem("mockItem", "desc","requirements",1,Condition.GREAT,true, 0, null);
 
         ReservationHandler handler = new ReservationHandler(new ArrayList<>());
 
@@ -121,4 +121,3 @@ public class ReservationHandlerTest {
 
 }
 
- */

@@ -47,26 +47,5 @@
     "description": "",
     "contactInformation": "",
     "ID": 6
-  },
-  {
-    "name": "albert",
-    "password": "",
-    "description": "",
-    "contactInformation": "",
-    "ID": 7
-  },
-  {
-    "name": "Albert2",
-    "password": "",
-    "description": "",
-    "contactInformation": "",
-    "ID": 8
-  },
-  {
-    "name": "Albert3",
-    "password": "test123",
-    "description": "Password doesn\u0027t work",
-    "contactInformation": "",
-    "ID": 9
   }
 ]

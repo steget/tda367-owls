@@ -1,22 +1,6 @@
 [
   {
     "name": "sexNollK",
-    "itemIDs": [],
-    "memberIDs": [],
-    "termsAndConditions": "",
-    "teamID": 0,
-    "imageUrl": null
-  },
-  {
-    "name": "P.R.NollK",
-    "itemIDs": [],
-    "memberIDs": [],
-    "termsAndConditions": "",
-    "teamID": 1,
-    "imageUrl": null
-  },
-  {
-    "name": "sexNollK",
     "itemIDs": [
       0,
       1
@@ -34,7 +18,8 @@
     "itemIDs": [],
     "memberIDs": [
       0,
-      1
+      1,
+      2
     ],
     "termsAndConditions": "text 2",
     "teamID": 1,
