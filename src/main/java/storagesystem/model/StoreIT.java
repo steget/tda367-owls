@@ -12,6 +12,8 @@ public class StoreIT {
     private static List<Organisation> organisations = new ArrayList<>();
     private static User currentUser;
     private static Organisation currentOrganisation;
+    private static Team currentTeam;
+
 
     /**
      * Searches through the organisations and tries to find one with the input String
@@ -78,6 +80,7 @@ public class StoreIT {
         return organisations;
     }
 
+
     public static Organisation getCurrentOrganisation() {
         return currentOrganisation;
     }
@@ -98,6 +101,18 @@ public class StoreIT {
                 break;
             }
         }
+    }
+
+    public static void setCurrentUser(User currentUser) {
+        StoreIT.currentUser = currentUser;
+    }
+
+    public static Team getCurrentTeam() {
+        return currentTeam;
+    }
+
+    public static void setCurrentTeam(Team currentTeam) {
+        StoreIT.currentTeam = currentTeam;
     }
 
     /**
@@ -137,11 +152,15 @@ public class StoreIT {
         tempTeam2.addMember(informationsteknik.getUsers().get(0).getID());
         tempTeam2.addMember(informationsteknik.getUsers().get(1).getID());
 
-        Location location = new Location("MockLocation", "This location does not exist", new Image("pictures/creepy.jpg"));
+        Location MockLocation = new Location("Hubben", "This location does not exist");
+        Location MockLocation2 = new Location("Garaget", "This location is unavailable");
+
+        informationsteknik.getLocations().add(MockLocation);
+        informationsteknik.getLocations().add(MockLocation2);
         IReservable mockItem = IReservableFactory.createReservableItem("mockItem", "This is a description", "Behave please.",
-                2, Condition.GOOD, true, location, location.getImage());
+                2, Condition.GOOD, true, MockLocation, new Image("pictures/art.png"));
         IReservable mockItem2 = IReservableFactory.createReservableItem("mockItem nr 2", "This is a description", "Behave please.",
-                2, Condition.GOOD, true, location, new Image("pictures/art.png"));
+                2, Condition.GOOD, true, MockLocation2, new Image("pictures/art.png"));
 
 
         Interval interval1 = new Interval(new DateTime(2019, 9, 10, 12, 40), new DateTime(2019, 9, 10, 15, 0));

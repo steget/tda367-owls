@@ -73,3 +73,6 @@
     -fx-font-size: 24px;
     -fx-font-weight: bold;
 }
+.label{
+    -fx-font-fill:white;
+}

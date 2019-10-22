@@ -67,7 +67,7 @@ public class Team {
         this.termsAndConditions = termsAndConditions;
     }
 
-    List<IReservable> getAllItems() {
+    public List<IReservable> getAllItems() {
         return inventory;
     }
 
