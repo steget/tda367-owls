@@ -27,8 +27,6 @@ public class FrameworkController implements Initializable, ILoadUI {
     @FXML
     private AnchorPane centerPane;
     @FXML
-    private Button searchButton;
-    @FXML
     private Button teamButton;
     @FXML
     private Button userButton;
@@ -42,8 +40,6 @@ public class FrameworkController implements Initializable, ILoadUI {
     private Pane frameTopPane;
     @FXML
     private BorderPane borderPane;
-    @FXML
-    private AnchorPane notPartOfTeamPopUp;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
