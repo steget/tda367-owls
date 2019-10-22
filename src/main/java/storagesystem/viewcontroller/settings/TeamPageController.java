@@ -9,6 +9,7 @@ import javafx.scene.layout.AnchorPane;
 import storagesystem.model.StoreIT;
 import storagesystem.model.Team;
 import storagesystem.model.User;
+import storagesystem.viewcontroller.AbstractFader;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -35,7 +36,7 @@ public class TeamPageController extends AnchorPane implements Initializable {
 
     @FXML
     private TextField settingsTeamNameInput;
-    //todo change this to a TextArea so we can set the text to wrap
+    
     @FXML
     private TextArea settingsTeamContractInput;
 
@@ -53,6 +54,21 @@ public class TeamPageController extends AnchorPane implements Initializable {
 
     @FXML
     private Label teamLabel;
+
+    @FXML
+    private Label userAddedMsg;
+
+    @FXML
+    private Label userRemovedMsg;
+
+    @FXML
+    private Label userAlreadyInTeamMsg;
+
+    @FXML
+    private Label userDoesNotExistMsg;
+
+    @FXML
+    private Label userNotPartOfTeamMsg;
 
     private List<Team> currentUsersTeams = new ArrayList<>();
     private ObservableList<String> teamNames = FXCollections.observableArrayList();
@@ -170,16 +186,15 @@ public class TeamPageController extends AnchorPane implements Initializable {
             if (user.getName().equals(settingsAddUserInput.getText())) {
                 doesUserExist = true;
                 if (StoreIT.getCurrentTeam().getAllMemberIDs().contains(user.getID())) {
-                    //todo print in program
-                    System.out.println("User is already a part of this team.");
+                    AbstractFader.fadeTransition(userAlreadyInTeamMsg, 3);
                 } else {
                     StoreIT.getCurrentTeam().addMember(user.getID());
+                    AbstractFader.fadeTransition(userAddedMsg, 3);
                 }
             }
         }
         if (!doesUserExist) {
-            //todo print in program
-            System.out.println("User does not exist.");
+            AbstractFader.fadeTransition(userDoesNotExistMsg, 3);
         }
     }
 
@@ -190,6 +205,7 @@ public class TeamPageController extends AnchorPane implements Initializable {
     private void removeMemberButtonPressed() {
         int tempUserID = getUserIDFromName(settingsRemoveUserInput.getText());
         removeMemberFromTeam(tempUserID);
+        AbstractFader.fadeTransition(userRemovedMsg, 3);
     }
 
     /**
@@ -208,8 +224,7 @@ public class TeamPageController extends AnchorPane implements Initializable {
         }
 
         if (!memberFound) {
-            //todo print in program instead
-            System.out.println("Could not remove user since user is not a part of the team.");
+            AbstractFader.fadeTransition(userNotPartOfTeamMsg, 3);
         }
     }
 
