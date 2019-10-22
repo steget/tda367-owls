@@ -29,8 +29,7 @@ import java.util.List;
  * @author Jonathan Eksberg, Carl Lindh, Pär Aronsson
  */
 
-//todo refactor and make code good looking.
-public class DetailedItemViewController extends AnchorPane {
+public class ItemDetailViewController extends AnchorPane {
     private final IReservable reservableItem;
     private final Team itemOwner;
     private List<Location> locationList;
@@ -75,7 +74,7 @@ public class DetailedItemViewController extends AnchorPane {
     private Pane editPane;
 
 
-    DetailedItemViewController(IReservable reservableItem) {
+    ItemDetailViewController(IReservable reservableItem) {
         this.reservableItem = reservableItem;
         this.itemOwner = StoreIT.getCurrentOrganisation().getItemOwner(reservableItem);
 

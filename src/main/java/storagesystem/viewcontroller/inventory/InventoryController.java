@@ -26,7 +26,7 @@ public class InventoryController implements Initializable {
     private List<Team> currentUsersTeams = new ArrayList<>();
     private ObservableList<String> teamNames = FXCollections.observableArrayList();
     private int currentlySelectedTeamIndex;
-    private DetailedItemViewController detailView;
+    private ItemDetailViewController detailView;
 
     @FXML
     FlowPane itemPane;
@@ -100,7 +100,7 @@ public class InventoryController implements Initializable {
      * @param item
      */
     private void listItemClicked(IReservable item) {
-        detailView = new DetailedItemViewController(item);
+        detailView = new ItemDetailViewController(item);
         rootPane.getChildren().add(detailView);
         detailView.addDetailListener(this::detailItemViewClicked);
         detailView.addSaveButtonListener(this::saveButtonClicked);
