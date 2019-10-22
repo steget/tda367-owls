@@ -1,7 +1,6 @@
 package storagesystem.model;
 
-import javafx.scene.image.Image;
-import storagesystem.services.GSONHandler;
+import storagesystem.services.JSONHandler;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -30,14 +29,14 @@ public class Team implements IBorrower{
     }
 
     public void addUsers() throws IOException {
-        List<User> userList = GSONHandler.getListFromJson(User.class);
+        List<User> userList = JSONHandler.getListFromJson(User.class);
         for (int i = 0; i < userList.size(); i++) {
             memberIDs.add(userList.get(i).getID());
         }
     }
 
     public void addItems() throws IOException {
-        List<Item> itemList = GSONHandler.getListFromJson(Item.class);
+        List<Item> itemList = JSONHandler.getListFromJson(Item.class);
         for (int i = 0; i < itemList.size(); i++) {
             itemIDs.add(itemList.get(i).getID());
         }

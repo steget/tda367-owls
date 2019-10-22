@@ -6,7 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import storagesystem.model.StoreIT;
-import storagesystem.services.GSONHandler;
+import storagesystem.services.JSONHandler;
 
 import java.io.IOException;
 
@@ -35,18 +35,18 @@ public class Main extends Application {
     }
     @Override
     public void stop() throws IOException {
-        GSONHandler.clearAllJsonFiles();
-        GSONHandler.addListToJson(StoreIT.getOrganisations());
+        JSONHandler.clearAllJsonFiles();
+        JSONHandler.addListToJson(StoreIT.getOrganisations());
         System.out.println("Saved Organisations.");
-        GSONHandler.addListToJson(StoreIT.getCurrentOrganisation().getUsers());
+        JSONHandler.addListToJson(StoreIT.getCurrentOrganisation().getUsers());
         System.out.println("Saved Users.");
-        GSONHandler.addListToJson(StoreIT.getCurrentOrganisation().getTeams());
+        JSONHandler.addListToJson(StoreIT.getCurrentOrganisation().getTeams());
         System.out.println("Saved Teams.");
-        GSONHandler.addListToJson(StoreIT.getCurrentOrganisation().getAllItems());
+        JSONHandler.addListToJson(StoreIT.getCurrentOrganisation().getAllItems());
         System.out.println("Saved Items.");
-        GSONHandler.addListToJson(StoreIT.getCurrentOrganisation().getLocations());
+        JSONHandler.addListToJson(StoreIT.getCurrentOrganisation().getLocations());
         System.out.println("Saved Locations.");
-        GSONHandler.addListToJson(StoreIT.getCurrentOrganisation().getReservationHandler().getReservations());
+        JSONHandler.addListToJson(StoreIT.getCurrentOrganisation().getReservationHandler().getReservations());
         System.out.println("Saved Reservations.");
     }
 }

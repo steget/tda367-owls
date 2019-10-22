@@ -1,9 +1,8 @@
 package storagesystem.model;
 
-import javafx.scene.image.Image;
 import org.joda.time.DateTime;
 import org.joda.time.Interval;
-import storagesystem.services.GSONHandler;
+import storagesystem.services.JSONHandler;
 import storagesystem.services.IDHandler;
 
 
@@ -21,11 +20,11 @@ public class StoreIT {
      * Loads all data into the program. Should be run at start.
      */
     public void initializeBackend() throws IOException {
-        //GSONHandler.clearAllJsonFiles();
+        //JSONHandler.clearAllJsonFiles();
         //mockData();
 
         try {
-            organisations.addAll(GSONHandler.getListFromJson(Organisation.class));
+            organisations.addAll(JSONHandler.getListFromJson(Organisation.class));
         } catch (NullPointerException e) {
             System.out.println("Organisation json is empty.");
         }
@@ -42,18 +41,18 @@ public class StoreIT {
                 2, Condition.GOOD, true, location.getID(), "pictures/art.png");
         Item mockItem2 = new Item("mockItem nr 2", "This is a description", "Behave please.",
                 2, Condition.GOOD, true, location.getID(), "art.png");
-        GSONHandler.addToJson(location);
-        GSONHandler.addToJson(mockItem);
-        GSONHandler.addToJson(mockItem2);
+        JSONHandler.addToJson(location);
+        JSONHandler.addToJson(mockItem);
+        JSONHandler.addToJson(mockItem2);
 
         Team tempTeam = new Team("sexNollK");
         Team tempTeam2 = new Team("P.R.NollK");
-        GSONHandler.addToJson(tempTeam);
-        GSONHandler.addToJson(tempTeam2);
+        JSONHandler.addToJson(tempTeam);
+        JSONHandler.addToJson(tempTeam2);
 
         ReservationHandler mockReservationHandler = new ReservationHandler();
         mockReservationHandler.createReservation(tempTeam, new Interval(new DateTime(2019, 9, 12, 17, 30), new DateTime(2019, 11, 16, 20, 0)), mockItem);
-        GSONHandler.addToJson(mockReservationHandler.getReservation(0));
+        JSONHandler.addToJson(mockReservationHandler.getReservation(0));
 
         Organisation informationsteknik = new Organisation("Informationsteknik");
         Organisation data = new Organisation("Data");

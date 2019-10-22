@@ -1,9 +1,7 @@
 package storagesystem.model;
 
-import javafx.scene.image.Image;
-import storagesystem.services.GSONHandler;
+import storagesystem.services.JSONHandler;
 
-import java.awt.image.ImagingOpException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,31 +27,31 @@ public class Organisation {
     public Organisation(String name) throws IOException {
         this.name = name;
         try {
-            this.reservationHandler = new ReservationHandler(GSONHandler.getListFromJson(Reservation.class));
+            this.reservationHandler = new ReservationHandler(JSONHandler.getListFromJson(Reservation.class));
         } catch (NullPointerException e) {
             System.out.println("Reservation json is empty.");
             this.reservationHandler = new ReservationHandler();
         }
         try {
-            List<Location> locationList = GSONHandler.getListFromJson(Location.class);
+            List<Location> locationList = JSONHandler.getListFromJson(Location.class);
             this.locations.addAll(locationList);
         } catch (NullPointerException e) {
             System.out.println("Location json is empty.");
         }
         try {
-            List<Item> itemList = GSONHandler.getListFromJson(Item.class);
+            List<Item> itemList = JSONHandler.getListFromJson(Item.class);
             this.items.addAll(itemList);
         } catch (NullPointerException e) {
             System.out.println("Item json is empty.");
         }
         try {
-            List<Team> teamList = GSONHandler.getListFromJson(Team.class);
+            List<Team> teamList = JSONHandler.getListFromJson(Team.class);
             this.teams.addAll(teamList);
         } catch (NullPointerException e) {
             System.out.println("Team json is empty.");
         }
         try {
-            List<User> userList = GSONHandler.getListFromJson(User.class);
+            List<User> userList = JSONHandler.getListFromJson(User.class);
             this.users.addAll(userList);
         } catch (NullPointerException e) {
             System.out.println("User json is empty");
@@ -64,13 +62,13 @@ public class Organisation {
         this.name = organisationToCopy.name;
         this.teams.addAll(organisationToCopy.getTeams());
         this.users.addAll(organisationToCopy.getUsers());
-        List<Location> locationList = GSONHandler.getListFromJson(Location.class);
+        List<Location> locationList = JSONHandler.getListFromJson(Location.class);
         locations.addAll(locationList);
-        List<Item> itemList = GSONHandler.getListFromJson(Item.class);
+        List<Item> itemList = JSONHandler.getListFromJson(Item.class);
         items.addAll(itemList);
-        List<Team> teamList = GSONHandler.getListFromJson(Team.class);
+        List<Team> teamList = JSONHandler.getListFromJson(Team.class);
         teams.addAll(teamList);
-        List<User> userList = GSONHandler.getListFromJson(User.class);
+        List<User> userList = JSONHandler.getListFromJson(User.class);
         users.addAll(userList);
         reservationHandler = new ReservationHandler();
     }*/

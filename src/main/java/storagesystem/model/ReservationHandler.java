@@ -1,7 +1,6 @@
 package storagesystem.model;
 
 import org.joda.time.Interval;
-import storagesystem.services.GSONHandler;
 
 import java.io.IOException;
 import java.util.ArrayList;
