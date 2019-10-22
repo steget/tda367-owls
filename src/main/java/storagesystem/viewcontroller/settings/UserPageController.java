@@ -35,7 +35,7 @@ public class UserPageController implements Initializable {
     private TextField profileContactInput;
 
     @FXML
-    private TextField profileDescriptionInput;
+    private TextArea profileDescriptionInput;
 
     @FXML
     private TextArea profileDescriptionTextArea;

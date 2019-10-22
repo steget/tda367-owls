@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 import storagesystem.model.StoreIT;
 
 public class Main extends Application {
-    private StoreIT storeIT;
+
 
     public static void main(String[] args) {
         launch(args);
@@ -16,6 +16,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        StoreIT storeIT;
         storeIT = new StoreIT();
         storeIT.initializeBackend();
 

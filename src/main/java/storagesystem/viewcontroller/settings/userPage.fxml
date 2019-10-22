@@ -23,10 +23,6 @@
                <font>
                   <Font size="18.0" />
                </font></Button>
-            <TextField fx:id="profileDescriptionInput" alignment="TOP_LEFT" layoutX="340.0" layoutY="295.0" prefHeight="250.0" prefWidth="400.0" promptText="Write something about yourself..." style="-fx-background-color: white;" AnchorPane.leftAnchor="340.0" AnchorPane.topAnchor="335.0">
-               <font>
-                  <Font size="18.0" />
-               </font></TextField>
             <Label layoutX="14.0" text="Edit Profile" textFill="WHITE">
                <font>
                   <Font size="61.0" />
@@ -53,6 +49,7 @@
                   <Font size="18.0" />
                </font>
             </Text>
+            <TextArea fx:id="profileDescriptionInput" layoutX="340.0" layoutY="335.0" prefHeight="250.0" prefWidth="400.0" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="viewProfileAnchorPane" prefHeight="700.0" prefWidth="1000.0" styleClass="background">
@@ -88,7 +85,7 @@
                </font>
             </Label>
             <Text fill="WHITE" layoutX="245.0" layoutY="162.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bigLabel" text="Name:" underline="true" wrappingWidth="78.70703029632568" AnchorPane.leftAnchor="245.0" AnchorPane.topAnchor="135.0" />
-            <Text fill="WHITE" layoutX="228.0" layoutY="262.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bigLabel" text="Contact:" underline="true" wrappingWidth="95.99999338388443" AnchorPane.leftAnchor="228.0" AnchorPane.topAnchor="235.0" />
+            <Text fill="WHITE" layoutX="228.0" layoutY="262.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bigLabel" text="Contact:" underline="true" wrappingWidth="109.7402423620224" AnchorPane.leftAnchor="228.0" AnchorPane.topAnchor="235.0" />
             <Text fill="WHITE" layoutX="193.0" layoutY="359.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bigLabel" text="Description:" underline="true" wrappingWidth="141.36329293251038" AnchorPane.leftAnchor="193.0" AnchorPane.topAnchor="335.0" />
             <Text fill="WHITE" layoutX="774.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bigLabel" text="Organisation:" textAlignment="CENTER" underline="true" wrappingWidth="152.36328125" AnchorPane.rightAnchor="73.63671875" AnchorPane.topAnchor="17.1015625" />
          </children>
