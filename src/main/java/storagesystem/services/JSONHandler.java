@@ -16,10 +16,10 @@ import java.util.List;
 
 /**
  * @author Carl Lindh
- * GSONHandler is a handler with static methods with which it is possible to write and read from the json files corresponding to the Strings declared.
+ * JSONHandler is a handler with static methods with which it is possible to write and read from the json files corresponding to the Strings declared.
  */
 
-public class GSONHandler {
+public class JSONHandler {
 
     private static String itemDB = "src/main/resources/json/itemDB.json";
     private static String locationDB = "src/main/resources/json/locationDB.json";
