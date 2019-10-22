@@ -1,14 +1,14 @@
 
 * {
     primaryColor: #212121;
-    secondaryColor:  #303030;
-    tertiaryColor:#424242;
+    secondaryColor: #303030;
+    tertiaryColor: #424242;
     quarternaryColor: #545454;
     appButtonColor: #BB86FC;
 
 }
 
-.appbar{
+.appbar {
     -fx-background-color: primaryColor;
 }
 
@@ -16,19 +16,20 @@
     -fx-background-color: tertiaryColor;
 }
 
-.menubar{
+.menubar {
     -fx-background-color: secondaryColor;
 }
 
-.searchbar{
+.searchbar {
     -fx-background-color: tertiaryColor;
 }
 
-.inAppButton{
+.inAppButton {
     -fx-background-color: appButtonColor;
     -fx-text-fill: primaryColor;
     -fx-text-size: 18;
 }
+
 .nonEditableField {
     -fx-cursor: default;
     -fx-background-color: rgba(0, 0, 0, 0);
@@ -87,3 +88,12 @@
     -fx-font-size: 24px;
     -fx-font-weight: bold;
 }
+
+.choice-box {
+    -fx-background-color: quarternaryColor;
+}
+
+.choice-box > .label{
+    -fx-text-fill: white;
+}
+

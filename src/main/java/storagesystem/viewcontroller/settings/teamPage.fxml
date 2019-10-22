@@ -16,14 +16,14 @@
    <children>
       <AnchorPane fx:id="editTeamAnchorPane" prefHeight="700.0" prefWidth="1000.0" styleClass="background">
          <children>
-            <TextField fx:id="settingsAddUserInput" layoutX="598.0" layoutY="180.0" prefHeight="31.0" prefWidth="250.0" promptText="Write name of person to add from team" style="-fx-background-color: white;">
+            <TextField fx:id="settingsAddUserInput" layoutX="598.0" layoutY="180.0" prefHeight="31.0" prefWidth="250.0" promptText="Write the name of a user to add..." style="-fx-background-color: white;">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
             </TextField>
-            <TextField fx:id="settingsTeamNameInput" layoutX="214.0" layoutY="180.0" prefHeight="31.0" prefWidth="229.0" promptText="Input Team name" style="-fx-background-color: white;" />
+            <TextField fx:id="settingsTeamNameInput" layoutX="214.0" layoutY="180.0" prefHeight="31.0" prefWidth="337.0" promptText="Input Team name...." style="-fx-background-color: white;" AnchorPane.topAnchor="180.0" />
             <Button layoutX="859.0" layoutY="178.0" mnemonicParsing="false" onAction="#addMemberButtonPressed" prefHeight="32.0" prefWidth="115.0" styleClass="inAppButton" text="Add user" textAlignment="CENTER" />
-            <TextField fx:id="settingsRemoveUserInput" layoutX="598.0" layoutY="262.0" prefHeight="31.0" prefWidth="250.0" promptText="Write name of person to remove from team" style="-fx-background-color: white;">
+            <TextField fx:id="settingsRemoveUserInput" layoutX="598.0" layoutY="262.0" prefHeight="31.0" prefWidth="250.0" promptText="Write the name of a user to remove..." style="-fx-background-color: white;">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -35,26 +35,26 @@
                   <Font size="61.0" />
                </font>
             </Label>
-            <Text fill="WHITE" layoutX="689.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bigLabel" text="Manage Members:" underline="true" />
-            <TextArea fx:id="settingsTeamContractInput" layoutX="214.0" layoutY="277.0" prefHeight="302.0" prefWidth="337.0" promptText="Write your team's standard terms and conditions here..." wrapText="true" />
-            <Text fill="WHITE" layoutX="63.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bigLabel" text="Team Name:" underline="true" />
-            <Text fill="WHITE" layoutX="76.0" layoutY="303.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bigLabel" text="Terms and conditions:" underline="true" wrappingWidth="125.99998712539673" />
+            <Text fill="WHITE" layoutX="673.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bigLabel" text="Manage Members:" textAlignment="CENTER" underline="true" wrappingWidth="213.9765625" />
+            <TextArea fx:id="settingsTeamContractInput" layoutX="214.0" layoutY="261.0" prefHeight="302.0" prefWidth="337.0" promptText="Write your team's standard terms and conditions here..." wrapText="true" AnchorPane.topAnchor="261.0" />
+            <Text fill="WHITE" layoutX="64.0" layoutY="203.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bigLabel" text="Team Name:" underline="true" wrappingWidth="150.00000596046448" AnchorPane.topAnchor="180.0" />
+            <Text fill="WHITE" layoutX="80.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bigLabel" text="Terms and conditions:" underline="true" wrappingWidth="134.99998712539673" AnchorPane.topAnchor="261.1015625" />
             <Button fx:id="cancelTeamButton" layoutX="44.0" layoutY="615.0" mnemonicParsing="false" onAction="#cancelTeamButtonPressed" prefHeight="70.0" prefWidth="126.0" styleClass="inAppButton" text="Cancel" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="teamAnchorPane" prefHeight="700.0" prefWidth="1000.0" styleClass="background">
          <children>
-            <Label text="Team:" textFill="WHITE" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="0.0">
+            <Label prefHeight="89.0" prefWidth="187.0" text="Team:" textFill="WHITE" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="0.0">
                <font>
                   <Font size="61.0" />
                </font>
             </Label>
             <ChoiceBox fx:id="settingsChooseTeamInput" layoutX="764.0" layoutY="291.0" prefWidth="150.0" />
-            <Text fill="WHITE" layoutX="757.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bigLabel" text="Choose a team:" underline="true" />
+            <Text fill="WHITE" layoutX="745.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bigLabel" text="Choose a team:" textAlignment="CENTER" underline="true" wrappingWidth="187.00000643730164" />
             <Button fx:id="editTeamButton" layoutX="866.0" layoutY="574.0" mnemonicParsing="false" onAction="#editTeamButtonPressed" prefHeight="70.0" prefWidth="126.0" styleClass="inAppButton" text="Edit team" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0" />
-            <TextArea fx:id="teamToCTextArea" editable="false" layoutX="332.0" layoutY="240.0" prefHeight="325.0" prefWidth="337.0" wrapText="true" />
-            <Text fill="WHITE" layoutX="75.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bigLabel" text="Terms and Conditions:" underline="true" />
-            <Label fx:id="teamLabel" contentDisplay="CENTER" layoutX="193.0" text="MockTeam" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+            <TextArea fx:id="teamToCTextArea" editable="false" layoutX="332.0" layoutY="240.0" prefHeight="325.0" prefWidth="337.0" wrapText="true" AnchorPane.topAnchor="240.0" />
+            <Text fill="WHITE" layoutX="73.0" layoutY="264.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bigLabel" text="Terms and Conditions:" underline="true" wrappingWidth="256.0000046491623" AnchorPane.topAnchor="240.0" />
+            <Label fx:id="teamLabel" contentDisplay="CENTER" layoutX="214.0" prefHeight="89.0" prefWidth="495.0" text="MockTeam" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                <font>
                   <Font size="61.0" />
                </font>

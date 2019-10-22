@@ -91,6 +91,9 @@ public class UserPageController implements Initializable {
         profileNameLabel.setText(currentUser.getName());
         profileContactLabel.setText(currentUser.getContactInformation());
         profileDescriptionTextArea.setText(currentUser.getDescription());
+        if(profileDescriptionTextArea.getText().trim().isEmpty()){
+            profileDescriptionTextArea.setText("User does not yet have a description... :(");
+        }
         profileOrganisationLabel.setText(StoreIT.getCurrentOrganisation().getName());
         profileNameInput.setText(currentUser.getName());
         profileContactInput.setText(currentUser.getContactInformation());
