@@ -151,7 +151,7 @@ public class StoreIT {
     public static boolean doesUserExist(Organisation organisationToSearch, String name) {
         for (User user :
                 organisationToSearch.getUsers()) {
-            if (user.getName().toLowerCase().equals(name)) {
+            if (user.getName().toLowerCase().equals(name.toLowerCase())) {
                 return true;
             }
         }
