@@ -40,7 +40,7 @@ public class StoreIT {
         Item mockItem = new Item("mockItem", "This is a description", "Behave please.",
                 2, Condition.GOOD, true, location.getID(), "pictures/art.png");
         Item mockItem2 = new Item("mockItem nr 2", "This is a description", "Behave please.",
-                2, Condition.GOOD, true, location.getID(), "art.png");
+                2, Condition.GOOD, true, location.getID(), "pictures/art.png");
         JSONHandler.addToJson(location);
         JSONHandler.addToJson(mockItem);
         JSONHandler.addToJson(mockItem2);

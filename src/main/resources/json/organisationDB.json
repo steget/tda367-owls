@@ -28,7 +28,7 @@
           "condition": "GOOD",
           "reservable": true,
           "locationID": 0,
-          "imageUrl": "art.png"
+          "imageUrl": "pictures/art.png"
         }
       }
     ],
@@ -288,7 +288,7 @@
           "condition": "GOOD",
           "reservable": true,
           "locationID": 0,
-          "imageUrl": "art.png"
+          "imageUrl": "pictures/art.png"
         }
       }
     ],
