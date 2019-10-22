@@ -130,7 +130,7 @@ public class LoginPageController implements Initializable {
             if(StoreIT.getCurrentOrganisation().getUsersTeams(loginUser).size() > 0){
                 StoreIT.setCurrentTeam(StoreIT.getCurrentOrganisation().getUsersTeams(loginUser).get(0));
             }
-            
+
             //open dashboard
             Parent root = FXMLLoader.load(getClass().getResource("/framework.fxml"));
             Stage stage = (Stage) rootPane.getScene().getWindow();

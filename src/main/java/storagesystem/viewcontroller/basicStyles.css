@@ -41,6 +41,11 @@
     -fx-background-color: rgba(0, 0, 0, 0.75);
 }
 
+.popUp {
+    -fx-background-color: secondaryColor;
+    -fx-background-radius: 20;
+}
+
 .lightboxContent {
     -fx-background-color: tertiaryColor;
     -fx-background-radius: 20;
