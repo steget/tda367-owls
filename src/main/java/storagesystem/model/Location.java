@@ -52,5 +52,9 @@ public class Location {
         this.imageUrl = imageUrl;
     }
 
+    public static void setNextID(int nextID) {
+        Location.nextID = nextID;
+    }
+
 
 }

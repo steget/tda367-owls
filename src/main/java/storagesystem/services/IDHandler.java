@@ -2,9 +2,11 @@ package storagesystem.services;
 
 import storagesystem.model.*;
 
+import javax.naming.spi.ResolveResult;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class IDHandler {
 
@@ -27,9 +29,13 @@ public class IDHandler {
                 }
             }
         }
-        int maxUserID = Collections.max(allIDs);
-        Item.setNextID(maxUserID + 1);
-        System.out.println(allIDs.toString());
+        try {
+            int maxUserID = Collections.max(allIDs);
+            Item.setNextID(maxUserID + 1);
+        } catch (NoSuchElementException e) {
+            System.out.println("There are no itemIDs.");
+            Item.setNextID(0);
+        }
     }
 
     private static void updateNextLocationID(List<Organisation> organisations) {
@@ -42,9 +48,13 @@ public class IDHandler {
                 }
             }
         }
-        int maxUserID = Collections.max(allIDs);
-        Item.setNextID(maxUserID + 1);
-        System.out.println(allIDs.toString());
+        try {
+            int maxUserID = Collections.max(allIDs);
+            Location.setNextID(maxUserID + 1);
+        } catch (NoSuchElementException e) {
+            System.out.println("There are no locationIDs.");
+            Location.setNextID(0);
+        }
     }
 
 
@@ -58,9 +68,13 @@ public class IDHandler {
                 }
             }
         }
-        int maxUserID = Collections.max(allIDs);
-        Reservation.setNextID(maxUserID + 1);
-        System.out.println(allIDs.toString());
+        try {
+            int maxUserID = Collections.max(allIDs);
+            Reservation.setNextID(maxUserID + 1);
+        } catch (NoSuchElementException e) {
+            System.out.println("There are no reservationIDs.");
+            Reservation.setNextID(0);
+        }
     }
 
     private static void updateNextTeamID(List<Organisation> organisations) {
@@ -73,9 +87,13 @@ public class IDHandler {
                 }
             }
         }
-        int maxUserID = Collections.max(allIDs);
-        Team.setNextID(maxUserID + 1);
-        System.out.println(allIDs.toString());
+        try {
+            int maxUserID = Collections.max(allIDs);
+            Team.setNextID(maxUserID + 1);
+        } catch (NoSuchElementException e) {
+            System.out.println("There are no teamIDs.");
+            Team.setNextID(0);
+        }
     }
 
 
@@ -89,8 +107,13 @@ public class IDHandler {
                 }
             }
         }
-        int maxUserID = Collections.max(allUserIDs);
-        User.setNextID(maxUserID + 1);
-        System.out.println(allUserIDs.toString());
+        try {
+            int maxUserID = Collections.max(allUserIDs);
+            User.setNextID(maxUserID + 1);
+        } catch (NoSuchElementException e) {
+            System.out.println("There are no userIDs.");
+            User.setNextID(0);
+        }
+
     }
 }

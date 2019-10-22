@@ -46,8 +46,7 @@ public class OrganisationTest {
 
         assertEquals(0, informationsteknik.getTeamsItems(tempTeam).size());
         assertEquals(0, informationsteknik.getAllItems().size());
-        informationsteknik.getAllItems().add(mockItem);
-        tempTeam.addItemToInventory(informationsteknik.getItem(0));
+        informationsteknik.addItem(mockItem, tempTeam);
         assertEquals(1, informationsteknik.getTeamsItems(tempTeam).size());
         assertEquals(1, informationsteknik.getAllItems().size());
 

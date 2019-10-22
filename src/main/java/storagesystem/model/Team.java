@@ -1,8 +1,5 @@
 package storagesystem.model;
 
-import storagesystem.services.JSONHandler;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +9,7 @@ import java.util.List;
  *
  * @author Hugo Stegrell, Pär Aronsson
  */
-public class Team implements IBorrower{
+public class Team implements IBorrower {
     private String name;
     private final List<Integer> itemIDs = new ArrayList<>();
     private final List<Integer> memberIDs = new ArrayList<>();
@@ -28,15 +25,13 @@ public class Team implements IBorrower{
         nextID++;
     }
 
-    public void addUsers() throws IOException {
-        List<User> userList = JSONHandler.getListFromJson(User.class);
+    public void addUsers(List<User> userList) {
         for (int i = 0; i < userList.size(); i++) {
             memberIDs.add(userList.get(i).getID());
         }
     }
 
-    public void addItems() throws IOException {
-        List<Item> itemList = JSONHandler.getListFromJson(Item.class);
+    public void addItems(List<IReservable> itemList) {
         for (int i = 0; i < itemList.size(); i++) {
             itemIDs.add(itemList.get(i).getID());
         }

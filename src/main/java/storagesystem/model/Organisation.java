@@ -1,7 +1,5 @@
 package storagesystem.model;
 
-import storagesystem.services.JSONHandler;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,57 +19,12 @@ public class Organisation {
     private final List<Team> teams = new ArrayList<>();
     private final List<User> users = new ArrayList<>();
     private final List<Location> locations = new ArrayList<>();
-    private ReservationHandler reservationHandler;
+    private ReservationHandler reservationHandler = new ReservationHandler();
     //todo reservationHandler
 
     public Organisation(String name) throws IOException {
         this.name = name;
-        try {
-            this.reservationHandler = new ReservationHandler(JSONHandler.getListFromJson(Reservation.class));
-        } catch (NullPointerException e) {
-            System.out.println("Reservation json is empty.");
-            this.reservationHandler = new ReservationHandler();
-        }
-        try {
-            List<Location> locationList = JSONHandler.getListFromJson(Location.class);
-            this.locations.addAll(locationList);
-        } catch (NullPointerException e) {
-            System.out.println("Location json is empty.");
-        }
-        try {
-            List<Item> itemList = JSONHandler.getListFromJson(Item.class);
-            this.items.addAll(itemList);
-        } catch (NullPointerException e) {
-            System.out.println("Item json is empty.");
-        }
-        try {
-            List<Team> teamList = JSONHandler.getListFromJson(Team.class);
-            this.teams.addAll(teamList);
-        } catch (NullPointerException e) {
-            System.out.println("Team json is empty.");
-        }
-        try {
-            List<User> userList = JSONHandler.getListFromJson(User.class);
-            this.users.addAll(userList);
-        } catch (NullPointerException e) {
-            System.out.println("User json is empty");
-        }
     }
-
-    /*private Organisation(Organisation organisationToCopy) throws IOException {
-        this.name = organisationToCopy.name;
-        this.teams.addAll(organisationToCopy.getTeams());
-        this.users.addAll(organisationToCopy.getUsers());
-        List<Location> locationList = JSONHandler.getListFromJson(Location.class);
-        locations.addAll(locationList);
-        List<Item> itemList = JSONHandler.getListFromJson(Item.class);
-        items.addAll(itemList);
-        List<Team> teamList = JSONHandler.getListFromJson(Team.class);
-        teams.addAll(teamList);
-        List<User> userList = JSONHandler.getListFromJson(User.class);
-        users.addAll(userList);
-        reservationHandler = new ReservationHandler();
-    }*/
 
     public ReservationHandler getReservationHandler() {
         return reservationHandler;
@@ -82,6 +35,11 @@ public class Organisation {
      */
     public List<IReservable> getAllItems() {
         return items;
+    }
+
+    public void addItem(IReservable iReservable, Team team) {
+        items.add(iReservable);
+        team.addItemToInventory(iReservable);
     }
 
     /**

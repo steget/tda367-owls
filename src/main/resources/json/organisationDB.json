@@ -41,9 +41,10 @@
         ],
         "memberIDs": [
           0,
-          1
+          1,
+          7
         ],
-        "termsAndConditions": "För att låna våra prylar måste prylen vara i samma skick som den var när den lånades ut. Behövs den diskas så diska den osv. Prylen ska också vara tillbaka på samma plats igen",
+        "termsAndConditions": "För att låna våra prylar måste prylen vara i samma skick som den var när den lånades ut. Behövs den diskas så diska den osv. Prylen ska också vara tillbaka på samma plats igen D was here",
         "teamID": 0,
         "imageUrl": null
       },
@@ -52,8 +53,7 @@
         "itemIDs": [],
         "memberIDs": [
           0,
-          1,
-          2
+          1
         ],
         "termsAndConditions": "text 2",
         "teamID": 1,
@@ -109,51 +109,18 @@
         "description": "",
         "contactInformation": "",
         "ID": 6
-      }
-    ],
-    "locations": [
+      },
       {
-        "name": "MockLocation",
-        "description": "This location does not exist",
-        "imageUrl": "creepy.jpg",
-        "ID": 0
+        "name": "d",
+        "password": "",
+        "description": "",
+        "contactInformation": "",
+        "ID": 7
       }
     ],
+    "locations": [],
     "reservationHandler": {
       "reservations": [
-        {
-          "CLASSNAME": "storagesystem.model.Reservation",
-          "DATA": {
-            "id": 0,
-            "borrower": {
-              "CLASSNAME": "storagesystem.model.Team",
-              "DATA": {
-                "name": "sexNollK",
-                "itemIDs": [],
-                "memberIDs": [],
-                "termsAndConditions": "",
-                "teamID": 0,
-                "imageUrl": null
-              }
-            },
-            "interval": "2019-09-12T17:30:00.000+02:00/2019-11-16T20:00:00.000+01:00",
-            "reservedObject": {
-              "CLASSNAME": "storagesystem.model.Item",
-              "DATA": {
-                "name": "mockItem",
-                "description": "This is a description",
-                "userRequirements": "Behave please.",
-                "ID": 0,
-                "amount": 2,
-                "condition": "GOOD",
-                "reservable": true,
-                "locationID": 0,
-                "imageUrl": "pictures/art.png"
-              }
-            },
-            "status": "PENDING"
-          }
-        },
         {
           "CLASSNAME": "storagesystem.model.Reservation",
           "DATA": {
@@ -238,82 +205,12 @@
   {
     "name": "Data",
     "imageUrl": null,
-    "items": [
-      {
-        "CLASSNAME": "storagesystem.model.Item",
-        "DATA": {
-          "name": "mockItem",
-          "description": "This is a description",
-          "userRequirements": "Behave please.",
-          "ID": 0,
-          "amount": 2,
-          "condition": "GOOD",
-          "reservable": true,
-          "locationID": 0,
-          "imageUrl": "pictures/art.png"
-        }
-      },
-      {
-        "CLASSNAME": "storagesystem.model.Item",
-        "DATA": {
-          "name": "mockItem nr 2",
-          "description": "This is a description",
-          "userRequirements": "Behave please.",
-          "ID": 1,
-          "amount": 2,
-          "condition": "GOOD",
-          "reservable": true,
-          "locationID": 0,
-          "imageUrl": "pictures/art.png"
-        }
-      }
-    ],
+    "items": [],
     "teams": [],
     "users": [],
-    "locations": [
-      {
-        "name": "MockLocation",
-        "description": "This location does not exist",
-        "imageUrl": "creepy.jpg",
-        "ID": 0
-      }
-    ],
+    "locations": [],
     "reservationHandler": {
-      "reservations": [
-        {
-          "CLASSNAME": "storagesystem.model.Reservation",
-          "DATA": {
-            "id": 0,
-            "borrower": {
-              "CLASSNAME": "storagesystem.model.Team",
-              "DATA": {
-                "name": "sexNollK",
-                "itemIDs": [],
-                "memberIDs": [],
-                "termsAndConditions": "",
-                "teamID": 0,
-                "imageUrl": null
-              }
-            },
-            "interval": "2019-09-12T17:30:00.000+02:00/2019-11-16T20:00:00.000+01:00",
-            "reservedObject": {
-              "CLASSNAME": "storagesystem.model.Item",
-              "DATA": {
-                "name": "mockItem",
-                "description": "This is a description",
-                "userRequirements": "Behave please.",
-                "ID": 0,
-                "amount": 2,
-                "condition": "GOOD",
-                "reservable": true,
-                "locationID": 0,
-                "imageUrl": "pictures/art.png"
-              }
-            },
-            "status": "PENDING"
-          }
-        }
-      ]
+      "reservations": []
     }
   }
 ]

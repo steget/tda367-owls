@@ -33,20 +33,9 @@ public class Main extends Application {
         stage.setResizable(false);
         stage.show();
     }
+
     @Override
     public void stop() throws IOException {
-        JSONHandler.clearAllJsonFiles();
-        JSONHandler.addListToJson(StoreIT.getOrganisations());
-        System.out.println("Saved Organisations.");
-        JSONHandler.addListToJson(StoreIT.getCurrentOrganisation().getUsers());
-        System.out.println("Saved Users.");
-        JSONHandler.addListToJson(StoreIT.getCurrentOrganisation().getTeams());
-        System.out.println("Saved Teams.");
-        JSONHandler.addListToJson(StoreIT.getCurrentOrganisation().getAllItems());
-        System.out.println("Saved Items.");
-        JSONHandler.addListToJson(StoreIT.getCurrentOrganisation().getLocations());
-        System.out.println("Saved Locations.");
-        JSONHandler.addListToJson(StoreIT.getCurrentOrganisation().getReservationHandler().getReservations());
-        System.out.println("Saved Reservations.");
+        JSONHandler.save();
     }
 }
