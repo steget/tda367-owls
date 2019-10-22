@@ -24,7 +24,7 @@ public class ReservationHandler {
         this.reservations = reservations;
     }
 
-    public ReservationHandler() throws IOException {
+    public ReservationHandler() {
         reservations = new ArrayList<>();
     }
 

@@ -22,7 +22,7 @@ public class Organisation {
     private ReservationHandler reservationHandler = new ReservationHandler();
     //todo reservationHandler
 
-    public Organisation(String name) throws IOException {
+    public Organisation(String name) {
         this.name = name;
     }
 

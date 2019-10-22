@@ -207,7 +207,15 @@
     "imageUrl": null,
     "items": [],
     "teams": [],
-    "users": [],
+    "users": [
+      {
+        "name": "Kvickstyler",
+        "password": "nej",
+        "description": "Skulle gått IT",
+        "contactInformation": "Borde inte gå data",
+        "ID": 8
+      }
+    ],
     "locations": [],
     "reservationHandler": {
       "reservations": []
