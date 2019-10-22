@@ -1,7 +1,5 @@
 package storagesystem.model;
 
-import java.util.Objects;
-
 /**
  * A user should represent a person.
  *
@@ -78,4 +76,5 @@ public class User implements IBorrower {
     public void setPassword(String password) {
         this.password = password;
     }
+
 }

@@ -36,7 +36,7 @@ public class TeamPageController extends AnchorPane implements Initializable {
 
     @FXML
     private TextField settingsTeamNameInput;
-    
+
     @FXML
     private TextArea settingsTeamContractInput;
 
@@ -186,15 +186,15 @@ public class TeamPageController extends AnchorPane implements Initializable {
             if (user.getName().equals(settingsAddUserInput.getText())) {
                 doesUserExist = true;
                 if (StoreIT.getCurrentTeam().getAllMemberIDs().contains(user.getID())) {
-                    AbstractFader.fadeTransition(userAlreadyInTeamMsg, 3);
+                    AbstractFader.fadeTransition(userAlreadyInTeamMsg, 2);
                 } else {
                     StoreIT.getCurrentTeam().addMember(user.getID());
-                    AbstractFader.fadeTransition(userAddedMsg, 3);
+                    AbstractFader.fadeTransition(userAddedMsg, 2);
                 }
             }
         }
         if (!doesUserExist) {
-            AbstractFader.fadeTransition(userDoesNotExistMsg, 3);
+            AbstractFader.fadeTransition(userDoesNotExistMsg, 2);
         }
     }
 
@@ -205,7 +205,6 @@ public class TeamPageController extends AnchorPane implements Initializable {
     private void removeMemberButtonPressed() {
         int tempUserID = getUserIDFromName(settingsRemoveUserInput.getText());
         removeMemberFromTeam(tempUserID);
-        AbstractFader.fadeTransition(userRemovedMsg, 3);
     }
 
     /**
@@ -218,13 +217,14 @@ public class TeamPageController extends AnchorPane implements Initializable {
         for (int i : StoreIT.getCurrentTeam().getAllMemberIDs()) {
             if (i == userID) {
                 StoreIT.getCurrentTeam().removeMember(userID);
+                AbstractFader.fadeTransition(userRemovedMsg, 2);
                 memberFound = true;
                 break;
             }
         }
 
         if (!memberFound) {
-            AbstractFader.fadeTransition(userNotPartOfTeamMsg, 3);
+            AbstractFader.fadeTransition(userNotPartOfTeamMsg, 2);
         }
     }
 

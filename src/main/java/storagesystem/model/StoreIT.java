@@ -95,12 +95,11 @@ public class StoreIT {
 
     public static Team getCurrentTeam() { return currentTeam; }
 
-    public static User getCurrentUser() {
-        return currentUser;
-    }
+    public static User getCurrentUser() { return currentUser; }
 
     /**
      * Searches through the organisations and tries to find one with the input String
+     *
      * @param organisationName Name to search after
      * @return Organisation with @param name
      * @throws NoSuchElementException If no such organisation could be found
