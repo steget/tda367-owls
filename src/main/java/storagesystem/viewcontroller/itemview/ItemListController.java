@@ -5,8 +5,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
-import storagesystem.model.StoreIT;
 import storagesystem.model.IReservable;
+import storagesystem.model.StoreIT;
 
 import java.net.URL;
 import java.util.ArrayList;

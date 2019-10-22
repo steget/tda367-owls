@@ -10,12 +10,12 @@ import java.util.List;
  * @author Hugo Stegrell, Pär Aronsson
  */
 public class Team {
-    private String name;
+    private static int nextID;
     private final List<IReservable> inventory = new ArrayList<>(); //todo itemIDs instead
     private final List<Integer> memberIDs = new ArrayList<>();
+    private String name;
     private String termsAndConditions;
     private int teamID;
-    private static int nextID;
 
     public Team(String teamName) {
         this.name = teamName;
@@ -51,16 +51,12 @@ public class Team {
         return name;
     }
 
-    public void addItemToInventory(IReservable itemToAdd) {
-        inventory.add(itemToAdd);
-    }
-
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setTermsAndConditions(String termsAndConditions) {
-        this.termsAndConditions = termsAndConditions;
+    public void addItemToInventory(IReservable itemToAdd) {
+        inventory.add(itemToAdd);
     }
 
     public String getTermsAndConditions() {
@@ -73,5 +69,9 @@ public class Team {
 
     public int getTeamID() {
         return teamID;
+    }
+
+    void setTermsAndConditions(String termsAndConditions) {
+        this.termsAndConditions = termsAndConditions;
     }
 }

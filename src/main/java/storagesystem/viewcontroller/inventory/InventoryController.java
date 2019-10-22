@@ -19,13 +19,9 @@ import java.util.ResourceBundle;
  */
 public class InventoryController implements Initializable {
 
-    private Organisation currentOrganisation;
     private Team currentlySelectedTeam;
-    private User currentUser;
-    private List<IReservable> inventory;
     private List<Team> currentUsersTeams = new ArrayList<>();
     private ObservableList<String> teamNames = FXCollections.observableArrayList();
-    private int currentlySelectedTeamIndex;
     private ItemDetailViewController detailView;
 
     @FXML
@@ -40,10 +36,8 @@ public class InventoryController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        currentOrganisation = StoreIT.getCurrentOrganisation();
-        currentUser = StoreIT.getCurrentUser();
         currentlySelectedTeam = StoreIT.getCurrentTeam();
-        currentUsersTeams = StoreIT.getCurrentOrganisation().getUsersTeams(currentUser);
+        currentUsersTeams = StoreIT.getCurrentOrganisation().getUsersTeams(StoreIT.getCurrentUser());
         fillTeamAttributes();
         refreshItems();
     }
@@ -58,7 +52,6 @@ public class InventoryController implements Initializable {
         }
         teamChooser.setItems(teamNames);
         teamChooser.setValue(teamNames.get(0)); //show first value in box
-        currentlySelectedTeamIndex = 0;
         teamChooserListener();
     }
 
@@ -71,8 +64,8 @@ public class InventoryController implements Initializable {
             int newIndex = newValue.intValue();
             for (Team t : currentUsersTeams) {
                 if (t.getName().equals(teamChooser.getItems().get(newIndex))) {
-                    currentlySelectedTeamIndex = newIndex;
                     StoreIT.setCurrentTeam(t);
+                    currentlySelectedTeam = t;
                     refreshItems();
                     break;
                 }
@@ -85,7 +78,7 @@ public class InventoryController implements Initializable {
      * It removes all the items in list and renews with new items.
      */
     private void refreshItems() {
-        inventory = currentlySelectedTeam.getAllItems();
+        List<IReservable> inventory = currentlySelectedTeam.getAllItems();
         itemPane.getChildren().remove(0, itemPane.getChildren().size());
         for (IReservable i : inventory) {
             InventoryListItemController listItem = new InventoryListItemController(i);

@@ -2,10 +2,10 @@ package storagesystem.model;
 
 import org.junit.Test;
 
-import java.lang.reflect.Member;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class TeamTest {
 
@@ -16,7 +16,7 @@ public class TeamTest {
         assertEquals(0, allItems.size());
         Location hasen = new Location("hasen","ha senare");
 
-        IReservable mockItem = IReservableFactory.createReservableItem("mockItem", "desc","requirements",1,Condition.GREAT,true, hasen, null);
+        IReservable mockItem = IReservableFactory.createReservableItem("mockItem", "desc", "requirements", 1, Condition.GREAT, true, hasen, null);
         allItems.add(mockItem);
         assertEquals(1, allItems.size());
     }
