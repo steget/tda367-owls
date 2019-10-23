@@ -176,9 +176,9 @@ public class StoreIT {
         informationsteknik.getLocations().add(mockLocation);
         informationsteknik.getLocations().add(mockLocation2);
         IReservable mockItem = IReservableFactory.createReservableItem("mockItem", "This is a description", "Behave please.",
-                2, Condition.GOOD, true, mockLocation.getID(), "/pictures/art.png");
+                2, Condition.GOOD, true, mockLocation.getID());
         IReservable mockItem2 = IReservableFactory.createReservableItem("mockItem nr 2", "This is a description", "Behave please.",
-                2, Condition.GOOD, true, mockLocation2.getID(), "/pictures/art.png");
+                2, Condition.GOOD, true, mockLocation2.getID());
 
         Interval interval1 = new Interval(new DateTime(2019, 9, 10, 12, 40), new DateTime(2019, 9, 10, 15, 0));
         Interval interval2 = new Interval(new DateTime(2019, 9, 12, 17, 30), new DateTime(2019, 10, 16, 20, 0));
