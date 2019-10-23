@@ -22,7 +22,7 @@
          <left>
             <VBox fx:id="frameVBox" alignment="TOP_CENTER" cache="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="634.0" prefWidth="200.0" spacing="50.0" styleClass="menubar" stylesheets="@basicStyles.css" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="yourInventoryButton" mnemonicParsing="false" prefHeight="60.0" prefWidth="180.0" stylesheets="@basicStyles.css" text="Your Inventory">
+                  <Button fx:id="yourInventoryButton" mnemonicParsing="false" onAction="#yourInventoryButtonPressed" prefHeight="60.0" prefWidth="180.0" stylesheets="@basicStyles.css" text="Your Inventory">
                      <font>
                         <Font name="Arial" size="15.0" />
                      </font>
