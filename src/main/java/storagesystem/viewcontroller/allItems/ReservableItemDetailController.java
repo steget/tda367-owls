@@ -21,8 +21,7 @@ import java.io.IOException;
 /**
  * Controls a detailed view of an item. Can be used to book an item.
  *
- * @author Jonathan Eksberg, Carl Lindh
- * @revised by Hugo Stegrell
+ * @author Jonathan Eksberg, Carl Lindh, Hugo Stegrell
  */
 public class ReservableItemDetailController extends AnchorPane {
 
@@ -30,27 +29,25 @@ public class ReservableItemDetailController extends AnchorPane {
     private final Team itemOwner;
 
     @FXML
-    private ImageView itemPageImageView;
+    private ImageView detailViewImageView;
     @FXML
-    private Label itemPageNameLabel;
+    private Label detailViewNameLabel;
     @FXML
-    private Label itemPageIDLabel;
+    private Label detailViewAmountLabel;
     @FXML
-    private Label itemPageAmountLabel;
+    private Label detailViewLocationLabel;
     @FXML
-    private Label itemPageLocationLabel;
+    private Label detailViewTeamOwnerLabel;
     @FXML
-    private Label itemPageTeamOwnerLabel;
+    private Label detailViewReservableLabel;
     @FXML
-    private Label itemPageReservableLabel;
+    private Slider detailViewConditionSlider;
     @FXML
-    private Slider itemPageConditionSlider;
+    private TextArea detailViewDescriptionTA;
     @FXML
-    private TextArea itemPageDescriptionTA;
+    private TextArea detailViewUserRequirementsTA;
     @FXML
-    private TextArea itemPageUserRequirementsTA;
-    @FXML
-    private Button itemPageReserveBtn;
+    private Button detailViewReserveBtn;
     @FXML
     private AnchorPane contentPane;
 
@@ -84,7 +81,6 @@ public class ReservableItemDetailController extends AnchorPane {
         setNameLabel(item.getName());
         setDescription(item.getDescription());
         setUserRequirements(item.getUserRequirements());
-        setIDLabel("" + item.getID());
         setAmountLabel(item.getAmount() + "");
         setConditionSlider(item.getCondition());
         setReservableLabel(item.isReservable() + "");
@@ -114,47 +110,43 @@ public class ReservableItemDetailController extends AnchorPane {
             default:
                 break;
         }
-        itemPageConditionSlider.setValue(value);
+        detailViewConditionSlider.setValue(value);
     }
 
     private void setDescription(String string) {
-        itemPageDescriptionTA.setText(string);
+        detailViewDescriptionTA.setText(string);
     }
 
     private void setUserRequirements(String string) {
-        itemPageUserRequirementsTA.setText(string);
+        detailViewUserRequirementsTA.setText(string);
     }
 
     private void setImage(Image image) {
-        itemPageImageView.setImage(image);
+        detailViewImageView.setImage(image);
     }
 
     private void setNameLabel(String name) {
-        itemPageNameLabel.setText(name);
-    }
-
-    private void setIDLabel(String id) {
-        itemPageIDLabel.setText("ID: " + id);
+        detailViewNameLabel.setText(name);
     }
 
     private void setAmountLabel(String amount) {
-        itemPageAmountLabel.setText("Amount: " + amount);
+        detailViewAmountLabel.setText("Amount: " + amount);
     }
 
     private void setLocationLabel(String location) {
-        itemPageLocationLabel.setText("Location: " + location);
+        detailViewLocationLabel.setText("Location: " + location);
     }
 
     private void setTeamOwnerLabel(String teamOwner) {
-        itemPageTeamOwnerLabel.setText("Owner: " + teamOwner);
+        detailViewTeamOwnerLabel.setText("Owner: " + teamOwner);
     }
 
     private void setReservableLabel(String reservable) {
-        itemPageReservableLabel.setText("Reservable: " + reservable);
+        detailViewReservableLabel.setText("Reservable: " + reservable);
     }
 
     private void setReservableBtn(boolean reservable) {
-        itemPageReserveBtn.setDisable(!reservable);
+        detailViewReserveBtn.setDisable(!reservable);
     }
 }
 
