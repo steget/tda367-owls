@@ -53,7 +53,7 @@
                   </Button>
                   <ImageView fitHeight="72.0" fitWidth="422.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../resources/chrome_VLrX4YS1NL.png" />
+                        <Image url="@/pictures/StoreITLogo.png" />
                      </image>
                   </ImageView>
                </children>
