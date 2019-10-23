@@ -15,6 +15,9 @@ import java.util.ArrayList;
  * It also is the one that reads the image and returns it to the requester.
  */
 public class PictureHandler {
+
+    static String defaultImagePath = "src/main/resources/pictures/unknown-item-image.png";
+
     /**
      * Retrieves the items searchpath.
      *
@@ -41,6 +44,11 @@ public class PictureHandler {
             img = SwingFXUtils.toFXImage(ImageIO.read(new File(filePath)), null);
         } catch (IOException o) {
             System.out.println("Could not read file: " + filePath);
+            try {
+                img = SwingFXUtils.toFXImage(ImageIO.read(new File(defaultImagePath)), null);
+            } catch (IOException e) {
+                System.out.println("Could not read default file: " + defaultImagePath);
+            }
         }
 
         return img;
