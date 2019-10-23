@@ -134,10 +134,9 @@ public class StoreIT {
         System.out.println("Current Organisation Set.");
     }
 
-    private static void reset() throws IOException { //Run if fresh start or after tests!!!
+    private void reset() throws IOException { //Run if fresh start or after tests!!!
         JSONHandler.clearAllJsonFiles();
         mockData();
-
     }
 
     private void mockData() {
@@ -171,15 +170,15 @@ public class StoreIT {
         tempTeam2.addMember(informationsteknik.getUsers().get(0).getID());
         tempTeam2.addMember(informationsteknik.getUsers().get(1).getID());
 
-        Location MockLocation = new Location("Hubben", "This location does not exist");
-        Location MockLocation2 = new Location("Garaget", "This location is unavailable");
+        Location mockLocation = new Location("Hubben", "This location does not exist");
+        Location mockLocation2 = new Location("Garaget", "This location is unavailable");
 
-        informationsteknik.getLocations().add(MockLocation);
-        informationsteknik.getLocations().add(MockLocation2);
+        informationsteknik.getLocations().add(mockLocation);
+        informationsteknik.getLocations().add(mockLocation2);
         IReservable mockItem = IReservableFactory.createReservableItem("mockItem", "This is a description", "Behave please.",
-                2, Condition.GOOD, true, MockLocation, new Image("pictures/art.png"));
+                2, Condition.GOOD, true, mockLocation.getID(), "/pictures/art.png");
         IReservable mockItem2 = IReservableFactory.createReservableItem("mockItem nr 2", "This is a description", "Behave please.",
-                2, Condition.GOOD, true, MockLocation2, new Image("pictures/art.png"));
+                2, Condition.GOOD, true, mockLocation2.getID(), "/pictures/art.png");
 
         Interval interval1 = new Interval(new DateTime(2019, 9, 10, 12, 40), new DateTime(2019, 9, 10, 15, 0));
         Interval interval2 = new Interval(new DateTime(2019, 9, 12, 17, 30), new DateTime(2019, 10, 16, 20, 0));
@@ -194,38 +193,4 @@ public class StoreIT {
         tempTeam.addItemToInventory(mockItem2);
     }
 
-    public static void setCurrentUser(User currentUser) {
-        StoreIT.currentUser = currentUser;
-    }
-
-    public static void setCurrentOrganisation(Organisation currentOrganisation) {
-        StoreIT.currentOrganisation = currentOrganisation;
-    }
-
-    public static List<Organisation> getOrganisations() {
-        return organisations;
-    }
-
-    public static Organisation getCurrentOrganisation() {
-        return currentOrganisation;
-    }
-
-    public static User getCurrentUser() {
-        return currentUser;
-    }
-
-    /**
-     * Searches through the organisations and tries to find one with the input String
-     * @param organisationName Name to search after
-     * @return Organisation with @param name
-     * @throws NoSuchElementException If no such organisation could be found
-     */
-    public static Organisation findOrganisation(String organisationName) throws NoSuchElementException {
-        for (Organisation org : organisations) {
-            if (org.getName().equals(organisationName)) {
-                return org;
-            }
-        }
-        throw new NoSuchElementException("Organisation cannot be found");
-    }
 }

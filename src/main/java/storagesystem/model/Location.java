@@ -12,10 +12,11 @@ public class Location {
     private final int ID;
     private static int nextID;
 
-    public Location(String name, String description, Image image) {
+    public Location(String name, String description) {
         this.name = name;
         this.description = description;
-        this.image = image;
+        ID = nextID;
+        nextID++;
     }
 
     public String getName() {
@@ -24,10 +25,6 @@ public class Location {
 
     public String getDescription() {
         return description;
-    }
-
-    public Image getImage() {
-        return image;
     }
 
     public int getID() {
@@ -42,6 +39,6 @@ public class Location {
         this.description = description;
     }
     public static void setNextID(int nextID) {
-    }
         Location.nextID = nextID;
+    }
 }

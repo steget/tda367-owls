@@ -65,10 +65,11 @@ public class Organisation {
 
     /**
      * Checks if the selected user is a part of any team.
+     *
      * @param user
      * @return true if a user is part of a team.
      */
-    public boolean isUserPartOfTeam(IBorrower user){
+    public boolean isUserPartOfTeam(User user) {
 
         return StoreIT.getCurrentOrganisation().getUsersTeams(user).size() > 0;
     }
@@ -172,17 +173,10 @@ public class Organisation {
     public Team getItemOwner(IReservable item) {
         for (Team t :
                 teams) {
-            for (IReservable i :
-                    t.getAllItems()) {
-                if (i.equals(item)){
-                    return t;
-                }
+            if (t.getAllItemIDs().contains(item.getID())) {
+                   return t;
             }
         }
         throw new NoSuchElementException("Item owner could not be found");
     }
-    public List<Location> getLocations() {
-        return locations;
-    }
-
 }

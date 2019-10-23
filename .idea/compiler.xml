@@ -12,6 +12,7 @@
     <bytecodeTargetLevel>
       <module name="OwlsOOPProject" target="1.8" />
       <module name="StoreIT" target="1.8" />
+      <module name="StorIT" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

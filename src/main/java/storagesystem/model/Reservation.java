@@ -52,8 +52,8 @@ public class Reservation implements IReservation {
         this(res.getID(), res.getBorrower(), res.getInterval(), res.getReservedObject(), res.getStatus());
     }
 
-    public static void setNxtResId(int nxtResId) {
-        Reservation.NXT_RES_ID = nxtResId;
+    public static void setNxtResId(int nextID) {
+        Reservation.nextID = nextID;
     }
 
     @Override
