@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 public class PictureHandler {
 
-    static String defaultImagePath = "src/main/resources/pictures/items/unknown-item-image.png";
+    private static String defaultImagePath = "src/main/resources/pictures/items/unknown-item-image.png";
 
     /**
      * Retrieves the items searchpath.
@@ -25,7 +25,7 @@ public class PictureHandler {
      * @param itemName
      * @return the image URL that can be used to read/write the file
      */
-    public static String getImageUrl(int itemID, String itemName) {
+    private static String getImageUrl(int itemID, String itemName) {
 
         return "/pictures/items/" + itemID + "-" + itemName + ".jpg";
     }
