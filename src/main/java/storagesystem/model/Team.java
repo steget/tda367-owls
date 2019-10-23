@@ -64,8 +64,8 @@ public class Team implements IBorrower {
         return name;
     }
 
-    void addItemToInventory(IReservable itemToAdd) {
-        itemIDs.add(itemToAdd.getID());
+    void addItemIDToInventory(int itemID) {
+        itemIDs.add(itemID);
     }
 
     public void setName(String name) {

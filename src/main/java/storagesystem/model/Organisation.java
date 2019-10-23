@@ -36,9 +36,15 @@ public class Organisation {
         return items;
     }
 
+    /**
+     * Adds an item to the organisation and a team's inventory.
+     *
+     * @param iReservable
+     * @param team
+     */
     public void addItem(IReservable iReservable, Team team) {
         items.add(iReservable);
-        team.addItemToInventory(iReservable);
+        team.addItemIDToInventory(iReservable.getID());
     }
 
     /**
@@ -104,6 +110,12 @@ public class Organisation {
         }
         return usersTeams;
     }
+
+    /**
+     * Gets a specific team's Items through checking it's itemIDs.
+     * @param team
+     * @return a List of Items
+     */
 
     public List<IReservable> getTeamsItems(Team team) {
         List<IReservable> teamsItems = new ArrayList<>();
