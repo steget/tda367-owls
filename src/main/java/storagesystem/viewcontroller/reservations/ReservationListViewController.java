@@ -18,8 +18,7 @@ import java.util.List;
 
 public class ReservationListViewController extends AnchorPane {
 
-
-    IReservation reservation;
+    private IReservation reservation;
 
     @FXML
     private AnchorPane rootPane;
@@ -36,7 +35,7 @@ public class ReservationListViewController extends AnchorPane {
     private List<ReservationClickedListener> reservationClickedListenersList = new ArrayList<>();
 
 
-    public ReservationListViewController(IReservation res) {
+    ReservationListViewController(IReservation res) {
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/reservations/reservationListView.fxml"));
         fxmlLoader.setRoot(this);
@@ -57,10 +56,13 @@ public class ReservationListViewController extends AnchorPane {
 
     @FXML
     private void clicked() {
-
         for (ReservationClickedListener listener : reservationClickedListenersList) {
             listener.reservationClicked(reservation);
         }
+    }
+
+    void addReservationClickedListener(ReservationClickedListener listener) {
+        reservationClickedListenersList.add(listener);
     }
 
     /**
@@ -68,10 +70,6 @@ public class ReservationListViewController extends AnchorPane {
      */
     interface ReservationClickedListener {
         void reservationClicked(IReservation res);
-    }
-
-    public void addReservationClickedListener(ReservationClickedListener listener) {
-        reservationClickedListenersList.add(listener);
     }
 
 }

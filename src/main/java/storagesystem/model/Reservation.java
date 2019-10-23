@@ -4,8 +4,6 @@ package storagesystem.model;
 import org.joda.time.DateTime;
 import org.joda.time.Interval;
 
-import java.util.Objects;
-
 /**
  * @author William Albertsson
  * A reservation most importantly contains a object that is reserved, a time of reservation and who the borrower is
@@ -54,17 +52,13 @@ public class Reservation implements IReservation {
         this(res.getID(), res.getBorrower(), res.getInterval(), res.getReservedObject(), res.getStatus());
     }
 
-    public Reservation copy() {
-        return new Reservation(this);
+    public static void setNxtResId(int nxtResId) {
+        Reservation.NXT_RES_ID = nxtResId;
     }
 
     @Override
     public int getID() {
         return id;
-    }
-
-    public static void setNxtResId(int nxtResId) {
-        Reservation.NXT_RES_ID = nxtResId;
     }
 
     @Override
@@ -143,22 +137,20 @@ public class Reservation implements IReservation {
         if (startYear != new DateTime().getYear())
             sb.append(startYear + "." + startMonth + "." + startDay + " " + startHour + ":" + getToDoubleZero(startMinute) + " - ");
         else
-            sb.append(startMonth + "." + startDay + " " + startHour + ":" + getToDoubleZero(startMinute) + " - ");
+            sb.append(startMonth + "/" + startDay + " " + startHour + ":" + getToDoubleZero(startMinute) + " - ");
 
 
         if (startYear != endYear)
             sb.append(endYear + "." + endMonth + "." + endDay + " " + endHour + ":" + getToDoubleZero(endMinute));
         else if (startMonth != endMonth)
-            sb.append(endMonth + "." + endDay + " " + endHour + ":" + getToDoubleZero(endMinute));
+            sb.append(endMonth + "/" + endDay + " " + endHour + ":" + getToDoubleZero(endMinute));
         else if (startDay != endDay)
-            sb.append(endMonth + "." + endDay + " " + endHour + ":" + getToDoubleZero(endMinute));
+            sb.append(endMonth + "/" + endDay + " " + endHour + ":" + getToDoubleZero(endMinute));
         else {
             sb.append(endHour + ":" + getToDoubleZero(endMinute));
         }
 
-        String readable = sb.toString();
-
-        return readable;
+        return sb.toString();
     }
 
     private String getToDoubleZero(int startMinute) {

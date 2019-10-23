@@ -1,6 +1,7 @@
 package storagesystem.viewcontroller.reservations;
 
 import javafx.collections.FXCollections;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
@@ -15,10 +16,11 @@ import java.util.List;
 
 /**
  * Controller for creation of a Reservation
+ *
  * @author William Albertsson
  */
 
-public class CreateReservationController {
+public class CreateReservationController extends AnchorPane {
 
     @FXML
     AnchorPane rootPane;
@@ -30,7 +32,7 @@ public class CreateReservationController {
     @FXML
     TextField ownerField;
     @FXML
-    TextArea terms;
+    Label terms;
 
 
     @FXML
@@ -65,7 +67,7 @@ public class CreateReservationController {
     private IReservable item;
 
 
-    public CreateReservationController(IReservable item){
+    public CreateReservationController(IReservable item) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/reservations/createReservation.fxml"));
         fxmlLoader.setController(this);
         fxmlLoader.setRoot(this);
@@ -74,6 +76,9 @@ public class CreateReservationController {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+
+        lightboxContentPane.setOnMouseClicked(Event::consume);
+
         //Set text
         itemField.setText(item.getName());
         //TODO Set owner
@@ -82,16 +87,17 @@ public class CreateReservationController {
 
         //Populate teamChoiceBox
         List<String> teamNames = new ArrayList<>();
-        for(Team t : StoreIT.getCurrentOrganisation().getUsersTeams(StoreIT.getCurrentUser())){
+        for (Team t : StoreIT.getCurrentOrganisation().getUsersTeams(StoreIT.getCurrentUser())) {
             teamNames.add(t.getName());
         }
         teamChoicebox.setItems(FXCollections.observableArrayList(teamNames));
+        teamChoicebox.getSelectionModel().select(0);
         DateTime now = new DateTime();
-        SpinnerValueFactory<Integer> yearFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(2019, now.getYear()+5, now.getYear(), 1);
+        SpinnerValueFactory<Integer> yearFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(2019, now.getYear() + 5, now.getYear(), 1);
         SpinnerValueFactory<Integer> monthFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 12, now.getMonthOfYear(), 1);
         SpinnerValueFactory<Integer> dayFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, getMonthDays(now.getMonthOfYear()), now.getDayOfMonth(), 1);
-        SpinnerValueFactory<Integer> hourFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 24, now.getHourOfDay(), 1);
-        SpinnerValueFactory<Integer> minuteFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 60, 0, 15);
+        SpinnerValueFactory<Integer> hourFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 23, now.getHourOfDay(), 1);
+        SpinnerValueFactory<Integer> minuteFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 60, 0, 15);
 
         startYearSpinner.setValueFactory(yearFactory);
         endYearSpinner.setValueFactory(yearFactory);
@@ -109,12 +115,23 @@ public class CreateReservationController {
     }
 
 
-
     @FXML
-    private void confirm(){
+    private void confirm() {
         ReservationHandler resHandler = StoreIT.getCurrentOrganisation().getReservationHandler();
-        resHandler.createReservation(getTeam(), getInterval(), item);
-        close();
+        checkReservationLegal();
+        if (reservationIsLegal()) {
+            resHandler.createReservation(getTeam(), getInterval(), item);
+            close();
+        }
+    }
+
+    private boolean reservationIsLegal() { ;
+        boolean itemIsBorrowed = StoreIT.getCurrentOrganisation().getReservationHandler().isObjectReservedBetween(item, getInterval());
+        return !itemIsBorrowed;
+    }
+
+    private void checkReservationLegal() {
+        //TODO print in program if any info is missing or wrong
     }
 
     private IBorrower getTeam() {
@@ -130,7 +147,7 @@ public class CreateReservationController {
         int startMinute = startMinuteSpinner.getValue();
         int endYear = endYearSpinner.getValue();
         int endMonth = endMonthSpinner.getValue();
-        int endDay =  endDaySpinner.getValue();
+        int endDay = endDaySpinner.getValue();
         int endHour = endHourSpinner.getValue();
         int endMinute = endMinuteSpinner.getValue();
         DateTime start = new DateTime(startYear, startMonth, startDay, startHour, startMinute);
@@ -140,14 +157,14 @@ public class CreateReservationController {
     }
 
     @FXML
-    private void cancel(){
+    private void cancel() {
         close();
     }
 
     @FXML
-    private void close(){
-        for(CreateReservationViewClosedListener listener : listeners){
-            listener.reservationDetailViewClosed();
+    private void close() {
+        for (CreateReservationViewClosedListener listener : listeners) {
+            listener.reservationDetailViewClosed(this);
         }
     }
 
@@ -157,11 +174,11 @@ public class CreateReservationController {
     /**
      * Used together with "listeners" list as an observer pattern.
      */
-    interface CreateReservationViewClosedListener {
-        void reservationDetailViewClosed();
+    public interface CreateReservationViewClosedListener {
+        void reservationDetailViewClosed(CreateReservationController controller);
     }
 
-    public void addReservationDetailViewClosedListener(CreateReservationViewClosedListener listener) {
+    public void addCreateReservationViewClosedListener(CreateReservationViewClosedListener listener) {
         listeners.add(listener);
     }
 
@@ -190,7 +207,8 @@ public class CreateReservationController {
             case 11:
                 return 30;
             case 12:
-                return 31;}
-            return 0;
-}
+                return 31;
+        }
+        return 0;
+    }
 }

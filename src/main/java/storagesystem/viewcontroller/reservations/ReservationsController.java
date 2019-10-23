@@ -4,8 +4,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
-import storagesystem.model.StoreIT;
 import storagesystem.model.IReservation;
+import storagesystem.model.StoreIT;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -42,10 +42,18 @@ public class ReservationsController implements Initializable {
 
 
     private void createListViews() {
+        boolean alternating = false;
         for (IReservation res : StoreIT.getCurrentOrganisation().getReservationHandler().getReservations()) {
             ReservationListViewController listView = new ReservationListViewController(res);
             reservationViews.add(listView);
             listView.addReservationClickedListener(this::listViewClicked);
+            if (alternating) {
+                listView.setStyle("-fx-background-color: secondaryColor");
+                alternating = !alternating;
+            } else {
+                listView.setStyle("-fx-background-color: primaryColoR");
+                alternating = !alternating;
+            }
         }
     }
 

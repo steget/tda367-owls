@@ -31,7 +31,7 @@ public class OrganisationTest {
         Organisation informationsteknik = new Organisation("Informationsteknik");
         Team tempTeam = new Team("sexNollK");
         informationsteknik.addTeam(tempTeam);
-        IReservable mockItem = IReservableFactory.createReservableItem("mockItem", "This is a description", "Behave please.", 2, Condition.GOOD, true, new Location("testLocation", "test desc", null), null);
+        IReservable mockItem = IReservableFactory.createReservableItem("mockItem", "This is a description", "Behave please.", 2, Condition.GOOD, true, new Location("testLocation", "test desc"), null);
 
         assertEquals(0, informationsteknik.getAllItems().size());
         tempTeam.addItemToInventory(mockItem);
@@ -45,12 +45,12 @@ public class OrganisationTest {
     public void createUserTest() {
         Organisation informationsteknik = new Organisation("Informationsteknik");
         Team tempTeam = new Team("sexNollK");
-        informationsteknik.createUser("Albert");
+        informationsteknik.addUser(new User("asd", "pass", "desc", "112"));
 
         assertEquals(1, informationsteknik.getUsers().size());
-        assertEquals("Albert", informationsteknik.getUsers().get(0).getName());
+        assertEquals("asd", informationsteknik.getUsers().get(0).getName());
 
-        informationsteknik.createUser("asd", "pass", "desc", "112");
+        informationsteknik.addUser(new User("asd", "pass", "desc", "112"));
         assertEquals("desc", informationsteknik.getUsers().get(1).getDescription());
     }
 
@@ -59,7 +59,7 @@ public class OrganisationTest {
         Organisation informationsteknik = new Organisation("Informationsteknik");
         Team tempTeam = new Team("sexNollK");
         Team tempTeam2 = new Team("team2");
-        informationsteknik.createUser("Albert");
+        informationsteknik.addUser(new User("asd", "pass", "desc", "112"));
         informationsteknik.addTeam(tempTeam);
         informationsteknik.addTeam(tempTeam2);
 
@@ -70,7 +70,7 @@ public class OrganisationTest {
         assertTrue(informationsteknik.getUsersTeams(testUser).contains(tempTeam));
         assertTrue(informationsteknik.getUsersTeams(testUser).contains(tempTeam2));
 
-        informationsteknik.createUser("Kalle");
+        informationsteknik.addUser(new User("asd", "pass", "desc", "112"));
         User noTeamsUser = informationsteknik.getUsers().get(1);
         assertEquals(0, informationsteknik.getUsersTeams(noTeamsUser).size());
     }

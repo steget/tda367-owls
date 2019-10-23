@@ -41,6 +41,7 @@ public class ReservationDetailViewController extends AnchorPane {
 
     @FXML
     private AnchorPane lightboxContentPane;
+    private List<ReservationDetailViewClosedListener> listeners = new ArrayList<>();
 
 
     public ReservationDetailViewController(IReservation res) {
@@ -67,7 +68,6 @@ public class ReservationDetailViewController extends AnchorPane {
 
     }
 
-
     @FXML
     private void closeReservationDetailView() {
         for (ReservationDetailViewClosedListener listener : listeners) {
@@ -75,16 +75,14 @@ public class ReservationDetailViewController extends AnchorPane {
         }
     }
 
-    private List<ReservationDetailViewClosedListener> listeners = new ArrayList<>();
+    public void addReservationDetailViewClosedListener(ReservationDetailViewClosedListener listener) {
+        listeners.add(listener);
+    }
 
     /**
      * Used together with "listeners" list as an observer pattern.
      */
     interface ReservationDetailViewClosedListener {
         void reservationDetailViewClosed();
-    }
-
-    public void addReservationDetailViewClosedListener(ReservationDetailViewClosedListener listener) {
-        listeners.add(listener);
     }
 }

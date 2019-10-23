@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Author: Carl Lindh, Jonathan Eksberg -->
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<fx:root fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#closeDetailView" prefHeight="700.0" prefWidth="1000.0" styleClass="lightbox" stylesheets="@../basicStyles.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane fx:id="editPane" layoutX="60.0" layoutY="270.0" prefHeight="38.0" prefWidth="293.0">
+         <children>
+            <Label alignment="CENTER" prefHeight="30.0" prefWidth="293.0" styleClass="smallLabel" text="Click image to change it." textAlignment="CENTER" />
+         </children>
+      </Pane>
+      <AnchorPane fx:id="contentPane" layoutX="19.0" layoutY="30.0" prefHeight="336.0" prefWidth="374.0" styleClass="lightboxContent" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="60.0">
+         <children>
+            <Label alignment="CENTER_RIGHT" layoutX="2.0" layoutY="295.0" prefHeight="30.0" prefWidth="189.0" styleClass="smallLabel" text="Is the item bookable:" textAlignment="RIGHT" />
+            <Label alignment="CENTER_RIGHT" layoutX="2.0" layoutY="358.0" prefHeight="30.0" prefWidth="189.0" styleClass="smallLabel" text="How many items:" textAlignment="RIGHT" />
+            <Label alignment="CENTER_RIGHT" layoutX="1.0" layoutY="414.0" prefHeight="30.0" prefWidth="189.0" styleClass="smallLabel" text="Where is the Item:" />
+            <Slider fx:id="itemPageConditionSlider" blockIncrement="1.0" disable="true" layoutX="31.0" layoutY="497.0" majorTickUnit="1.0" max="2.0" minorTickCount="0" prefHeight="45.0" prefWidth="293.0" showTickMarks="true" snapToTicks="true" value="1.0" />
+            <Label fx:id="itemPageIDLabel" alignment="CENTER" layoutX="640.0" layoutY="38.0" prefHeight="30.0" prefWidth="90.0" text="IDLabel" AnchorPane.leftAnchor="640.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="38.0" />
+            <TextArea fx:id="itemPageDescriptionTA" editable="false" layoutX="373.0" layoutY="182.0" prefHeight="150.0" prefWidth="357.0" AnchorPane.leftAnchor="373.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="182.0" />
+            <TextArea fx:id="itemPageUserRequirementsTA" editable="false" layoutX="373.0" layoutY="391.0" prefHeight="150.0" prefWidth="357.0" AnchorPane.bottomAnchor="39.0" AnchorPane.leftAnchor="373.0" AnchorPane.rightAnchor="150.0" />
+            <Label fx:id="itemPageTeamOwnerLabel" layoutX="633.0" layoutY="84.0" prefHeight="30.0" prefWidth="226.0" text="OwnerLabel" />
+            <ImageView fx:id="itemPageImageView" fitHeight="200.0" fitWidth="200.0" layoutX="78.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="78.0" AnchorPane.topAnchor="46.0">
+               <image>
+                  <Image url="@../../../../resources/pictures/art.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="closeButtonImageView" fitHeight="52.0" fitWidth="38.0" layoutX="828.0" layoutY="23.0" onMouseClicked="#closeDetailView" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+               <image>
+                  <Image url="@../../../../resources/pictures/close-button.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="317.0" layoutY="149.0" text="Item description" />
+            <Label layoutX="317.0" layoutY="358.0" text="User requirements" />
+            <TextArea fx:id="itemPageNameTA" editable="false" layoutX="371.0" layoutY="17.0" minHeight="-Infinity" prefHeight="73.0" prefWidth="357.0" text="ItemName">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </TextArea>
+            <Button fx:id="itemPageSaveButton" layoutX="750.0" layoutY="466.0" mnemonicParsing="false" onAction="#saveItem" prefHeight="73.0" prefWidth="118.0" text="Save this item" textAlignment="CENTER" wrapText="true" />
+            <Button fx:id="itemPageReserveBtn" layoutX="750.0" layoutY="366.0" mnemonicParsing="false" onAction="#reserveBtnPressed" prefHeight="73.0" prefWidth="118.0" text="Reserve this item" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="141.0" AnchorPane.rightAnchor="12.0" />
+            <Line endX="-100.0" endY="486.0" layoutX="454.0" layoutY="94.0" startX="-100.0" startY="-94.0" />
+            <Line endX="525.0" layoutX="355.0" layoutY="125.0" />
+            <Line endX="200.5" layoutX="153.0" layoutY="282.0" startX="-152.0" />
+            <Label layoutX="31.0" layoutY="534.0" style="-fx-text-fill: red;" text="BAD" />
+            <Label layoutX="155.0" layoutY="534.0" style="-fx-text-fill: yellow;" text="GOOD" />
+            <Label layoutX="295.0" layoutY="534.0" style="-fx-text-fill: green;" text="GREAT" />
+            <Label alignment="CENTER" layoutX="96.0" layoutY="473.0" prefHeight="30.0" prefWidth="163.0" styleClass="smallLabel" text="Condition of Item" textAlignment="CENTER" />
+            <ChoiceBox fx:id="isReservableChoiceBox" disable="true" layoutX="203.0" layoutY="295.0" prefHeight="30.0" prefWidth="90.0" />
+            <TextArea fx:id="itemPageAmountTA" editable="false" layoutX="203.0" layoutY="350.0" prefHeight="47.0" prefWidth="90.0" text="444444" />
+            <ChoiceBox fx:id="itemPageLocationChoicebox" layoutX="203.0" layoutY="407.0" prefHeight="44.0" prefWidth="141.0" />
+            <Line endX="200.5" layoutX="153.0" layoutY="466.0" startX="-152.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</fx:root>

@@ -13,6 +13,8 @@ import java.util.NoSuchElementException;
 public class Organisation {
     private final List<Team> teams = new ArrayList<>();
     private final List<User> users = new ArrayList<>();
+    private final List<Location> locations = new ArrayList<>();
+
     private String name;
     private final ReservationHandler reservationHandler;
 
@@ -70,6 +72,17 @@ public class Organisation {
 
 
     /**
+     * Checks if the selected user is a part of any team.
+     * @param user
+     * @return true if a user is part of a team.
+     */
+    public boolean isUserPartOfTeam(User user){
+
+        return StoreIT.getCurrentOrganisation().getUsersTeams(user).size() > 0;
+    }
+
+
+    /**
      * Use this to find out which teams one specific User is part of.
      * Can be used for example if the user wants to switch which team it is currently doing an action for.
      *
@@ -119,24 +132,21 @@ public class Organisation {
     }
 
     /**
-     * Creates a new user with all the possible information
+     * Add a team to the organisations list of teams
      *
-     * @param name               Name of the User
-     * @param password           Password for login
-     * @param description        Some information the user provides about themself
-     * @param contactInformation Some sort of way to contact the User, preferably phone/mail
+     * @param teamToBeAdded team which belongs in the organisation
      */
-    public void createUser(String name, String password, String description, String contactInformation) {
-        users.add(new User(name, password, description, contactInformation));
+    void addTeam(Team teamToBeAdded) {
+        teams.add(teamToBeAdded);
     }
 
     /**
-     * Add an already existing team to the organisations list of teams
+     * Add a user to the organisations list of users
      *
-     * @param teamToBeAdded
+     * @param userToBeAdded user which belongs in the organisation
      */
-    public void addTeam(Team teamToBeAdded) {
-        teams.add(teamToBeAdded);
+    void addUser(User userToBeAdded) {
+        users.add(userToBeAdded);
     }
 
     public String getName() {
@@ -145,6 +155,22 @@ public class Organisation {
 
     void setName(String name) {
         this.name = name;
+    }
+
+    public Team getItemOwner(IReservable item) {
+        for (Team t :
+                teams) {
+            for (IReservable i :
+                    t.getAllItems()) {
+                if (i.equals(item)){
+                    return t;
+                }
+            }
+        }
+        throw new NoSuchElementException("Item owner could not be found");
+    }
+    public List<Location> getLocations() {
+        return locations;
     }
 
 }

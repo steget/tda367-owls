@@ -47,32 +47,31 @@ public class Team implements IBorrower{
         return memberIDs;
     }
 
-
     public String getName() {
         return name;
-    }
-
-    public void addItemToInventory(IReservable itemToAdd) {
-        inventory.add(itemToAdd);
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setTermsAndConditions(String termsAndConditions) {
-        this.termsAndConditions = termsAndConditions;
+    public void addItemToInventory(IReservable itemToAdd) {
+        inventory.add(itemToAdd);
     }
 
     public String getTermsAndConditions() {
         return termsAndConditions;
     }
 
-    List<IReservable> getAllItems() {
+    public List<IReservable> getAllItems() {
         return inventory;
     }
 
     public int getID() {
         return teamID;
+    }
+
+    void setTermsAndConditions(String termsAndConditions) {
+        this.termsAndConditions = termsAndConditions;
     }
 }
