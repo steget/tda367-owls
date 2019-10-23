@@ -60,6 +60,9 @@ public class CreateReservationController extends AnchorPane {
     private Spinner<Integer> endMinuteSpinner;
 
     @FXML
+    private CheckBox termsCheckbox;
+
+    @FXML
     private Button confirmButton;
     @FXML
     private Button cancelButton;
@@ -106,6 +109,7 @@ public class CreateReservationController extends AnchorPane {
         SpinnerValueFactory<Integer> endMinuteFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 60, 0, 15);
 
 
+
         startYearSpinner.setValueFactory(startYearFactory);
         endYearSpinner.setValueFactory(endYearFactory);
         startMonthSpinner.setValueFactory(startMonthFactory);
@@ -116,6 +120,8 @@ public class CreateReservationController extends AnchorPane {
         endHourSpinner.setValueFactory(endHourFactory);
         startMinuteSpinner.setValueFactory(startMinuteFactory);
         endMinuteSpinner.setValueFactory(endMinuteFactory);
+
+        confirmButton.disableProperty().bind(termsCheckbox.selectedProperty().not());
 
         this.item = item;
 
