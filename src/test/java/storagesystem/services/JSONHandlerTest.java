@@ -1,17 +1,10 @@
 package storagesystem.services;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializer;
-import com.google.gson.JsonObject;
-import javafx.embed.swing.JFXPanel;
-import org.joda.time.DateTime;
-import org.joda.time.Interval;
 import org.junit.Assert;
 import org.junit.Test;
 import storagesystem.model.*;
 
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +25,7 @@ public class JSONHandlerTest {
         Team testTeam = new Team("testTeam");
         mockOrg2.addTeam(testTeam);
 
-        mockOrg2.addItem(new Item("testItem", "exists in mockOrg2", "userRequirements", 1, Condition.GREAT, false, location.getID(), imageUrl), testTeam);
+        mockOrg2.addItem(new Item("testItem", "exists in mockOrg2", "userRequirements", 1, Condition.GREAT, false, location.getID()), testTeam);
 
         JSONHandler.addToJson(mockOrg);
         JSONHandler.addToJson(mockOrg2);
@@ -57,7 +50,7 @@ public class JSONHandlerTest {
         Team testTeam = new Team("testTeam");
         mockOrg2.addTeam(testTeam);
 
-        mockOrg2.addItem(new Item("testItem", "exists in mockOrg2", "userRequirements", 1, Condition.GREAT, false, location.getID(), imageUrl), testTeam);
+        mockOrg2.addItem(new Item("testItem", "exists in mockOrg2", "userRequirements", 1, Condition.GREAT, false, location.getID()), testTeam);
 
         List<Organisation> organisations = new ArrayList<>();
         organisations.add(mockOrg);

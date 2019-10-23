@@ -16,18 +16,6 @@ import java.util.ArrayList;
  */
 public class PictureHandler {
     /**
-     * Drops the alpha channel of the buffered image sent in. Should be used when creating a buffered image from JavaFX Image.
-     * @param src
-     * @return
-     */
-    public static BufferedImage dropAlphaChannel(BufferedImage src) {
-        BufferedImage convertedImg = new BufferedImage(src.getWidth(), src.getHeight(), BufferedImage.TYPE_INT_RGB);
-        convertedImg.getGraphics().drawImage(src, 0, 0, null);
-
-        return convertedImg;
-    }
-
-    /**
      * Retrieves the items searchpath.
      *
      * @param itemID

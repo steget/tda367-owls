@@ -24,9 +24,8 @@ public class Item implements IReservable {
     private Condition condition;
     private boolean reservable;
     private int locationID;
-    private String imageUrl;
 
-    public Item(String name, String description, String userRequirements, int amount, Condition condition, boolean reservable, int locationID, String imageUrl) {
+    public Item(String name, String description, String userRequirements, int amount, Condition condition, boolean reservable, int locationID) {
         this.name = name;
         this.description = description;
         this.userRequirements = userRequirements;
@@ -36,7 +35,6 @@ public class Item implements IReservable {
         this.condition = condition;
         this.reservable = reservable;
         this.locationID = locationID;
-        this.imageUrl = imageUrl;
     }
 
     public String getName() {
@@ -99,14 +97,6 @@ public class Item implements IReservable {
         this.locationID = locationID;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
     public static void setNextID(int nextID) {
         Item.nextID = nextID;
     }
@@ -121,6 +111,6 @@ public class Item implements IReservable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, description, userRequirements, ID, amount, condition, reservable, locationID, imageUrl);
+        return Objects.hash(name, description, userRequirements, ID, amount, condition, reservable, locationID);
     }
 }

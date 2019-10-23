@@ -12,6 +12,6 @@ public final class IReservableFactory {
     }
 
     public static IReservable createReservableItem(String name, String description, String userRequirements, int amount, Condition condition, boolean reservable, int locationID, String imageUrl) {
-        return new Item(name, description, userRequirements, amount, condition, reservable, locationID, imageUrl);
+        return new Item(name, description, userRequirements, amount, condition, reservable, locationID);
     }
 }
