@@ -9,14 +9,13 @@ import java.util.List;
  *
  * @author Hugo Stegrell, Pär Aronsson
  */
-public class Team implements IBorrower {
-    private String name;
+    private static int nextID;
     private final List<Integer> itemIDs = new ArrayList<>();
+public class Team implements IBorrower {
     private final List<Integer> memberIDs = new ArrayList<>();
+    private String name;
     private String termsAndConditions;
     private int teamID;
-    private static int nextID;
-    private String imageUrl;
 
     public Team(String teamName) {
         this.name = teamName;
@@ -71,8 +70,8 @@ public class Team implements IBorrower {
         this.name = name;
     }
 
-    public void setTermsAndConditions(String termsAndConditions) {
-        this.termsAndConditions = termsAndConditions;
+    public void addItemToInventory(IReservable itemToAdd) {
+        inventory.add(itemToAdd);
     }
 
     public String getTermsAndConditions() {

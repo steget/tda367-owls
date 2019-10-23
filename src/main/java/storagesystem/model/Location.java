@@ -1,27 +1,21 @@
 package storagesystem.model;
-
-import javafx.scene.image.Image;
-
 /**
  * Location tells us information about a place.
  * Description contains information about the location, such as how to get to the location and other information.
- * ImageUrl is the url to an image which shows the user a picture of the location.
+ * @author Jonathan Eksberg, Carl Lindh
  */
 
 public class Location {
 
     private String name;
     private String description;
-    private String imageUrl;
     private final int ID;
     private static int nextID;
 
-    public Location(String name, String description, String imageUrl) {
+    public Location(String name, String description, Image image) {
         this.name = name;
         this.description = description;
-        this.imageUrl = imageUrl;
-        this.ID = nextID;
-        nextID++;
+        this.image = image;
     }
 
     public String getName() {
@@ -32,8 +26,8 @@ public class Location {
         return description;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public Image getImage() {
+        return image;
     }
 
     public int getID() {
@@ -47,14 +41,7 @@ public class Location {
     public void setDescription(String description) {
         this.description = description;
     }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
     public static void setNextID(int nextID) {
-        Location.nextID = nextID;
     }
-
-
+        Location.nextID = nextID;
 }

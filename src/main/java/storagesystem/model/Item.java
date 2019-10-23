@@ -12,15 +12,14 @@ import java.util.Objects;
  * Condition describes if an item is in bad, good or great condition.
  * Reservable tells us if an item is able to be borrowed or not.
  * Location has the information about where the item is located
+ * @author Jonathan Eksberg, Carl Lindh
  */
-
-public class Item implements IReservable{
-
+public class Item implements IReservable {
+    private static int nextID;
+    private final int ID;
     private String name;
     private String description;
     private String userRequirements;
-    private final int ID;
-    private static int nextID;
     private int amount;
     private Condition condition;
     private boolean reservable;

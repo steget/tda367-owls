@@ -3,7 +3,7 @@ package storagesystem.model;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class UserTest {
 
@@ -46,14 +46,15 @@ public class UserTest {
         assertEquals("0734111337", testUser.getContactInformation());
     }
 
-    @Test @Before
-    public void IDTest(){
-            User oneUser = new User("name1");
-            User twoUser = new User("name2");
-            User threeUser = new User("name3");
-            User fourUser = new User("name4");
+    @Test
+    @Before
+    public void IDTest() {
+        User oneUser = new User("name1");
+        User twoUser = new User("name2");
+        User threeUser = new User("name3");
+        User fourUser = new User("name4");
 
-            assertEquals(threeUser.getID()+1,fourUser.getID());
+        assertEquals(threeUser.getID() + 1, fourUser.getID());
 
     }
 }

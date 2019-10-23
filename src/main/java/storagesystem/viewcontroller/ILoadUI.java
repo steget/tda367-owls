@@ -2,7 +2,7 @@ package storagesystem.viewcontroller;
 
 /**
  * An interface for controllers with one method to avoid code repetition.
- * @author William Albertsson
+ * @author Jonathan Eksberg
  */
 public interface ILoadUI {
 

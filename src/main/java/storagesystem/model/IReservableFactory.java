@@ -3,6 +3,7 @@ package storagesystem.model;
 
 /**
  * Factory for creating reservable things. Returns objects of the Interface
+ *
  * @author Hugo Stegrell
  * @see IReservable
  */

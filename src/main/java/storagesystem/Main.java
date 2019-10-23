@@ -11,7 +11,7 @@ import storagesystem.services.JSONHandler;
 import java.io.IOException;
 
 public class Main extends Application {
-    private StoreIT storeIT;
+
 
     public static void main(String[] args) {
         launch(args);
@@ -19,7 +19,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        storeIT = new StoreIT();
+        StoreIT storeIT = new StoreIT();
         storeIT.initializeBackend();
 
         stage.setTitle("StoreIT");

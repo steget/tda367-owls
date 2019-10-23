@@ -3,7 +3,8 @@ package storagesystem.model;
 import org.joda.time.DateTime;
 import org.joda.time.Interval;
 import org.junit.Test;
-import static org.junit.Assert.*;
+
+import static org.junit.Assert.assertTrue;
 
 public class ReservationTest {
 
@@ -19,7 +20,7 @@ public class ReservationTest {
 
         Interval interval1 = new Interval(time1, time2);
 
-        IReservation res1 = new Reservation(1, borrower, interval1, object,  ReservationStatus.PENDING);
+        IReservation res1 = new Reservation(1, borrower, interval1, object, ReservationStatus.PENDING);
         IReservation res2 = new Reservation(1, borrower, interval1, object, ReservationStatus.APPROVED);
 
         assertTrue(res1.equals(res2));
@@ -38,7 +39,7 @@ public class ReservationTest {
 
         Interval interval1 = new Interval(time1, time2);
 
-        IReservation res1 = new Reservation(1, borrower, interval1, object,  ReservationStatus.PENDING);
+        IReservation res1 = new Reservation(1, borrower, interval1, object, ReservationStatus.PENDING);
 
 
         assertTrue(res1.getReservedObject().equals(object));

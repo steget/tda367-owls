@@ -19,11 +19,11 @@ public class Organisation {
     private final List<Team> teams = new ArrayList<>();
     private final List<User> users = new ArrayList<>();
     private final List<Location> locations = new ArrayList<>();
-    private ReservationHandler reservationHandler = new ReservationHandler();
-    //todo reservationHandler
+    private ReservationHandler reservationHandler;
 
     public Organisation(String name) {
         this.name = name;
+        this.reservationHandler = new ReservationHandler();
     }
 
     public ReservationHandler getReservationHandler() {
@@ -62,6 +62,17 @@ public class Organisation {
         }
         throw new NoSuchElementException("ItemID not found in list of items");
     }
+
+    /**
+     * Checks if the selected user is a part of any team.
+     * @param user
+     * @return true if a user is part of a team.
+     */
+    public boolean isUserPartOfTeam(IBorrower user){
+
+        return StoreIT.getCurrentOrganisation().getUsersTeams(user).size() > 0;
+    }
+
 
     /**
      * Get a specific location.
@@ -125,33 +136,21 @@ public class Organisation {
     }
 
     /**
-     * Creates a new user with only a name
+     * Add a team to the organisations list of teams
      *
-     * @param name
+     * @param teamToBeAdded team which belongs in the organisation
      */
-    public void createUser(String name) {
-        users.add(new User(name));
-    }
-
-    /**
-     * Creates a new user with all the possible information
-     *
-     * @param name               Name of the User
-     * @param password           Password for login
-     * @param description        Some information the user provides about themself
-     * @param contactInformation Some sort of way to contact the User, preferably phone/mail
-     */
-    public void createUser(String name, String password, String description, String contactInformation) {
-        users.add(new User(name, password, description, contactInformation));
-    }
-
-    /**
-     * Add an already existing team to the organisations list of teams
-     *
-     * @param teamToBeAdded
-     */
-    public void addTeam(Team teamToBeAdded) {
+    void addTeam(Team teamToBeAdded) {
         teams.add(teamToBeAdded);
+    }
+
+    /**
+     * Add a user to the organisations list of users
+     *
+     * @param userToBeAdded user which belongs in the organisation
+     */
+    void addUser(User userToBeAdded) {
+        users.add(userToBeAdded);
     }
 
     public String getName() {
@@ -168,6 +167,22 @@ public class Organisation {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public Team getItemOwner(IReservable item) {
+        for (Team t :
+                teams) {
+            for (IReservable i :
+                    t.getAllItems()) {
+                if (i.equals(item)){
+                    return t;
+                }
+            }
+        }
+        throw new NoSuchElementException("Item owner could not be found");
+    }
+    public List<Location> getLocations() {
+        return locations;
     }
 
 }

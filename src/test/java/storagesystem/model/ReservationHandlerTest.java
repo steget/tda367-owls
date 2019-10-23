@@ -4,10 +4,10 @@ import org.joda.time.DateTime;
 import org.joda.time.Interval;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 
 public class ReservationHandlerTest {
@@ -53,17 +53,17 @@ public class ReservationHandlerTest {
 
         Interval interval = new Interval(time1, time2);
 
-        if(!handler.isObjectReservedBetween(object1, interval))
+        if (!handler.isObjectReservedBetween(object1, interval))
             handler.createReservation(borrower, interval, object1); //First reservation should go through without issues
 
         assertEquals(1, handler.getReservations().size());
 
-        if(!handler.isObjectReservedBetween(object2, interval))
+        if (!handler.isObjectReservedBetween(object2, interval))
             handler.createReservation(borrower, interval, object2); //New reservation with same interval but different object
 
         assertEquals(2, handler.getReservations().size());
 
-        if(!handler.isObjectReservedBetween(object1, interval))
+        if (!handler.isObjectReservedBetween(object1, interval))
             handler.createReservation(borrower, interval, object1); //Object1 is already reserved in this interval so it shouldn't get created.
 
         assertEquals(2, handler.getReservations().size());
@@ -120,7 +120,7 @@ public class ReservationHandlerTest {
 
         assertEquals(4, handler.getReservations().size());
 
-        assertEquals(2,handler.getReservations(borrower1).size());
+        assertEquals(2, handler.getReservations(borrower1).size());
     }
 
 }

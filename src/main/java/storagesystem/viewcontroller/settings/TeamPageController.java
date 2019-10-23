@@ -4,14 +4,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import storagesystem.model.StoreIT;
-import storagesystem.model.Organisation;
 import storagesystem.model.Team;
 import storagesystem.model.User;
+import storagesystem.viewcontroller.AbstractFader;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -19,23 +17,16 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 /**
- * Control a settings page
- *
- * @author Hugo Stegrell, Pär Aronsson
+ * Control the  teamPage
+ * @author Hugo Stegrell, Pär Aronsson, Jonathan Eksberg
  */
-public class SettingsController extends AnchorPane implements Initializable {
+public class TeamPageController extends AnchorPane implements Initializable {
 
     @FXML
-    private AnchorPane settingsTeamAnchorPane;
+    private AnchorPane teamAnchorPane;
 
     @FXML
-    private AnchorPane settingsUserAnchorPane;
-
-    @FXML
-    private Label settingsUserLabel;
-
-    @FXML
-    private Label settingsTeamLabel;
+    private AnchorPane editTeamAnchorPane;
 
     @FXML
     private TextField settingsAddUserInput;
@@ -44,47 +35,61 @@ public class SettingsController extends AnchorPane implements Initializable {
     private TextField settingsRemoveUserInput;
 
     @FXML
-    private TextField settingsNameInput;
-
-    @FXML
     private TextField settingsTeamNameInput;
-    //todo change this to a TextArea so we can set the text to wrap
-    @FXML
-    private TextField settingsTeamContractInput;
 
     @FXML
-    private TextField settingsContactInput;
+    private TextArea settingsTeamContractInput;
 
     @FXML
-    private TextField settingsDescriptionInput;
+    private TextArea teamToCTextArea;
+
+    @FXML
+    private Button saveTeamButton;
+
+    @FXML
+    private Button cancelTeamButton;
 
     @FXML
     private ChoiceBox<String> settingsChooseTeamInput;
 
-    private User currentUser;
+    @FXML
+    private Label teamLabel;
+
+    @FXML
+    private Label userAddedMsg;
+
+    @FXML
+    private Label userRemovedMsg;
+
+    @FXML
+    private Label userAlreadyInTeamMsg;
+
+    @FXML
+    private Label userDoesNotExistMsg;
+
+    @FXML
+    private Label userNotPartOfTeamMsg;
+
+    @FXML
+    private Label teamNameTooLongMsg;
+
+    @FXML
+    private Label teamNameTooShortMsg;
+
     private List<Team> currentUsersTeams = new ArrayList<>();
-    private Team currentlySelectedTeam;
     private ObservableList<String> teamNames = FXCollections.observableArrayList();
     private int currentlySelectedTeamIndex;
-    private Organisation currentOrganisation;
-    private boolean isUserPartOfTeam;
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        currentOrganisation = StoreIT.getCurrentOrganisation();
-        currentUser = StoreIT.getCurrentUser();
-
+        boolean isUserPartOfTeam;
+        User currentUser = StoreIT.getCurrentUser();
         isUserPartOfTeam = StoreIT.getCurrentOrganisation().getUsersTeams(currentUser).size() > 0;
 
         if (isUserPartOfTeam) {
             fillTeamAttributes();
         }
-
-        //fill user text boxes
-        settingsNameInput.setText(currentUser.getName());
-        settingsDescriptionInput.setText(currentUser.getDescription());
-        settingsContactInput.setText(currentUser.getContactInformation());
 
         assignListeners();
     }
@@ -93,23 +98,6 @@ public class SettingsController extends AnchorPane implements Initializable {
      * Adds listeners to the User and Team labels, aswell as the dropdown for teams
      */
     private void assignListeners() {
-        //when user is clicked the users settings should show
-        settingsUserLabel.setOnMouseClicked((event -> {
-            if (!settingsUserAnchorPane.isVisible()) {
-                settingsUserAnchorPane.setVisible(true);
-                settingsTeamAnchorPane.setVisible(false);
-            }
-        }));
-
-        //when team is clicked the teams settings should show
-        if (isUserPartOfTeam) {
-            settingsTeamLabel.setOnMouseClicked((event -> {
-                if (settingsUserAnchorPane.isVisible()) {
-                    settingsUserAnchorPane.setVisible(false);
-                    settingsTeamAnchorPane.setVisible(true);
-                }
-            }));
-        }
 
         //checks when the users changes team in the dropdown
         settingsChooseTeamInput.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
@@ -122,7 +110,7 @@ public class SettingsController extends AnchorPane implements Initializable {
                 for (Team t : currentUsersTeams) {
                     if (t.getName().equals(settingsChooseTeamInput.getItems().get(newIndex))) {
                         currentlySelectedTeamIndex = newIndex;
-                        currentlySelectedTeam = t;
+                        StoreIT.setCurrentTeam(t);
                         changeTeam();
                         break;
                     }
@@ -136,8 +124,8 @@ public class SettingsController extends AnchorPane implements Initializable {
      */
     private void fillTeamAttributes() {
 
-        currentUsersTeams = StoreIT.getCurrentOrganisation().getUsersTeams(currentUser);
-        currentlySelectedTeam = currentUsersTeams.get(0);
+        currentUsersTeams = StoreIT.getCurrentOrganisation().getUsersTeams(StoreIT.getCurrentUser());
+        Team currentlySelectedTeam = currentUsersTeams.get(0);
 
         for (Team t : currentUsersTeams) { //adds team names into an observable list.
             teamNames.add(t.getName());
@@ -149,7 +137,8 @@ public class SettingsController extends AnchorPane implements Initializable {
         //fill text boxes in settings page for team
         settingsTeamNameInput.setText(currentlySelectedTeam.getName());
         settingsTeamContractInput.setText(currentlySelectedTeam.getTermsAndConditions());
-
+        teamLabel.setText(currentlySelectedTeam.getName());
+        teamToCTextArea.setText(currentlySelectedTeam.getTermsAndConditions());
     }
 
     /**
@@ -157,22 +146,24 @@ public class SettingsController extends AnchorPane implements Initializable {
      */
     @FXML
     public void saveTeam() {
-        currentlySelectedTeam.setTermsAndConditions(settingsTeamContractInput.getText());
-        currentlySelectedTeam.setName(settingsTeamNameInput.getText());
-
-        updateChangedTeamNameInChoicebox();
-        updateTeamsChoicebox();
+        StoreIT.getCurrentTeam().setTermsAndConditions(settingsTeamContractInput.getText());
+        if(settingsTeamNameInput.getText().length() > 20){
+            AbstractFader.fadeTransition(teamNameTooLongMsg, 3);
+        }
+        else if(settingsTeamNameInput.getText().length() < 6){
+            AbstractFader.fadeTransition(teamNameTooShortMsg, 3);
+        }
+        else{
+            StoreIT.getCurrentTeam().setName(settingsTeamNameInput.getText());
+            updateChangedTeamNameInChoicebox();
+            updateTeamsChoicebox();
+            settingsRemoveUserInput.clear();
+            settingsAddUserInput.clear();
+            teamAnchorPane.toFront();
+        }
     }
 
-    /**
-     * Save the current users data that was put in.
-     */
-    @FXML
-    public void saveUser() {
-        currentUser.setName(settingsNameInput.getText());
-        currentUser.setDescription(settingsDescriptionInput.getText());
-        currentUser.setContactInformation(settingsContactInput.getText());
-    }
+
 
     /**
      * Updates the View when called. It does this by refreshing the values that is shown in boxes.
@@ -193,8 +184,11 @@ public class SettingsController extends AnchorPane implements Initializable {
      * Update the texts in team name and a teams contract to their values.
      */
     private void changeTeam() {
+        Team currentlySelectedTeam = StoreIT.getCurrentTeam();
         settingsTeamNameInput.setText(currentlySelectedTeam.getName());
         settingsTeamContractInput.setText(currentlySelectedTeam.getTermsAndConditions());
+        teamLabel.setText(currentlySelectedTeam.getName());
+        teamToCTextArea.setText(currentlySelectedTeam.getTermsAndConditions());
     }
 
     /**
@@ -204,19 +198,19 @@ public class SettingsController extends AnchorPane implements Initializable {
     private void addMemberButtonPressed() {
         boolean doesUserExist = false;
         for (User user : StoreIT.getCurrentOrganisation().getUsers()) {
-            if (user.getName().equals(settingsAddUserInput.getText())) {
+            if (user.getName().toLowerCase().equals(settingsAddUserInput.getText().toLowerCase())) {
                 doesUserExist = true;
-                if (currentlySelectedTeam.getAllMemberIDs().contains(user.getID())) {
-                    //todo print in program
-                    System.out.println("User is already a part of this team.");
+                if (StoreIT.getCurrentTeam().getAllMemberIDs().contains(user.getID())) {
+                    AbstractFader.fadeTransition(userAlreadyInTeamMsg, 2);
                 } else {
-                    currentlySelectedTeam.addMember(user.getID());
+                    StoreIT.getCurrentTeam().addMember(user.getID());
+                    AbstractFader.fadeTransition(userAddedMsg, 2);
+                    settingsAddUserInput.clear();
                 }
             }
         }
         if (!doesUserExist) {
-            //todo print in program
-            System.out.println("User does not exist.");
+            AbstractFader.fadeTransition(userDoesNotExistMsg, 2);
         }
     }
 
@@ -236,19 +230,30 @@ public class SettingsController extends AnchorPane implements Initializable {
     private void removeMemberFromTeam(int userID) {
         boolean memberFound = false;
         //remove member from team
-        for (int i : currentlySelectedTeam.getAllMemberIDs()) {
-            if (i == userID) {
-                currentlySelectedTeam.removeMember(userID);
+            if (StoreIT.getCurrentTeam().getAllMemberIDs().contains(userID)) {
+                StoreIT.getCurrentTeam().removeMember(userID);
+                AbstractFader.fadeTransition(userRemovedMsg, 2);
                 memberFound = true;
-                break;
+                settingsRemoveUserInput.clear();
             }
-        }
 
         if (!memberFound) {
-            //todo print in program instead
-            System.out.println("Could not remove user since user is not a part of the team.");
+            AbstractFader.fadeTransition(userNotPartOfTeamMsg, 2);
         }
     }
+
+    @FXML
+    private void editTeamButtonPressed(){
+        editTeamAnchorPane.toFront();
+    }
+
+    @FXML
+    private void cancelTeamButtonPressed(){
+        settingsAddUserInput.clear();
+        settingsRemoveUserInput.clear();
+        teamAnchorPane.toFront();
+    }
+
 
     /**
      * Compares the input with all users in the organisation. If a match is made the userID is returned. Returns -1 otherwise which will never be any user's  ID.
@@ -259,8 +264,8 @@ public class SettingsController extends AnchorPane implements Initializable {
     private int getUserIDFromName(String userName) {
         int tempUserID = -1;
         //check if user with matching name in textbox exists
-        for (User user : currentOrganisation.getUsers()) {
-            if (user.getName().equals(userName)) {
+        for (User user : StoreIT.getCurrentOrganisation().getUsers()) {
+            if (user.getName().toLowerCase().equals(userName.toLowerCase())) {
                 tempUserID = user.getID();
                 break;
             }

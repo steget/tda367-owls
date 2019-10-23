@@ -61,15 +61,15 @@ public class ReservationListViewController extends AnchorPane {
         }
     }
 
+    void addReservationClickedListener(ReservationClickedListener listener) {
+        reservationClickedListenersList.add(listener);
+    }
+
     /**
      * Used together with "listeners" list as an observer pattern.
      */
     interface ReservationClickedListener {
         void reservationClicked(IReservation res);
-    }
-
-    void addReservationClickedListener(ReservationClickedListener listener) {
-        reservationClickedListenersList.add(listener);
     }
 
 }

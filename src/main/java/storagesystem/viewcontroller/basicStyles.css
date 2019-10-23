@@ -1,10 +1,32 @@
 * {
-    primaryColor: #424242;
-    secondaryColor: #212121;
+    primaryColor: #212121;
+    secondaryColor: #303030;
+    tertiaryColor: #424242;
+    quarternaryColor: #545454;
+    appButtonColor: #BB86FC;
+
 }
 
 .appbar {
+    -fx-background-color: primaryColor;
+}
+
+.background {
+    -fx-background-color: tertiaryColor;
+}
+
+.menubar {
     -fx-background-color: secondaryColor;
+}
+
+.searchbar {
+    -fx-background-color: tertiaryColor;
+}
+
+.inAppButton {
+    -fx-background-color: appButtonColor;
+    -fx-text-fill: primaryColor;
+    -fx-text-size: 18;
 }
 
 .nonEditableField {
@@ -12,38 +34,40 @@
     -fx-background-color: rgba(0, 0, 0, 0);
     -fx-text-fill: white;
     -fx-font-size: 20;
-
-}
-
-.background {
-    -fx-background-color: #303030;
 }
 
 .lightbox {
     -fx-background-color: rgba(0, 0, 0, 0.75);
 }
 
-.lightboxContent {
-    -fx-background-color: primaryColor;
+.popUp {
+    -fx-background-color: secondaryColor;
     -fx-background-radius: 20;
 }
 
-.dialogs {
-    -fx-background-color: primaryColor;
+.lightboxContent {
+    -fx-background-color: tertiaryColor;
+    -fx-background-radius: 20;
 }
 
 .menuButton {
-    -fx-background-color: primaryColor;
-    border: solid #FFFFFF;
-    -fx-text-fill: #FFFFFF;
-    height: 75px;
-    width: 200px;
-    -fx-border-color: white;
-    -fx-border-width: 1;
+    -fx-background-color: tertiaryColor;
+    -fx-text-fill: white;
 }
 
 .menuButton:hover {
-    -fx-background-color: #4d4d4d;
+    -fx-background-color: quarternaryColor;
+}
+
+.loginButton{
+    -fx-background-color: quarternaryColor;
+    -fx-text-fill: white;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.loginButton:hover{
+    -fx-background-color: #767676;
 }
 
 .smallLabel {
@@ -54,6 +78,11 @@
 .verySmallLabel {
     -fx-font-size: 14px;
     -fx-text-fill: white;
+}
+
+.bigLabel {
+    -fx-font-size: 24;
+    -fx-text-fill: #FFFF;
 }
 
 .loginText {
@@ -69,7 +98,7 @@
     -fx-text-fill: #00ff0f;
 }
 
-#loginButton {
-    -fx-font-size: 24px;
-    -fx-font-weight: bold;
+.readOnlyTA .content{
+    -fx-cursor: closed;
 }
+
