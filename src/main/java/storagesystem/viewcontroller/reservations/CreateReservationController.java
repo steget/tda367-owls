@@ -93,22 +93,29 @@ public class CreateReservationController extends AnchorPane {
         teamChoicebox.setItems(FXCollections.observableArrayList(teamNames));
         teamChoicebox.getSelectionModel().select(0);
         DateTime now = new DateTime();
-        SpinnerValueFactory<Integer> yearFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(2019, now.getYear() + 5, now.getYear(), 1);
-        SpinnerValueFactory<Integer> monthFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 12, now.getMonthOfYear(), 1);
-        SpinnerValueFactory<Integer> dayFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, getMonthDays(now.getMonthOfYear()), now.getDayOfMonth(), 1);
-        SpinnerValueFactory<Integer> hourFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 23, now.getHourOfDay(), 1);
-        SpinnerValueFactory<Integer> minuteFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 60, 0, 15);
+        SpinnerValueFactory<Integer> startYearFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(2019, now.getYear() + 5, now.getYear(), 1);
+        SpinnerValueFactory<Integer> startMonthFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 12, now.getMonthOfYear(), 1);
+        SpinnerValueFactory<Integer> startDayFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, getMonthDays(now.getMonthOfYear()), now.getDayOfMonth(), 1);
+        SpinnerValueFactory<Integer> startHourFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 23, now.getHourOfDay(), 1);
+        SpinnerValueFactory<Integer> startMinuteFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 60, 0, 15);
 
-        startYearSpinner.setValueFactory(yearFactory);
-        endYearSpinner.setValueFactory(yearFactory);
-        startMonthSpinner.setValueFactory(monthFactory);
-        endMonthSpinner.setValueFactory(monthFactory);
-        startDaySpinner.setValueFactory(dayFactory);
-        endDaySpinner.setValueFactory(dayFactory);
-        startHourSpinner.setValueFactory(hourFactory);
-        endHourSpinner.setValueFactory(hourFactory);
-        startMinuteSpinner.setValueFactory(minuteFactory);
-        endMinuteSpinner.setValueFactory(minuteFactory);
+        SpinnerValueFactory<Integer> endYearFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(2019, now.getYear() + 5, now.getYear(), 1);
+        SpinnerValueFactory<Integer> endMonthFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 12, now.getMonthOfYear(), 1);
+        SpinnerValueFactory<Integer> endDayFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, getMonthDays(now.getMonthOfYear()), now.getDayOfMonth(), 1);
+        SpinnerValueFactory<Integer> endHourFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 23, now.getHourOfDay(), 1);
+        SpinnerValueFactory<Integer> endMinuteFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 60, 0, 15);
+
+
+        startYearSpinner.setValueFactory(startYearFactory);
+        endYearSpinner.setValueFactory(endYearFactory);
+        startMonthSpinner.setValueFactory(startMonthFactory);
+        endMonthSpinner.setValueFactory(endMonthFactory);
+        startDaySpinner.setValueFactory(startDayFactory);
+        endDaySpinner.setValueFactory(endDayFactory);
+        startHourSpinner.setValueFactory(startHourFactory);
+        endHourSpinner.setValueFactory(endHourFactory);
+        startMinuteSpinner.setValueFactory(startMinuteFactory);
+        endMinuteSpinner.setValueFactory(endMinuteFactory);
 
         this.item = item;
 
@@ -119,13 +126,13 @@ public class CreateReservationController extends AnchorPane {
     private void confirm() {
         ReservationHandler resHandler = StoreIT.getCurrentOrganisation().getReservationHandler();
         checkReservationLegal();
-        if (reservationIsLegal()) {
+        if (isReservationLegal()) {
             resHandler.createReservation(getTeam(), getInterval(), item);
             close();
         }
     }
 
-    private boolean reservationIsLegal() { ;
+    private boolean isReservationLegal() { ;
         boolean itemIsBorrowed = StoreIT.getCurrentOrganisation().getReservationHandler().isObjectReservedBetween(item, getInterval());
         return !itemIsBorrowed;
     }

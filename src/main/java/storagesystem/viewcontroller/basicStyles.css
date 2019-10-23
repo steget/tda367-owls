@@ -118,8 +118,7 @@
 
 .confirmButton{
     -fx-background-radius: 10;
-    /*TODO Change color to match other buttons*/
-    -fx-background-color: darkgreen;
+    -fx-background-color: appButtonColor;
     -fx-font-size: 20px;
     -fx-text-fill: white;
 }

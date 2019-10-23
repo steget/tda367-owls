@@ -9,6 +9,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import storagesystem.model.*;
 import storagesystem.viewcontroller.reservations.CreateReservationController;
+import storagesystem.viewcontroller.reservations.ItemReservationsController;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -34,6 +35,7 @@ public class InventoryController implements Initializable {
     @FXML
     ChoiceBox teamChooser;
 
+    private IReservable currentItem;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -99,7 +101,15 @@ public class InventoryController implements Initializable {
         detailView.addDetailListener(this::detailItemViewClicked);
         detailView.addSaveButtonListener(this::saveButtonClicked);
         detailView.addReserveButtonClickedListener(this::reserveItemClicked);
+        detailView.addItemReservationsClickedListeners(this::itemReservationsClicked);
         detailView.editItem();
+        currentItem=item;
+    }
+
+    private void itemReservationsClicked(IReservable item) {
+        ItemReservationsController reservationView = new ItemReservationsController(item);
+        rootPane.getChildren().add(reservationView);
+
     }
 
     public void createReservationClosed(CreateReservationController createReservationController){
@@ -117,12 +127,14 @@ public class InventoryController implements Initializable {
         refreshItems();
     }
 
-    private void reserveItemClicked(IReservable item){
-        CreateReservationController createReservation = new CreateReservationController(item);
+    private void reserveItemClicked(){
+        CreateReservationController createReservation = new CreateReservationController(currentItem);
         rootPane.getChildren().remove(detailView);
         rootPane.getChildren().add(createReservation);
         createReservation.addCreateReservationViewClosedListener(this::createReservationClosed);
     }
+
+
 
 
 }

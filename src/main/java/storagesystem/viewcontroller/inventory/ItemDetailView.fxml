@@ -48,8 +48,8 @@
                   <Font size="36.0" />
                </font>
             </TextArea>
-            <Button fx:id="itemPageSaveButton" layoutX="750.0" layoutY="466.0" mnemonicParsing="false" onAction="#saveItem" prefHeight="73.0" prefWidth="118.0" text="Save this item" textAlignment="CENTER" wrapText="true" />
-            <Button fx:id="itemPageReserveBtn" layoutX="750.0" layoutY="366.0" mnemonicParsing="false" onAction="#reserveBtnPressed" prefHeight="73.0" prefWidth="118.0" text="Reserve this item" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="141.0" AnchorPane.rightAnchor="12.0" />
+            <Button fx:id="itemPageSaveButton" layoutX="750.0" layoutY="466.0" mnemonicParsing="false" onAction="#saveItem" prefHeight="73.0" prefWidth="118.0" styleClass="inAppButton" text="Save this item" textAlignment="CENTER" wrapText="true" />
+            <Button fx:id="itemPageReserveBtn" layoutX="750.0" layoutY="366.0" mnemonicParsing="false" onAction="#reserveBtnPressed" prefHeight="73.0" prefWidth="118.0" styleClass="inAppButton" text="Reserve this item" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="141.0" AnchorPane.rightAnchor="12.0" />
             <Line endX="-100.0" endY="486.0" layoutX="454.0" layoutY="94.0" startX="-100.0" startY="-94.0" />
             <Line endX="525.0" layoutX="355.0" layoutY="125.0" />
             <Line endX="200.5" layoutX="153.0" layoutY="282.0" startX="-152.0" />
@@ -61,6 +61,7 @@
             <TextArea fx:id="itemPageAmountTA" editable="false" layoutX="203.0" layoutY="350.0" prefHeight="47.0" prefWidth="90.0" text="444444" />
             <ChoiceBox fx:id="itemPageLocationChoicebox" layoutX="203.0" layoutY="407.0" prefHeight="44.0" prefWidth="141.0" />
             <Line endX="200.5" layoutX="153.0" layoutY="466.0" startX="-152.0" />
+            <Button fx:id="reservationsButton" layoutX="750.0" layoutY="146.0" mnemonicParsing="false" onAction="#reservationsButtonPressed" prefHeight="38.0" prefWidth="118.0" styleClass="inAppButton" text="Reservations" textAlignment="CENTER" wrapText="true" />
          </children>
       </AnchorPane>
    </children>

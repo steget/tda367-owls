@@ -37,6 +37,7 @@ public class ItemDetailViewController extends AnchorPane {
     private List<DetailedItemViewListener> detailListeners = new ArrayList<>();
     private List<SaveButtonClickedListener> saveButtonListeners = new ArrayList<>();
     private List<ReserveButtonClickedListener> reserveButtonClickedListeners = new ArrayList<>();
+    private List<ItemReservationsClickedListener> itemReservationsClickedListeners = new ArrayList<>();
 
 
     @FXML
@@ -67,14 +68,16 @@ public class ItemDetailViewController extends AnchorPane {
     private Label imageErrorMsgLabel;
 
 
+
     @FXML
     Button itemPageReserveBtn;
     @FXML
     Button itemPageSaveButton;
     @FXML
+    private Button reservationsButton;
+    @FXML
     private Pane editPane;
 
-    private IReservable item;
 
 
 
@@ -91,8 +94,6 @@ public class ItemDetailViewController extends AnchorPane {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
-
-        item =reservableItem;
 
         initialize();
     }
@@ -178,7 +179,7 @@ public class ItemDetailViewController extends AnchorPane {
     @FXML
     protected void reserveBtnPressed() {
         for(ReserveButtonClickedListener listener : reserveButtonClickedListeners){
-            listener.reserveButtonClicked(item);
+            listener.reserveButtonClicked();
         }
     }
 
@@ -283,6 +284,12 @@ public class ItemDetailViewController extends AnchorPane {
         }
 
     }
+    @FXML
+    private void reservationsButtonPressed(){
+        for(ItemReservationsClickedListener listener : itemReservationsClickedListeners){
+            listener.itemReservationsClicked(reservableItem);
+        }
+    }
 
     /**
      * Recieves a string. loops through the location lists' name. If the strings match,
@@ -353,6 +360,9 @@ public class ItemDetailViewController extends AnchorPane {
     public void addReserveButtonClickedListener(ReserveButtonClickedListener listener ){
         reserveButtonClickedListeners.add(listener);
     }
+    public void addItemReservationsClickedListeners(ItemReservationsClickedListener listener){
+        itemReservationsClickedListeners.add(listener);
+    }
 
 
     /**
@@ -373,6 +383,10 @@ public class ItemDetailViewController extends AnchorPane {
      * Listener interface for reserve button pressed
      */
     interface ReserveButtonClickedListener{
-        void reserveButtonClicked(IReservable item);
+        void reserveButtonClicked();
+    }
+
+    interface ItemReservationsClickedListener{
+        void itemReservationsClicked(IReservable item);
     }
 }
