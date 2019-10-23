@@ -12,6 +12,7 @@ import storagesystem.model.Condition;
 import storagesystem.model.IReservable;
 import storagesystem.model.StoreIT;
 import storagesystem.model.Team;
+import storagesystem.services.PictureHandler;
 
 import java.io.IOException;
 
@@ -82,7 +83,7 @@ public class ItemPageController {
         setReservableLabel(item.isReservable() + "");
         setReservableBtn(item.isReservable());
         setLocationLabel(StoreIT.getCurrentOrganisation().getLocation(item.getLocationID()).getName());
-        setImage(new Image(item.getImageUrl()));
+        setImage(PictureHandler.getItemImage(item.getID(), item.getName()));
     }
 
     @FXML

@@ -13,8 +13,7 @@
           "amount": 2,
           "condition": "GOOD",
           "reservable": true,
-          "locationID": 0,
-          "imageUrl": "/pictures/items/0-mockItem.jpg"
+          "locationID": 0
         }
       },
       {
@@ -27,8 +26,7 @@
           "amount": 2,
           "condition": "GOOD",
           "reservable": true,
-          "locationID": 1,
-          "imageUrl": "/pictures/items/1-mockItem nr 2.jpg"
+          "locationID": 1
         }
       }
     ],
@@ -156,8 +154,7 @@
                 "amount": 2,
                 "condition": "GOOD",
                 "reservable": true,
-                "locationID": 0,
-                "imageUrl": "pictures/items/0-mockItem.jpg"
+                "locationID": 0
               }
             },
             "status": "APPROVED"
@@ -195,8 +192,7 @@
                 "amount": 2,
                 "condition": "GOOD",
                 "reservable": true,
-                "locationID": 0,
-                "imageUrl": "pictures/items/0-mockItem.jpg"
+                "locationID": 0
               }
             },
             "status": "APPROVED"

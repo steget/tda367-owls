@@ -34,8 +34,6 @@ public interface IReservable {
 
     int getLocationID();
 
-    String getImageUrl();
-
     public String getName();
 
     public String getDescription();
@@ -53,7 +51,5 @@ public interface IReservable {
     public void setReservable(boolean reservable);
 
     public void setLocationID(int locationID);
-
-    public void setImageUrl(String imageUrl);
 
 }
