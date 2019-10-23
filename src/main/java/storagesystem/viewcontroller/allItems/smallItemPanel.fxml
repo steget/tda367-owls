@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<fx:root fx:id="rootPane" maxHeight="250.0" maxWidth="180.0" minHeight="250.0" minWidth="180.0" prefHeight="250.0" prefWidth="180.0" stylesheets="@../basicStyles.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="rootPane" maxHeight="250.0" maxWidth="180.0" minHeight="250.0" minWidth="180.0" onMouseClicked="#handlePanePressed" prefHeight="250.0" prefWidth="180.0" stylesheets="@../basicStyles.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <ImageView fx:id="itemImage" fitHeight="160.0" fitWidth="160.0" layoutX="400.0" layoutY="-5.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
             <image>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Author: Carl Lindh, Jonathan Eksberg -->
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<fx:root fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: rgba(0, 0, 0, 0.75);" stylesheets="@../basicStyles.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <AnchorPane fx:id="contentPane" layoutX="19.0" layoutY="30.0" styleClass="background" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="60.0">
+            <children>
+                <Label fx:id="itemPageNameLabel" layoutX="399.0" layoutY="14.0" styleClass="bigLabel" text="Scissors">
+                    <font>
+                        <Font size="50.0" />
+                    </font>
+                </Label>
+                <Label fx:id="itemPageReservableLabel" layoutX="37.0" layoutY="286.0" styleClass="smallLabel" text="ReservableLabel" />
+                <Label fx:id="itemPageAmountLabel" layoutX="24.0" layoutY="366.0" styleClass="smallLabel" text="AmountLabel" />
+                <Label fx:id="itemPageLocationLabel" layoutX="24.0" layoutY="394.0" styleClass="smallLabel" text="LocationLabel" />
+                <Label fx:id="itemPageIDLabel" layoutX="374.0" layoutY="63.0" styleClass="smallLabel" text="IDLabel" />
+                <Slider fx:id="itemPageConditionSlider" blockIncrement="1.0" disable="true" layoutX="31.0" layoutY="497.0" majorTickUnit="1.0" max="2.0" minorTickCount="0" prefHeight="45.0" prefWidth="293.0" showTickMarks="true" snapToTicks="true" value="1.0" />
+                <Label layoutX="31.0" layoutY="534.0" style="-fx-text-fill: red;" text="BAD" />
+                <Label layoutX="155.0" layoutY="534.0" style="-fx-text-fill: yellow;" text="GOOD" />
+                <Label layoutX="295.0" layoutY="534.0" style="-fx-text-fill: green;" text="GREAT" />
+                <TextArea fx:id="itemPageDescriptionTA" editable="false" layoutX="373.0" layoutY="182.0" prefHeight="150.0" prefWidth="357.0" AnchorPane.leftAnchor="373.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="182.0" />
+                <TextArea fx:id="itemPageUserRequirementsTA" editable="false" layoutX="373.0" layoutY="391.0" prefHeight="150.0" prefWidth="357.0" AnchorPane.bottomAnchor="39.0" AnchorPane.leftAnchor="373.0" AnchorPane.rightAnchor="150.0" />
+                <Label fx:id="itemPageTeamOwnerLabel" layoutX="24.0" layoutY="328.0" styleClass="smallLabel" text="OwnerLabel" />
+                <ImageView fx:id="itemPageImageView" fitHeight="200.0" fitWidth="200.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0">
+                    <image>
+                        <Image url="@../../../../resources/pictures/art.png" />
+                    </image>
+                </ImageView>
+                <Button fx:id="itemPageReserveBtn" layoutX="548.0" layoutY="492.0" mnemonicParsing="false" onAction="#itemPageReserveBtnPressed" text="Reserve" AnchorPane.bottomAnchor="60.0" AnchorPane.rightAnchor="60.0" />
+            </children>
+        </AnchorPane>
+    </children>
+</fx:root>

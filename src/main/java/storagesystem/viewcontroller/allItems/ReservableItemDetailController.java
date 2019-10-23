@@ -8,8 +8,10 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import storagesystem.model.Condition;
 import storagesystem.model.IReservable;
+import storagesystem.model.StoreIT;
 import storagesystem.model.Team;
 
 import java.io.IOException;
@@ -20,7 +22,7 @@ import java.io.IOException;
  * @author Jonathan Eksberg, Carl Lindh
  * @revised by Hugo Stegrell
  */
-public class ItemPageController {
+public class ReservableItemDetailController extends AnchorPane {
 
     private final IReservable item;
     private final Team itemOwner;
@@ -48,8 +50,11 @@ public class ItemPageController {
     @FXML
     private Button itemPageReserveBtn;
 
-    public ItemPageController(IReservable item, Team itemOwner) {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("itemPage.fxml"));
+    public ReservableItemDetailController(IReservable item) {
+        this.item = item;
+        this.itemOwner = StoreIT.getCurrentOrganisation().getItemOwner(item);
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/allItems/reservableItemDetailView.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 
@@ -59,8 +64,6 @@ public class ItemPageController {
             throw new RuntimeException(exception);
         }
 
-        this.item = item;
-        this.itemOwner = itemOwner;
         initialize();
     }
 
@@ -145,6 +148,20 @@ public class ItemPageController {
 
     private void setReservableBtn(boolean reservable) {
         itemPageReserveBtn.setDisable(!reservable);
+    }
+
+    /**
+     * Listener interface for DetailedItemView
+     */
+    interface ReservableItemDetailViewListener {
+        void reservableItemDetailViewClicked();
+    }
+
+    /**
+     * Listener interface for saveButtonClicked
+     */
+    interface saveButtonClickedListener {
+        void saveButtonClicked();
     }
 }
 

@@ -18,9 +18,9 @@ import java.util.ResourceBundle;
  *
  * @author Hugo Stegrell
  */
-public class ItemListController implements Initializable {
+public class AllItemsListController implements Initializable {
     @FXML
-    private AnchorPane itemListRootPane;
+    private AnchorPane rootPane;
 
     @FXML
     private FlowPane itemListFlowPane;
@@ -28,20 +28,30 @@ public class ItemListController implements Initializable {
     @FXML
     private ScrollPane itemListScrollPane;
 
+    private ReservableItemDetailController reservableItemDetailView;
+
     private List<SmallItemPanel> allSmallItemPanels = new ArrayList<>();
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         createAllSmallItemPanels();
         itemListFlowPane.getChildren().addAll(allSmallItemPanels);
-
     }
 
     private void createAllSmallItemPanels() {
+        allSmallItemPanels.clear();
         for (IReservable reservableItem :
                 StoreIT.getCurrentOrganisation().getAllItems()) {
-            allSmallItemPanels.add(new SmallItemPanel(reservableItem));
+            SmallItemPanel newSmallItemPanel = new SmallItemPanel(reservableItem);
+            newSmallItemPanel.addListener(this::smallItemPanelClicked);
+            allSmallItemPanels.add(newSmallItemPanel);
         }
+    }
+
+    private void smallItemPanelClicked(IReservable item) {
+        reservableItemDetailView = new ReservableItemDetailController(item);
+        rootPane.getChildren().add(reservableItemDetailView);
     }
 
     private void updateItemList(List<IReservable> items) {
@@ -53,13 +63,16 @@ public class ItemListController implements Initializable {
         }
     }
 
-    private SmallItemPanel findProductPanel(IReservable product) {
+    private SmallItemPanel findProductPanel(IReservable item) {
         for (SmallItemPanel panel : allSmallItemPanels) {
-            if (panel.getReservableItem() == product) {
+            if (panel.getReservableItem() == item) {
                 return panel;
             }
         }
-        SmallItemPanel newPanel = new SmallItemPanel(product);
+
+        //if no panel for the item could be found a new one is created
+        SmallItemPanel newPanel = new SmallItemPanel(item);
+        newPanel.addListener(this::smallItemPanelClicked);
         allSmallItemPanels.add(newPanel);
         return newPanel;
     }

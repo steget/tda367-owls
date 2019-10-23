@@ -8,6 +8,7 @@ import javafx.scene.layout.AnchorPane;
 import storagesystem.model.IReservable;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * @author Hugo Stegrell
@@ -22,6 +23,8 @@ public class SmallItemPanel extends AnchorPane {
 
     @FXML
     private Label itemNameLabel;
+
+    private final ArrayList<SmallItemPanelListener> listeners = new ArrayList<>();
 
     public SmallItemPanel(IReservable reservableItem) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/allItems/smallItemPanel.fxml"));
@@ -44,7 +47,22 @@ public class SmallItemPanel extends AnchorPane {
         return reservableItem;
     }
 
+    /**
+     * listener method
+     */
+    @FXML
     void handlePanePressed() {
-        //open detailed view of item so it can be reserved
+        for (SmallItemPanelListener l : listeners) {
+            l.inventoryListItemClicked(reservableItem);
+        }
     }
+
+    interface SmallItemPanelListener {
+        void inventoryListItemClicked(IReservable item);
+    }
+
+    public void addListener(SmallItemPanelListener listener) {
+        listeners.add(listener);
+    }
+
 }

@@ -62,7 +62,7 @@ public class FrameworkController implements Initializable, ILoadUI {
 
     @FXML
     void allItemsButtonPressed() {
-        loadUI("/allItems/itemList.fxml");
+        loadUI("/allItems/allItemsList.fxml");
     }
 
     @FXML

@@ -78,7 +78,7 @@ public class ItemDetailViewController extends AnchorPane {
         this.reservableItem = reservableItem;
         this.itemOwner = StoreIT.getCurrentOrganisation().getItemOwner(reservableItem);
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Inventory/ItemDetailView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/inventory/ItemDetailView.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 
