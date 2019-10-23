@@ -1,6 +1,17 @@
 [
   {
-    "name": "Informationsteknik",
+    "name": "Mock Organisation",
+    "imageUrl": null,
+    "items": [],
+    "teams": [],
+    "users": [],
+    "locations": [],
+    "reservationHandler": {
+      "reservations": []
+    }
+  },
+  {
+    "name": "Mock Organisation 2",
     "imageUrl": null,
     "items": [
       {
@@ -35,8 +46,7 @@
     "teams": [
       {
         "itemIDs": [
-          0,
-          1
+          11
         ],
         "memberIDs": [
           0,
