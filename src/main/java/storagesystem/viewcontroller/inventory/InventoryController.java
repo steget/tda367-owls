@@ -2,9 +2,11 @@ package storagesystem.viewcontroller.inventory;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import storagesystem.model.*;
@@ -25,6 +27,7 @@ public class InventoryController implements Initializable {
     private List<Team> currentUsersTeams = new ArrayList<>();
     private ObservableList<String> teamNames = FXCollections.observableArrayList();
     private ItemDetailViewController detailView;
+    private ItemReservationsController reservationListView;
 
     @FXML
     FlowPane itemPane;
@@ -44,6 +47,15 @@ public class InventoryController implements Initializable {
         fillTeamAttributes();
         refreshItems();
     }
+
+    EventHandler<MouseEvent> closeReservationViewHandler = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+            closeReservationView();
+            event.consume();
+        }
+    };
+
 
     /**
      * if a user is apart of a team. then this method fills the choicebox.
@@ -107,10 +119,18 @@ public class InventoryController implements Initializable {
     }
 
     private void itemReservationsClicked(IReservable item) {
-        ItemReservationsController reservationView = new ItemReservationsController(item);
-        rootPane.getChildren().add(reservationView);
+        reservationListView = new ItemReservationsController(item);
+        reservationListView.addEventHandler(MouseEvent.MOUSE_CLICKED, closeReservationViewHandler);
+        rootPane.getChildren().remove(detailView);
+        rootPane.getChildren().add(reservationListView);
 
     }
+
+    private void closeReservationView() {
+        rootPane.getChildren().remove(reservationListView);
+    }
+
+
 
     public void createReservationClosed(CreateReservationController createReservationController){
         rootPane.getChildren().remove(createReservationController);

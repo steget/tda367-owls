@@ -39,28 +39,14 @@ public class ItemReservationsController extends AnchorPane {
     private void initialize() {
         updateItemReservations();
 
- /*       EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                System.out.println("Event handled");
-            }
-        };
-
-        for(ItemReservationListItemViewController listview : itemReservationListItemViews){
-            listview.addEventHandler(MouseEvent.MOUSE_CLICKED, eventHandler);
-        }
-*/
         listFlowPane.getChildren().addAll(itemReservationListItemViews);
-
-
-
     }
 
     private void updateItemReservations(){
+        boolean alternating = false;
         for(IReservation res : StoreIT.getCurrentOrganisation().getReservationHandler().getReservations(item)){
             ItemReservationListItemViewController listView = new ItemReservationListItemViewController(res);
             itemReservationListItemViews.add(listView);
-            boolean alternating = false;
             if (alternating) {
                 listView.setStyle("-fx-background-color: secondaryColor");
                 alternating = !alternating;
