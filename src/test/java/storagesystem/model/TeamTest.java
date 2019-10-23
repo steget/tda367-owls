@@ -2,7 +2,6 @@ package storagesystem.model;
 
 import org.junit.Test;
 
-import java.io.IOException;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -11,7 +10,7 @@ import static org.junit.Assert.assertTrue;
 public class TeamTest {
 
     @Test
-    public void getAllItems() throws IOException {
+    public void getAllItems() {
         Organisation org = new Organisation("Test org");
         Team testTeam = new Team("owls");
         List<IReservable> allItems = org.getTeamsItems(testTeam);
@@ -27,7 +26,7 @@ public class TeamTest {
     }
 
     @Test
-    public void addMember() throws IOException{
+    public void addMember() {
         Team testTeam = new Team("owls");
         int ID = 12;
         testTeam.addMember(ID);
@@ -37,7 +36,7 @@ public class TeamTest {
     }
 
     @Test
-    public void removeMember() throws IOException {
+    public void removeMember() {
         Team testTeam = new Team("owls");
         testTeam.addMember(12);
 
@@ -47,7 +46,7 @@ public class TeamTest {
     }
 
     @Test
-    public void getAllMemberIDs() throws IOException {
+    public void getAllMemberIDs() {
         Team testTeam = new Team("owls");
         int id1 = 15;
         int id2 = 16;

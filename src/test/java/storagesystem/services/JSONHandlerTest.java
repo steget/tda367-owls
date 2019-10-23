@@ -20,7 +20,6 @@ public class JSONHandlerTest {
         Organisation mockOrg = new Organisation("Mock Organisation");
 
         Organisation mockOrg2 = new Organisation("Mock Organisation 2");
-        String imageUrl = "/pictures/art.png";
         Location location = new Location("Test Location", "Exists in mockorg2");
         Team testTeam = new Team("testTeam");
         mockOrg2.addTeam(testTeam);
@@ -45,7 +44,6 @@ public class JSONHandlerTest {
         Organisation mockOrg = new Organisation("Mock Organisation");
 
         Organisation mockOrg2 = new Organisation("Mock Organisation 2");
-        String imageUrl = "/pictures/art.png";
         Location location = new Location("Test Location", "Exists in mockorg2");
         Team testTeam = new Team("testTeam");
         mockOrg2.addTeam(testTeam);

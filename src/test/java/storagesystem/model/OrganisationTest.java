@@ -61,7 +61,6 @@ public class OrganisationTest {
         JSONHandler.clearAllJsonFiles();
 
         Organisation informationsteknik = new Organisation("Informationsteknik");
-        Team tempTeam = new Team("sexNollK");
         informationsteknik.addUser(new User("asd", "pass", "desc", "112"));
 
         assertEquals(1, informationsteknik.getUsers().size());
