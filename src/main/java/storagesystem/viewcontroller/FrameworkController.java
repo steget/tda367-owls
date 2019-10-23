@@ -48,10 +48,10 @@ public class FrameworkController implements Initializable, ILoadUI {
     }
 
     @FXML
-    void userButtonPressed(){ loadUI("settings/userPage"); }
+    private void userButtonPressed(){ loadUI("settings/userPage"); }
 
     @FXML
-    void teamButtonPressed(){
+    private void teamButtonPressed(){
         if(StoreIT.getCurrentOrganisation().getUsersTeams(StoreIT.getCurrentUser()).size() > 0){
             loadUI("settings/teamPage");
         } else{
@@ -60,17 +60,17 @@ public class FrameworkController implements Initializable, ILoadUI {
     }
 
     @FXML
-    void allItemsButtonPressed() {
+    private void allItemsButtonPressed() {
         loadUI("itemview/itemList");
     }
 
     @FXML
-    void reservationsButtonPressed() {
+    private void reservationsButtonPressed() {
         loadUI("reservations/reservations");
     }
 
     @FXML
-    void yourInventoryButtonPressed(){
+    private void yourInventoryButtonPressed(){
 
         if(StoreIT.getCurrentOrganisation().isUserPartOfTeam(StoreIT.getCurrentUser())){
             loadUI("inventory/inventory");
@@ -83,7 +83,7 @@ public class FrameworkController implements Initializable, ILoadUI {
      * When the logOutButton is pressed the root is switched and you are taken back to the loginPage
      */
     @FXML
-    void logOutButtonPressed(){
+    private void logOutButtonPressed(){
         Parent root;
         try {
             root = FXMLLoader.load(getClass().getResource("/login/loginPage.fxml"));
