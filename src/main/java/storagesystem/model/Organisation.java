@@ -141,7 +141,7 @@ public class Organisation {
      *
      * @param teamToBeAdded team which belongs in the organisation
      */
-    void addTeam(Team teamToBeAdded) {
+    public void addTeam(Team teamToBeAdded) {
         teams.add(teamToBeAdded);
     }
 
