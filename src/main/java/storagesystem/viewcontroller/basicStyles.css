@@ -102,3 +102,10 @@
     -fx-cursor: closed;
 }
 
+.smallPane{
+    -fx-border-color: black;
+    -fx-border-width: 2px;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 6px;
+}
+

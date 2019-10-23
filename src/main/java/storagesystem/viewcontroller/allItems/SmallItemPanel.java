@@ -1,4 +1,4 @@
-package storagesystem.viewcontroller.itemview;
+package storagesystem.viewcontroller.allItems;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,7 +24,7 @@ public class SmallItemPanel extends AnchorPane {
     private Label itemNameLabel;
 
     public SmallItemPanel(IReservable reservableItem) {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/itemview/smallItemPanel.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/allItems/smallItemPanel.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 

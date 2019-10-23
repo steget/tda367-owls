@@ -1,4 +1,4 @@
-package storagesystem.viewcontroller.itemview;
+package storagesystem.viewcontroller.allItems;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

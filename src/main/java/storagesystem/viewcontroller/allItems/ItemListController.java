@@ -1,4 +1,4 @@
-package storagesystem.viewcontroller.itemview;
+package storagesystem.viewcontroller.allItems;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -11,7 +11,6 @@ import storagesystem.model.StoreIT;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.ResourceBundle;
 
 /**
