@@ -196,7 +196,7 @@ public class TeamPageController extends AnchorPane implements Initializable {
     private void addMemberButtonPressed() {
         boolean doesUserExist = false;
         for (User user : StoreIT.getCurrentOrganisation().getUsers()) {
-            if (user.getName().equals(settingsAddUserInput.getText())) {
+            if (user.getName().toLowerCase().equals(settingsAddUserInput.getText().toLowerCase())) {
                 doesUserExist = true;
                 if (StoreIT.getCurrentTeam().getAllMemberIDs().contains(user.getID())) {
                     AbstractFader.fadeTransition(userAlreadyInTeamMsg, 2);
@@ -262,7 +262,7 @@ public class TeamPageController extends AnchorPane implements Initializable {
         int tempUserID = -1;
         //check if user with matching name in textbox exists
         for (User user : StoreIT.getCurrentOrganisation().getUsers()) {
-            if (user.getName().equals(userName)) {
+            if (user.getName().toLowerCase().equals(userName.toLowerCase())) {
                 tempUserID = user.getID();
                 break;
             }
