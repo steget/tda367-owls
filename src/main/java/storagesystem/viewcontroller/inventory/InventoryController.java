@@ -78,7 +78,7 @@ public class InventoryController implements Initializable {
      * It removes all the items in list and renews with new items.
      */
     private void refreshItems() {
-        List<IReservable> inventory = currentlySelectedTeam.getAllItems();
+        List<IReservable> inventory = StoreIT.getCurrentOrganisation().getTeamsItems(currentlySelectedTeam);
         itemPane.getChildren().remove(0, itemPane.getChildren().size());
         for (IReservable i : inventory) {
             InventoryListItemController listItem = new InventoryListItemController(i);

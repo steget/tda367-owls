@@ -1,9 +1,12 @@
 package storagesystem.model;
 
-import javafx.scene.image.Image;
 import org.joda.time.DateTime;
 import org.joda.time.Interval;
+import storagesystem.services.JSONHandler;
+import storagesystem.services.IDHandler;
 
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -118,7 +121,21 @@ public class StoreIT {
     /**
      * Loads all data into the program. Should be run at start.
      */
-    public void initializeBackend() {
+    public void initializeBackend() throws IOException {
+        //reset();
+        try {
+            organisations.addAll(JSONHandler.getOrganisationList());
+        } catch (NullPointerException e) {
+            System.out.println("Organisation json is empty.");
+        }
+        System.out.println("Loaded Organisations from json.");
+        IDHandler.updateAllIDs(organisations);
+        currentOrganisation = organisations.get(0);
+        System.out.println("Current Organisation Set.");
+    }
+
+    private void reset() throws IOException { //Run if fresh start or after tests!!!
+        JSONHandler.clearAllJsonFiles();
         mockData();
     }
 
@@ -130,6 +147,11 @@ public class StoreIT {
         organisations.add(data);
         setCurrentOrganisation(informationsteknik);
 
+
+
+        Team tempTeam = new Team("sexNollK");
+        Team tempTeam2 = new Team("P.R.NollK");
+
         createUser("Albert", "1", "1", "1");
         createUser("admin", "1", "1", "1");
         createUser("eke", "1", "1", "1");
@@ -137,10 +159,6 @@ public class StoreIT {
         createUser("sponken", "1", "1", "1");
         createUser("giff", "1", "1", "1");
         createUser("steget", "1", "1", "1");
-
-        Team tempTeam = new Team("sexNollK");
-        Team tempTeam2 = new Team("P.R.NollK");
-
         tempTeam.setTermsAndConditions("För att låna våra prylar måste prylen vara i samma skick som den var när den lånades ut. Behövs den diskas så diska den osv. Prylen ska också vara tillbaka på samma plats igen");
         tempTeam2.setTermsAndConditions("text 2");
 
@@ -152,27 +170,27 @@ public class StoreIT {
         tempTeam2.addMember(informationsteknik.getUsers().get(0).getID());
         tempTeam2.addMember(informationsteknik.getUsers().get(1).getID());
 
-        Location MockLocation = new Location("Hubben", "This location does not exist");
-        Location MockLocation2 = new Location("Garaget", "This location is unavailable");
+        Location mockLocation = new Location("Hubben", "This location does not exist");
+        Location mockLocation2 = new Location("Garaget", "This location is unavailable");
 
-        informationsteknik.getLocations().add(MockLocation);
-        informationsteknik.getLocations().add(MockLocation2);
+        informationsteknik.getLocations().add(mockLocation);
+        informationsteknik.getLocations().add(mockLocation2);
         IReservable mockItem = IReservableFactory.createReservableItem("mockItem", "This is a description", "Behave please.",
-                2, Condition.GOOD, true, MockLocation, new Image("pictures/art.png"));
+                2, Condition.GOOD, true, mockLocation.getID(), "/pictures/art.png");
         IReservable mockItem2 = IReservableFactory.createReservableItem("mockItem nr 2", "This is a description", "Behave please.",
-                2, Condition.GOOD, true, MockLocation2, new Image("pictures/art.png"));
-
+                2, Condition.GOOD, true, mockLocation2.getID(), "/pictures/art.png");
 
         Interval interval1 = new Interval(new DateTime(2019, 9, 10, 12, 40), new DateTime(2019, 9, 10, 15, 0));
         Interval interval2 = new Interval(new DateTime(2019, 9, 12, 17, 30), new DateTime(2019, 10, 16, 20, 0));
-        IReservation res = new Reservation(informationsteknik.getUsers().get(0), interval1, mockItem, ReservationStatus.APPROVED);
-        IReservation res2 = new Reservation(informationsteknik.getUsers().get(0), interval2, mockItem2, ReservationStatus.APPROVED);
+        IReservation res = new Reservation(informationsteknik.getTeams().get(0), interval1, mockItem, ReservationStatus.APPROVED);
+        IReservation res2 = new Reservation(informationsteknik.getTeams().get(0), interval2, mockItem, ReservationStatus.APPROVED);
         ReservationHandler resHandler = informationsteknik.getReservationHandler();
         List<IReservation> reservations = resHandler.getReservations();
         reservations.add(res);
         reservations.add(res2);
 
-        tempTeam.addItemToInventory(mockItem);
-        tempTeam.addItemToInventory(mockItem2);
+        informationsteknik.addItem(mockItem, tempTeam);
+        informationsteknik.addItem(mockItem2, tempTeam);
     }
+
 }

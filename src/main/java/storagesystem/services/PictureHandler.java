@@ -15,6 +15,9 @@ import java.util.ArrayList;
  * It also is the one that reads the image and returns it to the requester.
  */
 public class PictureHandler {
+
+    private static String defaultImagePath = "src/main/resources/pictures/items/unknown-item-image.png";
+
     /**
      * Retrieves the items searchpath.
      *
@@ -22,9 +25,9 @@ public class PictureHandler {
      * @param itemName
      * @return the image URL that can be used to read/write the file
      */
-    public static String getImageFilePath(int itemID, String itemName) {
+    private static String getImageUrl(int itemID, String itemName) {
 
-        return "src/main/resources/pictures/items" + File.separatorChar + itemID + "-" + itemName + ".jpg";
+        return "/pictures/items/" + itemID + "-" + itemName + ".jpg";
     }
 
     /**
@@ -36,10 +39,16 @@ public class PictureHandler {
      */
     public static Image getItemImage(int itemID, String itemName) {
         Image img = null;
+        String filePath = "src/main/resources" + getImageUrl(itemID, itemName);
         try {
-            img = SwingFXUtils.toFXImage(ImageIO.read(new File(getImageFilePath(itemID, itemName))), null);
+            img = SwingFXUtils.toFXImage(ImageIO.read(new File(filePath)), null);
         } catch (IOException o) {
-            System.out.println("Could not read file: " + getImageFilePath(itemID, itemName));
+            System.out.println("Could not read file: " + filePath);
+            try {
+                img = SwingFXUtils.toFXImage(ImageIO.read(new File(defaultImagePath)), null);
+            } catch (IOException e) {
+                System.out.println("Could not read default file: " + defaultImagePath);
+            }
         }
 
         return img;
@@ -55,11 +64,12 @@ public class PictureHandler {
      * @param itemName
      */
     public static void saveItemImagePic(BufferedImage file, int itemID, String itemName) {
+        String filePath = "src/main/resources" + getImageUrl(itemID, itemName);
 
         try {
-            ImageIO.write(file, "jpg", new File(getImageFilePath(itemID, itemName)));
+            ImageIO.write(file, "jpg", new File(filePath));
         } catch (IOException exception) {
-            System.out.println("Could not read file: " + getImageFilePath(itemID, itemName));
+            System.out.println("Could not read file: " + filePath);
 
         }
     }

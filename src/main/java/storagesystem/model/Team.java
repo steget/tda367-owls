@@ -9,20 +9,33 @@ import java.util.List;
  *
  * @author Hugo Stegrell, Pär Aronsson
  */
-public class Team {
+
+public class Team implements IBorrower {
     private static int nextID;
-    private final List<IReservable> inventory = new ArrayList<>(); //todo itemIDs instead
+    private final List<Integer> itemIDs = new ArrayList<>();
     private final List<Integer> memberIDs = new ArrayList<>();
     private String name;
     private String termsAndConditions;
+    private String imageUrl;
     private int teamID;
 
     public Team(String teamName) {
         this.name = teamName;
-        //todo fill stuff from db
         termsAndConditions = "";
         teamID = nextID;
         nextID++;
+    }
+
+    public void addUsers(List<User> userList) {
+        for (User user : userList) {
+            memberIDs.add(user.getID());
+        }
+    }
+
+    public void addItems(List<IReservable> itemList) {
+        for (IReservable iReservable : itemList) {
+            itemIDs.add(iReservable.getID());
+        }
     }
 
     /**
@@ -51,24 +64,36 @@ public class Team {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    void addItemIDToInventory(int itemID) {
+        itemIDs.add(itemID);
     }
 
-    public void addItemToInventory(IReservable itemToAdd) {
-        inventory.add(itemToAdd);
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getTermsAndConditions() {
         return termsAndConditions;
     }
 
-    public List<IReservable> getAllItems() {
-        return inventory;
+    public List<Integer> getAllItemIDs() {
+        return itemIDs;
     }
 
-    public int getTeamID() {
+    public int getID() {
         return teamID;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public static void setNextID(int nextID) {
+        Team.nextID = nextID;
     }
 
     public void setTermsAndConditions(String termsAndConditions) {

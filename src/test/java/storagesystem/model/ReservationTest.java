@@ -9,9 +9,11 @@ import static org.junit.Assert.assertTrue;
 public class ReservationTest {
 
     @Test
-    public void reservationsShouldBeEqual() {
-        IBorrower borrower = new User("John Doe", "Developer", "Call me");
-        IReservable object = IReservableFactory.createReservableItem("mockItem", "desc", "requirements", 1, Condition.GREAT, true, null, null);
+    public void reservationsShouldBeEqual(){
+        IBorrower borrower = new Team("Team1");
+        String imageUrl = "/pictures/art.png";
+
+        IReservable object = IReservableFactory.createReservableItem("mockItem", "desc","requirements",1,Condition.GREAT,true, 0, imageUrl);
         DateTime time1 = new DateTime();
         DateTime time2 = time1.plusDays(1);
 
@@ -26,9 +28,11 @@ public class ReservationTest {
 
 
     @Test
-    public void objectShouldEqual() {
-        IBorrower borrower = new User("John Doe", "Developer", "Call me");
-        IReservable object = IReservableFactory.createReservableItem("mockItem", "desc", "requirements", 1, Condition.GREAT, true, null, null);
+    public void objectShouldEqual(){
+        IBorrower borrower = new Team("Team1");
+        String imageUrl = "/pictures/art.png";
+
+        IReservable object = IReservableFactory.createReservableItem("mockItem", "desc","requirements",1,Condition.GREAT,true, 0, imageUrl);
         DateTime time1 = new DateTime();
         DateTime time2 = time1.plusDays(1);
 
@@ -43,3 +47,5 @@ public class ReservationTest {
     }
 
 }
+
+

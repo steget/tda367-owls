@@ -138,7 +138,7 @@ public class ItemDetailViewController extends AnchorPane {
         setAmountLabel("" + reservableItem.getAmount());
         setConditionSlider(reservableItem.getCondition());
         setReservableBtn(reservableItem.isReservable());
-        setImage(reservableItem.getImage());
+        setImage(PictureHandler.getItemImage(reservableItem.getID(), itemPageNameTA.getText()));
         setTeamOwnerLabel(itemOwner.getName());
         setReservableChoiceBox();
         setLocationChoicebox();
@@ -152,7 +152,7 @@ public class ItemDetailViewController extends AnchorPane {
         itemPageLocationChoicebox.setItems(locationNames);
 
         for (String s : locationNames) {
-            if (s.equals(reservableItem.getLocation().getName())) {
+            if (s.equals(StoreIT.getCurrentOrganisation().getLocation(reservableItem.getLocationID()).getName())) {
                 itemPageLocationChoicebox.getSelectionModel().select(s);
             }
         }
@@ -275,7 +275,6 @@ public class ItemDetailViewController extends AnchorPane {
         reservableItem.setName(itemPageNameTA.getText());
         reservableItem.setDescription(itemPageDescriptionTA.getText());
         reservableItem.setUserRequirements(itemPageUserRequirementsTA.getText());
-        reservableItem.setImage(itemPageImageView.getImage());
         reservableItem.setReservable(isReservableChoiceBox.getSelectionModel().getSelectedIndex() == 0);
         saveCondition((int) itemPageConditionSlider.getValue());
         saveLocation(itemPageLocationChoicebox.getValue().toString());
@@ -283,7 +282,6 @@ public class ItemDetailViewController extends AnchorPane {
         for (saveButtonClickedListener l : saveButtonListeners) {
             l.saveButtonClicked();
         }
-
     }
 
     /**
@@ -295,7 +293,7 @@ public class ItemDetailViewController extends AnchorPane {
 
         for (Location l : locationList) {
             if (l.getName().equals(locationName)) {
-                reservableItem.setLocation(l);
+                reservableItem.setLocationID(l.getID());
             }
         }
 

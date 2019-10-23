@@ -3,9 +3,11 @@ package storagesystem.viewcontroller.itemview;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import storagesystem.model.IReservable;
+import storagesystem.services.PictureHandler;
 
 import java.io.IOException;
 
@@ -36,7 +38,7 @@ public class SmallItemPanel extends AnchorPane {
 
         this.reservableItem = reservableItem;
 
-        itemImage.setImage(reservableItem.getImage());
+        itemImage.setImage(PictureHandler.getItemImage(reservableItem.getID(), reservableItem.getName()));
         itemNameLabel.setText(reservableItem.getName());
     }
 

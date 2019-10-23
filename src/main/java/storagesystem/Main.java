@@ -6,6 +6,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import storagesystem.model.StoreIT;
+import storagesystem.services.JSONHandler;
+
+import java.io.IOException;
 
 public class Main extends Application {
 
@@ -29,5 +32,10 @@ public class Main extends Application {
         stage.setHeight(800);
         stage.setResizable(false);
         stage.show();
+    }
+
+    @Override
+    public void stop() throws IOException {
+        JSONHandler.save(StoreIT.getOrganisations());
     }
 }

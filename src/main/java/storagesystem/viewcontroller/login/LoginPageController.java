@@ -129,7 +129,7 @@ public class LoginPageController implements Initializable {
             //set current user
             StoreIT.setCurrentUser(userNameTextField.getText());
             StoreIT.setCurrentOrganisation(selectedOrganisation);
-            if(StoreIT.getCurrentOrganisation().getUsersTeams(StoreIT.getCurrentUser()).size() > 0){
+            if (StoreIT.getCurrentOrganisation().getUsersTeams(StoreIT.getCurrentUser()).size() > 0) {
                 StoreIT.setCurrentTeam(StoreIT.getCurrentOrganisation().getUsersTeams(StoreIT.getCurrentUser()).get(0));
             }
 
@@ -169,11 +169,11 @@ public class LoginPageController implements Initializable {
     }
 
     private boolean isAllRegisterFieldsEntered() {
-        return (regUserNameTextField.getLength() > 0 &&
+        return regUserNameTextField.getLength() > 0 &&
                 regPasswordTextField.getLength() > 0 &&
                 regUserDescriptionTextArea.getLength() > 0 &&
                 regContactInfoTextField.getLength() > 0 &&
-                regOrganisationChoiceBox.getValue() != null);
+                regOrganisationChoiceBox.getValue() != null;
     }
 
     /**
