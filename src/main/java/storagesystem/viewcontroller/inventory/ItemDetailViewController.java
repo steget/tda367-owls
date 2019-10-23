@@ -178,6 +178,7 @@ public class ItemDetailViewController extends AnchorPane {
 
     @FXML
     protected void reserveBtnPressed() {
+        //TODO Move this to all items when possible
         for(ReserveButtonClickedListener listener : reserveButtonClickedListeners){
             listener.reserveButtonClicked();
         }

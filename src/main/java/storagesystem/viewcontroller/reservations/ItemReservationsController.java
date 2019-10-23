@@ -51,7 +51,7 @@ public class ItemReservationsController extends AnchorPane {
                 listView.setStyle("-fx-background-color: secondaryColor");
                 alternating = !alternating;
             } else {
-                listView.setStyle("-fx-background-color: primaryColoR");
+                listView.setStyle("-fx-background-color: primaryColor");
                 alternating = !alternating;
             };
 

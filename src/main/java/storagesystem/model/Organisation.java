@@ -113,13 +113,13 @@ public class Organisation {
     }
 
 
-    public Team getTeamFromName(String teamName){
+    public Team getTeamFromName(String teamName) throws NoSuchElementException{
         for(Team t : teams){
             if (t.getName().equals(teamName)){
                 return t;
             }
         }
-        return null;
+        throw new NoSuchElementException("No team with that name");
     }
 
     /**

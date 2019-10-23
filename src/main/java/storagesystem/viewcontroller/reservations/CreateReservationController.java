@@ -95,19 +95,27 @@ public class CreateReservationController extends AnchorPane {
         }
         teamChoicebox.setItems(FXCollections.observableArrayList(teamNames));
         teamChoicebox.getSelectionModel().select(0);
+        initiateSpinners();
+
+        confirmButton.disableProperty().bind(termsCheckbox.selectedProperty().not());
+
+        this.item = item;
+
+    }
+
+    private void initiateSpinners() {
         DateTime now = new DateTime();
         SpinnerValueFactory<Integer> startYearFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(2019, now.getYear() + 5, now.getYear(), 1);
         SpinnerValueFactory<Integer> startMonthFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 12, now.getMonthOfYear(), 1);
         SpinnerValueFactory<Integer> startDayFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, getMonthDays(now.getMonthOfYear()), now.getDayOfMonth(), 1);
         SpinnerValueFactory<Integer> startHourFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 23, now.getHourOfDay(), 1);
-        SpinnerValueFactory<Integer> startMinuteFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 60, 0, 15);
+        SpinnerValueFactory<Integer> startMinuteFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 60, getClosestQuarter(), 15);
 
         SpinnerValueFactory<Integer> endYearFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(2019, now.getYear() + 5, now.getYear(), 1);
         SpinnerValueFactory<Integer> endMonthFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 12, now.getMonthOfYear(), 1);
         SpinnerValueFactory<Integer> endDayFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, getMonthDays(now.getMonthOfYear()), now.getDayOfMonth(), 1);
         SpinnerValueFactory<Integer> endHourFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 23, now.getHourOfDay(), 1);
-        SpinnerValueFactory<Integer> endMinuteFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 60, 0, 15);
-
+        SpinnerValueFactory<Integer> endMinuteFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 60, getClosestQuarter(), 15);
 
 
         startYearSpinner.setValueFactory(startYearFactory);
@@ -121,15 +129,47 @@ public class CreateReservationController extends AnchorPane {
         startMinuteSpinner.setValueFactory(startMinuteFactory);
         endMinuteSpinner.setValueFactory(endMinuteFactory);
 
-        confirmButton.disableProperty().bind(termsCheckbox.selectedProperty().not());
+        startMinuteSpinner.valueProperty().addListener((obs, oldValue, newValue) -> {
+            if(newValue == 60){
+                startMinuteSpinner.getValueFactory().setValue(0);
+                startHourSpinner.getValueFactory().setValue(startHourFactory.getValue()+1);
+            }
+        });
+        startHourSpinner.valueProperty().addListener((obs, oldValue, newValue) -> {
+            if(newValue == 24){
+                startHourSpinner.getValueFactory().setValue(0);
+                startDaySpinner.getValueFactory().setValue(startDayFactory.getValue()+1);
+            }
+        });
 
-        this.item = item;
+        endMinuteSpinner.valueProperty().addListener((obs, oldValue, newValue) -> {
+            if(newValue == 60){
+                endMinuteSpinner.getValueFactory().setValue(0);
+                endHourSpinner.getValueFactory().setValue(endHourFactory.getValue()+1);
+            }
+        });
+        endHourSpinner.valueProperty().addListener((obs, oldValue, newValue) -> {
+            if(newValue == 24){
+                endHourSpinner.getValueFactory().setValue(0);
+                endDaySpinner.getValueFactory().setValue(endDayFactory.getValue()+1);
+            }
+        });
+
 
     }
 
 
+    private int getClosestQuarter(){
+        DateTime now = new DateTime();
+        int minute = now.getMinuteOfHour();
+        int temp = minute % 15;
+        int temp2 = minute - temp;
+        return temp2;
+    }
+
+
     @FXML
-    private void confirm() {
+    private void confirmReservation() {
         ReservationHandler resHandler = StoreIT.getCurrentOrganisation().getReservationHandler();
         checkReservationLegal();
         if (isReservationLegal()) {
@@ -169,10 +209,6 @@ public class CreateReservationController extends AnchorPane {
         return new Interval(start, end);
     }
 
-    @FXML
-    private void cancel() {
-        close();
-    }
 
     @FXML
     private void close() {
