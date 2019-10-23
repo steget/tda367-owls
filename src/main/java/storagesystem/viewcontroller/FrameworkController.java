@@ -22,15 +22,10 @@ import java.util.logging.Logger;
  */
 public class FrameworkController implements Initializable, ILoadUI {
 
-
     @FXML
     private AnchorPane rootPane;
     @FXML
     private AnchorPane centerPane;
-    @FXML
-    private Button settingsButton;
-    @FXML
-    private Button searchButton;
     @FXML
     private Button teamButton;
     @FXML
@@ -51,8 +46,18 @@ public class FrameworkController implements Initializable, ILoadUI {
     }
 
     @FXML
-    void settingsButtonPressed() {
-        loadUI("settings/settings");
+    void userButtonPressed(){ loadUI("settings/userPage"); }
+
+    @FXML
+    void teamButtonPressed(){
+        if(StoreIT.getCurrentOrganisation().getUsersTeams(StoreIT.getCurrentUser()).size() > 0){
+            loadUI("settings/teamPage");
+        } else{
+            NoTeamPopUpController popUp = new NoTeamPopUpController();
+            rootPane.getChildren().add(popUp);
+            AbstractFader.fadeTransition(popUp, 6);
+
+        }
     }
 
     @FXML

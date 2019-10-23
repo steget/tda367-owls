@@ -11,8 +11,8 @@ import java.util.NoSuchElementException;
 public class StoreIT {
     private static List<Organisation> organisations = new ArrayList<>();
     private static User currentUser;
-    private static Organisation currentOrganisation;
     private static Team currentTeam;
+    private static Organisation currentOrganisation;
 
 
     /**

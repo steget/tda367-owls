@@ -1,24 +1,20 @@
 package storagesystem.viewcontroller.login;
 
-import javafx.animation.FadeTransition;
-import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import storagesystem.model.Organisation;
 import storagesystem.model.StoreIT;
-import storagesystem.model.User;
+import storagesystem.viewcontroller.AbstractFader;
 
 import java.io.IOException;
 import java.net.URL;
@@ -71,8 +67,6 @@ public class LoginPageController implements Initializable {
 
     @FXML
     private TextArea regUserDescriptionTextArea;
-
-    private User loginUser;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -134,6 +128,10 @@ public class LoginPageController implements Initializable {
         if (checkLoginCredentials()) {
             //set current user
             StoreIT.setCurrentUser(userNameTextField.getText());
+            StoreIT.setCurrentOrganisation(selectedOrganisation);
+            if(StoreIT.getCurrentOrganisation().getUsersTeams(StoreIT.getCurrentUser()).size() > 0){
+                StoreIT.setCurrentTeam(StoreIT.getCurrentOrganisation().getUsersTeams(StoreIT.getCurrentUser()).get(0));
+            }
 
             //open dashboard
             Parent root = FXMLLoader.load(getClass().getResource("/framework.fxml"));
@@ -141,7 +139,7 @@ public class LoginPageController implements Initializable {
             stage.setScene(new Scene(root));
             stage.show();
         } else {
-            fadeTransition(loginErrorMessage, 10);
+            AbstractFader.fadeTransition(loginErrorMessage, 10);
         }
     }
 
@@ -161,12 +159,12 @@ public class LoginPageController implements Initializable {
 
                 StoreIT.setCurrentOrganisation(getSelectedRegisterOrganisation());
                 StoreIT.createUser(name, password, desc, contactInfo);
-                fadeTransition(userRegisteredLabel, 2);
+                AbstractFader.fadeTransition(userRegisteredLabel, 2);
             } else {
-                fadeTransition(enterAllFieldsLabel, 3);
+                AbstractFader.fadeTransition(enterAllFieldsLabel, 3);
             }
         } else {
-            fadeTransition(userAlreadyExistsLabel, 3);
+            AbstractFader.fadeTransition(userAlreadyExistsLabel, 3);
         }
     }
 
@@ -211,23 +209,5 @@ public class LoginPageController implements Initializable {
      */
     private boolean doesUserExist(String name) {
         return StoreIT.doesUserExist(getSelectedLoginOrganisation(), name);
-    }
-
-    /**
-     * Takes in a JavaFX Node and starts with setting the opacity to full and fading out to 0 so the Node no longer shows.
-     *
-     * @param node          Thing to be faded
-     * @param timeInSeconds How long it should take for the opacity to go from full to not visible.
-     */
-    private void fadeTransition(Node node, int timeInSeconds) {
-        TranslateTransition transition = new TranslateTransition();
-
-        transition.setOnFinished((e) -> {
-            FadeTransition fadeOut = new FadeTransition(Duration.seconds(timeInSeconds), node);
-            fadeOut.setFromValue(1.0);
-            fadeOut.setToValue(0.0);
-            fadeOut.play();
-        });
-        transition.play();
     }
 }

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<!-- @author Jonathan Eksberg, Pär Aronsson, Hugo Stegrell -->
+
+<AnchorPane fx:id="rootPane" prefHeight="700.0" prefWidth="1000.0" stylesheets="@../basicStyles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="storagesystem.viewcontroller.settings.UserPageController">
+   <children>
+      <AnchorPane fx:id="editProfileAnchorPane" prefHeight="700.0" prefWidth="1000.0" styleClass="background">
+         <children>
+            <Text fill="WHITE" layoutX="235.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bigLabel" text="Name:" underline="true" wrappingWidth="88.1054550409317" AnchorPane.leftAnchor="245.0" AnchorPane.topAnchor="135.0" />
+            <Text fill="WHITE" layoutX="231.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bigLabel" text="Contact:" underline="true" wrappingWidth="103.1054699420929" AnchorPane.leftAnchor="228.0" AnchorPane.topAnchor="235.0" />
+            <Text fill="WHITE" layoutX="174.0" layoutY="359.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bigLabel" text="Description:" underline="true" wrappingWidth="141.36330783367157" AnchorPane.leftAnchor="193.0" AnchorPane.topAnchor="335.0" />
+            <TextField fx:id="profileNameInput" layoutX="340.0" layoutY="135.0" prefHeight="26.0" prefWidth="230.0" promptText="Input Name" style="-fx-background-color: white;" AnchorPane.leftAnchor="340.0" AnchorPane.topAnchor="135.0" />
+            <TextField fx:id="profileContactInput" layoutX="340.0" layoutY="187.0" prefHeight="26.0" prefWidth="230.0" promptText="Input Contact Information" style="-fx-background-color: white;" AnchorPane.leftAnchor="340.0" AnchorPane.topAnchor="235.0" />
+            <Button layoutX="836.0" layoutY="580.0" mnemonicParsing="false" onAction="#saveUser" prefHeight="70.0" prefWidth="126.0" styleClass="inAppButton" text="Save" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0">
+               <font>
+                  <Font size="18.0" />
+               </font></Button>
+            <Label layoutX="14.0" text="Edit Profile" textFill="WHITE">
+               <font>
+                  <Font size="61.0" />
+               </font>
+            </Label>
+            <Button fx:id="cancelButton" layoutX="43.0" layoutY="580.0" mnemonicParsing="false" onAction="#cancelButtonPressed" prefHeight="70.0" prefWidth="126.0" styleClass="inAppButton" text="Cancel">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Label fx:id="profileOrganisationLabel1" layoutX="752.0" layoutY="47.0" styleClass="bigLabel" text="Informationsteknik" textFill="WHITE" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Text fill="WHITE" layoutX="769.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bigLabel" text="Organisation:" textAlignment="CENTER" underline="true" wrappingWidth="163.36328125" AnchorPane.rightAnchor="67.63671875" AnchorPane.topAnchor="17.1015625" />
+            <Text fx:id="nameInputEmptyError" fill="RED" layoutX="587.0" layoutY="157.0" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fill in a name!">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Text fx:id="contactInputEmptyError" fill="RED" layoutX="587.0" layoutY="258.0" opacity="0.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fill in contact information!">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <TextArea fx:id="profileDescriptionInput" layoutX="340.0" layoutY="335.0" prefHeight="250.0" prefWidth="400.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="viewProfileAnchorPane" prefHeight="700.0" prefWidth="1000.0" styleClass="background">
+         <children>
+            <TextArea fx:id="profileDescriptionTextArea" editable="false" layoutX="340.0" layoutY="295.0" prefHeight="250.0" prefWidth="400.0" styleClass="readOnlyTA" wrapText="true" AnchorPane.leftAnchor="340.0" AnchorPane.topAnchor="335.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </TextArea>
+            <Label layoutX="14.0" text="Profile" textFill="WHITE" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="0.0">
+               <font>
+                  <Font size="61.0" />
+               </font>
+            </Label>
+            <Button fx:id="editProfileButton" layoutX="833.0" layoutY="578.0" mnemonicParsing="false" onAction="#editProfileButtonPressed" prefHeight="70.0" prefWidth="126.0" styleClass="inAppButton" text="Edit profile" textFill="WHITE" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Label fx:id="profileNameLabel" layoutX="366.0" layoutY="133.0" styleClass="bigLabel" text="Jonathan" textFill="WHITE" AnchorPane.leftAnchor="340.0" AnchorPane.topAnchor="135.0">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="profileContactLabel" layoutX="340.0" layoutY="185.0" styleClass="bigLabel" text="eke.coolastistan@gangstamail.com" textFill="WHITE" AnchorPane.leftAnchor="340.0" AnchorPane.topAnchor="235.0">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="profileOrganisationLabel" layoutX="751.0" layoutY="45.0" prefHeight="35.0" prefWidth="214.0" styleClass="bigLabel" text="Informationsteknik" textFill="WHITE" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="50.0">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Text fill="WHITE" layoutX="245.0" layoutY="162.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bigLabel" text="Name:" underline="true" wrappingWidth="78.70703029632568" AnchorPane.leftAnchor="245.0" AnchorPane.topAnchor="135.0" />
+            <Text fill="WHITE" layoutX="228.0" layoutY="262.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bigLabel" text="Contact:" underline="true" wrappingWidth="109.7402423620224" AnchorPane.leftAnchor="228.0" AnchorPane.topAnchor="235.0" />
+            <Text fill="WHITE" layoutX="193.0" layoutY="359.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bigLabel" text="Description:" underline="true" wrappingWidth="141.36329293251038" AnchorPane.leftAnchor="193.0" AnchorPane.topAnchor="335.0" />
+            <Text fill="WHITE" layoutX="774.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bigLabel" text="Organisation:" textAlignment="CENTER" underline="true" wrappingWidth="152.36328125" AnchorPane.rightAnchor="73.63671875" AnchorPane.topAnchor="17.1015625" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
