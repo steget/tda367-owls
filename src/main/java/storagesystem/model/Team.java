@@ -27,14 +27,14 @@ public class Team implements IBorrower {
     }
 
     public void addUsers(List<User> userList) {
-        for (int i = 0; i < userList.size(); i++) {
-            memberIDs.add(userList.get(i).getID());
+        for (User user : userList) {
+            memberIDs.add(user.getID());
         }
     }
 
     public void addItems(List<IReservable> itemList) {
-        for (int i = 0; i < itemList.size(); i++) {
-            itemIDs.add(itemList.get(i).getID());
+        for (IReservable iReservable : itemList) {
+            itemIDs.add(iReservable.getID());
         }
     }
 
