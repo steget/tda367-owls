@@ -64,8 +64,6 @@ public class ItemDetailViewController extends AnchorPane {
     private ChoiceBox itemPageLocationChoicebox;
     @FXML
     private Label imageErrorMsgLabel;
-
-
     @FXML
     Button itemPageReserveBtn;
     @FXML
@@ -123,8 +121,8 @@ public class ItemDetailViewController extends AnchorPane {
 
         //consume click so the box doesn't close itself
         contentPane.setOnMouseClicked(Event::consume);
-
-
+        editPane.setOnMouseClicked(Event::consume);
+        //todo two modes in the pane so you can either just view the info or edit the item
     }
 
     /**
@@ -235,6 +233,7 @@ public class ItemDetailViewController extends AnchorPane {
 
     /**
      * adds a listener to this object.
+     *
      * @param listener
      */
     public void addDetailListener(DetailedItemViewListener listener) {
@@ -289,6 +288,7 @@ public class ItemDetailViewController extends AnchorPane {
     /**
      * Recieves a string. loops through the location lists' name. If the strings match,
      * it saves the location that matched the string as the new location to the item.
+     *
      * @param locationName is used to get the correct location from the list of locations.
      */
     private void saveLocation(String locationName) {
