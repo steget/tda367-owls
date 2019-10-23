@@ -121,7 +121,7 @@ public class StoreIT {
      * Loads all data into the program. Should be run at start.
      */
     public void initializeBackend() throws IOException {
-//        reset();
+        //reset();
         try {
             organisations.addAll(JSONHandler.getOrganisationList());
         } catch (NullPointerException e) {
