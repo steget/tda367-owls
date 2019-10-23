@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import storagesystem.model.IReservable;
+import storagesystem.model.StoreIT;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -45,7 +46,7 @@ public class InventoryListItemController extends AnchorPane {
         }
         this.name.setText(item.getName());
         this.amount.setText("" + item.getAmount());
-        this.itemLocation.setText("" + item.getLocation().getName());
+        this.itemLocation.setText("" + StoreIT.getCurrentOrganisation().getLocation(item.getLocationID()).getName());
         this.condition.setText("" + item.getCondition());
         this.bookable.setText("" +item.isReservable());
         this.thisItem = item;

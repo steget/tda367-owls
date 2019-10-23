@@ -64,7 +64,7 @@ public class Team implements IBorrower {
         return name;
     }
 
-    public void addItemToInventory(IReservable itemToAdd) {
+    void addItemToInventory(IReservable itemToAdd) {
         itemIDs.add(itemToAdd.getID());
     }
 
@@ -76,7 +76,7 @@ public class Team implements IBorrower {
         return termsAndConditions;
     }
 
-    List<Integer> getAllItemIDs() {
+    public List<Integer> getAllItemIDs() {
         return itemIDs;
     }
 

@@ -95,7 +95,7 @@ public class Item implements IReservable {
         return locationID;
     }
 
-    public void setLocation(int locationID) {
+    public void setLocationID(int locationID) {
         this.locationID = locationID;
     }
 

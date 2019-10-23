@@ -16,15 +16,27 @@ import java.util.ArrayList;
  */
 public class PictureHandler {
     /**
+     * Drops the alpha channel of the buffered image sent in. Should be used when creating a buffered image from JavaFX Image.
+     * @param src
+     * @return
+     */
+    public static BufferedImage dropAlphaChannel(BufferedImage src) {
+        BufferedImage convertedImg = new BufferedImage(src.getWidth(), src.getHeight(), BufferedImage.TYPE_INT_RGB);
+        convertedImg.getGraphics().drawImage(src, 0, 0, null);
+
+        return convertedImg;
+    }
+
+    /**
      * Retrieves the items searchpath.
      *
      * @param itemID
      * @param itemName
      * @return the image URL that can be used to read/write the file
      */
-    public static String getImageFilePath(int itemID, String itemName) {
+    public static String getImageUrl(int itemID, String itemName) {
 
-        return "src/main/resources/pictures/items" + File.separatorChar + itemID + "-" + itemName + ".jpg";
+        return "/pictures/items/" + itemID + "-" + itemName + ".jpg";
     }
 
     /**
@@ -36,10 +48,11 @@ public class PictureHandler {
      */
     public static Image getItemImage(int itemID, String itemName) {
         Image img = null;
+        String filePath = "src/main/resources" + getImageUrl(itemID, itemName);
         try {
-            img = SwingFXUtils.toFXImage(ImageIO.read(new File(getImageFilePath(itemID, itemName))), null);
+            img = SwingFXUtils.toFXImage(ImageIO.read(new File(filePath)), null);
         } catch (IOException o) {
-            System.out.println("Could not read file: " + getImageFilePath(itemID, itemName));
+            System.out.println("Could not read file: " + filePath);
         }
 
         return img;
@@ -55,11 +68,12 @@ public class PictureHandler {
      * @param itemName
      */
     public static void saveItemImagePic(BufferedImage file, int itemID, String itemName) {
+        String filePath = "src/main/resources" + getImageUrl(itemID, itemName);
 
         try {
-            ImageIO.write(file, "jpg", new File(getImageFilePath(itemID, itemName)));
+            ImageIO.write(file, "jpg", new File(filePath));
         } catch (IOException exception) {
-            System.out.println("Could not read file: " + getImageFilePath(itemID, itemName));
+            System.out.println("Could not read file: " + filePath);
 
         }
     }

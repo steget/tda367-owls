@@ -189,8 +189,8 @@ public class StoreIT {
         reservations.add(res);
         reservations.add(res2);
 
-        tempTeam.addItemToInventory(mockItem);
-        tempTeam.addItemToInventory(mockItem2);
+        informationsteknik.addItem(mockItem, tempTeam);
+        informationsteknik.addItem(mockItem2, tempTeam);
     }
 
 }

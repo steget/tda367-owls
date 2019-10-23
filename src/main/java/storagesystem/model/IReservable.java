@@ -52,8 +52,8 @@ public interface IReservable {
 
     public void setReservable(boolean reservable);
 
-    public void setLocation(Location location);
+    public void setLocationID(int locationID);
 
-    public void setImage(Image image);
+    public void setImageUrl(String imageUrl);
 
 }
