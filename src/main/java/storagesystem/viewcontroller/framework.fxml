@@ -47,15 +47,16 @@
          <top>
             <Pane fx:id="frameTopPane" prefHeight="100.0" prefWidth="1200.0" styleClass="appbar" stylesheets="@basicStyles.css" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="teamButton" layoutX="1076.0" layoutY="27.0" mnemonicParsing="false" onMouseClicked="#teamButtonPressed" prefHeight="47.0" prefWidth="100.0" styleClass="menuButton" text="Team">
+                  <Button fx:id="teamButton" layoutX="940.0" layoutY="27.0" mnemonicParsing="false" onMouseClicked="#teamButtonPressed" prefHeight="47.0" prefWidth="100.0" styleClass="menuButton" text="Team">
                   </Button>
-                  <Button fx:id="userButton" layoutX="946.0" layoutY="27.0" mnemonicParsing="false" onMouseClicked="#userButtonPressed" prefHeight="47.0" prefWidth="100.0" styleClass="menuButton" text="Profile">
+                  <Button fx:id="userButton" layoutX="810.0" layoutY="27.0" mnemonicParsing="false" onMouseClicked="#userButtonPressed" prefHeight="47.0" prefWidth="100.0" styleClass="menuButton" text="Profile">
                   </Button>
                   <ImageView fitHeight="72.0" fitWidth="422.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@/pictures/StoreITLogo.png" />
                      </image>
                   </ImageView>
+                  <Button fx:id="logOutButton" layoutX="1070.0" layoutY="27.0" mnemonicParsing="false" onAction="#logOutButtonPressed" prefHeight="47.0" prefWidth="100.0" styleClass="secondaryAppButton" text="Sign Out" />
                </children>
             </Pane>
          </top>
