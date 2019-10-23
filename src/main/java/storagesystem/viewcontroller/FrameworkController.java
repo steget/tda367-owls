@@ -46,12 +46,12 @@ public class FrameworkController implements Initializable, ILoadUI {
     }
 
     @FXML
-    void userButtonPressed(){ loadUI("settings/userPage"); }
+    void userButtonPressed(){ loadUI("/settings/userPage.fxml"); }
 
     @FXML
     void teamButtonPressed(){
         if(StoreIT.getCurrentOrganisation().getUsersTeams(StoreIT.getCurrentUser()).size() > 0){
-            loadUI("settings/teamPage");
+            loadUI("/settings/teamPage.fxml");
         } else{
             NoTeamPopUpController popUp = new NoTeamPopUpController();
             rootPane.getChildren().add(popUp);
@@ -62,12 +62,12 @@ public class FrameworkController implements Initializable, ILoadUI {
 
     @FXML
     void allItemsButtonPressed() {
-        loadUI("itemview/itemList");
+        loadUI("/allItems/itemList.fxml");
     }
 
     @FXML
     void reservationsButtonPressed() {
-        loadUI("reservations/reservations");
+        loadUI("/reservations/reservations.fxml");
     }
 
     @FXML
@@ -75,7 +75,7 @@ public class FrameworkController implements Initializable, ILoadUI {
 
         if(StoreIT.getCurrentOrganisation().isUserPartOfTeam(StoreIT.getCurrentUser())){
             //todo add note "Youre not part of a team" that fades away
-            loadUI("inventory/inventory");
+            loadUI("/inventory/inventory.fxml");
         }
     }
 
@@ -89,7 +89,7 @@ public class FrameworkController implements Initializable, ILoadUI {
     public void loadUI(String ui) {
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("/" + ui + ".fxml"));
+            root = FXMLLoader.load(getClass().getResource(ui));
         } catch (IOException e) {
             Logger.getLogger(FrameworkController.class.getName()).log(Level.SEVERE, null, e);
         }
