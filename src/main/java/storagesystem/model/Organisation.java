@@ -1,6 +1,5 @@
 package storagesystem.model;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -50,13 +49,10 @@ public class Organisation {
      * @throws NoSuchElementException if item ID not found
      */
     IReservable getItem(int ID) throws NoSuchElementException {
-        for (Team t :
-                teams) {
-            for (IReservable i :
-                    items) {
-                if (i.getID() == ID) {
-                    return i;
-                }
+        for (IReservable i :
+                items) {
+            if (i.getID() == ID) {
+                return i;
             }
         }
         throw new NoSuchElementException("ItemID not found in list of items");
@@ -172,7 +168,7 @@ public class Organisation {
         for (Team t :
                 teams) {
             if (t.getAllItemIDs().contains(item.getID())) {
-                   return t;
+                return t;
             }
         }
         throw new NoSuchElementException("Item owner could not be found");
