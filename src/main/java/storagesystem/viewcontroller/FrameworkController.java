@@ -4,10 +4,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import storagesystem.model.StoreIT;
 
 import java.io.IOException;
@@ -79,6 +81,19 @@ public class FrameworkController implements Initializable, ILoadUI {
         }
     }
 
+    @FXML
+    void logOutButtonPressed(){
+        Parent root;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/login/loginPage.fxml"));
+            Stage stage = (Stage) rootPane.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            Logger.getLogger(FrameworkController.class.getName()).log(Level.SEVERE, null, e);
+        }
+
+    }
 
     /**
      * Method to avoid repetitive code.
