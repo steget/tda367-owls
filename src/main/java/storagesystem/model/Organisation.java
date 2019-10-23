@@ -87,7 +87,7 @@ public class Organisation {
                 return location;
             }
         }
-        throw new NoSuchElementException("ItemID not found in list of items");
+        throw new NoSuchElementException("Location not found in list of items");
     }
 
     /**
