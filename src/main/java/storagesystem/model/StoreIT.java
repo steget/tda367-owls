@@ -121,7 +121,7 @@ public class StoreIT {
      * Loads all data into the program. Should be run at start.
      */
     public void initializeBackend() throws IOException {
-        //reset();
+        reset();
         try {
             organisations.addAll(JSONHandler.getOrganisationList());
         } catch (NullPointerException e) {
@@ -175,6 +175,7 @@ public class StoreIT {
 
         informationsteknik.getLocations().add(mockLocation);
         informationsteknik.getLocations().add(mockLocation2);
+        informationsteknik.getLocations().add(mockLocation3);
         IReservable mockItem = IReservableFactory.createReservableItem("mockItem", "This is a description", "Behave please.",
                 2, Condition.GOOD, true, mockLocation.getID(), "/pictures/art.png");
         IReservable mockItem2 = IReservableFactory.createReservableItem("mockItem nr 2", "This is a description", "Behave please.",

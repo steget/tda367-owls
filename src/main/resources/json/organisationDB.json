@@ -133,6 +133,11 @@
         "name": "Garaget",
         "description": "This location is unavailable",
         "ID": 1
+      },
+      {
+        "name": "Maskinhuset",
+        "description": "This location is unavailable",
+        "ID": 2
       }
     ],
     "reservationHandler": {
