@@ -55,7 +55,6 @@ public class Organisation {
             for (IReservable i :
                     items) {
                 if (i.getID() == ID) {
-                    System.out.println("Item found");
                     return i;
                 }
             }
@@ -85,11 +84,10 @@ public class Organisation {
     public Location getLocation(int ID) throws NoSuchElementException {
         for (Location location : locations) {
             if (location.getID() == ID) {
-                System.out.println("Item found");
                 return location;
             }
         }
-        throw new NoSuchElementException("ItemID not found in list of items");
+        throw new NoSuchElementException("Location not found in list of items");
     }
 
     /**
