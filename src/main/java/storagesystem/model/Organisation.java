@@ -55,7 +55,6 @@ public class Organisation {
             for (IReservable i :
                     items) {
                 if (i.getID() == ID) {
-                    System.out.println("Item found");
                     return i;
                 }
             }
@@ -85,7 +84,6 @@ public class Organisation {
     public Location getLocation(int ID) throws NoSuchElementException {
         for (Location location : locations) {
             if (location.getID() == ID) {
-                System.out.println("Item found");
                 return location;
             }
         }
