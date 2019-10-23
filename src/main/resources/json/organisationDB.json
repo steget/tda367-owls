@@ -7,13 +7,13 @@
         "CLASSNAME": "storagesystem.model.Item",
         "DATA": {
           "ID": 0,
-          "name": "mockItem",
-          "description": "This is a description",
-          "userRequirements": "Behave please.",
-          "amount": 2,
-          "condition": "GOOD",
+          "name": "Cute Owl",
+          "description": "this is a very cute owl",
+          "userRequirements": "Don\u0027t kill my owl.",
+          "amount": 1,
+          "condition": "GREAT",
           "reservable": true,
-          "locationID": 0
+          "locationID": 1
         }
       },
       {
