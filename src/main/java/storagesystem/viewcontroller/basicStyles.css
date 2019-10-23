@@ -1,4 +1,3 @@
-
 * {
     primaryColor: #212121;
     secondaryColor: #303030;
@@ -53,12 +52,22 @@
 
 .menuButton {
     -fx-background-color: tertiaryColor;
-    border: solid #FFFFFF;
-    -fx-text-fill: #FFFFFF;
+    -fx-text-fill: white;
 }
 
 .menuButton:hover {
     -fx-background-color: quarternaryColor;
+}
+
+.loginButton{
+    -fx-background-color: quarternaryColor;
+    -fx-text-fill: white;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.loginButton:hover{
+    -fx-background-color: #767676;
 }
 
 .smallLabel {
@@ -89,16 +98,7 @@
     -fx-text-fill: #00ff0f;
 }
 
-#loginButton {
-    -fx-font-size: 24px;
-    -fx-font-weight: bold;
-}
-
-.choice-box {
-    -fx-background-color: quarternaryColor;
-}
-
-.choice-box > .label{
-    -fx-text-fill: white;
+.readOnlyTA .content{
+    -fx-cursor: closed;
 }
 

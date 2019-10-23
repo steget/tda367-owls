@@ -70,6 +70,12 @@ public class TeamPageController extends AnchorPane implements Initializable {
     @FXML
     private Label userNotPartOfTeamMsg;
 
+    @FXML
+    private Label teamNameTooLongMsg;
+
+    @FXML
+    private Label teamNameTooShortMsg;
+
     private List<Team> currentUsersTeams = new ArrayList<>();
     private ObservableList<String> teamNames = FXCollections.observableArrayList();
     private int currentlySelectedTeamIndex;
@@ -141,11 +147,18 @@ public class TeamPageController extends AnchorPane implements Initializable {
     @FXML
     public void saveTeam() {
         StoreIT.getCurrentTeam().setTermsAndConditions(settingsTeamContractInput.getText());
-        StoreIT.getCurrentTeam().setName(settingsTeamNameInput.getText());
-
-        updateChangedTeamNameInChoicebox();
-        updateTeamsChoicebox();
-        teamAnchorPane.toFront();
+        if(settingsTeamNameInput.getText().length() > 20){
+            AbstractFader.fadeTransition(teamNameTooLongMsg, 3);
+        }
+        else if(settingsTeamNameInput.getText().length() < 6){
+            AbstractFader.fadeTransition(teamNameTooShortMsg, 3);
+        }
+        else{
+            StoreIT.getCurrentTeam().setName(settingsTeamNameInput.getText());
+            updateChangedTeamNameInChoicebox();
+            updateTeamsChoicebox();
+            teamAnchorPane.toFront();
+        }
     }
 
 

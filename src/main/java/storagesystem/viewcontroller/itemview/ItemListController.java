@@ -5,8 +5,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
-import storagesystem.model.StoreIT;
 import storagesystem.model.IReservable;
+import storagesystem.model.StoreIT;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ import java.util.ResourceBundle;
  */
 public class ItemListController implements Initializable {
     @FXML
-    private AnchorPane rootPane;
+    private AnchorPane itemListRootPane;
 
     @FXML
     private FlowPane itemListFlowPane;
@@ -60,8 +60,8 @@ public class ItemListController implements Initializable {
                 return panel;
             }
         }
-
-        throw new NoSuchElementException("No panel for the product could be found");
-        //perhaps create a new panel instead?
+        SmallItemPanel newPanel = new SmallItemPanel(product);
+        allSmallItemPanels.add(newPanel);
+        return newPanel;
     }
 }

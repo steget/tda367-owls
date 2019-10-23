@@ -43,7 +43,6 @@ public class FrameworkController implements Initializable, ILoadUI {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
     }
 
     @FXML
@@ -56,7 +55,7 @@ public class FrameworkController implements Initializable, ILoadUI {
         } else{
             NoTeamPopUpController popUp = new NoTeamPopUpController();
             rootPane.getChildren().add(popUp);
-            AbstractFader.fadeTransition(popUp, 3);
+            AbstractFader.fadeTransition(popUp, 6);
 
         }
     }
@@ -69,6 +68,15 @@ public class FrameworkController implements Initializable, ILoadUI {
     @FXML
     void reservationsButtonPressed() {
         loadUI("reservations/reservations");
+    }
+
+    @FXML
+    void yourInventoryButtonPressed(){
+
+        if(StoreIT.getCurrentOrganisation().isUserPartOfTeam(StoreIT.getCurrentUser())){
+            //todo add note "Youre not part of a team" that fades away
+            loadUI("inventory/inventory");
+        }
     }
 
 

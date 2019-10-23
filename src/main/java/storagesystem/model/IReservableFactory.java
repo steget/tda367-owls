@@ -4,6 +4,7 @@ import javafx.scene.image.Image;
 
 /**
  * Factory for creating reservable things. Returns objects of the Interface
+ *
  * @author Hugo Stegrell
  * @see IReservable
  */

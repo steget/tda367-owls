@@ -16,8 +16,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        StoreIT storeIT;
-        storeIT = new StoreIT();
+        StoreIT storeIT = new StoreIT();
         storeIT.initializeBackend();
 
         stage.setTitle("StoreIT");

@@ -16,11 +16,11 @@ import java.util.Objects;
  * @author Jonathan Eksberg, Carl Lindh
  */
 public class Item implements IReservable {
+    private static int nextID;
+    private final int ID;
     private String name;
     private String description;
     private String userRequirements;
-    private final int ID;
-    private static int nextID;
     private int amount;
     private Condition condition;
     private boolean reservable;

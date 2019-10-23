@@ -4,8 +4,6 @@ package storagesystem.model;
 import org.joda.time.DateTime;
 import org.joda.time.Interval;
 
-import java.util.Objects;
-
 /**
  * @author William Albertsson
  * A reservation most importantly contains a object that is reserved, a time of reservation and who the borrower is
@@ -54,13 +52,13 @@ public class Reservation implements IReservation {
         this(res.getID(), res.getBorrower(), res.getInterval(), res.getReservedObject(), res.getStatus());
     }
 
+    public static void setNxtResId(int nxtResId) {
+        Reservation.NXT_RES_ID = nxtResId;
+    }
+
     @Override
     public int getID() {
         return id;
-    }
-
-    public static void setNxtResId(int nxtResId) {
-        Reservation.NXT_RES_ID = nxtResId;
     }
 
     @Override

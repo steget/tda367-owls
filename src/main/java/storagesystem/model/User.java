@@ -6,12 +6,12 @@ package storagesystem.model;
  * @author Hugo Stegrell, Pär Aronsson
  */
 public class User implements IBorrower {
+    private static int nextID;
     private String name;
     private String password;
     private String description;
     private String contactInformation;
     private int ID;
-    private static int nextID;
 
     public User(String name, String password, String description, String contactInformation) {
         this.name = name;
@@ -25,24 +25,11 @@ public class User implements IBorrower {
     }
 
     public User(String name, String description, String contactInformation) {
-        this.name = name;
-        this.description = description;
-        this.contactInformation = contactInformation;
-
-        //set ID and update lastID
-        ID = nextID;
-        nextID++;
+        this(name, "", description, contactInformation);
     }
 
     public User(String name) {
-        this(name, "", "");
-    }
-
-    private User(User userToCopy) {
-        this.name = userToCopy.name;
-        this.description = userToCopy.description;
-        this.contactInformation = userToCopy.contactInformation;
-        this.ID = userToCopy.ID;
+        this(name, "", "", "");
     }
 
     public String getName() {
@@ -73,8 +60,25 @@ public class User implements IBorrower {
         return ID;
     }
 
+    String getPassword() {
+        return password;
+    }
+
     public void setPassword(String password) {
         this.password = password;
     }
 
+    /**
+     * Compares ID's if o is a reservation
+     *
+     * @param obj the reference object with which to compare.
+     * @return {@code true} if this object is the same as the obj argument; {@code false} otherwise.
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        User comparingUser = (User) obj;
+        return ID == comparingUser.ID;
+    }
 }

@@ -54,7 +54,7 @@
       </AnchorPane>
       <AnchorPane fx:id="viewProfileAnchorPane" prefHeight="700.0" prefWidth="1000.0" styleClass="background">
          <children>
-            <TextArea fx:id="profileDescriptionTextArea" editable="false" layoutX="340.0" layoutY="295.0" prefHeight="250.0" prefWidth="400.0" wrapText="true" AnchorPane.leftAnchor="340.0" AnchorPane.topAnchor="335.0">
+            <TextArea fx:id="profileDescriptionTextArea" editable="false" layoutX="340.0" layoutY="295.0" prefHeight="250.0" prefWidth="400.0" styleClass="readOnlyTA" wrapText="true" AnchorPane.leftAnchor="340.0" AnchorPane.topAnchor="335.0">
                <font>
                   <Font size="18.0" />
                </font>
