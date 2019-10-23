@@ -1,9 +1,11 @@
 package storagesystem.viewcontroller.allItems;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import storagesystem.model.IReservable;
 
@@ -24,7 +26,6 @@ public class SmallItemPanel extends AnchorPane {
     @FXML
     private Label itemNameLabel;
 
-    private final ArrayList<SmallItemPanelListener> listeners = new ArrayList<>();
 
     public SmallItemPanel(IReservable reservableItem) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/allItems/smallItemPanel.fxml"));
@@ -46,23 +47,4 @@ public class SmallItemPanel extends AnchorPane {
     IReservable getReservableItem() {
         return reservableItem;
     }
-
-    /**
-     * listener method
-     */
-    @FXML
-    void handlePanePressed() {
-        for (SmallItemPanelListener l : listeners) {
-            l.inventoryListItemClicked(reservableItem);
-        }
-    }
-
-    interface SmallItemPanelListener {
-        void inventoryListItemClicked(IReservable item);
-    }
-
-    public void addListener(SmallItemPanelListener listener) {
-        listeners.add(listener);
-    }
-
 }

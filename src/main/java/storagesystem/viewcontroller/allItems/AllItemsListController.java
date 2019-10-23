@@ -1,8 +1,10 @@
 package storagesystem.viewcontroller.allItems;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import storagesystem.model.IReservable;
@@ -44,26 +46,34 @@ public class AllItemsListController implements Initializable {
         for (IReservable reservableItem :
                 StoreIT.getCurrentOrganisation().getAllItems()) {
             SmallItemPanel newSmallItemPanel = new SmallItemPanel(reservableItem);
-            newSmallItemPanel.addListener(this::smallItemPanelClicked);
+            newSmallItemPanel.addEventHandler(MouseEvent.MOUSE_CLICKED, onClickHandler);
             allSmallItemPanels.add(newSmallItemPanel);
         }
     }
 
     private void smallItemPanelClicked(IReservable item) {
         reservableItemDetailView = new ReservableItemDetailController(item);
+        reservableItemDetailView.addEventHandler(MouseEvent.MOUSE_CLICKED, detailViewClickedHandler);
         rootPane.getChildren().add(reservableItemDetailView);
+    }
+
+    private EventHandler<MouseEvent> detailViewClickedHandler = e -> {
+        detailViewClicked();
+    };
+    private void detailViewClicked(){
+        rootPane.getChildren().remove(reservableItemDetailView);
     }
 
     private void updateItemList(List<IReservable> items) {
         itemListFlowPane.getChildren().clear();
 
         for (IReservable reservableItem : items) {
-            SmallItemPanel temp = findProductPanel(reservableItem);
-            itemListFlowPane.getChildren().add(temp);
+            SmallItemPanel smallItemPanelMatchingName = findSmallItemPanel(reservableItem);
+            itemListFlowPane.getChildren().add(smallItemPanelMatchingName);
         }
     }
 
-    private SmallItemPanel findProductPanel(IReservable item) {
+    private SmallItemPanel findSmallItemPanel(IReservable item) {
         for (SmallItemPanel panel : allSmallItemPanels) {
             if (panel.getReservableItem() == item) {
                 return panel;
@@ -72,8 +82,14 @@ public class AllItemsListController implements Initializable {
 
         //if no panel for the item could be found a new one is created
         SmallItemPanel newPanel = new SmallItemPanel(item);
-        newPanel.addListener(this::smallItemPanelClicked);
+        newPanel.addEventHandler(MouseEvent.MOUSE_CLICKED, onClickHandler);
         allSmallItemPanels.add(newPanel);
         return newPanel;
     }
+
+    private EventHandler<MouseEvent> onClickHandler = e -> {
+        SmallItemPanel panel = (SmallItemPanel) e.getSource();
+        smallItemPanelClicked(panel.getReservableItem());
+        e.consume();
+    };
 }

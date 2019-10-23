@@ -1,5 +1,6 @@
 package storagesystem.viewcontroller.allItems;
 
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -8,6 +9,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import storagesystem.model.Condition;
 import storagesystem.model.IReservable;
@@ -49,6 +51,8 @@ public class ReservableItemDetailController extends AnchorPane {
     private TextArea itemPageUserRequirementsTA;
     @FXML
     private Button itemPageReserveBtn;
+    @FXML
+    private AnchorPane contentPane;
 
     public ReservableItemDetailController(IReservable item) {
         this.item = item;
@@ -69,6 +73,8 @@ public class ReservableItemDetailController extends AnchorPane {
 
     public void initialize() {
         updateAllVisibleFields();
+
+        contentPane.addEventHandler(MouseEvent.MOUSE_CLICKED, Event::consume);
     }
 
     /**
@@ -85,6 +91,7 @@ public class ReservableItemDetailController extends AnchorPane {
         setReservableBtn(item.isReservable());
         setLocationLabel(item.getLocation().getName());
         setImage(item.getImage());
+        setTeamOwnerLabel(itemOwner.getName());
     }
 
     @FXML
@@ -148,20 +155,6 @@ public class ReservableItemDetailController extends AnchorPane {
 
     private void setReservableBtn(boolean reservable) {
         itemPageReserveBtn.setDisable(!reservable);
-    }
-
-    /**
-     * Listener interface for DetailedItemView
-     */
-    interface ReservableItemDetailViewListener {
-        void reservableItemDetailViewClicked();
-    }
-
-    /**
-     * Listener interface for saveButtonClicked
-     */
-    interface saveButtonClickedListener {
-        void saveButtonClicked();
     }
 }
 
