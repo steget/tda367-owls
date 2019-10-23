@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 public class PictureHandler {
 
-    static String defaultImagePath = "src/main/resources/pictures/unknown-item-image.png";
+    static String defaultImagePath = "src/main/resources/pictures/items/unknown-item-image.png";
 
     /**
      * Retrieves the items searchpath.
