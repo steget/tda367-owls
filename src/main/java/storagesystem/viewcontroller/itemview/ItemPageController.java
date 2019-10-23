@@ -83,7 +83,7 @@ public class ItemPageController {
         setReservableLabel(item.isReservable() + "");
         setReservableBtn(item.isReservable());
         setLocationLabel(StoreIT.getCurrentOrganisation().getLocation(item.getLocationID()).getName());
-        setImage(PictureHandler.getItemImage(item.getID(), item.getName()));
+        setImage(PictureHandler.getItemImage(item.getID()));
     }
 
     @FXML

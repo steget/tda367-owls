@@ -138,7 +138,7 @@ public class ItemDetailViewController extends AnchorPane {
         setAmountLabel("" + reservableItem.getAmount());
         setConditionSlider(reservableItem.getCondition());
         setReservableBtn(reservableItem.isReservable());
-        setImage(PictureHandler.getItemImage(reservableItem.getID(), itemPageNameTA.getText()));
+        setImage(PictureHandler.getItemImage(reservableItem.getID()));
         setTeamOwnerLabel(itemOwner.getName());
         setReservableChoiceBox();
         setLocationChoicebox();
@@ -329,8 +329,8 @@ public class ItemDetailViewController extends AnchorPane {
         if (selectedFile != null) {
             try {
                 BufferedImage selectedImage = ImageIO.read(selectedFile);
-                PictureHandler.saveItemImagePic(selectedImage, reservableItem.getID(), itemPageNameTA.getText());
-                itemPageImageView.setImage(PictureHandler.getItemImage(reservableItem.getID(), itemPageNameTA.getText()));
+                PictureHandler.saveItemImagePic(selectedImage, reservableItem.getID());
+                itemPageImageView.setImage(PictureHandler.getItemImage(reservableItem.getID()));
 
             } catch (IOException exception) {
                 System.out.println("Can't read image: " + selectedFile.getPath());

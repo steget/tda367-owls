@@ -6,55 +6,55 @@
       {
         "CLASSNAME": "storagesystem.model.Item",
         "DATA": {
-          "ID": 0,
+          "ID": 12,
           "name": "mockItem",
           "description": "This is a description",
           "userRequirements": "Behave please.",
           "amount": 2,
           "condition": "GOOD",
           "reservable": true,
-          "locationID": 0
+          "locationID": 4
         }
       },
       {
         "CLASSNAME": "storagesystem.model.Item",
         "DATA": {
-          "ID": 1,
+          "ID": 13,
           "name": "mockItem nr 2",
           "description": "This is a description",
           "userRequirements": "Behave please.",
           "amount": 2,
           "condition": "GOOD",
           "reservable": true,
-          "locationID": 1
+          "locationID": 5
         }
       }
     ],
     "teams": [
       {
         "itemIDs": [
-          0,
-          1
+          12,
+          13
         ],
         "memberIDs": [
-          0,
-          1
+          42,
+          43
         ],
         "name": "sexNollK",
         "termsAndConditions": "För att låna våra prylar måste prylen vara i samma skick som den var när den lånades ut. Behövs den diskas så diska den osv. Prylen ska också vara tillbaka på samma plats igen",
         "imageUrl": null,
-        "teamID": 0
+        "teamID": 16
       },
       {
         "itemIDs": [],
         "memberIDs": [
-          0,
-          1
+          42,
+          43
         ],
         "name": "P.R.NollK",
         "termsAndConditions": "text 2",
         "imageUrl": null,
-        "teamID": 1
+        "teamID": 17
       }
     ],
     "users": [
@@ -63,61 +63,61 @@
         "password": "1",
         "description": "1",
         "contactInformation": "1",
-        "ID": 0
+        "ID": 42
       },
       {
         "name": "admin",
         "password": "1",
         "description": "1",
         "contactInformation": "1",
-        "ID": 1
+        "ID": 43
       },
       {
         "name": "eke",
         "password": "1",
         "description": "1",
         "contactInformation": "1",
-        "ID": 2
+        "ID": 44
       },
       {
         "name": "kvick",
         "password": "1",
         "description": "1",
         "contactInformation": "1",
-        "ID": 3
+        "ID": 45
       },
       {
         "name": "sponken",
         "password": "1",
         "description": "1",
         "contactInformation": "1",
-        "ID": 4
+        "ID": 46
       },
       {
         "name": "giff",
         "password": "1",
         "description": "1",
         "contactInformation": "1",
-        "ID": 5
+        "ID": 47
       },
       {
         "name": "steget",
         "password": "1",
         "description": "1",
         "contactInformation": "1",
-        "ID": 6
+        "ID": 48
       }
     ],
     "locations": [
       {
         "name": "Hubben",
         "description": "This location does not exist",
-        "ID": 0
+        "ID": 4
       },
       {
         "name": "Garaget",
         "description": "This location is unavailable",
-        "ID": 1
+        "ID": 5
       }
     ],
     "reservationHandler": {
@@ -125,36 +125,36 @@
         {
           "CLASSNAME": "storagesystem.model.Reservation",
           "DATA": {
-            "id": 0,
+            "id": 9,
             "borrower": {
               "CLASSNAME": "storagesystem.model.Team",
               "DATA": {
                 "itemIDs": [
-                  0,
-                  1
+                  12,
+                  13
                 ],
                 "memberIDs": [
-                  0,
-                  1
+                  42,
+                  43
                 ],
                 "name": "sexNollK",
                 "termsAndConditions": "För att låna våra prylar måste prylen vara i samma skick som den var när den lånades ut. Behövs den diskas så diska den osv. Prylen ska också vara tillbaka på samma plats igen",
                 "imageUrl": null,
-                "teamID": 0
+                "teamID": 16
               }
             },
             "interval": "2019-09-10T12:40:00.000+02:00/2019-09-10T15:00:00.000+02:00",
             "reservedObject": {
               "CLASSNAME": "storagesystem.model.Item",
               "DATA": {
-                "ID": 0,
+                "ID": 12,
                 "name": "mockItem",
                 "description": "This is a description",
                 "userRequirements": "Behave please.",
                 "amount": 2,
                 "condition": "GOOD",
                 "reservable": true,
-                "locationID": 0
+                "locationID": 4
               }
             },
             "status": "APPROVED"
@@ -163,36 +163,36 @@
         {
           "CLASSNAME": "storagesystem.model.Reservation",
           "DATA": {
-            "id": 1,
+            "id": 10,
             "borrower": {
               "CLASSNAME": "storagesystem.model.Team",
               "DATA": {
                 "itemIDs": [
-                  0,
-                  1
+                  12,
+                  13
                 ],
                 "memberIDs": [
-                  0,
-                  1
+                  42,
+                  43
                 ],
                 "name": "sexNollK",
                 "termsAndConditions": "För att låna våra prylar måste prylen vara i samma skick som den var när den lånades ut. Behövs den diskas så diska den osv. Prylen ska också vara tillbaka på samma plats igen",
                 "imageUrl": null,
-                "teamID": 0
+                "teamID": 16
               }
             },
             "interval": "2019-09-12T17:30:00.000+02:00/2019-10-16T20:00:00.000+02:00",
             "reservedObject": {
               "CLASSNAME": "storagesystem.model.Item",
               "DATA": {
-                "ID": 0,
+                "ID": 12,
                 "name": "mockItem",
                 "description": "This is a description",
                 "userRequirements": "Behave please.",
                 "amount": 2,
                 "condition": "GOOD",
                 "reservable": true,
-                "locationID": 0
+                "locationID": 4
               }
             },
             "status": "APPROVED"
