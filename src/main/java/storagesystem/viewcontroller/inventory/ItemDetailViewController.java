@@ -275,7 +275,6 @@ public class ItemDetailViewController extends AnchorPane {
         reservableItem.setName(itemPageNameTA.getText());
         reservableItem.setDescription(itemPageDescriptionTA.getText());
         reservableItem.setUserRequirements(itemPageUserRequirementsTA.getText());
-        //reservableItem.setImage(itemPageImageView.getImage());
         reservableItem.setReservable(isReservableChoiceBox.getSelectionModel().getSelectedIndex() == 0);
         saveCondition((int) itemPageConditionSlider.getValue());
         saveLocation(itemPageLocationChoicebox.getValue().toString());
