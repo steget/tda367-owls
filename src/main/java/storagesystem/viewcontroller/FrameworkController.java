@@ -55,10 +55,7 @@ public class FrameworkController implements Initializable, ILoadUI {
         if(StoreIT.getCurrentOrganisation().getUsersTeams(StoreIT.getCurrentUser()).size() > 0){
             loadUI("settings/teamPage");
         } else{
-            NoTeamPopUpController popUp = new NoTeamPopUpController();
-            rootPane.getChildren().add(popUp);
-            AbstractFader.fadeTransition(popUp, 6);
-
+            noTeamPopUp();
         }
     }
 
@@ -76,11 +73,15 @@ public class FrameworkController implements Initializable, ILoadUI {
     void yourInventoryButtonPressed(){
 
         if(StoreIT.getCurrentOrganisation().isUserPartOfTeam(StoreIT.getCurrentUser())){
-            //todo add note "Youre not part of a team" that fades away
             loadUI("inventory/inventory");
+        }else{
+            noTeamPopUp();
         }
     }
 
+    /**
+     * When the logOutButton is pressed the root is switched and you are taken back to the loginPage
+     */
     @FXML
     void logOutButtonPressed(){
         Parent root;
@@ -109,5 +110,11 @@ public class FrameworkController implements Initializable, ILoadUI {
             Logger.getLogger(FrameworkController.class.getName()).log(Level.SEVERE, null, e);
         }
         borderPane.setCenter(root);
+    }
+
+    private void noTeamPopUp(){
+        NoTeamPopUpController popUp = new NoTeamPopUpController();
+        rootPane.getChildren().add(popUp);
+        AbstractFader.fadeTransition(popUp, 6);
     }
 }
