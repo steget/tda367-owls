@@ -19,7 +19,7 @@ public class TeamTest {
         assertEquals(0, allItems.size());
         String imageUrl = "/pictures/art.png";
 
-        Location hasen = new Location("hasen","ha senare", imageUrl);
+        Location hasen = new Location("hasen","ha senare");
 
         IReservable mockItem = IReservableFactory.createReservableItem("mockItem", "desc","requirements",1,Condition.GREAT,true, hasen.getID(), imageUrl);
         allItems.add(mockItem);

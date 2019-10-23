@@ -42,7 +42,7 @@ public class OrganisationTest {
         Team tempTeam = new Team("sexNollK");
         informationsteknik.addTeam(tempTeam);
         String imageUrl = "/pictures/art.png";
-        Location mockLocation = new Location("MockLocation", "this is a mock location in getItemTest()", imageUrl);
+        Location mockLocation = new Location("MockLocation", "this is a mock location in getItemTest()");
         IReservable mockItem = IReservableFactory.createReservableItem("mockItem", "This is a description", "Behave please.", 2, Condition.GOOD, true, mockLocation.getID(), imageUrl);
 
         assertEquals(0, informationsteknik.getTeamsItems(tempTeam).size());

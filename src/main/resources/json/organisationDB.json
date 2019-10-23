@@ -1,221 +1,47 @@
 [
   {
-    "name": "Informationsteknik",
+    "name": "Mock Organisation",
+    "imageUrl": null,
+    "items": [],
+    "teams": [],
+    "users": [],
+    "locations": [],
+    "reservationHandler": {
+      "reservations": []
+    }
+  },
+  {
+    "name": "Mock Organisation 2",
     "imageUrl": null,
     "items": [
       {
         "CLASSNAME": "storagesystem.model.Item",
         "DATA": {
-          "name": "mockItem",
-          "description": "This is a description",
-          "userRequirements": "Behave please.",
-          "ID": 0,
-          "amount": 2,
-          "condition": "GOOD",
-          "reservable": true,
-          "locationID": 0,
-          "imageUrl": "pictures/art.png"
-        }
-      },
-      {
-        "CLASSNAME": "storagesystem.model.Item",
-        "DATA": {
-          "name": "mockItem nr 2",
-          "description": "This is a description",
-          "userRequirements": "Behave please.",
-          "ID": 1,
-          "amount": 2,
-          "condition": "GOOD",
-          "reservable": true,
-          "locationID": 0,
-          "imageUrl": "pictures/art.png"
+          "name": "testItem",
+          "description": "exists in mockOrg2",
+          "userRequirements": "userRequirements",
+          "ID": 11,
+          "amount": 1,
+          "condition": "GREAT",
+          "reservable": false,
+          "locationID": 3,
+          "imageUrl": "/pictures/art.png"
         }
       }
     ],
     "teams": [
       {
-        "name": "sexNollK",
+        "name": "testTeam",
         "itemIDs": [
-          0,
-          1
+          11
         ],
-        "memberIDs": [
-          0,
-          1,
-          7
-        ],
-        "termsAndConditions": "För att låna våra prylar måste prylen vara i samma skick som den var när den lånades ut. Behövs den diskas så diska den osv. Prylen ska också vara tillbaka på samma plats igen D was here twice",
-        "teamID": 0,
-        "imageUrl": null
-      },
-      {
-        "name": "P.R.NollK",
-        "itemIDs": [],
-        "memberIDs": [
-          0,
-          1
-        ],
-        "termsAndConditions": "text 2",
-        "teamID": 1,
+        "memberIDs": [],
+        "termsAndConditions": "",
+        "teamID": 16,
         "imageUrl": null
       }
     ],
-    "users": [
-      {
-        "name": "Albert",
-        "password": null,
-        "description": "",
-        "contactInformation": "",
-        "ID": 0
-      },
-      {
-        "name": "admin",
-        "password": null,
-        "description": "",
-        "contactInformation": "",
-        "ID": 1
-      },
-      {
-        "name": "eke",
-        "password": null,
-        "description": "",
-        "contactInformation": "",
-        "ID": 2
-      },
-      {
-        "name": "kvick",
-        "password": null,
-        "description": "",
-        "contactInformation": "",
-        "ID": 3
-      },
-      {
-        "name": "sponken",
-        "password": null,
-        "description": "",
-        "contactInformation": "",
-        "ID": 4
-      },
-      {
-        "name": "giff",
-        "password": null,
-        "description": "",
-        "contactInformation": "",
-        "ID": 5
-      },
-      {
-        "name": "steget",
-        "password": null,
-        "description": "",
-        "contactInformation": "",
-        "ID": 6
-      },
-      {
-        "name": "d",
-        "password": "",
-        "description": "",
-        "contactInformation": "",
-        "ID": 7
-      }
-    ],
-    "locations": [],
-    "reservationHandler": {
-      "reservations": [
-        {
-          "CLASSNAME": "storagesystem.model.Reservation",
-          "DATA": {
-            "id": 1,
-            "borrower": {
-              "CLASSNAME": "storagesystem.model.Team",
-              "DATA": {
-                "name": "sexNollK",
-                "itemIDs": [
-                  0,
-                  1
-                ],
-                "memberIDs": [
-                  0,
-                  1
-                ],
-                "termsAndConditions": "För att låna våra prylar måste prylen vara i samma skick som den var när den lånades ut. Behövs den diskas så diska den osv. Prylen ska också vara tillbaka på samma plats igen",
-                "teamID": 0,
-                "imageUrl": null
-              }
-            },
-            "interval": "2019-09-10T12:40:00.000+02:00/2019-09-10T15:00:00.000+02:00",
-            "reservedObject": {
-              "CLASSNAME": "storagesystem.model.Item",
-              "DATA": {
-                "name": "mockItem",
-                "description": "This is a description",
-                "userRequirements": "Behave please.",
-                "ID": 0,
-                "amount": 2,
-                "condition": "GOOD",
-                "reservable": true,
-                "locationID": 0,
-                "imageUrl": "pictures/art.png"
-              }
-            },
-            "status": "APPROVED"
-          }
-        },
-        {
-          "CLASSNAME": "storagesystem.model.Reservation",
-          "DATA": {
-            "id": 2,
-            "borrower": {
-              "CLASSNAME": "storagesystem.model.Team",
-              "DATA": {
-                "name": "sexNollK",
-                "itemIDs": [
-                  0,
-                  1
-                ],
-                "memberIDs": [
-                  0,
-                  1
-                ],
-                "termsAndConditions": "För att låna våra prylar måste prylen vara i samma skick som den var när den lånades ut. Behövs den diskas så diska den osv. Prylen ska också vara tillbaka på samma plats igen",
-                "teamID": 0,
-                "imageUrl": null
-              }
-            },
-            "interval": "2019-09-12T17:30:00.000+02:00/2019-10-16T20:00:00.000+02:00",
-            "reservedObject": {
-              "CLASSNAME": "storagesystem.model.Item",
-              "DATA": {
-                "name": "mockItem",
-                "description": "This is a description",
-                "userRequirements": "Behave please.",
-                "ID": 0,
-                "amount": 2,
-                "condition": "GOOD",
-                "reservable": true,
-                "locationID": 0,
-                "imageUrl": "pictures/art.png"
-              }
-            },
-            "status": "APPROVED"
-          }
-        }
-      ]
-    }
-  },
-  {
-    "name": "Data",
-    "imageUrl": null,
-    "items": [],
-    "teams": [],
-    "users": [
-      {
-        "name": "Kvickstyler",
-        "password": "nej",
-        "description": "Skulle gått IT",
-        "contactInformation": "Borde inte gå data",
-        "ID": 8
-      }
-    ],
+    "users": [],
     "locations": [],
     "reservationHandler": {
       "reservations": []
