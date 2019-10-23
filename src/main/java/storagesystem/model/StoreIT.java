@@ -122,7 +122,6 @@ public class StoreIT {
      * Loads all data into the program. Should be run at start.
      */
     public void initializeBackend() throws IOException {
-        //reset();
         try {
             organisations.addAll(JSONHandler.getOrganisationList());
         } catch (NullPointerException e) {
@@ -134,7 +133,7 @@ public class StoreIT {
         System.out.println("Current Organisation Set.");
     }
 
-    private void reset() throws IOException { //Run if fresh start or after tests!!!
+    public void reset() throws IOException { //Run if fresh start or after tests!!!
         JSONHandler.clearAllJsonFiles();
         mockData();
     }
