@@ -157,6 +157,8 @@ public class TeamPageController extends AnchorPane implements Initializable {
             StoreIT.getCurrentTeam().setName(settingsTeamNameInput.getText());
             updateChangedTeamNameInChoicebox();
             updateTeamsChoicebox();
+            settingsRemoveUserInput.clear();
+            settingsAddUserInput.clear();
             teamAnchorPane.toFront();
         }
     }
@@ -203,6 +205,7 @@ public class TeamPageController extends AnchorPane implements Initializable {
                 } else {
                     StoreIT.getCurrentTeam().addMember(user.getID());
                     AbstractFader.fadeTransition(userAddedMsg, 2);
+                    settingsAddUserInput.clear();
                 }
             }
         }
@@ -227,14 +230,12 @@ public class TeamPageController extends AnchorPane implements Initializable {
     private void removeMemberFromTeam(int userID) {
         boolean memberFound = false;
         //remove member from team
-        for (int i : StoreIT.getCurrentTeam().getAllMemberIDs()) {
-            if (i == userID) {
+            if (StoreIT.getCurrentTeam().getAllMemberIDs().contains(userID)) {
                 StoreIT.getCurrentTeam().removeMember(userID);
                 AbstractFader.fadeTransition(userRemovedMsg, 2);
                 memberFound = true;
-                break;
+                settingsRemoveUserInput.clear();
             }
-        }
 
         if (!memberFound) {
             AbstractFader.fadeTransition(userNotPartOfTeamMsg, 2);
@@ -248,6 +249,8 @@ public class TeamPageController extends AnchorPane implements Initializable {
 
     @FXML
     private void cancelTeamButtonPressed(){
+        settingsAddUserInput.clear();
+        settingsRemoveUserInput.clear();
         teamAnchorPane.toFront();
     }
 
