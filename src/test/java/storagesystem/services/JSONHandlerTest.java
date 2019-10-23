@@ -20,14 +20,16 @@ public class JSONHandlerTest {
         Organisation mockOrg = new Organisation("Mock Organisation");
 
         Organisation mockOrg2 = new Organisation("Mock Organisation 2");
+        List<Organisation> organisations = new ArrayList<>();
+        organisations.add(mockOrg);
+        organisations.add(mockOrg2);
         Location location = new Location("Test Location", "Exists in mockorg2");
         Team testTeam = new Team("testTeam");
         mockOrg2.addTeam(testTeam);
 
         mockOrg2.addItem(new Item("testItem", "exists in mockOrg2", "userRequirements", 1, Condition.GREAT, false, location.getID()), testTeam);
 
-        JSONHandler.addToJson(mockOrg);
-        JSONHandler.addToJson(mockOrg2);
+        JSONHandler.save(organisations);
 
         List<Organisation> organisationList = getOrganisationList();
 
@@ -54,7 +56,7 @@ public class JSONHandlerTest {
         organisations.add(mockOrg);
         organisations.add(mockOrg2);
 
-        JSONHandler.addListToJson(organisations);
+        JSONHandler.save(organisations);
 
         List<Organisation> organisationList = getOrganisationList();
 

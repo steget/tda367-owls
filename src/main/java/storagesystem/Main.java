@@ -36,6 +36,6 @@ public class Main extends Application {
 
     @Override
     public void stop() throws IOException {
-        JSONHandler.save();
+        JSONHandler.save(StoreIT.getOrganisations());
     }
 }

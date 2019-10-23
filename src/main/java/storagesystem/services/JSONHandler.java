@@ -16,15 +16,20 @@ import java.util.List;
 
 /**
  * @author Carl Lindh
- * JSONHandler is a handler with static methods with which it is possible to write and read from the json files corresponding to the Strings declared.
+ * JSONHandler is a handler with static methods with which it is possible to write and read from the json file organisationDB.
  */
 
 public class JSONHandler {
     private static String organisationDB = "src/main/resources/json/organisationDB.json";
 
-    public static void save() throws IOException {
+    /**
+     * Clears the json files then saves all data of a list of organisations.
+     * @throws IOException
+     */
+
+    public static void save(List<Organisation> organisations) throws IOException {
         clearAllJsonFiles();
-        addListToJson(StoreIT.getOrganisations());
+        addListToJson(organisations);
         System.out.println("Saved Organisations.");
     }
 
@@ -34,7 +39,7 @@ public class JSONHandler {
      * @param objectToAdd
      * @throws IOException
      */
-    static void addToJson(Object objectToAdd) throws IOException {
+    private static void addToJson(Object objectToAdd) throws IOException {
         Gson gson = createGsonBuilder().setPrettyPrinting().create();
         JsonArray jsonContent = gson.fromJson(new FileReader(organisationDB), JsonArray.class);
         Writer writer = new FileWriter(organisationDB);
@@ -57,7 +62,7 @@ public class JSONHandler {
      * @throws IOException
      */
 
-    static void addListToJson(List listToAdd) throws IOException {
+    private static void addListToJson(List listToAdd) throws IOException {
         try {
             for (Object object : listToAdd) {
                 addToJson(object);
