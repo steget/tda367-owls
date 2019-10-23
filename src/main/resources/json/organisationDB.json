@@ -1,0 +1,49 @@
+[
+  {
+    "name": "Mock Organisation",
+    "imageUrl": null,
+    "items": [],
+    "teams": [],
+    "users": [],
+    "locations": [],
+    "reservationHandler": {
+      "reservations": []
+    }
+  },
+  {
+    "name": "Mock Organisation 2",
+    "imageUrl": null,
+    "items": [
+      {
+        "CLASSNAME": "storagesystem.model.Item",
+        "DATA": {
+          "ID": 11,
+          "name": "testItem",
+          "description": "exists in mockOrg2",
+          "userRequirements": "userRequirements",
+          "amount": 1,
+          "condition": "GREAT",
+          "reservable": false,
+          "locationID": 3
+        }
+      }
+    ],
+    "teams": [
+      {
+        "itemIDs": [
+          11
+        ],
+        "memberIDs": [],
+        "name": "testTeam",
+        "termsAndConditions": "",
+        "imageUrl": null,
+        "teamID": 15
+      }
+    ],
+    "users": [],
+    "locations": [],
+    "reservationHandler": {
+      "reservations": []
+    }
+  }
+]

@@ -15,6 +15,7 @@ import storagesystem.model.Condition;
 import storagesystem.model.IReservable;
 import storagesystem.model.StoreIT;
 import storagesystem.model.Team;
+import storagesystem.services.PictureHandler;
 
 import java.io.IOException;
 
@@ -85,8 +86,8 @@ public class ReservableItemDetailController extends AnchorPane {
         setConditionSlider(item.getCondition());
         setReservableLabel(item.isReservable() + "");
         setReservableBtn(item.isReservable());
-        setLocationLabel(item.getLocation().getName());
-        setImage(item.getImage());
+        setLocationLabel(StoreIT.getCurrentOrganisation().getLocation(item.getLocationID()).getName());
+        setImage(PictureHandler.getItemImage(item.getID(), item.getName()));
         setTeamOwnerLabel(itemOwner.getName());
     }
 

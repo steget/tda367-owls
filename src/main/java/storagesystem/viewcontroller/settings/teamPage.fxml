@@ -30,7 +30,7 @@
                </opaqueInsets>
             </TextField>
             <Button layoutX="859.0" layoutY="261.0" mnemonicParsing="false" onAction="#removeMemberButtonPressed" prefHeight="32.0" prefWidth="115.0" styleClass="inAppButton" text="Remove user" textAlignment="CENTER" />
-            <Button fx:id="saveTeamButton" contentDisplay="BOTTOM" layoutX="712.0" layoutY="580.0" mnemonicParsing="false" onAction="#saveTeam" prefHeight="70.0" prefWidth="126.0" styleClass="inAppButton" text="Save" textAlignment="CENTER" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0" />
+            <Button fx:id="saveTeamButton" contentDisplay="BOTTOM" layoutX="712.0" layoutY="580.0" mnemonicParsing="false" onAction="#saveTeam" prefHeight="70.0" prefWidth="126.0" styleClass="secondaryAppButton" text="Save" textAlignment="CENTER" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0" />
             <Label layoutX="39.0" layoutY="23.0" text="Edit Team" textFill="WHITE" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="0.0">
                <font>
                   <Font size="61.0" />
@@ -40,7 +40,7 @@
             <TextArea fx:id="settingsTeamContractInput" layoutX="214.0" layoutY="261.0" prefHeight="302.0" prefWidth="337.0" promptText="Write your team's standard terms and conditions here..." wrapText="true" AnchorPane.topAnchor="261.0" />
             <Text fill="WHITE" layoutX="64.0" layoutY="203.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bigLabel" text="Team Name:" underline="true" wrappingWidth="150.00000596046448" AnchorPane.topAnchor="180.0" />
             <Text fill="WHITE" layoutX="80.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bigLabel" text="Terms and conditions:" underline="true" wrappingWidth="134.99998712539673" AnchorPane.topAnchor="261.1015625" />
-            <Button fx:id="cancelTeamButton" layoutX="44.0" layoutY="615.0" mnemonicParsing="false" onAction="#cancelTeamButtonPressed" prefHeight="70.0" prefWidth="126.0" styleClass="inAppButton" text="Cancel" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" />
+            <Button fx:id="cancelTeamButton" layoutX="44.0" layoutY="615.0" mnemonicParsing="false" onAction="#cancelTeamButtonPressed" prefHeight="70.0" prefWidth="126.0" styleClass="secondaryAppButton" text="Cancel" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" />
             <Label fx:id="userAddedMsg" layoutX="678.0" layoutY="383.0" opacity="0.0" styleClass="goodMessage" text="User added" AnchorPane.rightAnchor="119.0" AnchorPane.topAnchor="375.0">
                <font>
                   <Font size="40.0" />
@@ -88,7 +88,7 @@
             </Label>
             <ChoiceBox fx:id="settingsChooseTeamInput" layoutX="723.0" layoutY="291.0" prefHeight="31.0" prefWidth="232.0" />
             <Text fill="WHITE" layoutX="745.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bigLabel" text="Choose a team:" textAlignment="CENTER" underline="true" wrappingWidth="187.00000643730164" />
-            <Button fx:id="editTeamButton" layoutX="866.0" layoutY="574.0" mnemonicParsing="false" onAction="#editTeamButtonPressed" prefHeight="70.0" prefWidth="126.0" styleClass="inAppButton" text="Edit team" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0" />
+            <Button fx:id="editTeamButton" layoutX="866.0" layoutY="574.0" mnemonicParsing="false" onAction="#editTeamButtonPressed" prefHeight="70.0" prefWidth="126.0" styleClass="secondaryAppButton" text="Edit team" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="50.0" />
             <TextArea fx:id="teamToCTextArea" editable="false" layoutX="332.0" layoutY="240.0" prefHeight="325.0" prefWidth="337.0" styleClass="readOnlyTA" wrapText="true" AnchorPane.topAnchor="240.0">
                <cursor>
                   <Cursor fx:constant="DEFAULT" />

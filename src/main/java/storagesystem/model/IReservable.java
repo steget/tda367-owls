@@ -32,9 +32,7 @@ public interface IReservable {
 
     boolean isReservable();
 
-    Location getLocation();
-
-    Image getImage();
+    int getLocationID();
 
     public String getName();
 
@@ -52,8 +50,6 @@ public interface IReservable {
 
     public void setReservable(boolean reservable);
 
-    public void setLocation(Location location);
-
-    public void setImage(Image image);
+    public void setLocationID(int locationID);
 
 }
