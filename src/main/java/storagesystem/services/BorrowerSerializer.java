@@ -5,6 +5,10 @@ import storagesystem.model.IBorrower;
 
 import java.lang.reflect.Type;
 
+/**
+ * BorrowerSerializer overwrites the serialize and deserialize methods in gson by typing the classname of the serialized object as a separate field in json, and the data as another.
+ */
+
 public class BorrowerSerializer implements JsonSerializer<IBorrower>, JsonDeserializer<IBorrower> {
 
     private static final String CLASSNAME = "CLASSNAME";
@@ -27,8 +31,11 @@ public class BorrowerSerializer implements JsonSerializer<IBorrower>, JsonDeseri
         return jsonObject;
     }
 
-    /****** Helper method to get the className of the object to be deserialized *****/
-    public Class getObjectClass(String className) {
+    /**
+     * Helper method to get the className of the object to be deserialized.
+     */
+
+    private Class getObjectClass(String className) {
         try {
             return Class.forName(className);
         } catch (ClassNotFoundException e) {

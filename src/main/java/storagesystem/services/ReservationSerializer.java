@@ -1,11 +1,13 @@
 package storagesystem.services;
 
 import com.google.gson.*;
-import storagesystem.model.IBorrower;
-import storagesystem.model.IReservable;
 import storagesystem.model.IReservation;
 
 import java.lang.reflect.Type;
+
+/**
+ * ReservationSerializer overwrites the serialize and deserialize methods in gson by typing the classname of the serialized object as a separate field in json, and the data as another.
+ */
 
 public class ReservationSerializer implements JsonSerializer<IReservation>, JsonDeserializer<IReservation> {
 
@@ -13,7 +15,7 @@ public class ReservationSerializer implements JsonSerializer<IReservation>, Json
     private static final String DATA = "DATA";
 
     public IReservation deserialize(JsonElement jsonElement, Type type,
-                                   JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
+                                    JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
 
         JsonObject jsonObject = jsonElement.getAsJsonObject();
         JsonPrimitive prim = (JsonPrimitive) jsonObject.get(CLASSNAME);
@@ -29,8 +31,11 @@ public class ReservationSerializer implements JsonSerializer<IReservation>, Json
         return jsonObject;
     }
 
-    /****** Helper method to get the className of the object to be deserialized *****/
-    public Class getObjectClass(String className) {
+    /**
+     * Helper method to get the className of the object to be deserialized.
+     */
+
+    private Class getObjectClass(String className) {
         try {
             return Class.forName(className);
         } catch (ClassNotFoundException e) {
