@@ -71,7 +71,7 @@ public class Team implements IBorrower{
         return teamID;
     }
 
-    void setTermsAndConditions(String termsAndConditions) {
+    public void setTermsAndConditions(String termsAndConditions) {
         this.termsAndConditions = termsAndConditions;
     }
 }
