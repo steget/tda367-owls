@@ -249,7 +249,7 @@ public class TeamPageController extends AnchorPane implements Initializable {
         int tempUserID = -1;
         //check if user with matching name in textbox exists
         for (User user : StoreIT.getCurrentOrganisation().getUsers()) {
-            if (user.getName().equals(userName)) {
+            if (user.getName().toLowerCase().equals(userName.toLowerCase())) {
                 tempUserID = user.getID();
                 break;
             }
