@@ -1,5 +1,6 @@
 package storagesystem.services;
 
+import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Test;
 import storagesystem.model.*;
@@ -12,7 +13,14 @@ import java.util.List;
 import static storagesystem.services.JSONHandler.*;
 
 public class JSONHandlerTest {
-
+    //makes sure we have the mockData from storeIT in organisationDB
+    @AfterClass
+    public static void resetDatabase() throws IOException {
+        IDHandler.clearAllNextIDs();
+        StoreIT storeIT = new StoreIT();
+        storeIT.reset();
+        JSONHandler.save(StoreIT.getOrganisations());
+    }
 
     @Test
     public void addToJson() throws IOException {

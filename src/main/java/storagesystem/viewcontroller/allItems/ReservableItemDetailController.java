@@ -87,7 +87,7 @@ public class ReservableItemDetailController extends AnchorPane {
         setReservableLabel(item.isReservable() + "");
         setReservableBtn(item.isReservable());
         setLocationLabel(StoreIT.getCurrentOrganisation().getLocation(item.getLocationID()).getName());
-        setImage(PictureHandler.getItemImage(item.getID(), item.getName()));
+        setImage(PictureHandler.getItemImage(item.getID()));
         setTeamOwnerLabel(itemOwner.getName());
     }
 

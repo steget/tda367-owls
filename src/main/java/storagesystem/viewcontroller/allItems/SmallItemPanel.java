@@ -42,7 +42,7 @@ public class SmallItemPanel extends AnchorPane {
 
         this.reservableItem = reservableItem;
 
-        itemImage.setImage(PictureHandler.getItemImage(reservableItem.getID(), reservableItem.getName()));
+        itemImage.setImage(PictureHandler.getItemImage(reservableItem.getID()));
         itemNameLabel.setText(reservableItem.getName());
     }
 
