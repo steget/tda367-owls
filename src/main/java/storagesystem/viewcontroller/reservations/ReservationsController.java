@@ -49,7 +49,6 @@ public class ReservationsController implements Initializable {
             ReservationListViewController listView = new ReservationListViewController(res);
             reservationViews.add(listView);
             listView.addEventHandler(MouseEvent.MOUSE_CLICKED, reservationListViewClickedHandler);
-//            listView.addReservationClickedListener(this::listViewClicked);
             if (alternating) {
                 listView.setStyle("-fx-background-color: secondaryColor");
                 alternating = !alternating;
@@ -63,7 +62,6 @@ public class ReservationsController implements Initializable {
     private void listViewClicked(IReservation res) {
         detailView = new ReservationDetailViewController(res);
         detailView.addEventHandler(MouseEvent.MOUSE_CLICKED, detailViewClickedHandler);
-//        detailView.addReservationDetailViewClosedListener(this::detailViewClicked);
         reservationsRootPane.getChildren().add(detailView);
     }
 

@@ -2,7 +2,6 @@ package storagesystem.viewcontroller.inventory;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -10,7 +9,9 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
-import storagesystem.model.*;
+import storagesystem.model.IReservable;
+import storagesystem.model.StoreIT;
+import storagesystem.model.Team;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -60,7 +61,7 @@ public class InventoryController implements Initializable {
 
     private EventHandler<MouseEvent> detailViewClickedHandler = e -> {
         detailViewClicked();
-        if(e.getSource() == null){
+        if (e.getSource() == null) {
 
         }
         e.consume();
@@ -122,19 +123,6 @@ public class InventoryController implements Initializable {
             itemPane.getChildren().add(newListItem);
         }
     }
-
-   /* *//**
-     * opens up a detailed view of the pressed item.
-     *
-//     * @param item
-     *//*
-    private void listItemClicked(IReservable item) {
-        detailView = new ItemDetailViewController(item);
-        rootPane.getChildren().add(detailView);
-        detailView.addDetailListener(this::detailViewClicked);
-        detailView.addSaveButtonListener(this::saveButtonClicked);
-        detailView.editItem();
-    }*/
 
     private void saveButtonClicked() {
         refreshItems();
