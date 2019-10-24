@@ -33,11 +33,8 @@ public class InventoryController implements Initializable {
     private List<Team> currentUsersTeams = new ArrayList<>();
     private ObservableList<String> teamNames = FXCollections.observableArrayList();
     private ItemDetailViewController detailView;
-    private EventHandler<MouseEvent> detailViewClickedHandler = e -> {
-        detailViewClicked();
-        if (e.getSource() == null) {
-
-        }
+    private EventHandler<MouseEvent> closeDetailViewClickedHandler = e -> {
+        closeDetailView();
         e.consume();
     };
     private EventHandler<MouseEvent> saveButtonClickedHandler = e -> {
@@ -74,13 +71,14 @@ public class InventoryController implements Initializable {
     /**
      * removes the detailed itemView from rootPane.
      */
-    private void detailViewClicked() {
+    private void closeDetailView() {
         rootPane.getChildren().remove(detailView);
     }
 
     private void inventoryListItemClicked(IReservable item) {
         detailView = new ItemDetailViewController(item);
-        detailView.addEventHandler(MouseEvent.MOUSE_CLICKED, detailViewClickedHandler);
+        detailView.addEventHandler(MouseEvent.MOUSE_CLICKED, closeDetailViewClickedHandler);
+        detailView.closeButtonImageView.addEventHandler(MouseEvent.MOUSE_CLICKED, closeDetailViewClickedHandler);
         detailView.itemPageSaveButton.addEventHandler(MouseEvent.MOUSE_CLICKED, saveButtonClickedHandler);
         rootPane.getChildren().add(detailView);
     }

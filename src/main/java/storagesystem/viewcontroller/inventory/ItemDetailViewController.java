@@ -40,7 +40,7 @@ public class ItemDetailViewController extends AnchorPane {
     @FXML
     private ImageView itemPageImageView;
     @FXML
-    private ImageView closeButtonImageView;
+    ImageView closeButtonImageView;
     @FXML
     private TextArea itemPageNameTA;
     @FXML
