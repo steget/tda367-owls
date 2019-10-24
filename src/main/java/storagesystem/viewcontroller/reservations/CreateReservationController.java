@@ -13,7 +13,6 @@ import storagesystem.viewcontroller.AbstractFader;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.EventListener;
 import java.util.List;
 
 /**
@@ -29,7 +28,9 @@ public class CreateReservationController extends AnchorPane {
     @FXML
     AnchorPane lightboxContentPane;
     @FXML
-    AnchorPane errorPane;
+    AnchorPane intervalError;
+    @FXML
+    AnchorPane alreadyReservedError;
 
     @FXML
     TextField itemField;
@@ -84,7 +85,8 @@ public class CreateReservationController extends AnchorPane {
             throw new RuntimeException(exception);
         }
 
-        errorPane.setOpacity(0);
+        intervalError.setOpacity(0);
+        alreadyReservedError.setOpacity(0);
 
         lightboxContentPane.setOnMouseClicked(Event::consume);
 
@@ -192,10 +194,11 @@ public class CreateReservationController extends AnchorPane {
 
     private boolean isReservationLegal() {
         if(!isEndAfterStart()){
-            AbstractFader.fadeTransition(errorPane, 3);
+            AbstractFader.fadeTransition(intervalError, 3);
             return false;
         }
         if(StoreIT.getCurrentOrganisation().getReservationHandler().isObjectReservedBetween(item, getInterval())) {
+            AbstractFader.fadeTransition(alreadyReservedError, 3);
             return false;
         }
         return true;

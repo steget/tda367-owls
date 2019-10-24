@@ -13,7 +13,7 @@
 
 <!-- William Albertsson -->
 
-<fx:root fx:id="rootPane" onMouseClicked="#close" prefHeight="700.0" prefWidth="1000.0" styleClass="lightbox" stylesheets="@../basicStyles.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.201" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="rootPane" onMouseClicked="#close" prefHeight="700.0" prefWidth="1000.0" styleClass="lightbox" stylesheets="@../basicStyles.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane fx:id="lightboxContentPane" prefHeight="200.0" prefWidth="200.0" styleClass="lightboxContent" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="60.0">
          <children>
@@ -64,9 +64,18 @@
             <Line endX="303.5" endY="-0.5" layoutX="113.0" layoutY="322.0" startX="303.5" startY="-322.0" style="-fx-stroke: secondaryColor;" />
             <Line endX="880.0" layoutX="-302.5" layoutY="322.0" style="-fx-stroke: secondaryColor;" AnchorPane.leftAnchor="0.0" />
             <CheckBox fx:id="termsCheckbox" layoutX="549.0" layoutY="270.0" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" prefHeight="17.0" prefWidth="173.0" styleClass="verySmallLabel" text="I accept the terms" />
-            <AnchorPane fx:id="errorPane" layoutX="661.0" layoutY="350.0" prefHeight="134.0" prefWidth="200.0">
+            <AnchorPane fx:id="alreadyReservedError" layoutX="661.0" layoutY="450.0" prefHeight="56.0" prefWidth="200.0">
                <children>
-                  <Label fx:id="terms1" alignment="TOP_LEFT" layoutX="5.0" layoutY="30.0" prefHeight="94.0" prefWidth="191.0" style="-fx-text-fill: red;" text="Start date must be before end date" textAlignment="CENTER" wrapText="true">
+                  <Label fx:id="terms1" alignment="TOP_LEFT" layoutX="5.0" layoutY="5.0" prefHeight="40.0" prefWidth="191.0" style="-fx-text-fill: red;" text="This object is already reserved in this period" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="intervalError" layoutX="661.0" layoutY="450.0" prefHeight="56.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="terms11" alignment="TOP_LEFT" layoutX="5.0" layoutY="5.0" prefHeight="40.0" prefWidth="191.0" style="-fx-text-fill: red;" text="Start date must be before end date" textAlignment="CENTER" wrapText="true">
                      <font>
                         <Font size="14.0" />
                      </font>
