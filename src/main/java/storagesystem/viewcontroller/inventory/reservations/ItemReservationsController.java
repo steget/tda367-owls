@@ -1,9 +1,7 @@
-package storagesystem.viewcontroller.reservations;
+package storagesystem.viewcontroller.inventory.reservations;
 
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import storagesystem.model.IReservable;
@@ -23,7 +21,7 @@ public class ItemReservationsController extends AnchorPane {
     private List<ItemReservationListItemViewController> itemReservationListItemViews = new ArrayList();
 
     public ItemReservationsController(IReservable item){
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/reservations/ItemReservations.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/inventory/reservations/ItemReservations.fxml"));
         fxmlLoader.setController(this);
         fxmlLoader.setRoot(this);
 

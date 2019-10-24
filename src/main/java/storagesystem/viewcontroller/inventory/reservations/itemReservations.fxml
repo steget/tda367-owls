@@ -6,9 +6,9 @@
 <?import javafx.scene.layout.FlowPane?>
 
 
-<fx:root prefHeight="700.0" prefWidth="1000.0" styleClass="lightbox" stylesheets="@../basicStyles.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.201" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root prefHeight="700.0" prefWidth="1000.0" styleClass="lightbox" stylesheets="@../../basicStyles.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.201" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane layoutX="60.0" layoutY="60.0" prefHeight="700.0" prefWidth="1000.0" styleClass="lightboxContent" stylesheets="@../basicStyles.css" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="60.0">
+      <AnchorPane layoutX="60.0" layoutY="60.0" prefHeight="700.0" prefWidth="1000.0" styleClass="lightboxContent" stylesheets="@../../basicStyles.css" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="60.0">
          <children>
             <Label layoutX="74.0" layoutY="14.0" styleClass="smallLabel" text="Borrower" />
             <Label layoutX="351.0" layoutY="14.0" styleClass="smallLabel" text="Status" />

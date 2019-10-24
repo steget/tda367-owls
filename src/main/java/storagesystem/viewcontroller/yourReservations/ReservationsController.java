@@ -1,10 +1,9 @@
-package storagesystem.viewcontroller.reservations;
+package storagesystem.viewcontroller.yourReservations;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
-import storagesystem.model.IReservable;
 import storagesystem.model.IReservation;
 import storagesystem.model.StoreIT;
 

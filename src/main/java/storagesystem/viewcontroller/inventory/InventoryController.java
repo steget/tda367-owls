@@ -10,8 +10,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import storagesystem.model.*;
-import storagesystem.viewcontroller.reservations.CreateReservationController;
-import storagesystem.viewcontroller.reservations.ItemReservationsController;
+import storagesystem.viewcontroller.inventory.reservations.CreateReservationController;
+import storagesystem.viewcontroller.inventory.reservations.ItemReservationsController;
 
 import java.net.URL;
 import java.util.ArrayList;

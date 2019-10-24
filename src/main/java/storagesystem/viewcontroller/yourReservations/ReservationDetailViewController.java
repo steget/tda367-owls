@@ -1,4 +1,4 @@
-package storagesystem.viewcontroller.reservations;
+package storagesystem.viewcontroller.yourReservations;
 
 import javafx.event.Event;
 import javafx.fxml.FXML;
