@@ -18,7 +18,6 @@ public class Organisation {
     private final List<User> users = new ArrayList<>();
     private final List<Location> locations = new ArrayList<>();
 
-    private String name;
     private final ReservationHandler reservationHandler;
 
     public Organisation(String name) {
