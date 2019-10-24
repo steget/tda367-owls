@@ -59,6 +59,7 @@ public class AllItemsListController implements Initializable {
 
     private EventHandler<MouseEvent> detailViewClickedHandler = e -> {
         detailViewClicked();
+        e.consume();
     };
 
     private EventHandler<MouseEvent> smallPanelClickedHandler = e -> {

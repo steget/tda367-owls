@@ -1,7 +1,9 @@
 package storagesystem.viewcontroller.reservations;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import storagesystem.model.IReservation;
@@ -46,7 +48,8 @@ public class ReservationsController implements Initializable {
         for (IReservation res : StoreIT.getCurrentOrganisation().getReservationHandler().getReservations()) {
             ReservationListViewController listView = new ReservationListViewController(res);
             reservationViews.add(listView);
-            listView.addReservationClickedListener(this::listViewClicked);
+            listView.addEventHandler(MouseEvent.MOUSE_CLICKED, reservationListViewClickedHandler);
+//            listView.addReservationClickedListener(this::listViewClicked);
             if (alternating) {
                 listView.setStyle("-fx-background-color: secondaryColor");
                 alternating = !alternating;
@@ -58,17 +61,30 @@ public class ReservationsController implements Initializable {
     }
 
     private void listViewClicked(IReservation res) {
-
         detailView = new ReservationDetailViewController(res);
+        detailView.addEventHandler(MouseEvent.MOUSE_CLICKED, detailViewClickedHandler);
+//        detailView.addReservationDetailViewClosedListener(this::detailViewClicked);
         reservationsRootPane.getChildren().add(detailView);
-
-        detailView.addReservationDetailViewClosedListener(this::reservationDetailViewClosed);
-
     }
 
-    private void reservationDetailViewClosed() {
+    private void detailViewClicked() {
         reservationsRootPane.getChildren().remove(detailView);
     }
 
+    private void reservationListViewClicked(IReservation reservation) {
+        detailView = new ReservationDetailViewController(reservation);
+        detailView.addEventHandler(MouseEvent.MOUSE_CLICKED, detailViewClickedHandler);
+        reservationsRootPane.getChildren().add(detailView);
+    }
 
+    private EventHandler<MouseEvent> detailViewClickedHandler = e -> {
+        detailViewClicked();
+        e.consume();
+    };
+
+    private EventHandler<MouseEvent> reservationListViewClickedHandler = e -> {
+        ReservationListViewController panel = (ReservationListViewController) e.getSource();
+        reservationListViewClicked(panel.getReservation());
+        e.consume();
+    };
 }

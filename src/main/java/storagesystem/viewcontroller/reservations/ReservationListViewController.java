@@ -72,4 +72,7 @@ public class ReservationListViewController extends AnchorPane {
         void reservationClicked(IReservation res);
     }
 
+    IReservation getReservation(){
+        return reservation;
+    }
 }
