@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<fx:root fx:id="rootPane" onMouseClicked="#listItemPressed" prefHeight="47.0" prefWidth="1000.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="rootPane" prefHeight="47.0" prefWidth="1000.0" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <GridPane gridLinesVisible="true" prefHeight="47.0" prefWidth="1000.0" style="-fx-background-color: gray;">
          <columnConstraints>

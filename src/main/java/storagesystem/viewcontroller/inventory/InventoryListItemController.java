@@ -17,8 +17,7 @@ import java.util.List;
 
 public class InventoryListItemController extends AnchorPane {
 
-    IReservable thisItem;
-    List<InventoryListItemListener> listeners = new ArrayList<>();
+    private IReservable reservableItem;
 
     @FXML
     private AnchorPane rootPane;
@@ -49,49 +48,11 @@ public class InventoryListItemController extends AnchorPane {
         this.itemLocation.setText("" + StoreIT.getCurrentOrganisation().getLocation(item.getLocationID()).getName());
         this.condition.setText("" + item.getCondition());
         this.bookable.setText("" +item.isReservable());
-        this.thisItem = item;
+        this.reservableItem = item;
     }
 
-
-    /**
-     * listener method
-     */
-    @FXML
-    private void listItemPressed() {
-
-        for (InventoryListItemListener l : listeners) {
-            l.inventoryListItemClicked(thisItem);
-        }
-
+    IReservable getReservableItem() {
+        return reservableItem;
     }
-
-
-//Below here contains listener configurations.
-
-    public void addListener(InventoryListItemListener listener) {
-        listeners.add(listener);
-    }
-
-    interface InventoryListItemListener {
-
-        void inventoryListItemClicked(IReservable item);
-    }
-
-    public Label getName() {
-        return name;
-    }
-
-    public Label getAmount() {
-        return amount;
-    }
-
-    public Label getLocation() {
-        return itemLocation;
-    }
-
-    public Label getCondition() {
-        return condition;
-    }
-
 
 }

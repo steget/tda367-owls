@@ -2,9 +2,11 @@ package storagesystem.viewcontroller.inventory;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import storagesystem.model.*;
@@ -55,6 +57,33 @@ public class InventoryController implements Initializable {
         teamChooserListener();
     }
 
+    private EventHandler<MouseEvent> detailViewClickedHandler = e -> {
+        detailViewClicked();
+        if(e.getSource() == null){
+
+        }
+        e.consume();
+    };
+
+    private EventHandler<MouseEvent> listItemClickedHandler = e -> {
+        InventoryListItemController panel = (InventoryListItemController) e.getSource();
+        inventoryListItemClicked(panel.getReservableItem());
+        e.consume();
+    };
+
+    /**
+     * removes the detailed itemView from rootPane.
+     */
+    private void detailViewClicked() {
+        rootPane.getChildren().remove(detailView);
+    }
+
+    private void inventoryListItemClicked(IReservable item) {
+        detailView = new ItemDetailViewController(item);
+        detailView.addEventHandler(MouseEvent.MOUSE_CLICKED, detailViewClickedHandler);
+        rootPane.getChildren().add(detailView);
+    }
+
     /**
      * Choicebox that listens for change, selects new team & refreshes the list.
      * checks when the users changes team in the ChoiceBox.
@@ -81,32 +110,24 @@ public class InventoryController implements Initializable {
         List<IReservable> inventory = StoreIT.getCurrentOrganisation().getTeamsItems(currentlySelectedTeam);
         itemPane.getChildren().remove(0, itemPane.getChildren().size());
         for (IReservable i : inventory) {
-            InventoryListItemController listItem = new InventoryListItemController(i);
-            listItem.addListener(this::listItemClicked);
-            itemPane.getChildren().add(listItem);
+            InventoryListItemController newListItem = new InventoryListItemController(i);
+            newListItem.addEventHandler(MouseEvent.MOUSE_CLICKED, listItemClickedHandler);
+            itemPane.getChildren().add(newListItem);
         }
     }
 
-    /**
+   /* *//**
      * opens up a detailed view of the pressed item.
      *
      * @param item
-     */
+     *//*
     private void listItemClicked(IReservable item) {
         detailView = new ItemDetailViewController(item);
         rootPane.getChildren().add(detailView);
-        detailView.addDetailListener(this::detailItemViewClicked);
+        detailView.addDetailListener(this::detailViewClicked);
         detailView.addSaveButtonListener(this::saveButtonClicked);
         detailView.editItem();
-    }
-
-
-    /**
-     * removes the detailed itemView from rootPane.
-     */
-    private void detailItemViewClicked() {
-        rootPane.getChildren().remove(detailView);
-    }
+    }*/
 
     private void saveButtonClicked() {
         refreshItems();

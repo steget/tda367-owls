@@ -34,9 +34,7 @@ public class ItemDetailViewController extends AnchorPane {
     private final Team itemOwner;
     private List<Location> locationList;
     private ObservableList<String> locationNames;
-    private List<DetailedItemViewListener> detailListeners = new ArrayList<>();
     private List<saveButtonClickedListener> saveButtonListeners = new ArrayList<>();
-
 
     @FXML
     private AnchorPane contentPane;
@@ -135,7 +133,6 @@ public class ItemDetailViewController extends AnchorPane {
         setIDLabel("" + reservableItem.getID());
         setAmountLabel("" + reservableItem.getAmount());
         setConditionSlider(reservableItem.getCondition());
-        setReservableBtn(reservableItem.isReservable());
         setImage(PictureHandler.getItemImage(reservableItem.getID()));
         setTeamOwnerLabel(itemOwner.getName());
         setReservableChoiceBox();
@@ -170,13 +167,6 @@ public class ItemDetailViewController extends AnchorPane {
     @FXML
     protected void reserveBtnPressed() {
         //TODO: create a new reservation if possible
-    }
-
-    @FXML
-    private void closeDetailView() {
-        for (DetailedItemViewListener l : detailListeners) {
-            l.detailItemViewClicked();
-        }
     }
 
     private void setConditionSlider(Condition condition) {
@@ -221,29 +211,9 @@ public class ItemDetailViewController extends AnchorPane {
         itemPageAmountTA.setText(amount);
     }
 
-
     private void setTeamOwnerLabel(String teamOwner) {
         itemPageTeamOwnerLabel.setText("Owner: " + teamOwner);
     }
-
-    private void setReservableBtn(boolean reservable) {
-        itemPageReserveBtn.setDisable(!reservable);
-    }
-
-
-    /**
-     * adds a listener to this object.
-     *
-     * @param listener
-     */
-    public void addDetailListener(DetailedItemViewListener listener) {
-        detailListeners.add(listener);
-    }
-
-    public void addSaveButtonListener(saveButtonClickedListener listener) {
-        saveButtonListeners.add(listener);
-    }
-
 
     /**
      * This method is called when user is in its own inventory.
@@ -270,14 +240,13 @@ public class ItemDetailViewController extends AnchorPane {
      * Saves the changes to the current item.
      */
     public void saveItem() {
-
         reservableItem.setName(itemPageNameTA.getText());
         reservableItem.setDescription(itemPageDescriptionTA.getText());
         reservableItem.setUserRequirements(itemPageUserRequirementsTA.getText());
         reservableItem.setReservable(isReservableChoiceBox.getSelectionModel().getSelectedIndex() == 0);
         saveCondition((int) itemPageConditionSlider.getValue());
         saveLocation(itemPageLocationChoicebox.getValue().toString());
-        reservableItem.setAmount(Integer.valueOf(itemPageAmountTA.getText()));
+        reservableItem.setAmount(Integer.parseInt(itemPageAmountTA.getText()));
         for (saveButtonClickedListener l : saveButtonListeners) {
             l.saveButtonClicked();
         }
@@ -337,14 +306,6 @@ public class ItemDetailViewController extends AnchorPane {
                 //todo add an animation for when an image cant be read.
             }
         }
-    }
-
-
-    /**
-     * Listener interface for DetailedItemView
-     */
-    interface DetailedItemViewListener {
-        void detailItemViewClicked();
     }
 
     /**

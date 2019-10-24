@@ -46,7 +46,7 @@ public class AllItemsListController implements Initializable {
         for (IReservable reservableItem :
                 StoreIT.getCurrentOrganisation().getAllItems()) {
             SmallItemPanel newSmallItemPanel = new SmallItemPanel(reservableItem);
-            newSmallItemPanel.addEventHandler(MouseEvent.MOUSE_CLICKED, onClickHandler);
+            newSmallItemPanel.addEventHandler(MouseEvent.MOUSE_CLICKED, smallPanelClickedHandler);
             allSmallItemPanels.add(newSmallItemPanel);
         }
     }
@@ -60,7 +60,14 @@ public class AllItemsListController implements Initializable {
     private EventHandler<MouseEvent> detailViewClickedHandler = e -> {
         detailViewClicked();
     };
-    private void detailViewClicked(){
+
+    private EventHandler<MouseEvent> smallPanelClickedHandler = e -> {
+        SmallItemPanel panel = (SmallItemPanel) e.getSource();
+        smallItemPanelClicked(panel.getReservableItem());
+        e.consume();
+    };
+
+    private void detailViewClicked() {
         rootPane.getChildren().remove(reservableItemDetailView);
     }
 
@@ -82,14 +89,8 @@ public class AllItemsListController implements Initializable {
 
         //if no panel for the item could be found a new one is created
         SmallItemPanel newPanel = new SmallItemPanel(item);
-        newPanel.addEventHandler(MouseEvent.MOUSE_CLICKED, onClickHandler);
+        newPanel.addEventHandler(MouseEvent.MOUSE_CLICKED, smallPanelClickedHandler);
         allSmallItemPanels.add(newPanel);
         return newPanel;
     }
-
-    private EventHandler<MouseEvent> onClickHandler = e -> {
-        SmallItemPanel panel = (SmallItemPanel) e.getSource();
-        smallItemPanelClicked(panel.getReservableItem());
-        e.consume();
-    };
 }
