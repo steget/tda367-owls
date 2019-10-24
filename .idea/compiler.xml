@@ -6,8 +6,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="tda367-owls" />
         <module name="StoreIT" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="OwlsOOPProject" target="1.8" />
+      <module name="StoreIT" target="1.8" />
+      <module name="tda367-owls" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

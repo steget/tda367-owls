@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
+import storagesystem.model.IReservable;
 import storagesystem.model.IReservation;
 import storagesystem.model.StoreIT;
 
@@ -41,9 +42,10 @@ public class ReservationsController implements Initializable {
     }
 
 
-    private void createListViews() {
+    private void updateReservations(List<IReservation> reservations){
+
         boolean alternating = false;
-        for (IReservation res : StoreIT.getCurrentOrganisation().getReservationHandler().getReservations()) {
+        for (IReservation res : reservations) {
             ReservationListViewController listView = new ReservationListViewController(res);
             reservationViews.add(listView);
             listView.addReservationClickedListener(this::listViewClicked);
@@ -55,7 +57,14 @@ public class ReservationsController implements Initializable {
                 alternating = !alternating;
             }
         }
+
     }
+
+    private void createListViews() {
+        List<IReservation> reservations = StoreIT.getCurrentOrganisation().getReservationHandler().getReservations();
+        updateReservations(reservations);
+    }
+
 
     private void listViewClicked(IReservation res) {
 
