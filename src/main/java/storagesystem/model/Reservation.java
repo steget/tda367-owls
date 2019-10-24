@@ -12,7 +12,7 @@ import org.joda.time.Interval;
 public class Reservation implements IReservation {
 
 
-    static int NXT_RES_ID = 0;
+    private static int nextID = 0;
     private final int id;
     private IBorrower borrower;
     private Interval interval;
@@ -21,13 +21,13 @@ public class Reservation implements IReservation {
 
 
     public Reservation(IBorrower borrower, Interval interval, IReservable reservedObject, ReservationStatus status) {
-        this.id = NXT_RES_ID;
+        this.id = nextID;
         this.borrower = borrower;
         this.interval = interval;
         this.reservedObject = reservedObject;
         this.status = status;
 
-        NXT_RES_ID++;
+        nextID++;
     }
 
     /**
@@ -52,13 +52,13 @@ public class Reservation implements IReservation {
         this(res.getID(), res.getBorrower(), res.getInterval(), res.getReservedObject(), res.getStatus());
     }
 
-    public static void setNxtResId(int nxtResId) {
-        Reservation.NXT_RES_ID = nxtResId;
-    }
-
     @Override
     public int getID() {
         return id;
+    }
+
+    public static void setNextID(int nextID) {
+        Reservation.nextID = nextID;
     }
 
     @Override

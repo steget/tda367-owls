@@ -5,7 +5,7 @@ package storagesystem.model;
  *
  * @author Hugo Stegrell, Pär Aronsson
  */
-public class User implements IBorrower {
+public class User {
     private static int nextID;
     private String name;
     private String password;
@@ -62,6 +62,10 @@ public class User implements IBorrower {
 
     String getPassword() {
         return password;
+    }
+
+    public static void setNextID(int nextID) {
+        User.nextID = nextID;
     }
 
     public void setPassword(String password) {

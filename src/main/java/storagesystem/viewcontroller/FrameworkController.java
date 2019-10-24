@@ -4,10 +4,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import storagesystem.model.StoreIT;
 
 import java.io.IOException;
@@ -46,39 +48,53 @@ public class FrameworkController implements Initializable, ILoadUI {
     }
 
     @FXML
-    void userButtonPressed(){ loadUI("settings/userPage"); }
+    void userButtonPressed(){ loadUI("/settings/userPage.fxml"); }
 
     @FXML
-    void teamButtonPressed(){
+    private void teamButtonPressed(){
         if(StoreIT.getCurrentOrganisation().getUsersTeams(StoreIT.getCurrentUser()).size() > 0){
-            loadUI("settings/teamPage");
+            loadUI("/settings/teamPage.fxml");
         } else{
-            NoTeamPopUpController popUp = new NoTeamPopUpController();
-            rootPane.getChildren().add(popUp);
-            AbstractFader.fadeTransition(popUp, 6);
-
+            noTeamPopUp();
         }
     }
 
     @FXML
     void allItemsButtonPressed() {
-        loadUI("itemview/itemList");
+        loadUI("/allItems/allItemsList.fxml");
     }
 
     @FXML
     void reservationsButtonPressed() {
-        loadUI("reservations/reservations");
+        loadUI("/reservations/reservations.fxml");
     }
 
     @FXML
-    void yourInventoryButtonPressed(){
+    private void yourInventoryButtonPressed(){
 
         if(StoreIT.getCurrentOrganisation().isUserPartOfTeam(StoreIT.getCurrentUser())){
-            //todo add note "Youre not part of a team" that fades away
-            loadUI("inventory/inventory");
+            loadUI("/inventory/inventory.fxml");
+        }else{
+            noTeamPopUp();
         }
     }
 
+    /**
+     * When the logOutButton is pressed the root is switched and you are taken back to the loginPage
+     */
+    @FXML
+    private void logOutButtonPressed(){
+        Parent root;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/login/loginPage.fxml"));
+            Stage stage = (Stage) rootPane.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            Logger.getLogger(FrameworkController.class.getName()).log(Level.SEVERE, null, e);
+        }
+
+    }
 
     /**
      * Method to avoid repetitive code.
@@ -89,10 +105,16 @@ public class FrameworkController implements Initializable, ILoadUI {
     public void loadUI(String ui) {
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("/" + ui + ".fxml"));
+            root = FXMLLoader.load(getClass().getResource(ui));
         } catch (IOException e) {
             Logger.getLogger(FrameworkController.class.getName()).log(Level.SEVERE, null, e);
         }
         borderPane.setCenter(root);
+    }
+
+    private void noTeamPopUp(){
+        NoTeamPopUpController popUp = new NoTeamPopUpController();
+        rootPane.getChildren().add(popUp);
+        AbstractFader.fadeTransition(popUp, 6);
     }
 }

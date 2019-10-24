@@ -2,6 +2,10 @@ package storagesystem.model;
 
 import org.junit.Assert;
 import org.junit.Test;
+import storagesystem.services.IDHandler;
+import storagesystem.services.JSONHandler;
+
+import java.io.IOException;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -9,7 +13,9 @@ import static org.junit.Assert.assertTrue;
 public class OrganisationTest {
 
     @Test
-    public void nameTest() {
+    public void nameTest() throws IOException {
+        JSONHandler.clearAllJsonFiles();
+
         String name = "big Long namz3";
         String name2 = "short";
         Organisation org = new Organisation(name);
@@ -21,30 +27,39 @@ public class OrganisationTest {
     }
 
     @Test
-    public void getAllItemTest() {
+    public void getAllItemTest() throws IOException {
+        JSONHandler.clearAllJsonFiles();
+
         Organisation org = new Organisation("name");
         Assert.assertTrue(org.getAllItems().isEmpty());
     }
 
     @Test(expected = Exception.class)
     public void getItemTest() throws Exception {
+        JSONHandler.clearAllJsonFiles();
+
         Organisation informationsteknik = new Organisation("Informationsteknik");
         Team tempTeam = new Team("sexNollK");
         informationsteknik.addTeam(tempTeam);
-        IReservable mockItem = IReservableFactory.createReservableItem("mockItem", "This is a description", "Behave please.", 2, Condition.GOOD, true, new Location("testLocation", "test desc"), null);
+        Location mockLocation = new Location("MockLocation", "this is a mock location in getItemTest()");
+        IReservable mockItem = IReservableFactory.createReservableItem("mockItem", "This is a description", "Behave please.", 2, Condition.GOOD, true, mockLocation.getID());
 
+        assertEquals(0, informationsteknik.getTeamsItems(tempTeam).size());
         assertEquals(0, informationsteknik.getAllItems().size());
-        tempTeam.addItemToInventory(mockItem);
+        informationsteknik.addItem(mockItem, tempTeam);
+        assertEquals(1, informationsteknik.getTeamsItems(tempTeam).size());
         assertEquals(1, informationsteknik.getAllItems().size());
 
-        assertEquals(mockItem, informationsteknik.getItem(1));
+
+        assertEquals(mockItem, informationsteknik.getItem(0));
         assertEquals(mockItem, informationsteknik.getItem(133));
     }
 
     @Test
-    public void createUserTest() {
+    public void createUserTest() throws IOException {
+        JSONHandler.clearAllJsonFiles();
+
         Organisation informationsteknik = new Organisation("Informationsteknik");
-        Team tempTeam = new Team("sexNollK");
         informationsteknik.addUser(new User("asd", "pass", "desc", "112"));
 
         assertEquals(1, informationsteknik.getUsers().size());
@@ -55,7 +70,9 @@ public class OrganisationTest {
     }
 
     @Test
-    public void getUsersTeamsTest() {
+    public void getUsersTeamsTest() throws IOException {
+        JSONHandler.clearAllJsonFiles();
+
         Organisation informationsteknik = new Organisation("Informationsteknik");
         Team tempTeam = new Team("sexNollK");
         Team tempTeam2 = new Team("team2");

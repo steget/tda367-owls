@@ -1,8 +1,7 @@
 package storagesystem.model;
 
-import javafx.scene.image.Image;
-
 import java.util.Objects;
+
 
 /**
  * A class that represents an item. An item can be added by a team to their own inventory.
@@ -24,10 +23,9 @@ public class Item implements IReservable {
     private int amount;
     private Condition condition;
     private boolean reservable;
-    private Location location;
-    private Image image;
+    private int locationID;
 
-    Item(String name, String description, String userRequirements, int amount, Condition condition, boolean reservable, Location location, Image image) {
+    public Item(String name, String description, String userRequirements, int amount, Condition condition, boolean reservable, int locationID) {
         this.name = name;
         this.description = description;
         this.userRequirements = userRequirements;
@@ -36,8 +34,7 @@ public class Item implements IReservable {
         this.amount = amount;
         this.condition = condition;
         this.reservable = reservable;
-        this.location = location;
-        this.image = image;
+        this.locationID = locationID;
     }
 
     public String getName() {
@@ -92,20 +89,16 @@ public class Item implements IReservable {
         this.reservable = reservable;
     }
 
-    public Location getLocation() {
-        return location;
+    public int getLocationID() {
+        return locationID;
     }
 
-    public void setLocation(Location location) {
-        this.location = location;
+    public void setLocationID(int locationID) {
+        this.locationID = locationID;
     }
 
-    public Image getImage() {
-        return image;
-    }
-
-    public void setImage(Image image) {
-        this.image = image;
+    public static void setNextID(int nextID) {
+        Item.nextID = nextID;
     }
 
     @Override
@@ -118,6 +111,6 @@ public class Item implements IReservable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, description, userRequirements, ID, amount, condition, reservable, location, image);
+        return Objects.hash(name, description, userRequirements, ID, amount, condition, reservable, locationID);
     }
 }

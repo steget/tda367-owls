@@ -3,7 +3,7 @@
     secondaryColor: #303030;
     tertiaryColor: #424242;
     quarternaryColor: #545454;
-    appButtonColor: #BB86FC;
+    secondaryButtonColor: #BB86FC;
 
 }
 
@@ -31,10 +31,10 @@
     -fx-background-color: tertiaryColor;
 }
 
-.inAppButton {
-    -fx-background-color: appButtonColor;
+.secondaryAppButton {
+    -fx-background-color: secondaryButtonColor;
     -fx-text-fill: primaryColor;
-    -fx-text-size: 18;
+    -fx-text-size: 18px;
 }
 
 .nonEditableField {
@@ -99,8 +99,8 @@
 }
 
 .bigLabel {
-    -fx-font-size: 24;
-    -fx-text-fill: #FFFF;
+    -fx-font-size: 24px;
+    -fx-text-fill: white;
 }
 
 .loginText {
@@ -141,3 +141,11 @@
 .label{
     -fx-font-fill:white;
 }
+
+.smallPane{
+    -fx-border-color: black;
+    -fx-border-width: 2px;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 6px;
+}
+

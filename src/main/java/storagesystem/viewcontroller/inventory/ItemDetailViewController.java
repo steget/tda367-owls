@@ -66,9 +66,6 @@ public class ItemDetailViewController extends AnchorPane {
     private ChoiceBox itemPageLocationChoicebox;
     @FXML
     private Label imageErrorMsgLabel;
-
-
-
     @FXML
     Button itemPageReserveBtn;
     @FXML
@@ -130,8 +127,8 @@ public class ItemDetailViewController extends AnchorPane {
 
         //consume click so the box doesn't close itself
         contentPane.setOnMouseClicked(Event::consume);
-
-
+        editPane.setOnMouseClicked(Event::consume);
+        //todo two modes in the pane so you can either just view the info or edit the item
     }
 
     /**
@@ -145,7 +142,7 @@ public class ItemDetailViewController extends AnchorPane {
         setAmountLabel("" + reservableItem.getAmount());
         setConditionSlider(reservableItem.getCondition());
         setReservableBtn(reservableItem.isReservable());
-        setImage(reservableItem.getImage());
+        setImage(PictureHandler.getItemImage(reservableItem.getID()));
         setTeamOwnerLabel(itemOwner.getName());
         setReservableChoiceBox();
         setLocationChoicebox();
@@ -159,7 +156,7 @@ public class ItemDetailViewController extends AnchorPane {
         itemPageLocationChoicebox.setItems(locationNames);
 
         for (String s : locationNames) {
-            if (s.equals(reservableItem.getLocation().getName())) {
+            if (s.equals(StoreIT.getCurrentOrganisation().getLocation(reservableItem.getLocationID()).getName())) {
                 itemPageLocationChoicebox.getSelectionModel().select(s);
             }
         }
@@ -275,7 +272,6 @@ public class ItemDetailViewController extends AnchorPane {
         reservableItem.setName(itemPageNameTA.getText());
         reservableItem.setDescription(itemPageDescriptionTA.getText());
         reservableItem.setUserRequirements(itemPageUserRequirementsTA.getText());
-        reservableItem.setImage(itemPageImageView.getImage());
         reservableItem.setReservable(isReservableChoiceBox.getSelectionModel().getSelectedIndex() == 0);
         saveCondition((int) itemPageConditionSlider.getValue());
         saveLocation(itemPageLocationChoicebox.getValue().toString());
@@ -283,7 +279,6 @@ public class ItemDetailViewController extends AnchorPane {
         for (SaveButtonClickedListener l : saveButtonListeners) {
             l.saveButtonClicked();
         }
-
     }
     @FXML
     private void reservationsButtonPressed(){
@@ -295,13 +290,14 @@ public class ItemDetailViewController extends AnchorPane {
     /**
      * Recieves a string. loops through the location lists' name. If the strings match,
      * it saves the location that matched the string as the new location to the item.
+     *
      * @param locationName is used to get the correct location from the list of locations.
      */
     private void saveLocation(String locationName) {
 
         for (Location l : locationList) {
             if (l.getName().equals(locationName)) {
-                reservableItem.setLocation(l);
+                reservableItem.setLocationID(l.getID());
             }
         }
 
@@ -337,8 +333,8 @@ public class ItemDetailViewController extends AnchorPane {
         if (selectedFile != null) {
             try {
                 BufferedImage selectedImage = ImageIO.read(selectedFile);
-                PictureHandler.saveItemImagePic(selectedImage, reservableItem.getID(), itemPageNameTA.getText());
-                itemPageImageView.setImage(PictureHandler.getItemImage(reservableItem.getID(), itemPageNameTA.getText()));
+                PictureHandler.saveItemImagePic(selectedImage, reservableItem.getID());
+                itemPageImageView.setImage(PictureHandler.getItemImage(reservableItem.getID()));
 
             } catch (IOException exception) {
                 System.out.println("Can't read image: " + selectedFile.getPath());
