@@ -232,32 +232,12 @@ public class CreateReservationController extends AnchorPane {
     }
 
     private int getMonthDays(int nr) {
-        switch (nr) {
-            case 1:
-                return 31;
-            case 2:
-                return 28;
-            case 3:
-                return 31;
-            case 4:
-                return 30;
-            case 5:
-                return 31;
-            case 6:
-                return 30;
-            case 7:
-                return 31;
-            case 8:
-                return 31;
-            case 9:
-                return 30;
-            case 10:
-                return 31;
-            case 11:
-                return 30;
-            case 12:
-                return 31;
-        }
+        if(nr == 1 || nr == 3 || nr == 5 || nr == 7 || nr == 8 || nr ==10 || nr == 12)
+            return 31;
+        else if(nr == 2)
+            return 28;
+        else if(nr ==4|| nr == 6|| nr == 9 || nr == 11)
+            return 30;
         return 0;
     }
 }
