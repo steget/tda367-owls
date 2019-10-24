@@ -35,7 +35,9 @@ public class ItemDetailViewController extends AnchorPane {
     private List<Location> locationList;
     private ObservableList<String> locationNames;
     private List<DetailedItemViewListener> detailListeners = new ArrayList<>();
-    private List<saveButtonClickedListener> saveButtonListeners = new ArrayList<>();
+    private List<SaveButtonClickedListener> saveButtonListeners = new ArrayList<>();
+    private List<ReserveButtonClickedListener> reserveButtonClickedListeners = new ArrayList<>();
+    private List<ItemReservationsClickedListener> itemReservationsClickedListeners = new ArrayList<>();
 
 
     @FXML
@@ -69,7 +71,11 @@ public class ItemDetailViewController extends AnchorPane {
     @FXML
     Button itemPageSaveButton;
     @FXML
+    private Button reservationsButton;
+    @FXML
     private Pane editPane;
+
+
 
 
     ItemDetailViewController(IReservable reservableItem) {
@@ -169,7 +175,10 @@ public class ItemDetailViewController extends AnchorPane {
 
     @FXML
     protected void reserveBtnPressed() {
-        //TODO: create a new reservation if possible
+        //TODO Move this to all items when possible
+        for(ReserveButtonClickedListener listener : reserveButtonClickedListeners){
+            listener.reserveButtonClicked();
+        }
     }
 
     @FXML
@@ -231,18 +240,7 @@ public class ItemDetailViewController extends AnchorPane {
     }
 
 
-    /**
-     * adds a listener to this object.
-     *
-     * @param listener
-     */
-    public void addDetailListener(DetailedItemViewListener listener) {
-        detailListeners.add(listener);
-    }
 
-    public void addSaveButtonListener(saveButtonClickedListener listener) {
-        saveButtonListeners.add(listener);
-    }
 
 
     /**
@@ -251,8 +249,8 @@ public class ItemDetailViewController extends AnchorPane {
      * The default setting is that the variables are non-editable.
      */
     public void editItem() {
-
-        itemPageReserveBtn.setVisible(false);
+        //TODO make not visible
+        //itemPageReserveBtn.setVisible(false);
         itemPageAmountTA.setEditable(true);
         itemPageSaveButton.setVisible(true);
         itemPageDescriptionTA.setEditable(true);
@@ -278,8 +276,14 @@ public class ItemDetailViewController extends AnchorPane {
         saveCondition((int) itemPageConditionSlider.getValue());
         saveLocation(itemPageLocationChoicebox.getValue().toString());
         reservableItem.setAmount(Integer.valueOf(itemPageAmountTA.getText()));
-        for (saveButtonClickedListener l : saveButtonListeners) {
+        for (SaveButtonClickedListener l : saveButtonListeners) {
             l.saveButtonClicked();
+        }
+    }
+    @FXML
+    private void reservationsButtonPressed(){
+        for(ItemReservationsClickedListener listener : itemReservationsClickedListeners){
+            listener.itemReservationsClicked(reservableItem);
         }
     }
 
@@ -339,6 +343,24 @@ public class ItemDetailViewController extends AnchorPane {
         }
     }
 
+    /**
+     * adds a listener to this object.
+     * @param listener
+     */
+    public void addDetailListener(DetailedItemViewListener listener) {
+        detailListeners.add(listener);
+    }
+
+    public void addSaveButtonListener(SaveButtonClickedListener listener) {
+        saveButtonListeners.add(listener);
+    }
+    public void addReserveButtonClickedListener(ReserveButtonClickedListener listener ){
+        reserveButtonClickedListeners.add(listener);
+    }
+    public void addItemReservationsClickedListeners(ItemReservationsClickedListener listener){
+        itemReservationsClickedListeners.add(listener);
+    }
+
 
     /**
      * Listener interface for DetailedItemView
@@ -350,7 +372,18 @@ public class ItemDetailViewController extends AnchorPane {
     /**
      * Listener interface for saveButtonClicked
      */
-    interface saveButtonClickedListener {
+    interface SaveButtonClickedListener {
         void saveButtonClicked();
+    }
+
+    /**
+     * Listener interface for reserve button pressed
+     */
+    interface ReserveButtonClickedListener{
+        void reserveButtonClicked();
+    }
+
+    interface ItemReservationsClickedListener{
+        void itemReservationsClicked(IReservable item);
     }
 }

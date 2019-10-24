@@ -7,7 +7,6 @@ import java.util.NoSuchElementException;
 /**
  * An Organisation holds a collection of teams with the purpose being that the teams can communicate with each other.
  * The teams that belong to an organisation should be relevant to one another.
- * An Organisation should keep track of all the reservations between its teams.
  *
  * @author Hugo Stegrell, Pär Aronsson
  */
@@ -18,7 +17,8 @@ public class Organisation {
     private final List<Team> teams = new ArrayList<>();
     private final List<User> users = new ArrayList<>();
     private final List<Location> locations = new ArrayList<>();
-    private ReservationHandler reservationHandler;
+
+    private final ReservationHandler reservationHandler;
 
     public Organisation(String name) {
         this.name = name;
@@ -70,7 +70,7 @@ public class Organisation {
      * @param user
      * @return true if a user is part of a team.
      */
-    public boolean isUserPartOfTeam(User user) {
+    public boolean isUserPartOfTeam(User user){
 
         return StoreIT.getCurrentOrganisation().getUsersTeams(user).size() > 0;
     }
@@ -136,6 +136,25 @@ public class Organisation {
 
     public List<Team> getTeams() {
         return teams;
+    }
+
+
+    public Team getTeamFromName(String teamName) throws NoSuchElementException{
+        for(Team t : teams){
+            if (t.getName().equals(teamName)){
+                return t;
+            }
+        }
+        throw new NoSuchElementException("No team with that name");
+    }
+
+    /**
+     * Creates a new user with only a name
+     *
+     * @param name
+     */
+    public void createUser(String name) {
+        users.add(new User(name));
     }
 
     public List<Location> getLocations() {

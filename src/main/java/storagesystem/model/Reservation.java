@@ -137,15 +137,15 @@ public class Reservation implements IReservation {
         if (startYear != new DateTime().getYear())
             sb.append(startYear + "." + startMonth + "." + startDay + " " + startHour + ":" + getToDoubleZero(startMinute) + " - ");
         else
-            sb.append(startMonth + "/" + startDay + " " + startHour + ":" + getToDoubleZero(startMinute) + " - ");
+            sb.append(startDay + "/" + startMonth + " " + startHour + ":" + getToDoubleZero(startMinute) + " - ");
 
 
         if (startYear != endYear)
             sb.append(endYear + "." + endMonth + "." + endDay + " " + endHour + ":" + getToDoubleZero(endMinute));
         else if (startMonth != endMonth)
-            sb.append(endMonth + "/" + endDay + " " + endHour + ":" + getToDoubleZero(endMinute));
+            sb.append(endDay + "/" + endMonth + " " + endHour + ":" + getToDoubleZero(endMinute));
         else if (startDay != endDay)
-            sb.append(endMonth + "/" + endDay + " " + endHour + ":" + getToDoubleZero(endMinute));
+            sb.append(endDay + "/" + endMonth + " " + endHour + ":" + getToDoubleZero(endMinute));
         else {
             sb.append(endHour + ":" + getToDoubleZero(endMinute));
         }
@@ -163,35 +163,6 @@ public class Reservation implements IReservation {
 
     }
 
-    private String getMonth(int nr) {
-        switch (nr) {
-            case 1:
-                return "Jan";
-            case 2:
-                return "Feb";
-            case 3:
-                return "Mar";
-            case 4:
-                return "Apr";
-            case 5:
-                return "May";
-            case 6:
-                return "Jun";
-            case 7:
-                return "Jul";
-            case 8:
-                return "Aug";
-            case 9:
-                return "Sep";
-            case 10:
-                return "Oct";
-            case 11:
-                return "Nov";
-            case 12:
-                return "Dec";
-            default:
-                return "Not a valid month";
-        }
-    }
+
 
 }

@@ -54,6 +54,7 @@ public class ReservationDetailViewController extends AnchorPane {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+
         reservation = res;
 
         lightboxContentPane.setOnMouseClicked(Event::consume);
