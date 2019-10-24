@@ -1,5 +1,4 @@
 # tda367-owls
-Repo för Objektorienterat programmeringsprojekt
 This readme is for the project StoreIT for course TDA-367
 - https://github.com/steget/tda367-owls
 @author Carl Lindh
