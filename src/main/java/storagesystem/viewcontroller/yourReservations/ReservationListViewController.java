@@ -37,7 +37,7 @@ public class ReservationListViewController extends AnchorPane {
 
     ReservationListViewController(IReservation res) {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/reservations/reservationListView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/yourReservations/reservationListView.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 

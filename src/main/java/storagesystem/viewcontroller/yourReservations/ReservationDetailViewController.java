@@ -3,6 +3,7 @@ package storagesystem.viewcontroller.yourReservations;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import storagesystem.model.IReservation;
@@ -40,12 +41,17 @@ public class ReservationDetailViewController extends AnchorPane {
     private TextField IDField;
 
     @FXML
+    private Button approveButton;
+    @FXML
+    private Button declineButton;
+
+    @FXML
     private AnchorPane lightboxContentPane;
     private List<ReservationDetailViewClosedListener> listeners = new ArrayList<>();
 
 
     public ReservationDetailViewController(IReservation res) {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/reservations/reservationDetailView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/yourReservations/reservationDetailView.fxml"));
         fxmlLoader.setController(this);
         fxmlLoader.setRoot(this);
 

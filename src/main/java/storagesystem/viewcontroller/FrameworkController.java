@@ -66,7 +66,7 @@ public class FrameworkController implements Initializable, ILoadUI {
 
     @FXML
     void reservationsButtonPressed() {
-        loadUI("/reservations/reservations.fxml");
+        loadUI("/yourReservations/reservations.fxml");
     }
 
     @FXML
