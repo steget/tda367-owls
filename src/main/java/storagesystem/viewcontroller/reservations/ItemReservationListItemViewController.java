@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import storagesystem.model.IReservation;
+import storagesystem.model.StoreIT;
 
 import java.io.IOException;
 
@@ -28,7 +29,7 @@ public class ItemReservationListItemViewController extends AnchorPane {
             throw new RuntimeException(exception);
         }
 
-        borrowerLabel.setText(reservation.getBorrower().getName());
+        borrowerLabel.setText(StoreIT.getCurrentOrganisation().getTeamFromID(reservation.getBorrowerID()).getName());
         intervalLabel.setText(reservation.getReadableInterval());
         statusLabel.setText(reservation.getStatus().toString());
     }

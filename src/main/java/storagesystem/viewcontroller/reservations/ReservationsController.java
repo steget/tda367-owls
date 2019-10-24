@@ -61,7 +61,7 @@ public class ReservationsController implements Initializable {
     }
 
     private void createListViews() {
-        List<IReservation> reservations = StoreIT.getCurrentOrganisation().getReservationHandler().getReservations();
+        List<IReservation> reservations = StoreIT.getCurrentOrganisation().getReservationHandler().getAllReservations();
         updateReservations(reservations);
     }
 

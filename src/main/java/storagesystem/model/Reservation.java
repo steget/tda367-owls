@@ -14,17 +14,17 @@ public class Reservation implements IReservation {
 
     private static int nextID = 0;
     private final int id;
-    private IBorrower borrower;
+    private int borrowerID;
     private Interval interval;
-    private IReservable reservedObject;
+    private int reservedObjectID;
     private ReservationStatus status;
 
 
-    public Reservation(IBorrower borrower, Interval interval, IReservable reservedObject, ReservationStatus status) {
+    public Reservation(int borrowerID, Interval interval, int reservedObjectID, ReservationStatus status) {
         this.id = nextID;
-        this.borrower = borrower;
+        this.borrowerID = borrowerID;
         this.interval = interval;
-        this.reservedObject = reservedObject;
+        this.reservedObjectID = reservedObjectID;
         this.status = status;
 
         nextID++;
@@ -34,22 +34,22 @@ public class Reservation implements IReservation {
      * Should not be used. Created for testing purposes.
      *
      * @param id
-     * @param borrower
+     * @param borrowerID
      * @param interval
-     * @param reservedObject
+     * @param reservedObjectID
      * @param status
      */
 
-    public Reservation(int id, IBorrower borrower, Interval interval, IReservable reservedObject, ReservationStatus status) {
+    public Reservation(int id, int borrowerID, Interval interval, int reservedObjectID, ReservationStatus status) {
         this.id = id;
-        this.borrower = borrower;
+        this.borrowerID = borrowerID;
         this.interval = new Interval(interval);
-        this.reservedObject = reservedObject;
+        this.reservedObjectID = reservedObjectID;
         this.status = status;
     }
 
     private Reservation(IReservation res) {
-        this(res.getID(), res.getBorrower(), res.getInterval(), res.getReservedObject(), res.getStatus());
+        this(res.getID(), res.getBorrowerID(), res.getInterval(), res.getReservedObjectID(), res.getStatus());
     }
 
     @Override
@@ -62,12 +62,12 @@ public class Reservation implements IReservation {
     }
 
     @Override
-    public IBorrower getBorrower() {
-        return borrower;
+    public int getBorrowerID() {
+        return borrowerID;
     }
 
-    private void setBorrower(IBorrower borrower) {
-        this.borrower = borrower;
+    private void setBorrowerID(int borrowerID) {
+        this.borrowerID = borrowerID;
     }
 
     @Override
@@ -80,12 +80,12 @@ public class Reservation implements IReservation {
     }
 
     @Override
-    public IReservable getReservedObject() {
-        return reservedObject;
+    public int getReservedObjectID() {
+        return reservedObjectID;
     }
 
-    private void setReservedObject(IReservable reservedObject) {
-        this.reservedObject = reservedObject;
+    private void setReservedObjectID(int reservedObjectID) {
+        this.reservedObjectID = reservedObjectID;
     }
 
     @Override
