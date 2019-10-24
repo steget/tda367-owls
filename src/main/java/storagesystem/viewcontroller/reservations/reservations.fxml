@@ -6,7 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.*?>
-<AnchorPane fx:id="reservationsRootPane" prefHeight="700.0" prefWidth="1000.0" styleClass="background" stylesheets="@../basicStyles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="storagesystem.viewcontroller.reservations.ReservationsController">
+<AnchorPane fx:id="reservationsRootPane" prefHeight="700.0" prefWidth="1000.0" styleClass="background" stylesheets="@../basicStyles.css" xmlns="http://javafx.com/javafx/8.0.201" xmlns:fx="http://javafx.com/fxml/1" fx:controller="storagesystem.viewcontroller.reservations.ReservationsController">
     <children>
         <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <children>
