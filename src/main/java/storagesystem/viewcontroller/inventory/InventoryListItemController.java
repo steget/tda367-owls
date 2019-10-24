@@ -8,8 +8,6 @@ import storagesystem.model.IReservable;
 import storagesystem.model.StoreIT;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author Pär Aronsson
@@ -47,7 +45,7 @@ public class InventoryListItemController extends AnchorPane {
         this.amount.setText("" + item.getAmount());
         this.itemLocation.setText("" + StoreIT.getCurrentOrganisation().getLocation(item.getLocationID()).getName());
         this.condition.setText("" + item.getCondition());
-        this.bookable.setText("" +item.isReservable());
+        this.bookable.setText("" + item.isReservable());
         this.reservableItem = item;
     }
 

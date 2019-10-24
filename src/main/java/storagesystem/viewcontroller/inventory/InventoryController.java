@@ -23,20 +23,32 @@ import java.util.ResourceBundle;
  */
 public class InventoryController implements Initializable {
 
+    @FXML
+    FlowPane itemPane;
+    @FXML
+    AnchorPane rootPane;
+    @FXML
+    ChoiceBox teamChooser;
     private Team currentlySelectedTeam;
     private List<Team> currentUsersTeams = new ArrayList<>();
     private ObservableList<String> teamNames = FXCollections.observableArrayList();
     private ItemDetailViewController detailView;
+    private EventHandler<MouseEvent> detailViewClickedHandler = e -> {
+        detailViewClicked();
+        if (e.getSource() == null) {
 
-    @FXML
-    FlowPane itemPane;
-
-    @FXML
-    AnchorPane rootPane;
-
-    @FXML
-    ChoiceBox teamChooser;
-
+        }
+        e.consume();
+    };
+    private EventHandler<MouseEvent> saveButtonClickedHandler = e -> {
+        saveButtonClicked();
+        e.consume();
+    };
+    private EventHandler<MouseEvent> listItemClickedHandler = e -> {
+        InventoryListItemController panel = (InventoryListItemController) e.getSource();
+        inventoryListItemClicked(panel.getReservableItem());
+        e.consume();
+    };
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -58,25 +70,6 @@ public class InventoryController implements Initializable {
         teamChooser.setValue(teamNames.get(0)); //show first value in box
         teamChooserListener();
     }
-
-    private EventHandler<MouseEvent> detailViewClickedHandler = e -> {
-        detailViewClicked();
-        if (e.getSource() == null) {
-
-        }
-        e.consume();
-    };
-
-    private EventHandler<MouseEvent> listItemClickedHandler = e -> {
-        InventoryListItemController panel = (InventoryListItemController) e.getSource();
-        inventoryListItemClicked(panel.getReservableItem());
-        e.consume();
-    };
-
-    private EventHandler<MouseEvent> saveButtonClickedHandler = e -> {
-        saveButtonClicked();
-        e.consume();
-    };
 
     /**
      * removes the detailed itemView from rootPane.

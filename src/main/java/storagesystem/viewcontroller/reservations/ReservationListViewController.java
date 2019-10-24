@@ -7,8 +7,6 @@ import javafx.scene.layout.AnchorPane;
 import storagesystem.model.IReservation;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * View meant to be used in ReservationsController. Represents a reservation in a small item meant to be used in a list.
@@ -51,7 +49,7 @@ public class ReservationListViewController extends AnchorPane {
         intervalLabel.setText(reservation.getReadableInterval());
     }
 
-    IReservation getReservation(){
+    IReservation getReservation() {
         return reservation;
     }
 }

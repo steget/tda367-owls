@@ -33,7 +33,15 @@ public class AllItemsListController implements Initializable {
     private ReservableItemDetailController reservableItemDetailView;
 
     private List<SmallItemPanel> allSmallItemPanels = new ArrayList<>();
-
+    private EventHandler<MouseEvent> detailViewClickedHandler = e -> {
+        detailViewClicked();
+        e.consume();
+    };
+    private EventHandler<MouseEvent> smallPanelClickedHandler = e -> {
+        SmallItemPanel panel = (SmallItemPanel) e.getSource();
+        smallItemPanelClicked(panel.getReservableItem());
+        e.consume();
+    };
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -56,17 +64,6 @@ public class AllItemsListController implements Initializable {
         reservableItemDetailView.addEventHandler(MouseEvent.MOUSE_CLICKED, detailViewClickedHandler);
         rootPane.getChildren().add(reservableItemDetailView);
     }
-
-    private EventHandler<MouseEvent> detailViewClickedHandler = e -> {
-        detailViewClicked();
-        e.consume();
-    };
-
-    private EventHandler<MouseEvent> smallPanelClickedHandler = e -> {
-        SmallItemPanel panel = (SmallItemPanel) e.getSource();
-        smallItemPanelClicked(panel.getReservableItem());
-        e.consume();
-    };
 
     private void detailViewClicked() {
         rootPane.getChildren().remove(reservableItemDetailView);

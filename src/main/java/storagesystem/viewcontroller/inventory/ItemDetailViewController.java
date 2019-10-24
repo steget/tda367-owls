@@ -20,7 +20,6 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,9 +31,10 @@ import java.util.List;
 public class ItemDetailViewController extends AnchorPane {
     private final IReservable reservableItem;
     private final Team itemOwner;
+    @FXML
+    Button itemPageSaveButton;
     private List<Location> locationList;
     private ObservableList<String> locationNames;
-
     @FXML
     private AnchorPane contentPane;
     @FXML
@@ -61,8 +61,6 @@ public class ItemDetailViewController extends AnchorPane {
     private ChoiceBox itemPageLocationChoicebox;
     @FXML
     private Label imageErrorMsgLabel;
-    @FXML
-    Button itemPageSaveButton;
     @FXML
     private Pane editPane;
 

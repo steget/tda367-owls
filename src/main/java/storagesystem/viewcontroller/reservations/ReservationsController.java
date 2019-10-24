@@ -33,7 +33,15 @@ public class ReservationsController implements Initializable {
 
 
     private ReservationDetailViewController detailView;
-
+    private EventHandler<MouseEvent> detailViewClickedHandler = e -> {
+        detailViewClicked();
+        e.consume();
+    };
+    private EventHandler<MouseEvent> reservationListViewClickedHandler = e -> {
+        ReservationListViewController panel = (ReservationListViewController) e.getSource();
+        reservationListViewClicked(panel.getReservation());
+        e.consume();
+    };
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -41,7 +49,6 @@ public class ReservationsController implements Initializable {
         reservationListFlowPane.getChildren().addAll(reservationViews);
 
     }
-
 
     private void createListViews() {
         boolean alternating = false;
@@ -74,15 +81,4 @@ public class ReservationsController implements Initializable {
         detailView.addEventHandler(MouseEvent.MOUSE_CLICKED, detailViewClickedHandler);
         reservationsRootPane.getChildren().add(detailView);
     }
-
-    private EventHandler<MouseEvent> detailViewClickedHandler = e -> {
-        detailViewClicked();
-        e.consume();
-    };
-
-    private EventHandler<MouseEvent> reservationListViewClickedHandler = e -> {
-        ReservationListViewController panel = (ReservationListViewController) e.getSource();
-        reservationListViewClicked(panel.getReservation());
-        e.consume();
-    };
 }

@@ -8,8 +8,6 @@ import javafx.scene.layout.AnchorPane;
 import storagesystem.model.IReservation;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Shows detail about a reservation including borrowed item, time and date, status etc. Intended to be used as a lightbox.
