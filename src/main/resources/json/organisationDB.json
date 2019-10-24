@@ -13,7 +13,7 @@
           "amount": 2,
           "condition": "GOOD",
           "reservable": true,
-          "locationID": 4
+          "locationID": 0
         }
       },
       {
@@ -26,7 +26,7 @@
           "amount": 2,
           "condition": "GOOD",
           "reservable": true,
-          "locationID": 5
+          "locationID": 1
         }
       },
       {
@@ -39,7 +39,7 @@
           "amount": 2,
           "condition": "GOOD",
           "reservable": true,
-          "locationID": 6
+          "locationID": 2
         }
       }
     ],
@@ -127,17 +127,17 @@
       {
         "name": "Hubben",
         "description": "This location does not exist",
-        "ID": 4
+        "ID": 0
       },
       {
         "name": "Garaget",
         "description": "This location is unavailable",
-        "ID": 5
+        "ID": 1
       },
       {
         "name": "Maskinhuset",
         "description": "This location is unavailable",
-        "ID": 6
+        "ID": 2
       }
     ],
     "reservationHandler": {
@@ -174,7 +174,7 @@
                 "amount": 2,
                 "condition": "GOOD",
                 "reservable": true,
-                "locationID": 4
+                "locationID": 0
               }
             },
             "status": "APPROVED"
@@ -212,7 +212,7 @@
                 "amount": 2,
                 "condition": "GOOD",
                 "reservable": true,
-                "locationID": 4
+                "locationID": 0
               }
             },
             "status": "APPROVED"
