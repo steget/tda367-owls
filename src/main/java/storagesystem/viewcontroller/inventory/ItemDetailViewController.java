@@ -34,7 +34,6 @@ public class ItemDetailViewController extends AnchorPane {
     private final Team itemOwner;
     private List<Location> locationList;
     private ObservableList<String> locationNames;
-    private List<saveButtonClickedListener> saveButtonListeners = new ArrayList<>();
 
     @FXML
     private AnchorPane contentPane;
@@ -237,6 +236,7 @@ public class ItemDetailViewController extends AnchorPane {
     /**
      * Saves the changes to the current item.
      */
+    @FXML
     public void saveItem() {
         reservableItem.setName(itemPageNameTA.getText());
         reservableItem.setDescription(itemPageDescriptionTA.getText());
@@ -245,9 +245,6 @@ public class ItemDetailViewController extends AnchorPane {
         saveCondition((int) itemPageConditionSlider.getValue());
         saveLocation(itemPageLocationChoicebox.getValue().toString());
         reservableItem.setAmount(Integer.parseInt(itemPageAmountTA.getText()));
-        for (saveButtonClickedListener l : saveButtonListeners) {
-            l.saveButtonClicked();
-        }
     }
 
     /**
@@ -304,12 +301,5 @@ public class ItemDetailViewController extends AnchorPane {
                 //todo add an animation for when an image cant be read.
             }
         }
-    }
-
-    /**
-     * Listener interface for saveButtonClicked
-     */
-    interface saveButtonClickedListener {
-        void saveButtonClicked();
     }
 }
