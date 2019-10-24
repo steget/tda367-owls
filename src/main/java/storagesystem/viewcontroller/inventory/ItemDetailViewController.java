@@ -73,7 +73,9 @@ public class ItemDetailViewController extends AnchorPane {
 
 
     ItemDetailViewController(IReservable reservableItem) {
+
         this.reservableItem = reservableItem;
+
         this.itemOwner = StoreIT.getCurrentOrganisation().getItemOwner(reservableItem);
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/inventory/ItemDetailView.fxml"));
@@ -88,6 +90,8 @@ public class ItemDetailViewController extends AnchorPane {
 
         initialize();
     }
+
+
 
     private void initialize() {
         locationList = StoreIT.getCurrentOrganisation().getLocations();
@@ -154,9 +158,9 @@ public class ItemDetailViewController extends AnchorPane {
                 itemPageLocationChoicebox.getSelectionModel().select(s);
             }
         }
-
-
     }
+
+
 
     private void setReservableChoiceBox() {
         if (reservableItem.isReservable()) {

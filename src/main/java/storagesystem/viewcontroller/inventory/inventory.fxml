@@ -44,7 +44,7 @@
          </content>
       </ScrollPane>
       <ChoiceBox fx:id="teamChooser" layoutX="14.0" layoutY="35.0" prefWidth="150.0" />
-      <Button layoutX="882.0" layoutY="35.0" mnemonicParsing="false" text="Add Item" />
+      <Button layoutX="882.0" layoutY="35.0" mnemonicParsing="false" onAction="#addItem" text="Add Item" />
       <Line endX="1000.0" endY="-23.0" layoutX="109.0" layoutY="165.0" startY="-23.0" strokeWidth="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
    </children>
 </AnchorPane>

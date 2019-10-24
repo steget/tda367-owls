@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
@@ -23,6 +24,8 @@ public class InventoryController implements Initializable {
     private List<Team> currentUsersTeams = new ArrayList<>();
     private ObservableList<String> teamNames = FXCollections.observableArrayList();
     private ItemDetailViewController detailView;
+    private ItemCreateViewController createView;
+
 
     @FXML
     FlowPane itemPane;
@@ -100,6 +103,14 @@ public class InventoryController implements Initializable {
         detailView.editItem();
     }
 
+    @FXML
+    private void addItem(){
+        createView = new ItemCreateViewController();
+        rootPane.getChildren().add(createView);
+        createView.addCreateItemButtonListener(this::createButtonClicked);
+        createView.addRemoveCreateViewListener(this::removeCreateView);
+    }
+
 
     /**
      * removes the detailed itemView from rootPane.
@@ -107,8 +118,16 @@ public class InventoryController implements Initializable {
     private void detailItemViewClicked() {
         rootPane.getChildren().remove(detailView);
     }
+    private void removeCreateView() {
+        rootPane.getChildren().remove(createView);
+    }
+
 
     private void saveButtonClicked() {
+        refreshItems();
+        rootPane.getChildren().remove(createView);
+    }
+    private void createButtonClicked() {
         refreshItems();
     }
 
