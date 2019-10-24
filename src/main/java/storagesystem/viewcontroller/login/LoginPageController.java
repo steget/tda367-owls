@@ -57,7 +57,7 @@ public class LoginPageController implements Initializable {
     private TextField regUserNameTextField;
 
     @FXML
-    private TextField regPasswordTextField;
+    private PasswordField regPasswordTextField;
 
     @FXML
     private ChoiceBox<String> regOrganisationChoiceBox;
@@ -88,7 +88,7 @@ public class LoginPageController implements Initializable {
 
         Platform.runLater(() -> userNameTextField.requestFocus()); //Need to do this since Stage is not set yet when in initialize
         userNameTextField.setText("admin");
-        passwordField.setText("1");
+        passwordField.setText("1");//TODO: remove default login
     }
 
     /**

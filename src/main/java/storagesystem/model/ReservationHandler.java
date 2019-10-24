@@ -113,7 +113,7 @@ public class ReservationHandler {
      * @param interval   The interval in which to reserve the object.
      * @param objectID   The ID of the object which is to be reserved.
      */
-    public void createReservation(int borrowerID, Interval interval, int objectID) {//TODO: change parameters from IBorrower and IReservable to int IDs
+    public void createReservation(int borrowerID, Interval interval, int objectID) {
         Reservation reservation = new Reservation(borrowerID, interval, objectID, ReservationStatus.PENDING);
         reservations.add(reservation);
     }

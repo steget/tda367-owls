@@ -121,6 +121,13 @@
         "description": "1",
         "contactInformation": "1",
         "ID": 6
+      },
+      {
+        "name": "test",
+        "password": "testpassword123",
+        "description": "test3",
+        "contactInformation": "test2",
+        "ID": 7
       }
     ],
     "locations": [
