@@ -9,9 +9,11 @@ import javafx.scene.layout.AnchorPane;
 import org.joda.time.DateTime;
 import org.joda.time.Interval;
 import storagesystem.model.*;
+import storagesystem.viewcontroller.AbstractFader;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.EventListener;
 import java.util.List;
 
 /**
@@ -26,6 +28,8 @@ public class CreateReservationController extends AnchorPane {
     AnchorPane rootPane;
     @FXML
     AnchorPane lightboxContentPane;
+    @FXML
+    AnchorPane errorPane;
 
     @FXML
     TextField itemField;
@@ -79,6 +83,8 @@ public class CreateReservationController extends AnchorPane {
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }
+
+        errorPane.setOpacity(0);
 
         lightboxContentPane.setOnMouseClicked(Event::consume);
 
@@ -167,6 +173,12 @@ public class CreateReservationController extends AnchorPane {
         return temp2;
     }
 
+    private boolean isEndAfterStart(){
+        long start = getStartDate().getMillis();
+        long end = getEndDate().getMillis();
+        return end > start;
+    }
+
 
     @FXML
     private void confirmReservation() {
@@ -178,9 +190,15 @@ public class CreateReservationController extends AnchorPane {
         }
     }
 
-    private boolean isReservationLegal() { ;
-        boolean itemIsBorrowed = StoreIT.getCurrentOrganisation().getReservationHandler().isObjectReservedBetween(item, getInterval());
-        return !itemIsBorrowed;
+    private boolean isReservationLegal() {
+        if(!isEndAfterStart()){
+            AbstractFader.fadeTransition(errorPane, 3);
+            return false;
+        }
+        if(StoreIT.getCurrentOrganisation().getReservationHandler().isObjectReservedBetween(item, getInterval())) {
+            return false;
+        }
+        return true;
     }
 
     private void checkReservationLegal() {
@@ -193,22 +211,29 @@ public class CreateReservationController extends AnchorPane {
     }
 
     private Interval getInterval() {
+        return new Interval(getStartDate(), getEndDate());
+    }
+
+
+    private DateTime getStartDate(){
         int startYear = startYearSpinner.getValue();
         int startMonth = startMonthSpinner.getValue();
         int startDay = startDaySpinner.getValue();
         int startHour = startHourSpinner.getValue();
         int startMinute = startMinuteSpinner.getValue();
+        DateTime start = new DateTime(startYear, startMonth, startDay, startHour, startMinute);
+        return start;
+    }
+
+    private DateTime getEndDate(){
         int endYear = endYearSpinner.getValue();
         int endMonth = endMonthSpinner.getValue();
         int endDay = endDaySpinner.getValue();
         int endHour = endHourSpinner.getValue();
         int endMinute = endMinuteSpinner.getValue();
-        DateTime start = new DateTime(startYear, startMonth, startDay, startHour, startMinute);
         DateTime end = new DateTime(endYear, endMonth, endDay, endHour, endMinute);
-
-        return new Interval(start, end);
+        return end;
     }
-
 
     @FXML
     private void close() {

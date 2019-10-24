@@ -7,7 +7,7 @@
         "CLASSNAME": "storagesystem.model.Item",
         "DATA": {
           "ID": 0,
-          "name": "mockItem",
+          "name": "newName\n",
           "description": "This is a description",
           "userRequirements": "Behave please.",
           "amount": 2,
@@ -56,7 +56,7 @@
         "name": "sexNollK",
         "termsAndConditions": "För att låna våra prylar måste prylen vara i samma skick som den var när den lånades ut. Behövs den diskas så diska den osv. Prylen ska också vara tillbaka på samma plats igen",
         "imageUrl": null,
-        "teamID": 0
+        "ID": 0
       },
       {
         "itemIDs": [
@@ -69,7 +69,7 @@
         "name": "P.R.NollK",
         "termsAndConditions": "text 2",
         "imageUrl": null,
-        "teamID": 1
+        "ID": 0
       }
     ],
     "users": [
@@ -160,7 +160,7 @@
                 "name": "sexNollK",
                 "termsAndConditions": "För att låna våra prylar måste prylen vara i samma skick som den var när den lånades ut. Behövs den diskas så diska den osv. Prylen ska också vara tillbaka på samma plats igen",
                 "imageUrl": null,
-                "teamID": 0
+                "ID": 0
               }
             },
             "interval": "2019-09-10T12:40:00.000+02:00/2019-09-10T15:00:00.000+02:00",
@@ -198,7 +198,7 @@
                 "name": "sexNollK",
                 "termsAndConditions": "För att låna våra prylar måste prylen vara i samma skick som den var när den lånades ut. Behövs den diskas så diska den osv. Prylen ska också vara tillbaka på samma plats igen",
                 "imageUrl": null,
-                "teamID": 0
+                "ID": 0
               }
             },
             "interval": "2019-09-12T17:30:00.000+02:00/2019-10-16T20:00:00.000+02:00",
@@ -216,6 +216,196 @@
               }
             },
             "status": "APPROVED"
+          }
+        },
+        {
+          "CLASSNAME": "storagesystem.model.Reservation",
+          "DATA": {
+            "id": 2,
+            "borrower": {
+              "CLASSNAME": "storagesystem.model.Team",
+              "DATA": {
+                "itemIDs": [
+                  0,
+                  1
+                ],
+                "memberIDs": [
+                  0,
+                  1
+                ],
+                "name": "sexNollK",
+                "termsAndConditions": "För att låna våra prylar måste prylen vara i samma skick som den var när den lånades ut. Behövs den diskas så diska den osv. Prylen ska också vara tillbaka på samma plats igen",
+                "imageUrl": null,
+                "ID": 0
+              }
+            },
+            "interval": "2021-10-24T15:15:00.000+02:00/2022-12-24T15:15:00.000+01:00",
+            "reservedObject": {
+              "CLASSNAME": "storagesystem.model.Item",
+              "DATA": {
+                "ID": 0,
+                "name": "mockItem",
+                "description": "This is a description",
+                "userRequirements": "Behave please.",
+                "amount": 2,
+                "condition": "GOOD",
+                "reservable": true,
+                "locationID": 0
+              }
+            },
+            "status": "PENDING"
+          }
+        },
+        {
+          "CLASSNAME": "storagesystem.model.Reservation",
+          "DATA": {
+            "id": 3,
+            "borrower": {
+              "CLASSNAME": "storagesystem.model.Team",
+              "DATA": {
+                "itemIDs": [
+                  0,
+                  1
+                ],
+                "memberIDs": [
+                  0,
+                  1
+                ],
+                "name": "sexNollK",
+                "termsAndConditions": "För att låna våra prylar måste prylen vara i samma skick som den var när den lånades ut. Behövs den diskas så diska den osv. Prylen ska också vara tillbaka på samma plats igen",
+                "imageUrl": null,
+                "ID": 0
+              }
+            },
+            "interval": "2019-10-24T15:15:00.000+02:00/2019-10-24T15:15:00.000+02:00",
+            "reservedObject": {
+              "CLASSNAME": "storagesystem.model.Item",
+              "DATA": {
+                "ID": 0,
+                "name": "mockItem",
+                "description": "This is a description",
+                "userRequirements": "Behave please.",
+                "amount": 2,
+                "condition": "GOOD",
+                "reservable": true,
+                "locationID": 0
+              }
+            },
+            "status": "PENDING"
+          }
+        },
+        {
+          "CLASSNAME": "storagesystem.model.Reservation",
+          "DATA": {
+            "id": 4,
+            "borrower": {
+              "CLASSNAME": "storagesystem.model.Team",
+              "DATA": {
+                "itemIDs": [
+                  0,
+                  1
+                ],
+                "memberIDs": [
+                  0,
+                  1
+                ],
+                "name": "sexNollK",
+                "termsAndConditions": "För att låna våra prylar måste prylen vara i samma skick som den var när den lånades ut. Behövs den diskas så diska den osv. Prylen ska också vara tillbaka på samma plats igen",
+                "imageUrl": null,
+                "ID": 0
+              }
+            },
+            "interval": "2019-10-24T15:30:00.000+02:00/2019-10-24T15:45:00.000+02:00",
+            "reservedObject": {
+              "CLASSNAME": "storagesystem.model.Item",
+              "DATA": {
+                "ID": 0,
+                "name": "newName\n",
+                "description": "This is a description",
+                "userRequirements": "Behave please.",
+                "amount": 2,
+                "condition": "GOOD",
+                "reservable": true,
+                "locationID": 0
+              }
+            },
+            "status": "PENDING"
+          }
+        },
+        {
+          "CLASSNAME": "storagesystem.model.Reservation",
+          "DATA": {
+            "id": 5,
+            "borrower": {
+              "CLASSNAME": "storagesystem.model.Team",
+              "DATA": {
+                "itemIDs": [
+                  0,
+                  1
+                ],
+                "memberIDs": [
+                  0,
+                  1
+                ],
+                "name": "sexNollK",
+                "termsAndConditions": "För att låna våra prylar måste prylen vara i samma skick som den var när den lånades ut. Behövs den diskas så diska den osv. Prylen ska också vara tillbaka på samma plats igen",
+                "imageUrl": null,
+                "ID": 0
+              }
+            },
+            "interval": "2019-10-24T15:45:00.000+02:00/2019-10-24T15:45:00.000+02:00",
+            "reservedObject": {
+              "CLASSNAME": "storagesystem.model.Item",
+              "DATA": {
+                "ID": 0,
+                "name": "newName\n",
+                "description": "This is a description",
+                "userRequirements": "Behave please.",
+                "amount": 2,
+                "condition": "GOOD",
+                "reservable": true,
+                "locationID": 0
+              }
+            },
+            "status": "PENDING"
+          }
+        },
+        {
+          "CLASSNAME": "storagesystem.model.Reservation",
+          "DATA": {
+            "id": 6,
+            "borrower": {
+              "CLASSNAME": "storagesystem.model.Team",
+              "DATA": {
+                "itemIDs": [
+                  0,
+                  1
+                ],
+                "memberIDs": [
+                  0,
+                  1
+                ],
+                "name": "sexNollK",
+                "termsAndConditions": "För att låna våra prylar måste prylen vara i samma skick som den var när den lånades ut. Behövs den diskas så diska den osv. Prylen ska också vara tillbaka på samma plats igen",
+                "imageUrl": null,
+                "ID": 0
+              }
+            },
+            "interval": "2019-10-24T15:45:00.000+02:00/2019-10-24T15:45:00.000+02:00",
+            "reservedObject": {
+              "CLASSNAME": "storagesystem.model.Item",
+              "DATA": {
+                "ID": 0,
+                "name": "newName\n",
+                "description": "This is a description",
+                "userRequirements": "Behave please.",
+                "amount": 2,
+                "condition": "GOOD",
+                "reservable": true,
+                "locationID": 0
+              }
+            },
+            "status": "PENDING"
           }
         }
       ]
