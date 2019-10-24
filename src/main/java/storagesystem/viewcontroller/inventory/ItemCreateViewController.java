@@ -16,6 +16,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import storagesystem.model.*;
 import storagesystem.services.PictureHandler;
+import storagesystem.viewcontroller.AbstractFader;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -31,13 +32,13 @@ import java.util.List;
  */
 
 public class ItemCreateViewController extends AnchorPane {
-    private final Team itemOwner;
     private List<Location> locationList;
     private ObservableList<String> locationNames;
     private List<RemoveCreateViewListener> removeCreateViewListeners = new ArrayList<>();
     private List<CreateItemButtonListener> createButtonListeners = new ArrayList<>();
 
-
+    @FXML
+    private Label errorMsg;
     @FXML
     private AnchorPane contentPane;
     @FXML
@@ -46,10 +47,6 @@ public class ItemCreateViewController extends AnchorPane {
     private ImageView closeButtonImageView;
     @FXML
     private TextArea itemPageNameTA;
-    @FXML
-    private Label itemPageIDLabel;
-    @FXML
-    private Label itemPageTeamOwnerLabel;
     @FXML
     private Slider itemPageConditionSlider;
     @FXML
@@ -73,10 +70,6 @@ public class ItemCreateViewController extends AnchorPane {
 
 
     ItemCreateViewController() {
-
-
-        this.itemOwner = StoreIT.getCurrentTeam();
-
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/inventory/ItemCreateView.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
@@ -117,6 +110,20 @@ public class ItemCreateViewController extends AnchorPane {
         contentPane.setOnMouseClicked(Event::consume);
         editPane.setOnMouseClicked(Event::consume);
         //todo two modes in the pane so you can either just view the info or edit the item
+        setTemplate();
+    }
+
+    /**
+     * fills the sliders and image to a template so it is easier to create an item.
+     */
+    private void setTemplate() {
+
+        itemPageImageView.setImage(new Image("pictures/items/unknown-item-image.png"));
+        itemPageConditionSlider.setValue(1);
+        isReservableChoiceBox.getSelectionModel().select(1);
+        itemPageLocationChoicebox.getSelectionModel().select(1);
+
+
     }
 
     private void fillLocationChoicebox() {
@@ -137,9 +144,6 @@ public class ItemCreateViewController extends AnchorPane {
         }
     }
 
-    private void setTeamOwnerLabel(String teamOwner) {
-        itemPageTeamOwnerLabel.setText("Owner: " + teamOwner);
-    }
 
     /**
      * adds a listener to this object.
@@ -159,8 +163,8 @@ public class ItemCreateViewController extends AnchorPane {
      * Creates an IReservable item which gets filled with the data in the different boxes from "ItemCreateView.fxml"
      * It saves the item to the currentorganisation which also connects the item to a team.
      */
-    @FXML
-    public void createItem() {
+
+    private void createItem() {
 
         IReservable item = new Item(itemPageNameTA.getText(), itemPageDescriptionTA.getText(), itemPageUserRequirementsTA.getText(), (int) Integer.valueOf(itemPageAmountTA.getText()), saveCondition((int) itemPageConditionSlider.getValue()), isReservableChoiceBox.getSelectionModel().getSelectedIndex() == 0, getLocation(itemPageLocationChoicebox.getSelectionModel().getSelectedItem().toString()));
         BufferedImage tmpImg = SwingFXUtils.fromFXImage(PictureHandler.getItemImage(999), null);
@@ -173,6 +177,25 @@ public class ItemCreateViewController extends AnchorPane {
             l.createButtonClicked();
         }
     }
+
+    /**
+     * this method gets called before an item is created. It wont create a new item if the boxes are not completely filled in.
+     */
+
+    @FXML
+    public void checkIfBoxesAreFilled() {
+        if (!(itemPageNameTA.getText().equals("") &&
+            itemPageAmountTA.getText().equals("") &&
+            itemPageUserRequirementsTA.getText().equals("") &&
+            itemPageDescriptionTA.getText().equals(""))) {
+
+            createItem();
+        }
+        else{
+            AbstractFader.fadeTransition(errorMsg,3);
+        }
+    }
+
 
     /**
      * Recieves a string. loops through the location lists' name. If the strings match,
@@ -216,6 +239,8 @@ public class ItemCreateViewController extends AnchorPane {
      * The method also writes the bufferedImage to the location "recources/pictures/items"
      * where it then can be called from.
      */
+
+
     @FXML
     void createTempImage() {
 

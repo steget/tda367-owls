@@ -125,10 +125,11 @@ public class InventoryController implements Initializable {
 
     private void saveButtonClicked() {
         refreshItems();
-        rootPane.getChildren().remove(createView);
     }
     private void createButtonClicked() {
         refreshItems();
+        rootPane.getChildren().remove(createView);
+
     }
 
 

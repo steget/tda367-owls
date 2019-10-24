@@ -46,7 +46,7 @@
             </ImageView>
             <Label layoutX="373.0" layoutY="143.0" styleClass="smallLabel" text="Item description" />
             <Label layoutX="373.0" layoutY="348.0" styleClass="smallLabel" text="User requirements" />
-            <Button fx:id="itemPageCreateButton" layoutX="750.0" layoutY="466.0" mnemonicParsing="false" onAction="#createItem" prefHeight="73.0" prefWidth="118.0" text="Create Item" textAlignment="CENTER" wrapText="true" />
+            <Button fx:id="itemPageCreateButton" layoutX="750.0" layoutY="466.0" mnemonicParsing="false" onAction="#checkIfBoxesAreFilled" prefHeight="73.0" prefWidth="118.0" text="Create Item" textAlignment="CENTER" wrapText="true" />
             <Line endX="-100.0" endY="486.0" layoutX="454.0" layoutY="94.0" startX="-100.0" startY="-94.0" />
             <Line endX="525.0" layoutX="355.0" layoutY="125.0" />
             <Line endX="200.5" layoutX="153.0" layoutY="282.0" startX="-152.0" />
@@ -59,6 +59,7 @@
             <TextArea fx:id="itemPageAmountTA" layoutX="203.0" layoutY="350.0" prefHeight="47.0" prefWidth="90.0" promptText="Enter amount" />
             <ChoiceBox fx:id="itemPageLocationChoicebox" layoutX="203.0" layoutY="407.0" prefHeight="44.0" prefWidth="141.0" />
             <Label layoutX="5.0" layoutY="242.0" prefHeight="30.0" prefWidth="345.0" styleClass="smallLabel" text="Add image by clicking the icon above." />
+            <Label fx:id="errorMsg" layoutX="750.0" layoutY="366.0" opacity="0.0" prefHeight="97.0" prefWidth="118.0" styleClass="smallLabel" text="Please fill in all fields" textAlignment="CENTER" wrapText="true" />
          </children>
       </AnchorPane>
    </children>
