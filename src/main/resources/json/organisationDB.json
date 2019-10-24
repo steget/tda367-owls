@@ -6,55 +6,70 @@
       {
         "CLASSNAME": "storagesystem.model.Item",
         "DATA": {
-          "ID": 12,
+          "ID": 0,
           "name": "mockItem",
           "description": "This is a description",
           "userRequirements": "Behave please.",
           "amount": 2,
           "condition": "GOOD",
           "reservable": true,
-          "locationID": 4
+          "locationID": 0
         }
       },
       {
         "CLASSNAME": "storagesystem.model.Item",
         "DATA": {
-          "ID": 13,
+          "ID": 1,
           "name": "mockItem nr 2",
           "description": "This is a description",
           "userRequirements": "Behave please.",
           "amount": 2,
           "condition": "GOOD",
           "reservable": true,
-          "locationID": 5
+          "locationID": 1
+        }
+      },
+      {
+        "CLASSNAME": "storagesystem.model.Item",
+        "DATA": {
+          "ID": 2,
+          "name": "mockItem nr 3",
+          "description": "This is a description",
+          "userRequirements": "Behave please.",
+          "amount": 2,
+          "condition": "GOOD",
+          "reservable": true,
+          "locationID": 2
         }
       }
     ],
     "teams": [
       {
         "itemIDs": [
-          12,
-          13
+          0,
+          1
         ],
         "memberIDs": [
-          42,
-          43
+          0,
+          1
         ],
         "name": "sexNollK",
         "termsAndConditions": "För att låna våra prylar måste prylen vara i samma skick som den var när den lånades ut. Behövs den diskas så diska den osv. Prylen ska också vara tillbaka på samma plats igen",
         "imageUrl": null,
-        "teamID": 16
+        "teamID": 0
       },
       {
-        "itemIDs": [],
+        "itemIDs": [
+          2
+        ],
         "memberIDs": [
-          42,
-          43
+          0,
+          1
         ],
         "name": "P.R.NollK",
         "termsAndConditions": "text 2",
         "imageUrl": null,
-        "teamID": 17
+        "teamID": 1
       }
     ],
     "users": [
@@ -63,61 +78,66 @@
         "password": "1",
         "description": "1",
         "contactInformation": "1",
-        "ID": 42
+        "ID": 0
       },
       {
         "name": "admin",
         "password": "1",
         "description": "1",
         "contactInformation": "1",
-        "ID": 43
+        "ID": 1
       },
       {
         "name": "eke",
         "password": "1",
         "description": "1",
         "contactInformation": "1",
-        "ID": 44
+        "ID": 2
       },
       {
         "name": "kvick",
         "password": "1",
         "description": "1",
         "contactInformation": "1",
-        "ID": 45
+        "ID": 3
       },
       {
         "name": "sponken",
         "password": "1",
         "description": "1",
         "contactInformation": "1",
-        "ID": 46
+        "ID": 4
       },
       {
         "name": "giff",
         "password": "1",
         "description": "1",
         "contactInformation": "1",
-        "ID": 47
+        "ID": 5
       },
       {
         "name": "steget",
         "password": "1",
         "description": "1",
         "contactInformation": "1",
-        "ID": 48
+        "ID": 6
       }
     ],
     "locations": [
       {
         "name": "Hubben",
         "description": "This location does not exist",
-        "ID": 4
+        "ID": 0
       },
       {
         "name": "Garaget",
         "description": "This location is unavailable",
-        "ID": 5
+        "ID": 1
+      },
+      {
+        "name": "Maskinhuset",
+        "description": "This location is unavailable",
+        "ID": 2
       }
     ],
     "reservationHandler": {
@@ -125,36 +145,36 @@
         {
           "CLASSNAME": "storagesystem.model.Reservation",
           "DATA": {
-            "id": 9,
+            "id": 0,
             "borrower": {
               "CLASSNAME": "storagesystem.model.Team",
               "DATA": {
                 "itemIDs": [
-                  12,
-                  13
+                  0,
+                  1
                 ],
                 "memberIDs": [
-                  42,
-                  43
+                  0,
+                  1
                 ],
                 "name": "sexNollK",
                 "termsAndConditions": "För att låna våra prylar måste prylen vara i samma skick som den var när den lånades ut. Behövs den diskas så diska den osv. Prylen ska också vara tillbaka på samma plats igen",
                 "imageUrl": null,
-                "teamID": 16
+                "teamID": 0
               }
             },
             "interval": "2019-09-10T12:40:00.000+02:00/2019-09-10T15:00:00.000+02:00",
             "reservedObject": {
               "CLASSNAME": "storagesystem.model.Item",
               "DATA": {
-                "ID": 12,
+                "ID": 0,
                 "name": "mockItem",
                 "description": "This is a description",
                 "userRequirements": "Behave please.",
                 "amount": 2,
                 "condition": "GOOD",
                 "reservable": true,
-                "locationID": 4
+                "locationID": 0
               }
             },
             "status": "APPROVED"
@@ -163,36 +183,36 @@
         {
           "CLASSNAME": "storagesystem.model.Reservation",
           "DATA": {
-            "id": 10,
+            "id": 1,
             "borrower": {
               "CLASSNAME": "storagesystem.model.Team",
               "DATA": {
                 "itemIDs": [
-                  12,
-                  13
+                  0,
+                  1
                 ],
                 "memberIDs": [
-                  42,
-                  43
+                  0,
+                  1
                 ],
                 "name": "sexNollK",
                 "termsAndConditions": "För att låna våra prylar måste prylen vara i samma skick som den var när den lånades ut. Behövs den diskas så diska den osv. Prylen ska också vara tillbaka på samma plats igen",
                 "imageUrl": null,
-                "teamID": 16
+                "teamID": 0
               }
             },
             "interval": "2019-09-12T17:30:00.000+02:00/2019-10-16T20:00:00.000+02:00",
             "reservedObject": {
               "CLASSNAME": "storagesystem.model.Item",
               "DATA": {
-                "ID": 12,
+                "ID": 0,
                 "name": "mockItem",
                 "description": "This is a description",
                 "userRequirements": "Behave please.",
                 "amount": 2,
                 "condition": "GOOD",
                 "reservable": true,
-                "locationID": 4
+                "locationID": 0
               }
             },
             "status": "APPROVED"

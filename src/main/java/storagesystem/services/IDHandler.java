@@ -115,4 +115,12 @@ public class IDHandler {
         }
 
     }
+
+    static void clearAllNextIDs() {
+        Item.setNextID(0);
+        User.setNextID(0);
+        Team.setNextID(0);
+        Reservation.setNextID(0);
+        Location.setNextID(0);
+    }
 }

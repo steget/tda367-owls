@@ -16,6 +16,7 @@ public class JSONHandlerTest {
     //makes sure we have the mockData from storeIT in organisationDB
     @AfterClass
     public static void resetDatabase() throws IOException {
+        IDHandler.clearAllNextIDs();
         StoreIT storeIT = new StoreIT();
         storeIT.reset();
         JSONHandler.save(StoreIT.getOrganisations());

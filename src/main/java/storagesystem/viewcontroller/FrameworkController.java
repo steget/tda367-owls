@@ -48,32 +48,32 @@ public class FrameworkController implements Initializable, ILoadUI {
     }
 
     @FXML
-    private void userButtonPressed(){ loadUI("settings/userPage"); }
+    void userButtonPressed(){ loadUI("/settings/userPage.fxml"); }
 
     @FXML
     private void teamButtonPressed(){
         if(StoreIT.getCurrentOrganisation().getUsersTeams(StoreIT.getCurrentUser()).size() > 0){
-            loadUI("settings/teamPage");
+            loadUI("/settings/teamPage.fxml");
         } else{
             noTeamPopUp();
         }
     }
 
     @FXML
-    private void allItemsButtonPressed() {
-        loadUI("itemview/itemList");
+    void allItemsButtonPressed() {
+        loadUI("/allItems/allItemsList.fxml");
     }
 
     @FXML
-    private void reservationsButtonPressed() {
-        loadUI("reservations/reservations");
+    void reservationsButtonPressed() {
+        loadUI("/reservations/reservations.fxml");
     }
 
     @FXML
     private void yourInventoryButtonPressed(){
 
         if(StoreIT.getCurrentOrganisation().isUserPartOfTeam(StoreIT.getCurrentUser())){
-            loadUI("inventory/inventory");
+            loadUI("/inventory/inventory.fxml");
         }else{
             noTeamPopUp();
         }
@@ -105,7 +105,7 @@ public class FrameworkController implements Initializable, ILoadUI {
     public void loadUI(String ui) {
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("/" + ui + ".fxml"));
+            root = FXMLLoader.load(getClass().getResource(ui));
         } catch (IOException e) {
             Logger.getLogger(FrameworkController.class.getName()).log(Level.SEVERE, null, e);
         }

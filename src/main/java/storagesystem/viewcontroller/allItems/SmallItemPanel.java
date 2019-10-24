@@ -1,15 +1,18 @@
-package storagesystem.viewcontroller.itemview;
+package storagesystem.viewcontroller.allItems;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import storagesystem.model.IReservable;
 import storagesystem.services.PictureHandler;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * @author Hugo Stegrell
@@ -25,8 +28,9 @@ public class SmallItemPanel extends AnchorPane {
     @FXML
     private Label itemNameLabel;
 
+
     public SmallItemPanel(IReservable reservableItem) {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/itemview/smallItemPanel.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/allItems/smallItemPanel.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 
@@ -44,9 +48,5 @@ public class SmallItemPanel extends AnchorPane {
 
     IReservable getReservableItem() {
         return reservableItem;
-    }
-
-    void handlePanePressed() {
-        //open detailed view of item so it can be reserved
     }
 }

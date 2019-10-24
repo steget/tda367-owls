@@ -1,5 +1,6 @@
-package storagesystem.viewcontroller.itemview;
+package storagesystem.viewcontroller.allItems;
 
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -8,6 +9,8 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import storagesystem.model.Condition;
 import storagesystem.model.IReservable;
 import storagesystem.model.StoreIT;
@@ -19,39 +22,41 @@ import java.io.IOException;
 /**
  * Controls a detailed view of an item. Can be used to book an item.
  *
- * @author Jonathan Eksberg, Carl Lindh
- * @revised by Hugo Stegrell
+ * @author Jonathan Eksberg, Carl Lindh, Hugo Stegrell
  */
-public class ItemPageController {
+public class ReservableItemDetailController extends AnchorPane {
 
     private final IReservable item;
     private final Team itemOwner;
 
     @FXML
-    private ImageView itemPageImageView;
+    private ImageView detailViewImageView;
     @FXML
-    private Label itemPageNameLabel;
+    private Label detailViewNameLabel;
     @FXML
-    private Label itemPageIDLabel;
+    private Label detailViewAmountLabel;
     @FXML
-    private Label itemPageAmountLabel;
+    private Label detailViewLocationLabel;
     @FXML
-    private Label itemPageLocationLabel;
+    private Label detailViewTeamOwnerLabel;
     @FXML
-    private Label itemPageTeamOwnerLabel;
+    private Label detailViewReservableLabel;
     @FXML
-    private Label itemPageReservableLabel;
+    private Slider detailViewConditionSlider;
     @FXML
-    private Slider itemPageConditionSlider;
+    private TextArea detailViewDescriptionTA;
     @FXML
-    private TextArea itemPageDescriptionTA;
+    private TextArea detailViewUserRequirementsTA;
     @FXML
-    private TextArea itemPageUserRequirementsTA;
+    private Button detailViewReserveBtn;
     @FXML
-    private Button itemPageReserveBtn;
+    private AnchorPane contentPane;
 
-    public ItemPageController(IReservable item, Team itemOwner) {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("itemPage.fxml"));
+    public ReservableItemDetailController(IReservable item) {
+        this.item = item;
+        this.itemOwner = StoreIT.getCurrentOrganisation().getItemOwner(item);
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/allItems/reservableItemDetailView.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 
@@ -61,13 +66,13 @@ public class ItemPageController {
             throw new RuntimeException(exception);
         }
 
-        this.item = item;
-        this.itemOwner = itemOwner;
         initialize();
     }
 
     public void initialize() {
         updateAllVisibleFields();
+
+        contentPane.addEventHandler(MouseEvent.MOUSE_CLICKED, Event::consume);
     }
 
     /**
@@ -77,17 +82,17 @@ public class ItemPageController {
         setNameLabel(item.getName());
         setDescription(item.getDescription());
         setUserRequirements(item.getUserRequirements());
-        setIDLabel("" + item.getID());
         setAmountLabel(item.getAmount() + "");
         setConditionSlider(item.getCondition());
         setReservableLabel(item.isReservable() + "");
         setReservableBtn(item.isReservable());
         setLocationLabel(StoreIT.getCurrentOrganisation().getLocation(item.getLocationID()).getName());
         setImage(PictureHandler.getItemImage(item.getID()));
+        setTeamOwnerLabel(itemOwner.getName());
     }
 
     @FXML
-    protected void itemPageReserveBtnPressed() {
+    protected void ReserveBtnPressed() {
         //TODO: create a new reservation if possible
     }
 
@@ -106,47 +111,43 @@ public class ItemPageController {
             default:
                 break;
         }
-        itemPageConditionSlider.setValue(value);
+        detailViewConditionSlider.setValue(value);
     }
 
     private void setDescription(String string) {
-        itemPageDescriptionTA.setText(string);
+        detailViewDescriptionTA.setText(string);
     }
 
     private void setUserRequirements(String string) {
-        itemPageUserRequirementsTA.setText(string);
+        detailViewUserRequirementsTA.setText(string);
     }
 
     private void setImage(Image image) {
-        itemPageImageView.setImage(image);
+        detailViewImageView.setImage(image);
     }
 
     private void setNameLabel(String name) {
-        itemPageNameLabel.setText(name);
-    }
-
-    private void setIDLabel(String id) {
-        itemPageIDLabel.setText("ID: " + id);
+        detailViewNameLabel.setText(name);
     }
 
     private void setAmountLabel(String amount) {
-        itemPageAmountLabel.setText("Amount: " + amount);
+        detailViewAmountLabel.setText("Amount: " + amount);
     }
 
     private void setLocationLabel(String location) {
-        itemPageLocationLabel.setText("Location: " + location);
+        detailViewLocationLabel.setText("Location: " + location);
     }
 
     private void setTeamOwnerLabel(String teamOwner) {
-        itemPageTeamOwnerLabel.setText("Owner: " + teamOwner);
+        detailViewTeamOwnerLabel.setText("Owner: " + teamOwner);
     }
 
     private void setReservableLabel(String reservable) {
-        itemPageReservableLabel.setText("Reservable: " + reservable);
+        detailViewReservableLabel.setText("Reservable: " + reservable);
     }
 
     private void setReservableBtn(boolean reservable) {
-        itemPageReserveBtn.setDisable(!reservable);
+        detailViewReserveBtn.setDisable(!reservable);
     }
 }
 

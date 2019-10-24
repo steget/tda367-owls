@@ -5,7 +5,6 @@ import org.joda.time.Interval;
 import storagesystem.services.JSONHandler;
 import storagesystem.services.IDHandler;
 
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -171,13 +170,17 @@ public class StoreIT {
 
         Location mockLocation = new Location("Hubben", "This location does not exist");
         Location mockLocation2 = new Location("Garaget", "This location is unavailable");
+        Location mockLocation3 = new Location("Maskinhuset", "This location is unavailable");
 
         informationsteknik.getLocations().add(mockLocation);
         informationsteknik.getLocations().add(mockLocation2);
+        informationsteknik.getLocations().add(mockLocation3);
         IReservable mockItem = IReservableFactory.createReservableItem("mockItem", "This is a description", "Behave please.",
                 2, Condition.GOOD, true, mockLocation.getID());
         IReservable mockItem2 = IReservableFactory.createReservableItem("mockItem nr 2", "This is a description", "Behave please.",
                 2, Condition.GOOD, true, mockLocation2.getID());
+        IReservable mockItem3 = IReservableFactory.createReservableItem("mockItem nr 3", "This is a description", "Behave please.",
+                2, Condition.GOOD, true, mockLocation3.getID());
 
         Interval interval1 = new Interval(new DateTime(2019, 9, 10, 12, 40), new DateTime(2019, 9, 10, 15, 0));
         Interval interval2 = new Interval(new DateTime(2019, 9, 12, 17, 30), new DateTime(2019, 10, 16, 20, 0));
@@ -190,6 +193,7 @@ public class StoreIT {
 
         informationsteknik.addItem(mockItem, tempTeam);
         informationsteknik.addItem(mockItem2, tempTeam);
+        informationsteknik.addItem(mockItem3, tempTeam2);
     }
 
 }

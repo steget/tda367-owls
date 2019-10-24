@@ -81,9 +81,10 @@
 }
 
 .bigLabel {
-    -fx-font-size: 24;
-    -fx-text-fill: #FFFF;
+    -fx-font-size: 24px;
+    -fx-text-fill: white;
 }
+
 
 .loginText {
     -fx-font-size: 16px;
@@ -100,5 +101,12 @@
 
 .readOnlyTA .content{
     -fx-cursor: closed;
+}
+
+.smallPane{
+    -fx-border-color: black;
+    -fx-border-width: 2px;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 6px;
 }
 
