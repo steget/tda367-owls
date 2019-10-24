@@ -41,8 +41,8 @@
                   <Image url="@../../../../resources/pictures/close-button.png" />
                </image>
             </ImageView>
-            <Label layoutX="317.0" layoutY="149.0" text="Item description" />
-            <Label layoutX="317.0" layoutY="358.0" text="User requirements" />
+            <Label layoutX="371.0" layoutY="152.0" styleClass="smallLabel" text="Item description" />
+            <Label layoutX="371.0" layoutY="361.0" styleClass="smallLabel" text="User requirements" />
             <TextArea fx:id="itemPageNameTA" editable="false" layoutX="371.0" layoutY="17.0" minHeight="-Infinity" prefHeight="73.0" prefWidth="357.0" text="ItemName">
                <font>
                   <Font size="36.0" />

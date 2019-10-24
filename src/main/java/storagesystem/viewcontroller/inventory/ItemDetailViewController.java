@@ -63,8 +63,6 @@ public class ItemDetailViewController extends AnchorPane {
     @FXML
     private Label imageErrorMsgLabel;
     @FXML
-    Button itemPageReserveBtn;
-    @FXML
     Button itemPageSaveButton;
     @FXML
     private Pane editPane;
@@ -88,6 +86,7 @@ public class ItemDetailViewController extends AnchorPane {
     }
 
     private void initialize() {
+        enableEditMode();
         locationList = StoreIT.getCurrentOrganisation().getLocations();
         isReservableChoiceBox.setItems(FXCollections.observableArrayList("True", "False"));
         updateAllVisibleFields();
@@ -220,9 +219,8 @@ public class ItemDetailViewController extends AnchorPane {
      * It changes all variables so that they can be edited by the user.
      * The default setting is that the variables are non-editable.
      */
-    public void editItem() {
+    public void enableEditMode() {
 
-        itemPageReserveBtn.setVisible(false);
         itemPageAmountTA.setEditable(true);
         itemPageSaveButton.setVisible(true);
         itemPageDescriptionTA.setEditable(true);
