@@ -5,12 +5,13 @@ import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
-import storagesystem.model.*;
+import storagesystem.model.IReservable;
+import storagesystem.model.StoreIT;
+import storagesystem.model.Team;
 import storagesystem.viewcontroller.reservations.CreateReservationController;
 import storagesystem.viewcontroller.reservations.ItemReservationsController;
 
@@ -51,14 +52,13 @@ public class InventoryController implements Initializable {
         refreshItems();
     }
 
-    EventHandler<MouseEvent> closeReservationViewHandler = new EventHandler<MouseEvent>() {
+    private EventHandler<MouseEvent> closeReservationViewHandler = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent event) {
             closeReservationView();
             event.consume();
         }
     };
-
 
     /**
      * if a user is apart of a team. then this method fills the choicebox.
@@ -115,6 +115,7 @@ public class InventoryController implements Initializable {
         rootPane.getChildren().add(detailView);
         detailView.addDetailListener(this::detailItemViewClicked);
         detailView.addSaveButtonListener(this::saveButtonClicked);
+        detailView.addReserveButtonClickedListener(this::reserveItemClicked);
         detailView.addItemReservationsClickedListeners(this::itemReservationsClicked);
         detailView.editItem();
         currentItem = item;
@@ -134,8 +135,6 @@ public class InventoryController implements Initializable {
         createView.addCreateItemButtonListener(this::createButtonClicked);
         createView.addRemoveCreateViewListener(this::removeCreateView);
     }
-
-
 
     private void closeReservationView() {
         rootPane.getChildren().remove(reservationListView);
@@ -173,6 +172,4 @@ public class InventoryController implements Initializable {
         rootPane.getChildren().add(createReservation);
         createReservation.addCreateReservationViewClosedListener(this::createReservationClosed);
     }
-
-
 }

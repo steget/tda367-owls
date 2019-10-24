@@ -34,7 +34,7 @@
             <Slider fx:id="itemPageConditionSlider" blockIncrement="1.0" layoutX="31.0" layoutY="497.0" majorTickUnit="1.0" max="2.0" minorTickCount="0" prefHeight="45.0" prefWidth="293.0" showTickMarks="true" snapToTicks="true" value="1.0" />
             <TextArea fx:id="itemPageDescriptionTA" layoutX="373.0" layoutY="182.0" prefHeight="150.0" prefWidth="357.0" promptText="Write a description of the item" AnchorPane.leftAnchor="373.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="182.0" />
             <TextArea fx:id="itemPageUserRequirementsTA" layoutX="373.0" layoutY="391.0" prefHeight="150.0" prefWidth="357.0" promptText="Write user requirements" AnchorPane.bottomAnchor="39.0" AnchorPane.leftAnchor="373.0" AnchorPane.rightAnchor="150.0" />
-            <ImageView fx:id="itemPageImageView" fitHeight="200.0" fitWidth="200.0" layoutX="78.0" layoutY="5.0" onMouseClicked="#createTempImage" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="78.0" AnchorPane.topAnchor="5.0">
+            <ImageView fx:id="itemPageImageView" fitHeight="200.0" fitWidth="200.0" layoutX="78.0" layoutY="5.0" onMouseClicked="#createItemImage" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="78.0" AnchorPane.topAnchor="5.0">
                <image>
                   <Image url="@../../../../resources/pictures/items/unknown-item-image.png" />
                </image>

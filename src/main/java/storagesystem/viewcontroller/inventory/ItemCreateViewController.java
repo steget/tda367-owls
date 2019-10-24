@@ -166,12 +166,10 @@ public class ItemCreateViewController extends AnchorPane {
 
     private void createItem() {
 
-        IReservable item = new Item(itemPageNameTA.getText(), itemPageDescriptionTA.getText(), itemPageUserRequirementsTA.getText(), (int) Integer.valueOf(itemPageAmountTA.getText()), saveCondition((int) itemPageConditionSlider.getValue()), isReservableChoiceBox.getSelectionModel().getSelectedIndex() == 0, getLocation(itemPageLocationChoicebox.getSelectionModel().getSelectedItem().toString()));
-        BufferedImage tmpImg = SwingFXUtils.fromFXImage(PictureHandler.getItemImage(999), null);
+        IReservable newItem = new Item(itemPageNameTA.getText(), itemPageDescriptionTA.getText(), itemPageUserRequirementsTA.getText(), Integer.parseInt(itemPageAmountTA.getText()), saveCondition((int) itemPageConditionSlider.getValue()), isReservableChoiceBox.getSelectionModel().getSelectedIndex() == 0, getLocation(itemPageLocationChoicebox.getSelectionModel().getSelectedItem().toString()));
 
-        //Sets the temporary image 999.jpg as the new items image with the url named after the new items ID.
-        PictureHandler.saveItemImagePic(tmpImg, item.getID());
-        StoreIT.getCurrentOrganisation().addItem(item, StoreIT.getCurrentTeam());
+        PictureHandler.saveItemImagePic(SwingFXUtils.fromFXImage(itemPageImageView.getImage(), null), newItem.getID());
+        StoreIT.getCurrentOrganisation().addItem(newItem, StoreIT.getCurrentTeam());
 
         for (CreateItemButtonListener l : createButtonListeners) {
             l.createButtonClicked();
@@ -185,14 +183,13 @@ public class ItemCreateViewController extends AnchorPane {
     @FXML
     public void checkIfBoxesAreFilled() {
         if (!(itemPageNameTA.getText().equals("") &&
-            itemPageAmountTA.getText().equals("") &&
-            itemPageUserRequirementsTA.getText().equals("") &&
-            itemPageDescriptionTA.getText().equals(""))) {
+                itemPageAmountTA.getText().equals("") &&
+                itemPageUserRequirementsTA.getText().equals("") &&
+                itemPageDescriptionTA.getText().equals(""))) {
 
             createItem();
-        }
-        else{
-            AbstractFader.fadeTransition(errorMsg,3);
+        } else {
+            AbstractFader.fadeTransition(errorMsg, 3);
         }
     }
 
@@ -242,7 +239,7 @@ public class ItemCreateViewController extends AnchorPane {
 
 
     @FXML
-    void createTempImage() {
+    void createItemImage() {
 
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("jpg", "*.jpg"), new FileChooser.ExtensionFilter("png", "*.png"), new FileChooser.ExtensionFilter("jpeg", "*.jpg"));
@@ -251,9 +248,7 @@ public class ItemCreateViewController extends AnchorPane {
         if (selectedFile != null) {
             try {
                 BufferedImage selectedImage = ImageIO.read(selectedFile);
-                PictureHandler.saveItemImagePic(selectedImage, 9999);
-                itemPageImageView.setImage(PictureHandler.getItemImage(9999));
-
+                itemPageImageView.setImage(SwingFXUtils.toFXImage(selectedImage, null));
             } catch (IOException exception) {
                 System.out.println("Can't read image: " + selectedFile.getPath());
             }

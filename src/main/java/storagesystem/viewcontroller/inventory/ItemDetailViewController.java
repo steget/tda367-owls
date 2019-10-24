@@ -328,7 +328,7 @@ public class ItemDetailViewController extends AnchorPane {
      * where it then can be called from.
      */
     @FXML
-    void changeItemImage() {
+    private void changeItemImage() {
 
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("jpg", "*.jpg"), new FileChooser.ExtensionFilter("png", "*.png"), new FileChooser.ExtensionFilter("jpeg", "*.jpg"));
