@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<fx:root prefHeight="30.0" prefWidth="863.0" styleClass="background" stylesheets="@../basicStyles.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.201" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label fx:id="borrowerLabel" layoutX="32.0" layoutY="6.0" prefHeight="18.0" prefWidth="138.0" styleClass="verySmallLabel" text="mockBorrower" />
+      <Label fx:id="intervalLabel" layoutX="322.0" layoutY="6.0" prefHeight="18.0" prefWidth="252.0" styleClass="verySmallLabel" text="mockIntervall" />
+      <Label fx:id="statusLabel" layoutX="672.0" layoutY="6.0" prefHeight="17.0" prefWidth="115.0" styleClass="verySmallLabel" text="mockStatus" />
+   </children>
+</fx:root>

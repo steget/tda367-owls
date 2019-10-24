@@ -2,13 +2,17 @@ package storagesystem.viewcontroller.inventory;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import storagesystem.model.*;
+import storagesystem.viewcontroller.reservations.CreateReservationController;
+import storagesystem.viewcontroller.reservations.ItemReservationsController;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -24,6 +28,7 @@ public class InventoryController implements Initializable {
     private List<Team> currentUsersTeams = new ArrayList<>();
     private ObservableList<String> teamNames = FXCollections.observableArrayList();
     private ItemDetailViewController detailView;
+    private ItemReservationsController reservationListView;
     private ItemCreateViewController createView;
 
 
@@ -36,6 +41,7 @@ public class InventoryController implements Initializable {
     @FXML
     ChoiceBox teamChooser;
 
+    private IReservable currentItem;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -44,6 +50,15 @@ public class InventoryController implements Initializable {
         fillTeamAttributes();
         refreshItems();
     }
+
+    EventHandler<MouseEvent> closeReservationViewHandler = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+            closeReservationView();
+            event.consume();
+        }
+    };
+
 
     /**
      * if a user is apart of a team. then this method fills the choicebox.
@@ -100,15 +115,10 @@ public class InventoryController implements Initializable {
         rootPane.getChildren().add(detailView);
         detailView.addDetailListener(this::detailItemViewClicked);
         detailView.addSaveButtonListener(this::saveButtonClicked);
+        detailView.addReserveButtonClickedListener(this::reserveItemClicked);
+        detailView.addItemReservationsClickedListeners(this::itemReservationsClicked);
         detailView.editItem();
-    }
-
-    @FXML
-    private void addItem(){
-        createView = new ItemCreateViewController();
-        rootPane.getChildren().add(createView);
-        createView.addCreateItemButtonListener(this::createButtonClicked);
-        createView.addRemoveCreateViewListener(this::removeCreateView);
+        currentItem=item;
     }
 
 
@@ -129,8 +139,6 @@ public class InventoryController implements Initializable {
     private void createButtonClicked() {
         refreshItems();
         rootPane.getChildren().remove(createView);
-
-    }
 
 
 }

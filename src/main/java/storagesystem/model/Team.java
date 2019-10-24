@@ -17,12 +17,12 @@ public class Team implements IBorrower {
     private String name;
     private String termsAndConditions;
     private String imageUrl;
-    private int teamID;
+    private int ID;
 
     public Team(String teamName) {
         this.name = teamName;
         termsAndConditions = "";
-        teamID = nextID;
+        ID = nextID;
         nextID++;
     }
 
@@ -81,7 +81,7 @@ public class Team implements IBorrower {
     }
 
     public int getID() {
-        return teamID;
+        return ID;
     }
 
     public String getImageUrl() {
