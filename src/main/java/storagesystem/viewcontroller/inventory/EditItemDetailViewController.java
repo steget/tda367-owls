@@ -29,11 +29,10 @@ import java.util.List;
  * @author Jonathan Eksberg, Carl Lindh, Pär Aronsson, Hugo Stegrell
  */
 
-public class ItemDetailViewController extends AnchorPane {
+public class EditItemDetailViewController extends AnchorPane {
     private final IReservable reservableItem;
     private final Team itemOwner;
     private List<Location> locationList;
-    private ObservableList<String> locationNames;
     private List<ReserveButtonClickedListener> reserveButtonClickedListeners = new ArrayList<>();
     private List<ItemReservationsClickedListener> itemReservationsClickedListeners = new ArrayList<>();
     @FXML
@@ -65,19 +64,13 @@ public class ItemDetailViewController extends AnchorPane {
     @FXML
     Button itemPageSaveButton;
     @FXML
-    Button itemPageReserveBtn;
-    @FXML
-    Button reservationsButton;
-    @FXML
     private Pane editPane;
 
-    ItemDetailViewController(IReservable reservableItem) {
-
+    EditItemDetailViewController(IReservable reservableItem) {
         this.reservableItem = reservableItem;
-
         this.itemOwner = StoreIT.getCurrentOrganisation().getItemOwner(reservableItem);
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/inventory/ItemDetailView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/inventory/editItemDetailView.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 
@@ -220,10 +213,6 @@ public class ItemDetailViewController extends AnchorPane {
 
     private void setTeamOwnerLabel(String teamOwner) {
         itemPageTeamOwnerLabel.setText("Owner: " + teamOwner);
-    }
-
-    private void setReservableBtn(boolean reservable) {
-        itemPageReserveBtn.setDisable(!reservable);
     }
 
     /**
