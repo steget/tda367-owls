@@ -17,10 +17,16 @@ public class StoreIT {
     private static Organisation currentOrganisation;
 
 
+    //Change this if you want to reset the database.
+    private boolean reset = false;
+
+
     /**
      * Loads all data into the program. Should be run at start.
      */
     public void initializeBackend() throws IOException {
+        if(reset)
+            reset();
 
         try {
             organisations.addAll(JSONHandler.getOrganisationList());
@@ -162,8 +168,6 @@ public class StoreIT {
 
 
 
-        Team teknologer = new Team("Teknologer");
-        Team friends = new Team("Vänner");
 
         Team nollkit = new Team("NollKIT");
         Team prit = new Team("P.R.I.T.");
@@ -172,38 +176,31 @@ public class StoreIT {
 
         createUser("admin", "password", "admin", "see github");
         User admin = currentOrganisation.getUsers().get(0);
-        createUser("Emil", "Emilia", "En go grabb", "emil@test.se");
-        createUser("Emilia", "Emil", "En fin tös", "emilia@test.se");
+
         createUser("William", "1", "Ordförande 8-bIT, Kassör P.R.I.T.", "william@test.se");
         createUser("Hugo", "1", "Infochef", "hugo@test.se");
-        createUser("Eke", "1", "Ordförande", "eke@test.se");
+        createUser("Jonathan", "1", "Ordförande", "eke@test.se");
 
-        teknologer.setTermsAndConditions("För att låna våra prylar måste prylen vara i samma skick som den var när den lånades ut. Behövs den diskas så diska den osv. Prylen ska också vara tillbaka på samma plats igen");
-        friends.setTermsAndConditions("Var rimlig");
+
         nollkit.setTermsAndConditions("Var rimlig");
         prit.setTermsAndConditions("Var rimlig");
         sexit.setTermsAndConditions("Var rimlig");
         eightbit.setTermsAndConditions("Var rimlig");
 
-        informationsteknik.addTeam(teknologer);
-        informationsteknik.addTeam(friends);
+
         informationsteknik.addTeam(nollkit);
         informationsteknik.addTeam(prit);
         informationsteknik.addTeam(sexit);
         informationsteknik.addTeam(eightbit);
 
-        teknologer.addMember(0);
-        teknologer.addMember(1);
-        teknologer.addMember(2);
-        friends.addMember(admin.getID());
         nollkit.addMember(admin.getID());
-        nollkit.addMember(4);
+        nollkit.addMember(2);
         prit.addMember(admin.getID());
-        prit.addMember(3);
+        prit.addMember(1);
         sexit.addMember(admin.getID());
-        sexit.addMember(5);
+        sexit.addMember(3);
         eightbit.addMember(admin.getID());
-        eightbit.addMember(3);
+        eightbit.addMember(1);
 
         Location hubben = new Location("Hubben", "Massa plats");
         Location garage = new Location("Garaget", "Kaos, men får plats med stora saker");
@@ -222,8 +219,7 @@ public class StoreIT {
         IReservable nintendo = IReservableFactory.createReservableItem("Nintendo switch", "Switch med tillhörande spel", "Var försiktig!!", 1, Condition.GOOD, true, hubben.getID());
 
 
-        informationsteknik.addItem(pan, teknologer);
-        informationsteknik.addItem(speaker, teknologer);
+
         informationsteknik.addItem(hammer, prit);
         informationsteknik.addItem(ballPool, nollkit);
         informationsteknik.addItem(fabric, sexit);
@@ -233,7 +229,6 @@ public class StoreIT {
         Interval interval2 = new Interval(new DateTime(), new DateTime().plusHours(1));
 
         ReservationHandler resHandler = informationsteknik.getReservationHandler();
-        resHandler.createReservation(friends.getID(), interval1, pan.getID());
 
     }
 

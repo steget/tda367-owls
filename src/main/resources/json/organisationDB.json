@@ -1,34 +1,7 @@
 [
   {
     "name": "Informationsteknik",
-    "imageUrl": null,
     "items": [
-      {
-        "CLASSNAME": "storagesystem.model.Item",
-        "DATA": {
-          "ID": 0,
-          "name": "Gjutjärnspanna",
-          "description": "Tung och välanvänd, men väldigt bra",
-          "userRequirements": "Inget diskmedel!!",
-          "amount": 1,
-          "condition": "GREAT",
-          "reservable": true,
-          "locationID": 0
-        }
-      },
-      {
-        "CLASSNAME": "storagesystem.model.Item",
-        "DATA": {
-          "ID": 1,
-          "name": "Högtalare",
-          "description": "Han kallas Roffe, och är lite sönder",
-          "userRequirements": "Snälla förstör honom inte mer",
-          "amount": 1,
-          "condition": "BAD",
-          "reservable": true,
-          "locationID": 1
-        }
-      },
       {
         "CLASSNAME": "storagesystem.model.Item",
         "DATA": {
@@ -85,80 +58,51 @@
     "teams": [
       {
         "itemIDs": [
-          0,
-          1
+          3
         ],
         "memberIDs": [
           0,
-          1,
           2
         ],
-        "name": "Teknologer",
-        "termsAndConditions": "För att låna våra prylar måste prylen vara i samma skick som den var när den lånades ut. Behövs den diskas så diska den osv. Prylen ska också vara tillbaka på samma plats igen",
-        "imageUrl": null,
+        "name": "NollKIT",
+        "termsAndConditions": "Var rimlig",
         "ID": 0
       },
       {
-        "itemIDs": [],
-        "memberIDs": [
-          0
+        "itemIDs": [
+          2
         ],
-        "name": "Vänner",
+        "memberIDs": [
+          0,
+          1
+        ],
+        "name": "P.R.I.T.",
         "termsAndConditions": "Var rimlig",
-        "imageUrl": null,
         "ID": 1
       },
       {
         "itemIDs": [
-          3
+          4
         ],
         "memberIDs": [
           0,
-          4
+          3
         ],
-        "name": "NollKIT",
+        "name": "sexIT",
         "termsAndConditions": "Var rimlig",
-        "imageUrl": null,
         "ID": 2
       },
       {
         "itemIDs": [
-          2
-        ],
-        "memberIDs": [
-          0,
-          3
-        ],
-        "name": "P.R.I.T.",
-        "termsAndConditions": "Var rimlig",
-        "imageUrl": null,
-        "ID": 3
-      },
-      {
-        "itemIDs": [
-          4
-        ],
-        "memberIDs": [
-          0,
-          5
-        ],
-        "name": "sexIT",
-        "termsAndConditions": "Var rimlig",
-        "imageUrl": null,
-        "ID": 4
-      },
-      {
-        "itemIDs": [
           5
         ],
         "memberIDs": [
           0,
-          3
+          1
         ],
         "name": "8-bIT",
         "termsAndConditions": "Var rimlig",
-        "imageUrl": null,
-        "ID": 5
+        "ID": 3
       }
     ],
     "users": [
@@ -170,39 +114,25 @@
         "ID": 0
       },
       {
-        "name": "Emil",
-        "password": "Emilia",
-        "description": "En go grabb",
-        "contactInformation": "emil@test.se",
-        "ID": 1
-      },
-      {
-        "name": "Emilia",
-        "password": "Emil",
-        "description": "En fin tös",
-        "contactInformation": "emilia@test.se",
-        "ID": 2
-      },
-      {
         "name": "William",
         "password": "1",
         "description": "Ordförande 8-bIT, Kassör P.R.I.T.",
         "contactInformation": "william@test.se",
-        "ID": 3
+        "ID": 1
       },
       {
         "name": "Hugo",
         "password": "1",
         "description": "Infochef",
         "contactInformation": "hugo@test.se",
-        "ID": 4
+        "ID": 2
       },
       {
         "name": "Eke",
         "password": "1",
         "description": "Ordförande",
         "contactInformation": "eke@test.se",
-        "ID": 5
+        "ID": 3
       }
     ],
     "locations": [
@@ -223,23 +153,11 @@
       }
     ],
     "reservationHandler": {
-      "reservations": [
-        {
-          "CLASSNAME": "storagesystem.model.Reservation",
-          "DATA": {
-            "id": 0,
-            "borrowerID": 1,
-            "interval": "2019-10-25T19:10:22.184+02:00/2019-10-25T20:10:22.263+02:00",
-            "reservedObjectID": 0,
-            "status": "PENDING"
-          }
-        }
-      ]
+      "reservations": []
     }
   },
   {
     "name": "Data",
-    "imageUrl": null,
     "items": [],
     "teams": [],
     "users": [],
