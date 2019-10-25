@@ -159,10 +159,5 @@ public class Reservation implements IReservation {
             return "00";
         }
         return Integer.toString(startMinute);
-
-
     }
-
-
-
 }
