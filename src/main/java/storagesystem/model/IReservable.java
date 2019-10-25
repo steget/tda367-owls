@@ -4,6 +4,7 @@ package storagesystem.model;
  * Interface to use for classes that represent something that can be borrowed.
  *
  * @author William Albertsson
+ * @see Item
  */
 
 public interface IReservable {

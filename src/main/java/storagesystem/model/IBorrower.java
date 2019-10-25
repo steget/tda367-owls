@@ -2,8 +2,9 @@ package storagesystem.model;
 
 
 /**
- * @author William Albertsson
  * Interface to use for classes that should have the ability to borrow objects.
+ *
+ * @author William Albertsson
  */
 public interface IBorrower {
     /**

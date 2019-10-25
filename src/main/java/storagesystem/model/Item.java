@@ -4,14 +4,7 @@ import java.util.Objects;
 
 
 /**
- * A class that represents an item. An item can be added by a team to their own inventory.
- * description consists of a short text about the item and what can be done with it.
- * userRequirements is the "terms and conditions" for a specific item.
- * Every item has an ID, to help identifying an item.
- * Amount tells us how many copies of an item there is.
- * Condition describes if an item is in bad, good or great condition.
- * Reservable tells us if an item is able to be borrowed or not.
- * Location has the information about where the item is located
+ * A class that represents a physical item, that can be reserved.
  *
  * @author Jonathan Eksberg, Carl Lindh
  */
