@@ -56,7 +56,7 @@
                         <Image url="@/pictures/StoreITLogo.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="logOutButton" layoutX="1063.0" layoutY="27.0" mnemonicParsing="false" onAction="#logOutButtonPressed" prefHeight="47.0" prefWidth="107.0" styleClass="confirmButton" text="Sign Out" />
+                  <Button fx:id="logOutButton" layoutX="1063.0" layoutY="27.0" mnemonicParsing="false" onAction="#logOutButtonPressed" prefHeight="47.0" prefWidth="114.0" styleClass="confirmButton" text="Sign Out" />
                </children>
             </Pane>
          </top>
