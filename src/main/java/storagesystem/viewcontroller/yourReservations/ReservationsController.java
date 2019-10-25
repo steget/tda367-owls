@@ -2,8 +2,10 @@ package storagesystem.viewcontroller.yourReservations;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
@@ -19,7 +21,7 @@ import java.util.ResourceBundle;
 /**
  * Shows a list of reservations using ReservationListViewController. A lightbox with details about reservations is shown when listitem is clicked.
  *
- * @author William Albertsson
+ * @author William Albertsson, Hugo Stegrell
  */
 
 public class ReservationsController implements Initializable {
@@ -36,7 +38,15 @@ public class ReservationsController implements Initializable {
     ChoiceBox<String> teamChooser;
 
     private ReservationDetailViewController detailView;
-
+    private EventHandler<MouseEvent> detailViewClickedHandler = e -> {
+        detailViewClicked();
+        e.consume();
+    };
+    private EventHandler<MouseEvent> reservationListViewClickedHandler = e -> {
+        ReservationListViewController panel = (ReservationListViewController) e.getSource();
+        reservationListViewClicked(panel.getReservation());
+        e.consume();
+    };
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -70,7 +80,7 @@ public class ReservationsController implements Initializable {
         for (IReservation res : reservations) {
             ReservationListViewController listView = new ReservationListViewController(res);
             reservationViews.add(listView);
-            listView.addReservationClickedListener(this::listViewClicked);
+            listView.addEventHandler(MouseEvent.MOUSE_CLICKED, reservationListViewClickedHandler);
             if (alternating) {
                 listView.setStyle("-fx-background-color: secondaryColor");
                 alternating = !alternating;
@@ -94,18 +104,20 @@ public class ReservationsController implements Initializable {
 
 
     private void listViewClicked(IReservation res) {
-
         detailView = new ReservationDetailViewController(res);
+        detailView.addEventHandler(MouseEvent.MOUSE_CLICKED, detailViewClickedHandler);
         reservationsRootPane.getChildren().add(detailView);
 
-        detailView.addReservationDetailViewClosedListener(this::reservationDetailViewClosed);
-        detailView.approveButton.
 
     }
 
-    private void reservationDetailViewClosed() {
+    private void detailViewClicked() {
         reservationsRootPane.getChildren().remove(detailView);
     }
 
-
+    private void reservationListViewClicked(IReservation reservation) {
+        detailView = new ReservationDetailViewController(reservation);
+        detailView.addEventHandler(MouseEvent.MOUSE_CLICKED, detailViewClickedHandler);
+        reservationsRootPane.getChildren().add(detailView);
+    }
 }
