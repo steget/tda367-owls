@@ -1,6 +1,5 @@
 package storagesystem.model;
 
-
 /**
  * Factory for creating reservable things. Returns objects of the Interface
  *
