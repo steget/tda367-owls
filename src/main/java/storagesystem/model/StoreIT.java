@@ -18,6 +18,21 @@ public class StoreIT {
 
 
     /**
+     * Loads all data into the program. Should be run at start.
+     */
+    public void initializeBackend() throws IOException {
+        try {
+            organisations.addAll(JSONHandler.getOrganisationList());
+        } catch (NullPointerException e) {
+            System.out.println("Organisation json is empty.");
+        }
+        System.out.println("Loaded Organisations from json.");
+        IDHandler.updateAllIDs(organisations);
+        currentOrganisation = organisations.get(0);
+        System.out.println("Current Organisation Set.");
+    }
+
+    /**
      * Searches through the organisations and tries to find one with the input String
      *
      * @param organisationName Name to search after
@@ -121,31 +136,21 @@ public class StoreIT {
         return currentOrganisation.getAllReservations();
     }
 
-    public static List<IReservation> getCurrentTeamsIncomingReservations(){
-        return currentOrganisation.getTeamsReservations(currentTeam);
+    public static List<IReservation> getCurrentTeamIngoingReservations(){
+        return currentOrganisation.getReservationHandler().getTeamsIngoingReservations(currentTeam);
+    }
+
+    public static List<IReservation> getCurrentTeamOutgoingReservations(){
+        return currentOrganisation.getReservationHandler().getTeamsOutgoingReservations(currentTeam);
     }
 
     //TODO write tests for class
-
-    /**
-     * Loads all data into the program. Should be run at start.
-     */
-    public void initializeBackend() throws IOException {
-        try {
-            organisations.addAll(JSONHandler.getOrganisationList());
-        } catch (NullPointerException e) {
-            System.out.println("Organisation json is empty.");
-        }
-        System.out.println("Loaded Organisations from json.");
-        IDHandler.updateAllIDs(organisations);
-        currentOrganisation = organisations.get(0);
-        System.out.println("Current Organisation Set.");
-    }
 
     public void reset() throws IOException { //Run if fresh start or after tests!!!
         JSONHandler.clearAllJsonFiles();
         mockData();
     }
+
 
     private void mockData() {
         //Hardcoded stuff for testing
@@ -194,8 +199,8 @@ public class StoreIT {
 
         Interval interval1 = new Interval(new DateTime(2019, 9, 10, 12, 40), new DateTime(2019, 9, 10, 15, 0));
         Interval interval2 = new Interval(new DateTime(2019, 9, 12, 17, 30), new DateTime(2019, 10, 16, 20, 0));
-        IReservation res = new Reservation(tempTeam.getID(), interval1, mockItem.getID(), ReservationStatus.APPROVED);
-        IReservation res2 = new Reservation(tempTeam.getID(), interval2, mockItem2.getID(), ReservationStatus.APPROVED);
+        IReservation res = new Reservation(tempTeam2.getID(), interval1, mockItem.getID(), ReservationStatus.APPROVED);
+        IReservation res2 = new Reservation(tempTeam2.getID(), interval2, mockItem2.getID(), ReservationStatus.PENDING);
         ReservationHandler resHandler = informationsteknik.getReservationHandler();
         List<IReservation> reservations = resHandler.getAllReservations();
         reservations.add(res);

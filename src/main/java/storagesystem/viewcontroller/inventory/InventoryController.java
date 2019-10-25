@@ -50,6 +50,7 @@ public class InventoryController implements Initializable {
     private EventHandler<MouseEvent> createItemClickedHandler = e -> {
         if (createView.checkIfBoxesAreFilled()) {
             createView.createItem();
+            refreshItems();
             closeCreateItemView();
         }
         e.consume();
