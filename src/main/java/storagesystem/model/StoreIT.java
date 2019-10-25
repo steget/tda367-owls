@@ -1,9 +1,7 @@
 package storagesystem.model;
 
-import org.joda.time.DateTime;
-import org.joda.time.Interval;
-import storagesystem.services.JSONHandler;
 import storagesystem.services.IDHandler;
+import storagesystem.services.JSONHandler;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,7 +14,6 @@ public class StoreIT {
     private static Team currentTeam;
     private static Organisation currentOrganisation;
 
-
     //Change this if you want to reset the database.
     private boolean reset = false;
 
@@ -25,7 +22,7 @@ public class StoreIT {
      * Loads all data into the program. Should be run at start.
      */
     public void initializeBackend() throws IOException {
-        if(reset)
+        if (reset)
             reset();
 
         try {
@@ -127,10 +124,6 @@ public class StoreIT {
         }
     }
 
-    public static void setCurrentUser(User currentUser) {
-        StoreIT.currentUser = currentUser;
-    }
-
     public static Team getCurrentTeam() {
         return currentTeam;
     }
@@ -139,15 +132,11 @@ public class StoreIT {
         StoreIT.currentTeam = currentTeam;
     }
 
-    public static List<IReservation> getAllReservations(){
-        return currentOrganisation.getAllReservations();
-    }
-
-    public static List<IReservation> getCurrentTeamIngoingReservations(){
+    public static List<IReservation> getCurrentTeamIngoingReservations() {
         return currentOrganisation.getReservationHandler().getTeamsIngoingReservations(currentTeam);
     }
 
-    public static List<IReservation> getCurrentTeamOutgoingReservations(){
+    public static List<IReservation> getCurrentTeamOutgoingReservations() {
         return currentOrganisation.getReservationHandler().getTeamsOutgoingReservations(currentTeam);
     }
 
@@ -165,8 +154,6 @@ public class StoreIT {
         organisations.add(informationsteknik);
         organisations.add(data);
         setCurrentOrganisation(informationsteknik);
-
-
 
 
         Team nollkit = new Team("NollKIT");
@@ -209,27 +196,15 @@ public class StoreIT {
         informationsteknik.getLocations().add(hubben);
         informationsteknik.getLocations().add(garage);
         informationsteknik.getLocations().add(hasen);
-        IReservable pan = IReservableFactory.createReservableItem("Gjutjärnspanna", "Tung och välanvänd, men väldigt bra", "Inget diskmedel!!",
-                1, Condition.GREAT, true, hubben.getID());
-        IReservable speaker = IReservableFactory.createReservableItem("Högtalare", "Han kallas Roffe, och är lite sönder", "Snälla förstör honom inte mer",
-                1, Condition.BAD, true, garage.getID());
         IReservable hammer = IReservableFactory.createReservableItem("Hammare", "En stor hammare", "Slå inte dina vänner!", 1, Condition.GREAT, true, hasen.getID());
-        IReservable ballPool = IReservableFactory.createReservableItem("Bollhav", "Väldigt många bollar", "Ge tillbaka alla", 1, Condition.GOOD,true, hubben.getID());
+        IReservable ballPool = IReservableFactory.createReservableItem("Bollhav", "Väldigt många bollar", "Ge tillbaka alla", 1, Condition.GOOD, true, hubben.getID());
         IReservable fabric = IReservableFactory.createReservableItem("Tyger", "Olika skick och färg", "Lämna tillbaka i samma skick", 5, Condition.BAD, true, hasen.getID());
         IReservable nintendo = IReservableFactory.createReservableItem("Nintendo switch", "Switch med tillhörande spel", "Var försiktig!!", 1, Condition.GOOD, true, hubben.getID());
-
-
 
         informationsteknik.addItem(hammer, prit);
         informationsteknik.addItem(ballPool, nollkit);
         informationsteknik.addItem(fabric, sexit);
         informationsteknik.addItem(nintendo, eightbit);
-
-        Interval interval1 = new Interval(new DateTime(), new DateTime().plusHours(1));
-        Interval interval2 = new Interval(new DateTime(), new DateTime().plusHours(1));
-
-        ReservationHandler resHandler = informationsteknik.getReservationHandler();
-
     }
 
 }

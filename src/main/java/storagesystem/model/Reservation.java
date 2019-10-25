@@ -66,26 +66,14 @@ public class Reservation implements IReservation {
         return borrowerID;
     }
 
-    private void setBorrowerID(int borrowerID) {
-        this.borrowerID = borrowerID;
-    }
-
     @Override
     public Interval getInterval() {
         return interval;
     }
 
-    private void setInterval(Interval interval) {
-        this.interval = new Interval(interval);
-    }
-
     @Override
     public int getReservedObjectID() {
         return reservedObjectID;
-    }
-
-    private void setReservedObjectID(int reservedObjectID) {
-        this.reservedObjectID = reservedObjectID;
     }
 
     @Override
@@ -95,20 +83,6 @@ public class Reservation implements IReservation {
 
     public void setStatus(ReservationStatus status) {
         this.status = status;
-    }
-
-    /**
-     * Compares ID's if o is a reservation
-     *
-     * @param o
-     * @return
-     */
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Reservation that = (Reservation) o;
-        return id == that.id;
     }
 
     /**
@@ -159,5 +133,19 @@ public class Reservation implements IReservation {
             return "00";
         }
         return Integer.toString(startMinute);
+    }
+
+    /**
+     * Compares ID's if o is a reservation
+     *
+     * @param o
+     * @return
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Reservation that = (Reservation) o;
+        return id == that.id;
     }
 }

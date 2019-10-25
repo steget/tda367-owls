@@ -1,8 +1,4 @@
 package storagesystem.model;
-
-
-import javafx.scene.image.Image;
-
 /**
  * Interface to use for classes that represent something that can be borrowed.
  *
@@ -15,15 +11,6 @@ public interface IReservable {
      */
     int getID();
 
-    /**
-     * Should be implemented by all implementors
-     *
-     * @param o An object which to test against
-     * @return True if o is instance of and has the same ID's as this IReservable.
-     */
-    @Override
-    boolean equals(Object o);
-
     String getUserRequirements();
 
     int getAmount();
@@ -34,22 +21,31 @@ public interface IReservable {
 
     int getLocationID();
 
-    public String getName();
+    String getName();
 
-    public String getDescription();
+    String getDescription();
 
-    public void setName(String name);
+    void setName(String name);
 
-    public void setDescription(String description);
+    void setDescription(String description);
 
-    public void setUserRequirements(String userRequirements);
+    void setUserRequirements(String userRequirements);
 
-    public void setAmount(int amount);
+    void setAmount(int amount);
 
-    public void setCondition(Condition condition);
+    void setCondition(Condition condition);
 
-    public void setReservable(boolean reservable);
+    void setReservable(boolean reservable);
 
-    public void setLocationID(int locationID);
+    void setLocationID(int locationID);
 
+
+    /**
+     * Should be implemented by all implementors
+     *
+     * @param o An object which to test against
+     * @return True if o is instance of and has the same ID's as this IReservable.
+     */
+    @Override
+    boolean equals(Object o);
 }
