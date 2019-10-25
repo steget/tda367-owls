@@ -121,8 +121,12 @@ public class StoreIT {
         return currentOrganisation.getAllReservations();
     }
 
-    public static List<IReservation> getCurrentTeamsIncomingReservations(){
-        return currentOrganisation.getTeamsReservations(currentTeam);
+    public static List<IReservation> getCurrentTeamIngoingReservations(){
+        return currentOrganisation.getReservationHandler().getTeamsIngoingReservations(currentTeam);
+    }
+
+    public static List<IReservation> getCurrentTeamOutgoingReservations(){
+        return currentOrganisation.getReservationHandler().getTeamsOutgoingReservations(currentTeam);
     }
 
     //TODO write tests for class
@@ -146,6 +150,7 @@ public class StoreIT {
         JSONHandler.clearAllJsonFiles();
         mockData();
     }
+
 
     private void mockData() {
         //Hardcoded stuff for testing

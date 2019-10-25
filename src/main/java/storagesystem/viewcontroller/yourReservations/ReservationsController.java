@@ -1,11 +1,16 @@
 package storagesystem.viewcontroller.yourReservations;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.Toggle;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
@@ -34,9 +39,19 @@ public class ReservationsController implements Initializable {
     private AnchorPane reservationsRootPane;
 
     @FXML
+    private Label reservationsLabel;
+    @FXML
+    private Label teamLabel;
+
+    @FXML
     private FlowPane reservationListFlowPane;
     @FXML
     ChoiceBox<String> teamChooser;
+
+    @FXML
+    private Toggle ingoingToggle;
+    @FXML
+    private Toggle outgoingToggle;
 
     private ReservationDetailViewController detailView;
     private EventHandler<MouseEvent> detailViewClickedHandler = e -> {
@@ -51,8 +66,10 @@ public class ReservationsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        initializeToggleButtons();
         updateReservations();
         fillTeamAttributes();
+
 
         teamChooser.valueProperty().addListener((obs, oldValue, newValue) -> {
             String teamName = teamChooser.getValue();
@@ -61,6 +78,35 @@ public class ReservationsController implements Initializable {
             updateReservations();
         });
 
+    }
+
+    private void initializeToggleButtons() {
+        ToggleGroup group = new ToggleGroup();
+        ingoingToggle.setToggleGroup(group);
+        outgoingToggle.setToggleGroup(group);
+
+        group.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
+            public void changed(ObservableValue<? extends Toggle> ov,
+                                Toggle toggle, Toggle new_toggle) {
+                if(new_toggle == ingoingToggle){
+                    setIngoing();
+                }else if( new_toggle == outgoingToggle){
+                    setOutgoing();
+                }
+                updateReservations();
+            }
+        });
+        ingoingToggle.setSelected(true);
+    }
+
+    private void setOutgoing() {
+        reservationsLabel.setText("Outgoing requests");
+        teamLabel.setText("Item owner");
+    }
+
+    private void setIngoing() {
+        reservationsLabel.setText("Ingoing requests");
+        teamLabel.setText("Borrower");
     }
 
     private void fillTeamAttributes() {
@@ -78,7 +124,14 @@ public class ReservationsController implements Initializable {
     private void createListViews() {
         reservationViews = new ArrayList<>();
         boolean alternating = false;
-        for (IReservation res : StoreIT.getCurrentTeamsIncomingReservations()) {
+        List<IReservation> resToCreate = new ArrayList<>();
+        if(ingoingToggle.isSelected()){
+            resToCreate = StoreIT.getCurrentTeamIngoingReservations();
+        }else if(outgoingToggle.isSelected()){
+            resToCreate = StoreIT.getCurrentTeamOutgoingReservations();
+        }
+
+        for (IReservation res : resToCreate) {
             ReservationListViewController listView = new ReservationListViewController(res);
             reservationViews.add(listView);
             listView.addEventHandler(MouseEvent.MOUSE_CLICKED, reservationListViewClickedHandler);
@@ -96,15 +149,6 @@ public class ReservationsController implements Initializable {
         createListViews();
         reservationListFlowPane.getChildren().clear();
         reservationListFlowPane.getChildren().addAll(reservationViews);
-
-    }
-
-
-    private void listViewClicked(IReservation res) {
-        detailView = new ReservationDetailViewController(res);
-        detailView.addEventHandler(MouseEvent.MOUSE_CLICKED, detailViewClickedHandler);
-        reservationsRootPane.getChildren().add(detailView);
-
 
     }
 

@@ -91,12 +91,23 @@ public class ReservationHandler {
      * @param team Owner of the items in the reservations
      * @return List with all incoming reservations the team has
      */
-    List<IReservation> getTeamsReservations(Team team) {
+    List<IReservation> getTeamsIngoingReservations(Team team) {
         List<IReservation> teamReservations = new ArrayList<>();
         for(IReservation res : reservations){
             if(team.isItemOwner(res.getReservedObjectID()))
                 teamReservations.add(res);
         }
+        return teamReservations;
+    }
+
+    List<IReservation> getTeamsOutgoingReservations(Team team){
+        List<IReservation> teamReservations = new ArrayList<>();
+        for(IReservation res : reservations){
+            if(res.getBorrowerID() == team.getID()){
+                teamReservations.add(res);
+            }
+        }
+
         return teamReservations;
     }
 

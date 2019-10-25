@@ -205,20 +205,26 @@ public class Organisation {
     }
 
     public Team getItemOwner(IReservable item) {
+        return getItemOwner(item.getID());
+    }
+
+    public Team getItemOwner(int itemID)throws NoSuchElementException{
         for (Team t :
                 teams) {
-            if (t.getAllItemIDs().contains(item.getID())) {
+            if (t.getAllItemIDs().contains(itemID)) {
                 return t;
             }
         }
         throw new NoSuchElementException("Item owner could not be found");
     }
 
+
+
     public List<IReservation> getAllReservations() {
         return reservationHandler.getAllReservations();
     }
 
-    List<IReservation> getTeamsReservations(Team team) {
-        return reservationHandler.getTeamsReservations(team);
+    List<IReservation> getTeamIngoingReservations(Team team) {
+        return reservationHandler.getTeamsIngoingReservations(team);
     }
 }

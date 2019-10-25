@@ -6,10 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import storagesystem.model.IReservable;
-import storagesystem.model.IReservation;
-import storagesystem.model.ReservationStatus;
-import storagesystem.model.StoreIT;
+import storagesystem.model.*;
 
 import java.io.IOException;
 
@@ -74,11 +71,26 @@ public class ReservationDetailViewController extends AnchorPane {
     private void updateButtons() {
         declineButton.setVisible(false);
         approveButton.setVisible(false);
-        if(reservation.getStatus() == ReservationStatus.PENDING) {
+        if(teamShouldEdit()) {
             declineButton.setVisible(true);
             approveButton.setVisible(true);
         }
     }
+
+    private boolean teamShouldEdit() {
+        if(reservation.getStatus() == ReservationStatus.PENDING && teamRecievesReservation())
+            return true;
+        return false;
+    }
+
+    private boolean teamRecievesReservation() {
+        int itemID = reservation.getReservedObjectID();
+        IBorrower borrower = StoreIT.getCurrentOrganisation().getItemOwner(itemID);
+        if(StoreIT.getCurrentTeam().equals(borrower))
+            return true;
+        return false;
+    }
+
 
     void updateAllViews(){
         IReservable item = StoreIT.getCurrentOrganisation().getItem(reservation.getReservedObjectID());
