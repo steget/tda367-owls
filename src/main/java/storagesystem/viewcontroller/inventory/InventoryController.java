@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 /**
- * @author Pär Aronsson
+ * @author Pär Aronsson, Hugo Stegrell
  */
 public class InventoryController implements Initializable {
 

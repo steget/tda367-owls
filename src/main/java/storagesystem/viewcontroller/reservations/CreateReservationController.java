@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * Controller for creation of a Reservation
  *
- * @author William Albertsson
+ * @author William Albertsson, Hugo Stegrell
  */
 
 public class CreateReservationController extends AnchorPane {

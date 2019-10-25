@@ -26,7 +26,7 @@ import java.util.List;
 /**
  * Controls a detailed view of an item. Can be used to book an item.
  *
- * @author Jonathan Eksberg, Carl Lindh, Pär Aronsson
+ * @author Jonathan Eksberg, Carl Lindh, Pär Aronsson, Hugo Stegrell
  */
 
 public class ItemDetailViewController extends AnchorPane {

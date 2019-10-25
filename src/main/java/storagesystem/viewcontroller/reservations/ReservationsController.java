@@ -18,7 +18,7 @@ import java.util.ResourceBundle;
 /**
  * Shows a list of reservations using ReservationListViewController. A lightbox with details about reservations is shown when listitem is clicked.
  *
- * @author William Albertsson
+ * @author William Albertsson, Hugo Stegrell
  */
 
 public class ReservationsController implements Initializable {
