@@ -11,10 +11,10 @@ import storeit.services.JSONHandler;
 import java.io.IOException;
 
 /**
- *
- * @Authors
- * @Version
- * @
+ * 
+ * @author Hugo Stegrell
+ * @version 1.0
+ * @since 2019-10-25
  */
 public class Main extends Application {
 
