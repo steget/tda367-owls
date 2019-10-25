@@ -12,6 +12,18 @@
     -fx-text-fill: white;
 }
 
+.button{
+    -fx-background-color: primaryColor;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+.button:hover{
+    -fx-background-color: secondaryColor;
+    -fx-cursor: hand;
+}
+
+
+
 .appbar {
     -fx-background-color: primaryColor;
 }

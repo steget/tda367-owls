@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<fx:root fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: rgba(0, 0, 0, 0.75);" stylesheets="@../basicStyles.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: rgba(0, 0, 0, 0.75);" stylesheets="@../basicStyles.css" type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <AnchorPane fx:id="contentPane" layoutX="19.0" layoutY="30.0" styleClass="background" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="60.0">
             <children>
@@ -24,7 +24,6 @@
                 <Label fx:id="detailViewReservableLabel" layoutX="37.0" layoutY="286.0" styleClass="smallLabel" text="ReservableLabel" />
                 <Label fx:id="detailViewAmountLabel" layoutX="24.0" layoutY="366.0" styleClass="smallLabel" text="AmountLabel" />
                 <Label fx:id="detailViewLocationLabel" layoutX="24.0" layoutY="394.0" styleClass="smallLabel" text="LocationLabel" />
-                <Label fx:id="detailViewIDLabel" layoutX="374.0" layoutY="63.0" styleClass="smallLabel" text="IDLabel" />
                 <Slider fx:id="detailViewConditionSlider" blockIncrement="1.0" disable="true" layoutX="31.0" layoutY="497.0" majorTickUnit="1.0" max="2.0" minorTickCount="0" prefHeight="45.0" prefWidth="293.0" showTickMarks="true" snapToTicks="true" value="1.0" />
                 <Label layoutX="31.0" layoutY="534.0" style="-fx-text-fill: red;" text="BAD" />
                 <Label layoutX="155.0" layoutY="534.0" style="-fx-text-fill: yellow;" text="GOOD" />
