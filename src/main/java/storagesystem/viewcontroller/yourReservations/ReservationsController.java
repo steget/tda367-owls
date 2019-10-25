@@ -10,6 +10,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import storagesystem.model.IReservation;
+import storagesystem.model.ReservationStatus;
 import storagesystem.model.StoreIT;
 import storagesystem.model.Team;
 
@@ -106,21 +107,34 @@ public class ReservationsController implements Initializable {
     private void listViewClicked(IReservation res) {
         detailView = new ReservationDetailViewController(res);
         detailView.addEventHandler(MouseEvent.MOUSE_CLICKED, detailViewClickedHandler);
-        //detailView.approveButton.addEventHandler(MouseEvent.MOUSE_CLICKED, approveButtonClicked());
         reservationsRootPane.getChildren().add(detailView);
 
 
     }
 
+    private EventHandler<MouseEvent> approveButtonClicked = e ->{
+        detailView.reservation.setStatus(ReservationStatus.APPROVED);
+        detailView.update();
+        e.consume();
+    };
+    private EventHandler<MouseEvent> declineButtonClicked = e ->{
+        detailView.reservation.setStatus(ReservationStatus.DECLINED);
+        detailView.update();
+        e.consume();
+    };
+
 
 
     private void detailViewClicked() {
         reservationsRootPane.getChildren().remove(detailView);
+        updateReservations();
     }
 
     private void reservationListViewClicked(IReservation reservation) {
         detailView = new ReservationDetailViewController(reservation);
         detailView.addEventHandler(MouseEvent.MOUSE_CLICKED, detailViewClickedHandler);
+        detailView.approveButton.addEventHandler(MouseEvent.MOUSE_CLICKED, approveButtonClicked);
+        detailView.declineButton.addEventHandler(MouseEvent.MOUSE_CLICKED, declineButtonClicked);
         reservationsRootPane.getChildren().add(detailView);
     }
 }

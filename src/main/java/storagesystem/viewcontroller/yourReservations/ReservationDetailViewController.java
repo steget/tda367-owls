@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import storagesystem.model.IReservation;
+import storagesystem.model.ReservationStatus;
 
 import java.io.IOException;
 
@@ -18,7 +19,7 @@ import java.io.IOException;
 
 public class ReservationDetailViewController extends AnchorPane {
 
-    private IReservation reservation;
+    IReservation reservation;
 
     @FXML
     private TextField itemField;
@@ -58,15 +59,30 @@ public class ReservationDetailViewController extends AnchorPane {
         }
 
         reservation = res;
+        updateButtons();
 
         lightboxContentPane.setOnMouseClicked(Event::consume);
 
-        itemField.setText(res.getReservedObject().getName());
-        borrowerField.setText(res.getBorrower().getName());
-        //TODO Set owner field. Method is missing in organisation at time of writing
-        timeAndDateField.setText(res.getReadableInterval());
-        statusField.setText(res.getStatus().toString());
-        IDField.setText(Integer.toString(res.getID()));
+        update();
 
+    }
+
+    private void updateButtons() {
+        declineButton.setVisible(false);
+        approveButton.setVisible(false);
+        if(reservation.getStatus() == ReservationStatus.PENDING) {
+            declineButton.setVisible(true);
+            approveButton.setVisible(true);
+        }
+    }
+
+    void update(){
+        itemField.setText(reservation.getReservedObject().getName());
+        borrowerField.setText(reservation.getBorrower().getName());
+        //TODO Set owner field. Method is missing in organisation at time of writing
+        timeAndDateField.setText(reservation.getReadableInterval());
+        statusField.setText(reservation.getStatus().toString());
+        IDField.setText(Integer.toString(reservation.getID()));
+        updateButtons();
     }
 }

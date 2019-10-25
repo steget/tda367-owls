@@ -29,6 +29,8 @@ public interface IReservation {
 
     ReservationStatus getStatus();
 
+    void setStatus(ReservationStatus status);
+
 
     /**
      * Should be implemented in all implementors and should compare only the ID's

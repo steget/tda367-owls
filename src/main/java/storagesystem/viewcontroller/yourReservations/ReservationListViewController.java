@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import storagesystem.model.IReservation;
+import storagesystem.model.ReservationStatus;
 
 import java.io.IOException;
 
@@ -48,6 +49,9 @@ public class ReservationListViewController extends AnchorPane {
         borrowerLabel.setText(reservation.getBorrower().getName());
         intervalLabel.setText(reservation.getReadableInterval());
         statusLabel.setText(reservation.getStatus().toString());
+        if(reservation.getStatus() == ReservationStatus.PENDING){
+            statusLabel.setStyle("-fx-text-fill: secondaryButtonColor");
+        }
     }
 
     IReservation getReservation() {

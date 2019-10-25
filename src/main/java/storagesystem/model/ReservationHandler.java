@@ -99,7 +99,7 @@ public class ReservationHandler {
         List<IReservation> reservations = getReservations(object);
 
         for (IReservation res : reservations) {
-            if (res.getReservedObject().equals(object) && !(res.getInterval().overlap(interval) == null)) {
+            if (res.getReservedObject().equals(object) && !(res.getInterval().overlap(interval) == null) && res.getStatus() == ReservationStatus.APPROVED) {
                 return true;
             }
         }
