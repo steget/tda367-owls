@@ -1,4 +1,4 @@
-package storagesystem.viewcontroller.inventory.reservations;
+package storagesystem.viewcontroller.allItems.reservations;
 
 import javafx.collections.FXCollections;
 import javafx.event.Event;
@@ -38,8 +38,6 @@ public class CreateReservationController extends AnchorPane {
     TextField ownerField;
     @FXML
     Label terms;
-
-
     @FXML
     ChoiceBox<String> teamChoicebox;
 
@@ -68,7 +66,8 @@ public class CreateReservationController extends AnchorPane {
     private CheckBox termsCheckbox;
 
     @FXML
-    private Button confirmButton;
+    public
+    Button confirmButton;
     @FXML
     private Button cancelButton;
 
@@ -76,7 +75,7 @@ public class CreateReservationController extends AnchorPane {
 
 
     public CreateReservationController(IReservable item) {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/inventory/reservations/createReservation.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/allItems/reservations/createReservation.fxml"));
         fxmlLoader.setController(this);
         fxmlLoader.setRoot(this);
         try {
@@ -92,9 +91,8 @@ public class CreateReservationController extends AnchorPane {
 
         //Set text
         itemField.setText(item.getName());
-        //TODO Set owner
-        //TODO Set terms
-        ownerField.setText("Temp owner");
+        ownerField.setText(StoreIT.getCurrentOrganisation().getItemOwner(item).getName());
+        terms.setText(StoreIT.getCurrentOrganisation().getItemOwner(item).getTermsAndConditions());
 
         //Populate teamChoiceBox
         List<String> teamNames = new ArrayList<>();
@@ -183,29 +181,27 @@ public class CreateReservationController extends AnchorPane {
 
 
     @FXML
-    private void confirmReservation() {
+    public void confirmReservation() {
         ReservationHandler resHandler = StoreIT.getCurrentOrganisation().getReservationHandler();
-        checkReservationLegal();
         if (isReservationLegal()) {
             resHandler.createReservation(getTeam().getID(), getInterval(), item.getID());
-            close();
         }
     }
 
-    private boolean isReservationLegal() {
+    public boolean isReservationLegal() {
         if(!isEndAfterStart()){
-            AbstractFader.fadeTransition(intervalError, 3);
+            fadeMessage(intervalError);
             return false;
         }
         if(StoreIT.getCurrentOrganisation().getReservationHandler().isObjectReservedBetween(item.getID(), getInterval())) {
-            AbstractFader.fadeTransition(alreadyReservedError, 3);
+            fadeMessage(alreadyReservedError);
             return false;
         }
         return true;
     }
 
-    private void checkReservationLegal() {
-        //TODO print in program if any info is missing or wrong
+    private void fadeMessage(AnchorPane labelToFade) {
+        AbstractFader.fadeTransition(labelToFade, 3);
     }
 
     private IBorrower getTeam() {
@@ -236,27 +232,6 @@ public class CreateReservationController extends AnchorPane {
         int endMinute = endMinuteSpinner.getValue();
         DateTime end = new DateTime(endYear, endMonth, endDay, endHour, endMinute);
         return end;
-    }
-
-    @FXML
-    private void close() {
-        for (CreateReservationViewClosedListener listener : listeners) {
-            listener.reservationDetailViewClosed();
-        }
-    }
-
-
-    private List<CreateReservationViewClosedListener> listeners = new ArrayList<>();
-
-    /**
-     * Used together with "listeners" list as an observer pattern.
-     */
-    public interface CreateReservationViewClosedListener {
-        void reservationDetailViewClosed();
-    }
-
-    public void addCreateReservationViewClosedListener(CreateReservationViewClosedListener listener) {
-        listeners.add(listener);
     }
 
     private int getMonthDays(int nr) {

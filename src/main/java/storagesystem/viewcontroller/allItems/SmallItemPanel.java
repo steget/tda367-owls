@@ -14,7 +14,7 @@ import java.io.IOException;
  * @author Hugo Stegrell
  * Loads in a SmallItemPanel from FXML and represents it with only text and an image.
  */
-public class SmallItemPanel extends AnchorPane {
+class SmallItemPanel extends AnchorPane {
 
     private IReservable reservableItem;
 
@@ -24,8 +24,7 @@ public class SmallItemPanel extends AnchorPane {
     @FXML
     private Label itemNameLabel;
 
-
-    public SmallItemPanel(IReservable reservableItem) {
+    SmallItemPanel(IReservable reservableItem) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/allItems/smallItemPanel.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);

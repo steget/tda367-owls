@@ -33,8 +33,6 @@ import java.util.List;
 
 public class ItemCreateViewController extends AnchorPane {
     private List<Location> locationList;
-    private ObservableList<String> locationNames;
-    private List<RemoveCreateViewListener> removeCreateViewListeners = new ArrayList<>();
     private List<CreateItemButtonListener> createButtonListeners = new ArrayList<>();
 
     @FXML
@@ -44,7 +42,7 @@ public class ItemCreateViewController extends AnchorPane {
     @FXML
     private ImageView itemPageImageView;
     @FXML
-    private ImageView closeButtonImageView;
+    ImageView closeButtonImageView;
     @FXML
     private TextArea itemPageNameTA;
     @FXML
@@ -62,11 +60,9 @@ public class ItemCreateViewController extends AnchorPane {
     @FXML
     private Label imageErrorMsgLabel;
     @FXML
-    Button itemPageReserveBtn;
-    @FXML
-    Button itemPageSaveButton;
-    @FXML
     private Pane editPane;
+    @FXML
+    Button createItemButton;
 
 
     ItemCreateViewController() {
@@ -135,60 +131,35 @@ public class ItemCreateViewController extends AnchorPane {
 
     }
 
-
-    @FXML
-    private void closeCreateItemView() {
-        for (RemoveCreateViewListener l : removeCreateViewListeners) {
-            l.removeCreateView();
-        }
-    }
-
-
-    /**
-     * adds a listener to this object.
-     *
-     * @param listener
-     */
-    public void addRemoveCreateViewListener(RemoveCreateViewListener listener) {
-        removeCreateViewListeners.add(listener);
-    }
-
     public void addCreateItemButtonListener(CreateItemButtonListener listener) {
         createButtonListeners.add(listener);
     }
-
 
     /**
      * Creates an IReservable item which gets filled with the data in the different boxes from "ItemCreateView.fxml"
      * It saves the item to the currentorganisation which also connects the item to a team.
      */
 
-    private void createItem() {
-
+    public void createItem() {
         IReservable newItem = IReservableFactory.createReservableItem(itemPageNameTA.getText(), itemPageDescriptionTA.getText(), itemPageUserRequirementsTA.getText(), Integer.parseInt(itemPageAmountTA.getText()), saveCondition((int) itemPageConditionSlider.getValue()), isReservableChoiceBox.getSelectionModel().getSelectedIndex() == 0, getLocation(itemPageLocationChoicebox.getSelectionModel().getSelectedItem().toString()));
 
         PictureHandler.saveItemImagePic(SwingFXUtils.fromFXImage(itemPageImageView.getImage(), null), newItem.getID());
         StoreIT.getCurrentOrganisation().addItem(newItem, StoreIT.getCurrentTeam());
-
-        for (CreateItemButtonListener l : createButtonListeners) {
-            l.createButtonClicked();
-        }
     }
 
     /**
      * this method gets called before an item is created. It wont create a new item if the boxes are not completely filled in.
      */
-
     @FXML
-    public void checkIfBoxesAreFilled() {
+    public boolean checkIfBoxesAreFilled() {
         if (!(itemPageNameTA.getText().equals("") &&
                 itemPageAmountTA.getText().equals("") &&
                 itemPageUserRequirementsTA.getText().equals("") &&
                 itemPageDescriptionTA.getText().equals(""))) {
-
-            createItem();
+            return true;
         } else {
             AbstractFader.fadeTransition(errorMsg, 3);
+            return false;
         }
     }
 
@@ -235,11 +206,8 @@ public class ItemCreateViewController extends AnchorPane {
      * The method also writes the bufferedImage to the location "recources/pictures/items"
      * where it then can be called from.
      */
-
-
     @FXML
     void createItemImage() {
-
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("jpg", "*.jpg"), new FileChooser.ExtensionFilter("png", "*.png"), new FileChooser.ExtensionFilter("jpeg", "*.jpg"));
         File selectedFile = fileChooser.showOpenDialog(null);
@@ -252,14 +220,6 @@ public class ItemCreateViewController extends AnchorPane {
                 System.out.println("Can't read image: " + selectedFile.getPath());
             }
         }
-    }
-
-
-    /**
-     * Listener interface for DetailedItemView
-     */
-    interface RemoveCreateViewListener {
-        void removeCreateView();
     }
 
     /**
