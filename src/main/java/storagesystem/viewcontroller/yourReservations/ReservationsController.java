@@ -106,10 +106,13 @@ public class ReservationsController implements Initializable {
     private void listViewClicked(IReservation res) {
         detailView = new ReservationDetailViewController(res);
         detailView.addEventHandler(MouseEvent.MOUSE_CLICKED, detailViewClickedHandler);
+        //detailView.approveButton.addEventHandler(MouseEvent.MOUSE_CLICKED, approveButtonClicked());
         reservationsRootPane.getChildren().add(detailView);
 
 
     }
+
+
 
     private void detailViewClicked() {
         reservationsRootPane.getChildren().remove(detailView);

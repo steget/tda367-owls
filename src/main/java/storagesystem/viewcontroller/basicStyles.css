@@ -66,6 +66,7 @@
 .menuButton {
     -fx-background-color: tertiaryColor;
     -fx-text-fill: white;
+    -fx-font-size: 14px;
 }
 
 .menuButton:hover {

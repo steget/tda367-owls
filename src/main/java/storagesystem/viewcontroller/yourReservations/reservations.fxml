@@ -20,6 +20,6 @@
           <Label alignment="CENTER" contentDisplay="CENTER" layoutX="520.0" layoutY="70.0" minHeight="-Infinity" minWidth="-Infinity" styleClass="smallLabel" text="Time borrowed" textAlignment="CENTER" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="790.0" layoutY="70.0" minHeight="-Infinity" minWidth="-Infinity" styleClass="smallLabel" text="Status" textAlignment="CENTER" />
       <ChoiceBox fx:id="teamChooser" layoutX="21.0" layoutY="14.0" prefWidth="150.0" />
-      <Label layoutX="400.0" layoutY="13.0" styleClass="bigLabel" text="Your reservations" />
+      <Label layoutX="400.0" layoutY="13.0" styleClass="bigLabel" text="Incoming requests" />
     </children>
 </AnchorPane>
