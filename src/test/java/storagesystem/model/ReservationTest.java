@@ -29,14 +29,14 @@ public class ReservationTest {
     public void objectShouldEqual(){
         Organisation mockOrg = new Organisation("MockOrg");
         StoreIT.setCurrentOrganisation(mockOrg);
-        IBorrower borrower = new Team("Team1");
-        IBorrower owner = new Team("Owner");
-        mockOrg.addTeam((Team)borrower);
-        mockOrg.addTeam((Team)owner);
+        Team borrower = new Team("Team1");
+        Team owner = new Team("Owner");
+        mockOrg.addTeam(borrower);
+        mockOrg.addTeam(owner);
         IReservable object = IReservableFactory.createReservableItem("mockItem", "desc","requirements",1,Condition.GREAT,true, 0);
         DateTime time1 = new DateTime();
         DateTime time2 = time1.plusDays(1);
-        mockOrg.addItem(object, (Team)owner);
+        mockOrg.addItem(object, owner);
 
 
         Interval interval1 = new Interval(time1, time2);

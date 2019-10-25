@@ -41,16 +41,16 @@ public class ReservationHandlerTest {
     public void onlyOneReservationPerObjectAndIntervalShouldExist() {
         Organisation mockOrg = new Organisation("MockOrg");
         StoreIT.setCurrentOrganisation(mockOrg);
-        IBorrower borrower = new Team("Team1");
-        IBorrower owner = new Team("Owner");
-        mockOrg.addTeam((Team)borrower);
-        mockOrg.addTeam((Team)owner);
+        Team borrower = new Team("Team1");
+        Team owner = new Team("Owner");
+        mockOrg.addTeam(borrower);
+        mockOrg.addTeam(owner);
         IReservable object1 = IReservableFactory.createReservableItem("mockItem", "desc","requirements",1,Condition.GREAT,true, 0);
         IReservable object2 = IReservableFactory.createReservableItem("mockItem", "desc","requirements",1,Condition.GREAT,true, 0);
         ReservationHandler handler = new ReservationHandler(new ArrayList<>());
 
-        mockOrg.addItem(object1, (Team)owner);
-        mockOrg.addItem(object2, (Team)owner);
+        mockOrg.addItem(object1, owner);
+        mockOrg.addItem(object2, owner);
         DateTime time1 = new DateTime();
         DateTime time2 = time1.plusDays(1);
 
@@ -78,15 +78,15 @@ public class ReservationHandlerTest {
     public void shouldGiveID() {
         Organisation mockOrg = new Organisation("MockOrg");
         StoreIT.setCurrentOrganisation(mockOrg);
-        IBorrower borrower = new Team("Team1");
-        IBorrower owner = new Team("Owner");
-        mockOrg.addTeam((Team)borrower);
-        mockOrg.addTeam((Team)owner);
+        Team borrower = new Team("Team1");
+        Team owner = new Team("Owner");
+        mockOrg.addTeam(borrower);
+        mockOrg.addTeam(owner);
 
         IReservable object = IReservableFactory.createReservableItem("mockItem", "desc","requirements",1,Condition.GREAT,true, 0);
         ReservationHandler handler = new ReservationHandler(new ArrayList<>());
 
-        mockOrg.addItem(object, (Team)owner);
+        mockOrg.addItem(object, owner);
         DateTime startTime = new DateTime(1999, 8, 14, 12, 30);
         DateTime endTime = new DateTime();
 
@@ -108,17 +108,17 @@ public class ReservationHandlerTest {
     public void shouldReturnAllBorrowerReservations() {
         Organisation mockOrg = new Organisation("MockOrg");
         StoreIT.setCurrentOrganisation(mockOrg);
-        IBorrower borrower1 = new Team("Team1");
-        IBorrower borrower2 = new Team("Owner");
-        mockOrg.addTeam((Team)borrower1);
-        mockOrg.addTeam((Team)borrower2);
+        Team borrower1 = new Team("Team1");
+        Team borrower2 = new Team("Owner");
+        mockOrg.addTeam(borrower1);
+        mockOrg.addTeam(borrower2);
 
 
         IReservable object1 = IReservableFactory.createReservableItem("mockItem", "desc","requirements",1,Condition.GREAT,true, 0);
         IReservable object2 = IReservableFactory.createReservableItem("mockItem", "desc","requirements",1,Condition.GREAT,true, 0);
 
-        mockOrg.addItem(object1, (Team)borrower2);
-        mockOrg.addItem(object2, (Team)borrower2);
+        mockOrg.addItem(object1, borrower2);
+        mockOrg.addItem(object2, borrower2);
 
         ReservationHandler handler = new ReservationHandler(new ArrayList<>());
 
