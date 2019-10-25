@@ -70,7 +70,7 @@ public class LoginPageController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //Fill list with organisations from database
+        //Fill list with organisations
         ObservableList<String> organisationNames = FXCollections.observableArrayList();
         for (Organisation org :
                 StoreIT.getOrganisations()) {
@@ -87,8 +87,9 @@ public class LoginPageController implements Initializable {
         assignHandlers();
 
         Platform.runLater(() -> userNameTextField.requestFocus()); //Need to do this since Stage is not set yet when in initialize
-        userNameTextField.setText("admin");
-        passwordField.setText("1");//TODO: remove default login
+        if(StoreIT.getCurrentUser() != null){
+            userNameTextField.setText(StoreIT.getCurrentUser().getName());
+        }
     }
 
     /**

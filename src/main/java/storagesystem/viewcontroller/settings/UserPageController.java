@@ -62,12 +62,11 @@ public class UserPageController implements Initializable {
     @FXML
     private Button cancelButton;
 
-    private User currentUser;
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        currentUser = StoreIT.getCurrentUser();
+        viewProfileAnchorPane.toFront();
         writeProfileInfo();
     }
 
@@ -77,11 +76,11 @@ public class UserPageController implements Initializable {
     @FXML
     public void saveUser() {
         if (validateInfo(nameInputEmptyError, profileNameInput) && validateInfo(contactInputEmptyError, profileContactInput)) {
-            currentUser.setName(profileNameInput.getText());
-            currentUser.setDescription(profileDescriptionInput.getText());
-            currentUser.setContactInformation(profileContactInput.getText());
+            StoreIT.getCurrentUser().setName(profileNameInput.getText());
+            StoreIT.getCurrentUser().setDescription(profileDescriptionInput.getText());
+            StoreIT.getCurrentUser().setContactInformation(profileContactInput.getText());
             if(!profilePasswordInput.getText().isEmpty())
-                currentUser.setPassword(profilePasswordInput.getText());
+                StoreIT.getCurrentUser().setPassword(profilePasswordInput.getText());
             writeProfileInfo();
             viewProfileAnchorPane.toFront();
         }
@@ -91,16 +90,16 @@ public class UserPageController implements Initializable {
      * Sets the information from the current user.
      */
     private void writeProfileInfo() {
-        profileNameLabel.setText(currentUser.getName());
-        profileContactLabel.setText(currentUser.getContactInformation());
-        profileDescriptionTextArea.setText(currentUser.getDescription());
+        profileNameLabel.setText(StoreIT.getCurrentUser().getName());
+        profileContactLabel.setText(StoreIT.getCurrentUser().getContactInformation());
+        profileDescriptionTextArea.setText(StoreIT.getCurrentUser().getDescription());
         if (profileDescriptionTextArea.getText().trim().isEmpty()) {
             profileDescriptionTextArea.setText("User does not yet have a description... :(");
         }
         profileOrganisationLabel.setText(StoreIT.getCurrentOrganisation().getName());
-        profileNameInput.setText(currentUser.getName());
-        profileContactInput.setText(currentUser.getContactInformation());
-        profileDescriptionInput.setText(currentUser.getDescription());
+        profileNameInput.setText(StoreIT.getCurrentUser().getName());
+        profileContactInput.setText(StoreIT.getCurrentUser().getContactInformation());
+        profileDescriptionInput.setText(StoreIT.getCurrentUser().getDescription());
     }
 
     /**
