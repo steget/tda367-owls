@@ -5,8 +5,8 @@ import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import storagesystem.model.IReservation;
@@ -75,10 +75,10 @@ public class ReservationsController implements Initializable {
     }
 
 
-    private void createListViews(List<IReservation> reservations){
+    private void createListViews() {
         reservationViews = new ArrayList<>();
         boolean alternating = false;
-        for (IReservation res : reservations) {
+        for (IReservation res : StoreIT.getCurrentTeamsIncomingReservations()) {
             ReservationListViewController listView = new ReservationListViewController(res);
             reservationViews.add(listView);
             listView.addEventHandler(MouseEvent.MOUSE_CLICKED, reservationListViewClickedHandler);
@@ -89,14 +89,11 @@ public class ReservationsController implements Initializable {
                 listView.setStyle("-fx-background-color: primaryColoR");
                 alternating = !alternating;
             }
-
         }
-
     }
 
     private void updateReservations() {
-        List<IReservation> reservations = StoreIT.getCurrentTeamsIncomingReservations();
-        createListViews(reservations);
+        createListViews();
         reservationListFlowPane.getChildren().clear();
         reservationListFlowPane.getChildren().addAll(reservationViews);
 
@@ -111,17 +108,16 @@ public class ReservationsController implements Initializable {
 
     }
 
-    private EventHandler<MouseEvent> approveButtonClicked = e ->{
+    private EventHandler<MouseEvent> approveButtonClicked = e -> {
         detailView.reservation.setStatus(ReservationStatus.APPROVED);
-        detailView.update();
+        detailView.updateAllViews();
         e.consume();
     };
-    private EventHandler<MouseEvent> declineButtonClicked = e ->{
+    private EventHandler<MouseEvent> declineButtonClicked = e -> {
         detailView.reservation.setStatus(ReservationStatus.DECLINED);
-        detailView.update();
+        detailView.updateAllViews();
         e.consume();
     };
-
 
 
     private void detailViewClicked() {

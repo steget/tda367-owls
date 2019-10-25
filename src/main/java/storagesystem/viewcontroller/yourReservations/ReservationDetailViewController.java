@@ -63,7 +63,7 @@ public class ReservationDetailViewController extends AnchorPane {
 
         lightboxContentPane.setOnMouseClicked(Event::consume);
 
-        update();
+        updateAllViews();
 
     }
 
@@ -76,7 +76,7 @@ public class ReservationDetailViewController extends AnchorPane {
         }
     }
 
-    void update(){
+    void updateAllViews(){
         itemField.setText(reservation.getReservedObject().getName());
         borrowerField.setText(reservation.getBorrower().getName());
         //TODO Set owner field. Method is missing in organisation at time of writing
