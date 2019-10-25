@@ -1,7 +1,5 @@
 [
   {
-    "name": "Informationsteknik",
-    "imageUrl": null,
     "items": [
       {
         "CLASSNAME": "storagesystem.model.Item",
@@ -125,19 +123,19 @@
     ],
     "locations": [
       {
+        "ID": 0,
         "name": "Hubben",
-        "description": "This location does not exist",
-        "ID": 0
+        "description": "This location does not exist"
       },
       {
+        "ID": 1,
         "name": "Garaget",
-        "description": "This location is unavailable",
-        "ID": 1
+        "description": "This location is unavailable"
       },
       {
+        "ID": 2,
         "name": "Maskinhuset",
-        "description": "This location is unavailable",
-        "ID": 2
+        "description": "This location is unavailable"
       }
     ],
     "reservationHandler": {
@@ -163,17 +161,19 @@
           }
         }
       ]
-    }
+    },
+    "name": "Informationsteknik",
+    "imageUrl": null
   },
   {
-    "name": "Data",
-    "imageUrl": null,
     "items": [],
     "teams": [],
     "users": [],
     "locations": [],
     "reservationHandler": {
       "reservations": []
-    }
+    },
+    "name": "Data",
+    "imageUrl": null
   }
 ]

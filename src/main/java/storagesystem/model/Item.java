@@ -12,6 +12,7 @@ import java.util.Objects;
  * Condition describes if an item is in bad, good or great condition.
  * Reservable tells us if an item is able to be borrowed or not.
  * Location has the information about where the item is located
+ *
  * @author Jonathan Eksberg, Carl Lindh
  */
 public class Item implements IReservable {
@@ -25,6 +26,19 @@ public class Item implements IReservable {
     private boolean reservable;
     private int locationID;
 
+    /**
+     * Creates an item. Should only be used by IReservableFactory.
+     *
+     * @param name             name of item
+     * @param description      description of item
+     * @param userRequirements user requirements of item
+     * @param amount           amount of items
+     * @param condition        condition of item
+     * @param reservable       item's current reservability
+     * @param locationID       item's location's ID
+     * @see IReservableFactory
+     */
+
     Item(String name, String description, String userRequirements, int amount, Condition condition, boolean reservable, int locationID) {
         this.name = name;
         this.description = description;
@@ -36,6 +50,7 @@ public class Item implements IReservable {
         this.reservable = reservable;
         this.locationID = locationID;
     }
+
 
     public String getName() {
         return name;
@@ -101,6 +116,12 @@ public class Item implements IReservable {
         Item.nextID = nextID;
     }
 
+    /**
+     * Checks if o has the same ID as item
+     *
+     * @param o An object which to test against
+     * @return true if the Object o's ID is the same as the item's ID
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -1,7 +1,7 @@
 package storagesystem.model;
 
 /**
- * A user should represent a person.
+ * A user should represent a person. //TODO: expand this
  *
  * @author Hugo Stegrell, Pär Aronsson
  */
@@ -12,6 +12,15 @@ public class User {
     private String description;
     private String contactInformation;
     private int ID;
+
+    /**
+     * Creates a user with selected parameters, sets the ID to nextID, then increments nextID.
+     *
+     * @param name name of User
+     * @param password password of User
+     * @param description a description of User
+     * @param contactInformation some contact information of User
+     */
 
     public User(String name, String password, String description, String contactInformation) {
         this.name = name;
@@ -73,7 +82,7 @@ public class User {
     }
 
     /**
-     * Compares ID's if o is a reservation
+     * Compares IDs if o is a reservation
      *
      * @param obj the reference object with which to compare.
      * @return {@code true} if this object is the same as the obj argument; {@code false} otherwise.

@@ -7,7 +7,21 @@ import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+/**
+ * An IDHandler with static methods which updates the nextIDs of Items, Locations, Reservations, Teams and Users in
+ * the selected list of organisations. This is to avoid duplicate IDs in the database. IDHandler uses the IDs that
+ * already exists in the Organisations and sets the nextID to the next integer after the highest ID in each respective
+ * class.
+ *
+ * @author Carl Lindh
+ */
 public class IDHandler {
+
+    /**
+     * updates all nextIDs in the Items, Locations, Reservations, Teams and Users in the list of organisations
+     *
+     * @param organisations a list of organisations
+     */
 
     public static void updateAllIDs(List<Organisation> organisations) {
         updateNextItemID(organisations);
@@ -17,6 +31,25 @@ public class IDHandler {
         updateNextUserID(organisations);
         System.out.println("Updated all nextIDs.");
     }
+
+    /**
+     * Sets all nextIDs to 0, used for testing.
+     */
+    static void clearAllNextIDs() {
+        Item.setNextID(0);
+        User.setNextID(0);
+        Team.setNextID(0);
+        Reservation.setNextID(0);
+        Location.setNextID(0);
+    }
+
+
+    /**
+     * updates nextID for Item in the selected list of organisations by checking the highest item ID in the
+     * organisations' items.
+     *
+     * @param organisations list of organisations
+     */
 
     private static void updateNextItemID(List<Organisation> organisations) {
         List<Integer> allIDs = new ArrayList<>();
@@ -37,6 +70,13 @@ public class IDHandler {
         }
     }
 
+    /**
+     * updates nextID for Location in the selected list of organisations by checking the highest location ID in the
+     * organisations' locations.
+     *
+     * @param organisations list of organisations
+     */
+
     private static void updateNextLocationID(List<Organisation> organisations) {
         List<Integer> allIDs = new ArrayList<>();
         for (Organisation organisation : organisations) {
@@ -56,7 +96,12 @@ public class IDHandler {
         }
     }
 
-
+    /**
+     * updates nextID for Reservation in the selected list of organisations by checking the highest reservation ID in the
+     * organisations' reservations.
+     *
+     * @param organisations list of organisations
+     */
     private static void updateNextReservationID(List<Organisation> organisations) {
         List<Integer> allIDs = new ArrayList<>();
         for (Organisation organisation : organisations) {
@@ -76,6 +121,12 @@ public class IDHandler {
         }
     }
 
+    /**
+     * updates nextID for Team in the selected list of organisations by checking the highest team ID in the
+     * organisations' teams.
+     *
+     * @param organisations list of organisations
+     */
     private static void updateNextTeamID(List<Organisation> organisations) {
         List<Integer> allIDs = new ArrayList<>();
         for (Organisation organisation : organisations) {
@@ -95,7 +146,12 @@ public class IDHandler {
         }
     }
 
-
+    /**
+     * updates nextID for User in the selected list of organisations by checking the highest user ID in the
+     * organisations' users.
+     *
+     * @param organisations list of organisations
+     */
     private static void updateNextUserID(List<Organisation> organisations) {
         List<Integer> allUserIDs = new ArrayList<>();
         for (Organisation organisation : organisations) {
@@ -116,11 +172,4 @@ public class IDHandler {
 
     }
 
-    static void clearAllNextIDs() {
-        Item.setNextID(0);
-        User.setNextID(0);
-        Team.setNextID(0);
-        Reservation.setNextID(0);
-        Location.setNextID(0);
-    }
 }

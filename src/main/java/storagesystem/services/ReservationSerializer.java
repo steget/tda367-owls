@@ -14,6 +14,16 @@ public class ReservationSerializer implements JsonSerializer<IReservation>, Json
     private static final String CLASSNAME = "CLASSNAME";
     private static final String DATA = "DATA";
 
+    /**
+     * Deserializes a Json Element to an IReservation
+     *
+     * @param jsonElement                a Json Element
+     * @param type                       a Type
+     * @param jsonDeserializationContext a JsonSerializationContext
+     * @return a deserialized IReservation
+     * @throws JsonParseException
+     */
+
     public IReservation deserialize(JsonElement jsonElement, Type type,
                                     JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
 
@@ -24,10 +34,18 @@ public class ReservationSerializer implements JsonSerializer<IReservation>, Json
         return jsonDeserializationContext.deserialize(jsonObject.get(DATA), klass);
     }
 
-    public JsonElement serialize(IReservation jsonElement, Type type, JsonSerializationContext jsonSerializationContext) {
+    /**
+     * Serializes an IReservation to a Json Element. Is handled by gson.
+     *
+     * @param iReservation             an IReservation
+     * @param type                     a Type
+     * @param jsonSerializationContext a JsonSerializationContext
+     * @return a serialized Json Element
+     */
+    public JsonElement serialize(IReservation iReservation, Type type, JsonSerializationContext jsonSerializationContext) {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty(CLASSNAME, jsonElement.getClass().getName());
-        jsonObject.add(DATA, jsonSerializationContext.serialize(jsonElement));
+        jsonObject.addProperty(CLASSNAME, iReservation.getClass().getName());
+        jsonObject.add(DATA, jsonSerializationContext.serialize(iReservation));
         return jsonObject;
     }
 

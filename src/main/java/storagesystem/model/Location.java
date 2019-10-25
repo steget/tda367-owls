@@ -1,16 +1,24 @@
 package storagesystem.model;
+
 /**
  * Location tells us information about a place.
  * Description contains information about the location, such as how to get to the location and other information.
+ *
  * @author Jonathan Eksberg, Carl Lindh
  */
 
 public class Location {
-
-    private String name;
-    private String description;
     private final int ID;
     private static int nextID;
+    private String name;
+    private String description;
+
+    /**
+     * Creates a Location, sets its ID to the nextID, then increments nextID
+     *
+     * @param name name of the Location
+     * @param description description of the Location
+     */
 
     public Location(String name, String description) {
         this.name = name;
@@ -38,6 +46,7 @@ public class Location {
     public void setDescription(String description) {
         this.description = description;
     }
+
     public static void setNextID(int nextID) {
         Location.nextID = nextID;
     }

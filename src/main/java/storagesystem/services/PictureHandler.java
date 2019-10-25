@@ -7,12 +7,12 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 
 /**
  * This class handles the the writing and reading of images in the program.
  * This class handles where images gets saved and the naming of them.
  * It also is the one that reads the image and returns it to the requester.
+ * @author Pär Aronsson, Carl Lindh
  */
 public class PictureHandler {
 
