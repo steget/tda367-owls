@@ -50,18 +50,23 @@ public class ReservationHandlerTest {
 
         Interval interval = new Interval(time1, time2);
 
+
+
         if (!handler.isObjectReservedBetween(object1, interval))
-            handler.createReservation(borrower, interval, object1); //First reservation should go through without issues
+            handler.createReservation(borrower, interval, object1);//First reservation should go through without issues
+        handler.getLastReservation().setStatus(ReservationStatus.APPROVED);
 
         assertEquals(1, handler.getReservations().size());
 
         if (!handler.isObjectReservedBetween(object2, interval))
             handler.createReservation(borrower, interval, object2); //New reservation with same interval but different object
+        handler.getLastReservation().setStatus(ReservationStatus.APPROVED);
 
         assertEquals(2, handler.getReservations().size());
 
         if (!handler.isObjectReservedBetween(object1, interval))
             handler.createReservation(borrower, interval, object1); //Object1 is already reserved in this interval so it shouldn't get created.
+        handler.getLastReservation().setStatus(ReservationStatus.APPROVED);
 
         assertEquals(2, handler.getReservations().size());
     }
