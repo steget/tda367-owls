@@ -7,8 +7,6 @@ import javafx.scene.layout.AnchorPane;
 import storagesystem.model.IReservation;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * View meant to be used in ReservationsController. Represents a reservation in a small item meant to be used in a list.
@@ -32,9 +30,6 @@ public class ReservationListViewController extends AnchorPane {
     @FXML
     private Label intervalLabel;
 
-    private List<ReservationClickedListener> reservationClickedListenersList = new ArrayList<>();
-
-
     ReservationListViewController(IReservation res) {
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/reservations/reservationListView.fxml"));
@@ -54,22 +49,7 @@ public class ReservationListViewController extends AnchorPane {
         intervalLabel.setText(reservation.getReadableInterval());
     }
 
-    @FXML
-    private void clicked() {
-        for (ReservationClickedListener listener : reservationClickedListenersList) {
-            listener.reservationClicked(reservation);
-        }
+    IReservation getReservation() {
+        return reservation;
     }
-
-    void addReservationClickedListener(ReservationClickedListener listener) {
-        reservationClickedListenersList.add(listener);
-    }
-
-    /**
-     * Used together with "listeners" list as an observer pattern.
-     */
-    interface ReservationClickedListener {
-        void reservationClicked(IReservation res);
-    }
-
 }

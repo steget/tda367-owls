@@ -187,7 +187,7 @@ public class StoreIT {
         Interval interval1 = new Interval(new DateTime(2019, 9, 10, 12, 40), new DateTime(2019, 9, 10, 15, 0));
         Interval interval2 = new Interval(new DateTime(2019, 9, 12, 17, 30), new DateTime(2019, 10, 16, 20, 0));
         IReservation res = new Reservation(informationsteknik.getTeams().get(0), interval1, mockItem, ReservationStatus.APPROVED);
-        IReservation res2 = new Reservation(informationsteknik.getTeams().get(0), interval2, mockItem, ReservationStatus.APPROVED);
+        IReservation res2 = new Reservation(informationsteknik.getTeams().get(0), interval2, mockItem2, ReservationStatus.APPROVED);
         ReservationHandler resHandler = informationsteknik.getReservationHandler();
         List<IReservation> reservations = resHandler.getReservations();
         reservations.add(res);

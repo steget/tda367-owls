@@ -14,6 +14,7 @@ public class Reservation implements IReservation {
 
     private static int nextID = 0;
     private final int id;
+    //todo change from borrower and reservedObject to use IDs
     private IBorrower borrower;
     private Interval interval;
     private IReservable reservedObject;
@@ -123,7 +124,7 @@ public class Reservation implements IReservation {
 
         int startYear = start.getYear();
         int startMonth = start.getMonthOfYear();
-        int startDay = start.getMonthOfYear();
+        int startDay = start.getDayOfMonth();
         int startHour = start.getHourOfDay();
         int startMinute = start.getMinuteOfHour();
 
