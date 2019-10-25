@@ -53,7 +53,7 @@ public class ReservationsController implements Initializable {
 
     private void createListViews() {
         boolean alternating = false;
-        for (IReservation res : StoreIT.getCurrentOrganisation().getReservationHandler().getReservations()) {
+        for (IReservation res : StoreIT.getCurrentOrganisation().getReservationHandler().getAllReservations()) {
             ReservationListViewController listView = new ReservationListViewController(res);
             reservationViews.add(listView);
             listView.addEventHandler(MouseEvent.MOUSE_CLICKED, reservationListViewClickedHandler);

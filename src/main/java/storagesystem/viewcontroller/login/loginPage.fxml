@@ -42,7 +42,7 @@
                     </font>
                 </Label>
             <TextField fx:id="regUserNameTextField" layoutX="554.0" layoutY="14.0" prefWidth="350.0" AnchorPane.rightAnchor="400.0" />
-            <TextField fx:id="regPasswordTextField" layoutX="554.0" layoutY="65.0" prefWidth="350.0" AnchorPane.rightAnchor="400.0" />
+            <PasswordField fx:id="regPasswordTextField" layoutX="554.0" layoutY="65.0" prefWidth="350.0" AnchorPane.rightAnchor="400.0" />
             <ChoiceBox fx:id="regOrganisationChoiceBox" layoutX="554.0" layoutY="118.0" prefWidth="350.0" AnchorPane.rightAnchor="400.0" />
             <Label layoutX="453.0" layoutY="16.0" styleClass="smallLabel" text="Username:" textAlignment="RIGHT" AnchorPane.rightAnchor="770.0" />
             <Label layoutX="456.0" layoutY="67.0" styleClass="smallLabel" text="Password:" textAlignment="RIGHT" AnchorPane.rightAnchor="770.0" />

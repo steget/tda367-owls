@@ -2,7 +2,6 @@ package storagesystem.model;
 
 import org.joda.time.Interval;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -47,22 +46,22 @@ public class ReservationHandler {
     /**
      * @return List with all known reservations
      */
-    public List<IReservation> getReservations() {
+    public List<IReservation> getAllReservations() {
         return reservations;
     }
 
     /**
-     * @param object
+     * @param objectID
      * @return A list with all known reservations for one specific object.
      */
-    public List<IReservation> getReservations(IReservable object) {
+    public List<IReservation> getObjectsReservations(int objectID) {
 
 
         List<IReservation> objectsReservations = new ArrayList<>();
 
 
         for (IReservation res : this.reservations) {
-            if (res.getReservedObject().equals(object)) {
+            if (res.getReservedObjectID() == objectID) {
                 objectsReservations.add(res);
             }
         }
@@ -71,15 +70,15 @@ public class ReservationHandler {
     }
 
     /**
-     * @param borrower
+     * @param borrowerID
      * @return A list with all known reservations with specific borrower.
      */
-    public List<IReservation> getReservations(IBorrower borrower) {
+    public List<IReservation> getBorrowersReservations(int borrowerID) {
 
         List<IReservation> borrowersReservations = new ArrayList<>();
 
         for (IReservation res : this.reservations) {
-            if (borrower.equals(res.getBorrower())) {
+            if (borrowerID == res.getBorrowerID()) {
                 borrowersReservations.add(res);
             }
         }
@@ -91,15 +90,15 @@ public class ReservationHandler {
     /**
      * Checks too see if an interval overlaps the reservations of an object.
      *
-     * @param object   Object to test
+     * @param objectID   ID of Object to test
      * @param interval Interval to test object against
      * @return True if there is overlap, false otherwise.
      */
-    public boolean isObjectReservedBetween(IReservable object, Interval interval) {
-        List<IReservation> reservations = getReservations(object);
+    public boolean isObjectReservedBetween(int objectID, Interval interval) {
+        List<IReservation> reservations = getObjectsReservations(objectID);
 
         for (IReservation res : reservations) {
-            if (res.getReservedObject().equals(object) && !(res.getInterval().overlap(interval) == null)) {
+            if (res.getReservedObjectID() == objectID && !(res.getInterval().overlap(interval) == null)) {
                 return true;
             }
         }
@@ -110,12 +109,12 @@ public class ReservationHandler {
     /**
      * Creates a new reservation and saves in this ReservationHandler. Firsts tests to see if object isn't already reserved.
      *
-     * @param borrower The party which want to borrow object
-     * @param interval The interval in which to reserve the object.
-     * @param object   The object which is to be reserved.
+     * @param borrowerID The ID of the  party which want to borrow object
+     * @param interval   The interval in which to reserve the object.
+     * @param objectID   The ID of the object which is to be reserved.
      */
-    public void createReservation(IBorrower borrower, Interval interval, IReservable object) {
-        Reservation reservation = new Reservation(borrower, interval, object, ReservationStatus.PENDING);
+    public void createReservation(int borrowerID, Interval interval, int objectID) {
+        Reservation reservation = new Reservation(borrowerID, interval, objectID, ReservationStatus.PENDING);
         reservations.add(reservation);
     }
 

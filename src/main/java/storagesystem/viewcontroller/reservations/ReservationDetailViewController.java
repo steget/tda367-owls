@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import storagesystem.model.IReservation;
+import storagesystem.model.StoreIT;
 
 import java.io.IOException;
 
@@ -55,8 +56,8 @@ public class ReservationDetailViewController extends AnchorPane {
 
         lightboxContentPane.setOnMouseClicked(Event::consume);
 
-        itemField.setText(res.getReservedObject().getName());
-        borrowerField.setText(res.getBorrower().getName());
+        itemField.setText(StoreIT.getCurrentOrganisation().getItem(res.getReservedObjectID()).getName());
+        borrowerField.setText(StoreIT.getCurrentOrganisation().getTeamFromID(res.getBorrowerID()).getName());
         //TODO Set owner field. Method is missing in organisation at time of writing
         timeAndDateField.setText(res.getReadableInterval());
         statusField.setText(res.getStatus().toString());
