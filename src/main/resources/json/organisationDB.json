@@ -3,7 +3,7 @@
     "name": "Informationsteknik",
     "items": [
       {
-        "CLASSNAME": "storagesystem.model.Item",
+        "CLASSNAME": "storeit.model.Item",
         "DATA": {
           "ID": 0,
           "name": "Hammare",
@@ -16,7 +16,7 @@
         }
       },
       {
-        "CLASSNAME": "storagesystem.model.Item",
+        "CLASSNAME": "storeit.model.Item",
         "DATA": {
           "ID": 1,
           "name": "Bollhav",
@@ -29,7 +29,7 @@
         }
       },
       {
-        "CLASSNAME": "storagesystem.model.Item",
+        "CLASSNAME": "storeit.model.Item",
         "DATA": {
           "ID": 2,
           "name": "Tyger",
@@ -42,7 +42,7 @@
         }
       },
       {
-        "CLASSNAME": "storagesystem.model.Item",
+        "CLASSNAME": "storeit.model.Item",
         "DATA": {
           "ID": 3,
           "name": "Nintendo switch",
@@ -153,28 +153,7 @@
       }
     ],
     "reservationHandler": {
-      "reservations": [
-        {
-          "CLASSNAME": "storagesystem.model.Reservation",
-          "DATA": {
-            "id": 0,
-            "borrowerID": 0,
-            "interval": "2019-10-25T21:00:00.000+02:00/2019-10-25T21:15:00.000+02:00",
-            "reservedObjectID": 0,
-            "status": "PENDING"
-          }
-        },
-        {
-          "CLASSNAME": "storagesystem.model.Reservation",
-          "DATA": {
-            "id": 1,
-            "borrowerID": 2,
-            "interval": "2019-10-25T21:00:00.000+02:00/2019-10-25T21:15:00.000+02:00",
-            "reservedObjectID": 1,
-            "status": "PENDING"
-          }
-        }
-      ]
+      "reservations": []
     }
   },
   {
