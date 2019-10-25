@@ -118,7 +118,7 @@ public class StoreIT {
     }
 
     public static List<IReservation> getAllReservations(){
-        return currentOrganisation.getReservationHandler().getAllReservations();
+        return currentOrganisation.getAllReservations();
     }
 
     public static List<IReservation> getCurrentTeamsIncomingReservations(){
