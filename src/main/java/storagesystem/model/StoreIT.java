@@ -165,6 +165,11 @@ public class StoreIT {
         Team team1 = new Team("Teknologer");
         Team team2 = new Team("Vänner");
 
+        Team team3 = new Team("NollKIT");
+        Team team4 = new Team("P.R.I.T.");
+        Team team5 = new Team("sexIT");
+        Team team6 = new Team("8-bIT");
+
         createUser("admin", "password", "admin", "see github");
         createUser("Emil", "Emilia", "En go grabb", "emil@test.se");
         createUser("Emilia", "Emil", "En fin tös", "emilia@test.se");
@@ -194,7 +199,7 @@ public class StoreIT {
         IReservable mockItem3 = IReservableFactory.createReservableItem("Speaker", "He is called Roffe, and is a bit broken", "Please don't make him any more broken",
                 2, Condition.BAD, true, mockLocation2.getID());
 
-        informationsteknik.addItem(mockItem, team2);
+        informationsteknik.addItem(mockItem, team1);
         informationsteknik.addItem(mockItem2, team1);
         informationsteknik.addItem(mockItem3, team1);
 
