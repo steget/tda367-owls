@@ -64,10 +64,6 @@ public class EditItemDetailViewController extends AnchorPane {
     @FXML
     Button itemPageSaveButton;
     @FXML
-    Button itemPageReserveBtn;
-    @FXML
-    Button reservationsButton;
-    @FXML
     private Pane editPane;
 
     EditItemDetailViewController(IReservable reservableItem) {
@@ -217,10 +213,6 @@ public class EditItemDetailViewController extends AnchorPane {
 
     private void setTeamOwnerLabel(String teamOwner) {
         itemPageTeamOwnerLabel.setText("Owner: " + teamOwner);
-    }
-
-    private void setReservableBtn(boolean reservable) {
-        itemPageReserveBtn.setDisable(!reservable);
     }
 
     /**

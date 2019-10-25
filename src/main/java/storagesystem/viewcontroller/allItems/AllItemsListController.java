@@ -98,7 +98,7 @@ public class AllItemsListController implements Initializable {
         reservableItemDetailView = new ReservableItemDetailController(item);
         reservableItemDetailView.addEventHandler(MouseEvent.MOUSE_CLICKED, detailViewClickedHandler);
         reservableItemDetailView.reservationsButton.addEventHandler(MouseEvent.MOUSE_CLICKED, showItemsReservationButtonClickedHandler);
-        reservableItemDetailView.detailViewReserveBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, reserveButtonClickedHandler);
+        reservableItemDetailView.detailViewReserveButton.addEventHandler(MouseEvent.MOUSE_CLICKED, reserveButtonClickedHandler);
         rootPane.getChildren().add(reservableItemDetailView);
     }
 
