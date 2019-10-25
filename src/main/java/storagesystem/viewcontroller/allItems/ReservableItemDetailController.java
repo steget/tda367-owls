@@ -92,7 +92,7 @@ public class ReservableItemDetailController extends AnchorPane {
     }
 
     @FXML
-    protected void ReserveBtnPressed() {
+    protected void reserveBtnPressed() {
         //TODO: create a new reservation if possible
     }
 

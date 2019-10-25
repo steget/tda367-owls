@@ -18,6 +18,7 @@ import java.util.ResourceBundle;
 
 /**
  * Control the  teamPage
+ *
  * @author Hugo Stegrell, Pär Aronsson, Jonathan Eksberg
  */
 public class TeamPageController extends AnchorPane implements Initializable {
@@ -147,13 +148,11 @@ public class TeamPageController extends AnchorPane implements Initializable {
     @FXML
     public void saveTeam() {
         StoreIT.getCurrentTeam().setTermsAndConditions(settingsTeamContractInput.getText());
-        if(settingsTeamNameInput.getText().length() > 20){
+        if (settingsTeamNameInput.getText().length() > 20) {
             AbstractFader.fadeTransition(teamNameTooLongMsg, 3);
-        }
-        else if(settingsTeamNameInput.getText().length() < 6){
+        } else if (settingsTeamNameInput.getText().length() < 6) {
             AbstractFader.fadeTransition(teamNameTooShortMsg, 3);
-        }
-        else{
+        } else {
             StoreIT.getCurrentTeam().setName(settingsTeamNameInput.getText());
             updateChangedTeamNameInChoicebox();
             updateTeamsChoicebox();
@@ -162,7 +161,6 @@ public class TeamPageController extends AnchorPane implements Initializable {
             teamAnchorPane.toFront();
         }
     }
-
 
 
     /**
@@ -230,12 +228,12 @@ public class TeamPageController extends AnchorPane implements Initializable {
     private void removeMemberFromTeam(int userID) {
         boolean memberFound = false;
         //remove member from team
-            if (StoreIT.getCurrentTeam().getAllMemberIDs().contains(userID)) {
-                StoreIT.getCurrentTeam().removeMember(userID);
-                AbstractFader.fadeTransition(userRemovedMsg, 2);
-                memberFound = true;
-                settingsRemoveUserInput.clear();
-            }
+        if (StoreIT.getCurrentTeam().getAllMemberIDs().contains(userID)) {
+            StoreIT.getCurrentTeam().removeMember(userID);
+            AbstractFader.fadeTransition(userRemovedMsg, 2);
+            memberFound = true;
+            settingsRemoveUserInput.clear();
+        }
 
         if (!memberFound) {
             AbstractFader.fadeTransition(userNotPartOfTeamMsg, 2);
@@ -243,12 +241,12 @@ public class TeamPageController extends AnchorPane implements Initializable {
     }
 
     @FXML
-    private void editTeamButtonPressed(){
+    private void editTeamButtonPressed() {
         editTeamAnchorPane.toFront();
     }
 
     @FXML
-    private void cancelTeamButtonPressed(){
+    private void cancelTeamButtonPressed() {
         settingsAddUserInput.clear();
         settingsRemoveUserInput.clear();
         teamAnchorPane.toFront();
