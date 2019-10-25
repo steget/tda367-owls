@@ -117,6 +117,14 @@ public class StoreIT {
         StoreIT.currentTeam = currentTeam;
     }
 
+    public static List<IReservation> getAllReservations(){
+        return currentOrganisation.getAllReservations();
+    }
+
+    public static List<IReservation> getCurrentTeamsIncomingReservations(){
+        return currentOrganisation.getTeamsReservations(currentTeam);
+    }
+
     //TODO write tests for class
 
     /**

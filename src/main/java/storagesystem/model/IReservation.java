@@ -24,10 +24,11 @@ public interface IReservation {
     Interval getInterval();
 
 
-    int getReservedObjectID();
 
 
     ReservationStatus getStatus();
+
+    void setStatus(ReservationStatus status);
 
 
     /**
@@ -40,4 +41,6 @@ public interface IReservation {
     boolean equals(Object o);
 
     String getReadableInterval();
+
+    int getReservedObjectID();
 }

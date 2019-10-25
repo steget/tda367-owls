@@ -1,4 +1,4 @@
-package storagesystem.viewcontroller.reservations;
+package storagesystem.viewcontroller.inventory.reservations;
 
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -23,8 +23,8 @@ public class ItemReservationsController extends AnchorPane {
     private IReservable item;
     private List<ItemReservationListItemViewController> itemReservationListItemViews = new ArrayList();
 
-    public ItemReservationsController(IReservable item) {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/reservations/ItemReservations.fxml"));
+    public ItemReservationsController(IReservable item){
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/inventory/reservations/ItemReservations.fxml"));
         fxmlLoader.setController(this);
         fxmlLoader.setRoot(this);
 
@@ -46,7 +46,7 @@ public class ItemReservationsController extends AnchorPane {
 
     private void updateItemReservations() {
         boolean alternating = false;
-        for (IReservation res : StoreIT.getCurrentOrganisation().getReservationHandler().getBorrowersReservations(item.getID())) {
+        for (IReservation res : StoreIT.getCurrentOrganisation().getReservationHandler().getObjectsReservations(item.getID())) {
             ItemReservationListItemViewController listView = new ItemReservationListItemViewController(res);
             itemReservationListItemViews.add(listView);
             if (alternating) {
@@ -56,8 +56,6 @@ public class ItemReservationsController extends AnchorPane {
                 listView.setStyle("-fx-background-color: primaryColor");
                 alternating = !alternating;
             }
-            ;
-
         }
     }
 

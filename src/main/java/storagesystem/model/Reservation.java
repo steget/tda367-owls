@@ -93,7 +93,7 @@ public class Reservation implements IReservation {
         return status;
     }
 
-    private void setStatus(ReservationStatus status) {
+    public void setStatus(ReservationStatus status) {
         this.status = status;
     }
 

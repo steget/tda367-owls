@@ -86,6 +86,19 @@ public class ReservationHandler {
         return borrowersReservations;
     }
 
+    /**
+     * Finds all the incoming reservations a team has
+     * @param team Owner of the items in the reservations
+     * @return List with all incoming reservations the team has
+     */
+    List<IReservation> getTeamsReservations(Team team) {
+        List<IReservation> teamReservations = new ArrayList<>();
+        for(IReservation res : reservations){
+            if(team.isItemOwner(res.getReservedObjectID()))
+                teamReservations.add(res);
+        }
+        return teamReservations;
+    }
 
     /**
      * Checks too see if an interval overlaps the reservations of an object.
@@ -98,7 +111,7 @@ public class ReservationHandler {
         List<IReservation> reservations = getObjectsReservations(objectID);
 
         for (IReservation res : reservations) {
-            if (res.getReservedObjectID() == objectID && !(res.getInterval().overlap(interval) == null)) {
+            if (res.getReservedObjectID() == objectID && !(res.getInterval().overlap(interval) == null) && res.getStatus() == ReservationStatus.APPROVED) {
                 return true;
             }
         }

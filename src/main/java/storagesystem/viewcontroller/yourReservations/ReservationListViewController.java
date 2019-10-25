@@ -1,10 +1,11 @@
-package storagesystem.viewcontroller.reservations;
+package storagesystem.viewcontroller.yourReservations;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import storagesystem.model.IReservation;
+import storagesystem.model.ReservationStatus;
 import storagesystem.model.StoreIT;
 
 import java.io.IOException;
@@ -24,16 +25,16 @@ public class ReservationListViewController extends AnchorPane {
 
     @FXML
     private Label itemLabel;
-
     @FXML
     private Label borrowerLabel;
-
     @FXML
     private Label intervalLabel;
+    @FXML
+    private Label statusLabel;
 
     ReservationListViewController(IReservation res) {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/reservations/reservationListView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/yourReservations/reservationListView.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 
@@ -48,6 +49,10 @@ public class ReservationListViewController extends AnchorPane {
         itemLabel.setText(StoreIT.getCurrentOrganisation().getItem(reservation.getReservedObjectID()).getName());
         borrowerLabel.setText(StoreIT.getCurrentOrganisation().getTeamFromID(reservation.getBorrowerID()).getName());
         intervalLabel.setText(reservation.getReadableInterval());
+        statusLabel.setText(reservation.getStatus().toString());
+        if(reservation.getStatus() == ReservationStatus.PENDING){
+            statusLabel.setStyle("-fx-text-fill: secondaryButtonColor");
+        }
     }
 
     IReservation getReservation() {

@@ -213,4 +213,12 @@ public class Organisation {
         }
         throw new NoSuchElementException("Item owner could not be found");
     }
+
+    public List<IReservation> getAllReservations() {
+        return reservationHandler.getAllReservations();
+    }
+
+    List<IReservation> getTeamsReservations(Team team) {
+        return reservationHandler.getTeamsReservations(team);
+    }
 }

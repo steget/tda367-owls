@@ -60,8 +60,8 @@ public class IDHandler {
     private static void updateNextReservationID(List<Organisation> organisations) {
         List<Integer> allIDs = new ArrayList<>();
         for (Organisation organisation : organisations) {
-            for (int i = 0; i < organisation.getReservationHandler().getAllReservations().size(); i++) {
-                int ID = organisation.getReservationHandler().getAllReservations().get(i).getID();
+            for (int i = 0; i < organisation.getAllReservations().size(); i++) {
+                int ID = organisation.getAllReservations().get(i).getID();
                 if (!allIDs.contains(ID)) {
                     allIDs.add(ID);
                 }
