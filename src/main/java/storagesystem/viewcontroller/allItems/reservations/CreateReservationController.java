@@ -91,9 +91,8 @@ public class CreateReservationController extends AnchorPane {
 
         //Set text
         itemField.setText(item.getName());
-        //TODO Set owner
-        //TODO Set terms
-        ownerField.setText("Temp owner");
+        ownerField.setText(StoreIT.getCurrentOrganisation().getItemOwner(item).getName());
+        terms.setText(StoreIT.getCurrentOrganisation().getItemOwner(item).getTermsAndConditions());
 
         //Populate teamChoiceBox
         List<String> teamNames = new ArrayList<>();
@@ -186,7 +185,6 @@ public class CreateReservationController extends AnchorPane {
         ReservationHandler resHandler = StoreIT.getCurrentOrganisation().getReservationHandler();
         if (isReservationLegal()) {
             resHandler.createReservation(getTeam().getID(), getInterval(), item.getID());
-            close();
         }
     }
 
@@ -234,27 +232,6 @@ public class CreateReservationController extends AnchorPane {
         int endMinute = endMinuteSpinner.getValue();
         DateTime end = new DateTime(endYear, endMonth, endDay, endHour, endMinute);
         return end;
-    }
-
-    @FXML
-    private void close() {
-        for (CreateReservationViewClosedListener listener : listeners) {
-            listener.reservationDetailViewClosed();
-        }
-    }
-
-
-    private List<CreateReservationViewClosedListener> listeners = new ArrayList<>();
-
-    /**
-     * Used together with "listeners" list as an observer pattern.
-     */
-    public interface CreateReservationViewClosedListener {
-        void reservationDetailViewClosed();
-    }
-
-    public void addCreateReservationViewClosedListener(CreateReservationViewClosedListener listener) {
-        listeners.add(listener);
     }
 
     private int getMonthDays(int nr) {

@@ -11,7 +11,6 @@ import storagesystem.model.IReservable;
 import storagesystem.model.StoreIT;
 import storagesystem.viewcontroller.allItems.reservations.CreateReservationController;
 import storagesystem.viewcontroller.allItems.reservations.ItemReservationsController;
-import storagesystem.viewcontroller.allItems.reservations.ItemReservationsListItemViewController;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -52,7 +51,7 @@ public class AllItemsListController implements Initializable {
         e.consume();
     };
     private EventHandler<MouseEvent> createReservationButtonClickedHandler = e -> {
-        if(createReservationView.isReservationLegal()){
+        if (createReservationView.isReservationLegal()) {
             createReservationView.confirmReservation();
             rootPane.getChildren().remove(createReservationView);
         }
@@ -107,26 +106,4 @@ public class AllItemsListController implements Initializable {
         rootPane.getChildren().remove(reservableItemDetailView);
     }
 
-    private void updateItemList(List<IReservable> items) {
-        itemListFlowPane.getChildren().clear();
-
-        for (IReservable reservableItem : items) {
-            SmallItemPanel smallItemPanelMatchingName = findSmallItemPanel(reservableItem);
-            itemListFlowPane.getChildren().add(smallItemPanelMatchingName);
-        }
-    }
-
-    private SmallItemPanel findSmallItemPanel(IReservable item) {
-        for (SmallItemPanel panel : allSmallItemPanels) {
-            if (panel.getReservableItem() == item) {
-                return panel;
-            }
-        }
-
-        //if no panel for the item could be found a new one is created
-        SmallItemPanel newPanel = new SmallItemPanel(item);
-        newPanel.addEventHandler(MouseEvent.MOUSE_CLICKED, smallPanelClickedHandler);
-        allSmallItemPanels.add(newPanel);
-        return newPanel;
-    }
 }

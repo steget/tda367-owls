@@ -183,7 +183,6 @@ public class InventoryController implements Initializable {
 
     private void reserveItemClicked() {
         createReservationView = new CreateReservationController(detailView.getItem());
-        createReservationView.addCreateReservationViewClosedListener(this::closeCreateReservationView);
         rootPane.getChildren().add(createReservationView);
     }
 }
