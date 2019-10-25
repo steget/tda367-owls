@@ -25,12 +25,12 @@ public class ReservationListViewController extends AnchorPane {
 
     @FXML
     private Label itemLabel;
-
     @FXML
     private Label borrowerLabel;
-
     @FXML
     private Label intervalLabel;
+    @FXML
+    private Label statusLabel;
 
     private List<ReservationClickedListener> reservationClickedListenersList = new ArrayList<>();
 
@@ -52,6 +52,7 @@ public class ReservationListViewController extends AnchorPane {
         itemLabel.setText(reservation.getReservedObject().getName());
         borrowerLabel.setText(reservation.getBorrower().getName());
         intervalLabel.setText(reservation.getReadableInterval());
+        statusLabel.setText(reservation.getStatus().toString());
     }
 
     @FXML

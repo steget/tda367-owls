@@ -117,6 +117,19 @@ public class StoreIT {
         StoreIT.currentTeam = currentTeam;
     }
 
+    public static List<IReservation> getAllReservations(){
+        return currentOrganisation.getReservationHandler().getReservations();
+    }
+
+    public static List<IReservation> getCurrentTeamsIncomingReservations(){
+        List<IReservation> teamReservations = new ArrayList<>();
+        for(IReservation res : getAllReservations()){
+            if(currentTeam.isItemOwner(res.getReservedObject()))
+                teamReservations.add(res);
+        }
+        return teamReservations;
+    }
+
     //TODO write tests for class
 
     /**

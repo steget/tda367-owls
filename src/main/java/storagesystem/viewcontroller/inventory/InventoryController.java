@@ -23,7 +23,6 @@ import java.util.ResourceBundle;
  */
 public class InventoryController implements Initializable {
 
-    private Team currentlySelectedTeam;
     private List<Team> currentUsersTeams = new ArrayList<>();
     private ObservableList<String> teamNames = FXCollections.observableArrayList();
     private ItemDetailViewController detailView;
@@ -42,7 +41,6 @@ public class InventoryController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        currentlySelectedTeam = StoreIT.getCurrentTeam();
         currentUsersTeams = StoreIT.getCurrentOrganisation().getUsersTeams(StoreIT.getCurrentUser());
         fillTeamAttributes();
         refreshItems();
@@ -61,7 +59,7 @@ public class InventoryController implements Initializable {
      * if a user is apart of a team. then this method fills the choicebox.
      */
     private void fillTeamAttributes() {
-        currentlySelectedTeam = currentUsersTeams.get(0);
+        StoreIT.setCurrentTeam(currentUsersTeams.get(0));
         for (Team t : currentUsersTeams) { //adds team names into an observable list.
             teamNames.add(t.getName());
         }
@@ -80,7 +78,6 @@ public class InventoryController implements Initializable {
             for (Team t : currentUsersTeams) {
                 if (t.getName().equals(teamChooser.getItems().get(newIndex))) {
                     StoreIT.setCurrentTeam(t);
-                    currentlySelectedTeam = t;
                     refreshItems();
                     break;
                 }
@@ -93,7 +90,7 @@ public class InventoryController implements Initializable {
      * It removes all the items in list and renews with new items.
      */
     private void refreshItems() {
-        List<IReservable> inventory = StoreIT.getCurrentOrganisation().getTeamsItems(currentlySelectedTeam);
+        List<IReservable> inventory = StoreIT.getCurrentOrganisation().getTeamsItems(StoreIT.getCurrentTeam());
         itemPane.getChildren().remove(0, itemPane.getChildren().size());
         for (IReservable i : inventory) {
             InventoryListItemController listItem = new InventoryListItemController(i);

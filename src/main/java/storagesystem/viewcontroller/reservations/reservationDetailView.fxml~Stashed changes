@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Author: William Albertsson -->
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<fx:root fx:id="rootPane" prefHeight="700.0" prefWidth="1000.0"
+         styleClass="lightbox" stylesheets="@../basicStyles.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.201"
+         xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <AnchorPane fx:id="lightboxContentPane" blendMode="SRC_ATOP" styleClass="lightboxContent" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="60.0">
+            <children>
+                <HBox alignment="CENTER_RIGHT" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+                    <children>
+                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" styleClass="smallLabel" text="ID:" />
+                        <Region prefWidth="10.0" />
+                        <TextField fx:id="IDField" editable="false" focusTraversable="false" styleClass="nonEditableField" />
+                    </children>
+                </HBox>
+                <VBox layoutX="94.0" layoutY="80.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="450.0" prefWidth="447.0">
+                    <children>
+                        <Region prefHeight="50.0" />
+                        <HBox alignment="CENTER_LEFT">
+                            <children>
+                                <Label contentDisplay="RIGHT" styleClass="smallLabel" text="Borrowed item:" />
+                                <Region prefWidth="10.0" />
+                                <TextField fx:id="itemField" editable="false" prefHeight="40.0" prefWidth="290.0" styleClass="nonEditableField" />
+                            </children>
+                        </HBox>
+                        <Region prefHeight="50.0" />
+                        <HBox alignment="CENTER_RIGHT">
+                            <children>
+                                <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" styleClass="smallLabel" text="Borrower:" />
+                                <Region prefWidth="10.0" />
+                                <TextField fx:id="borrowerField" editable="false" prefHeight="40.0" prefWidth="290.0" styleClass="nonEditableField" />
+                            </children>
+                        </HBox>
+                        <Region prefHeight="50.0" />
+                        <HBox alignment="CENTER_RIGHT">
+                            <children>
+                                <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" styleClass="smallLabel" text="Item owner:" />
+                                <Region prefWidth="10.0" />
+                                <TextField fx:id="ownerField" editable="false" prefHeight="40.0" prefWidth="290.0" styleClass="nonEditableField" />
+                            </children>
+                        </HBox>
+                        <Region prefHeight="50.0" />
+                        <HBox alignment="CENTER_RIGHT">
+                            <children>
+                                <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" styleClass="smallLabel" text="Time and Date:" />
+                                <Region prefWidth="10.0" />
+                                <TextField fx:id="timeAndDateField" editable="false" prefHeight="40.0" prefWidth="290.0" styleClass="nonEditableField" />
+                            </children>
+                        </HBox>
+                        <Region prefHeight="50.0" />
+                        <HBox alignment="CENTER_RIGHT">
+                            <children>
+                                <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" styleClass="smallLabel" text="Status:" />
+                                <Region prefWidth="10.0" />
+                                <TextField fx:id="statusField" editable="false" prefHeight="40.0" prefWidth="290.0" styleClass="nonEditableField" />
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+            </children>
+        </AnchorPane>
+    </children>
+</fx:root>

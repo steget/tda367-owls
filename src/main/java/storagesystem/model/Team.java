@@ -38,6 +38,12 @@ public class Team implements IBorrower {
         }
     }
 
+    public boolean isItemOwner(IReservable item){
+        if(itemIDs.contains(item.getID())){
+            return true;
+        }return false;
+    }
+
     /**
      * Adds ID of a member to a team.
      *

@@ -41,9 +41,9 @@ public class ReservationDetailViewController extends AnchorPane {
     private TextField IDField;
 
     @FXML
-    private Button approveButton;
+    Button approveButton;
     @FXML
-    private Button declineButton;
+    Button declineButton;
 
     @FXML
     private AnchorPane lightboxContentPane;
