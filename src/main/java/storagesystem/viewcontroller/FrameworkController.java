@@ -12,7 +12,6 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import storagesystem.model.StoreIT;
 
-import javax.swing.text.html.ImageView;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
