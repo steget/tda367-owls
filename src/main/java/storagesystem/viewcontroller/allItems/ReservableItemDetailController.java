@@ -30,6 +30,10 @@ public class ReservableItemDetailController extends AnchorPane {
     private final Team itemOwner;
 
     @FXML
+    private AnchorPane rootPane;
+    @FXML
+    private AnchorPane contentPane;
+    @FXML
     private ImageView detailViewImageView;
     @FXML
     private Label detailViewNameLabel;
@@ -48,9 +52,9 @@ public class ReservableItemDetailController extends AnchorPane {
     @FXML
     private TextArea detailViewUserRequirementsTA;
     @FXML
-    private Button detailViewReserveBtn;
+    Button detailViewReserveBtn;
     @FXML
-    private AnchorPane contentPane;
+    Button reservationsButton;
 
     public ReservableItemDetailController(IReservable item) {
         this.item = item;
@@ -148,6 +152,10 @@ public class ReservableItemDetailController extends AnchorPane {
 
     private void setReservableBtn(boolean reservable) {
         detailViewReserveBtn.setDisable(!reservable);
+    }
+
+    public IReservable getItem() {
+        return item;
     }
 }
 

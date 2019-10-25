@@ -9,7 +9,7 @@ import storagesystem.model.StoreIT;
 
 import java.io.IOException;
 
-public class ItemReservationListItemViewController extends AnchorPane {
+public class ItemReservationsListItemViewController extends AnchorPane {
 
     @FXML
     private Label borrowerLabel;
@@ -19,7 +19,7 @@ public class ItemReservationListItemViewController extends AnchorPane {
     private Label statusLabel;
 
 
-    public ItemReservationListItemViewController(IReservation reservation){
+    public ItemReservationsListItemViewController(IReservation reservation){
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/allItems/reservations/ItemReservationsListItemView.fxml"));
         fxmlLoader.setController(this);
         fxmlLoader.setRoot(this);

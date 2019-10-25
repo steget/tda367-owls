@@ -38,8 +38,6 @@ public class CreateReservationController extends AnchorPane {
     TextField ownerField;
     @FXML
     Label terms;
-
-
     @FXML
     ChoiceBox<String> teamChoicebox;
 
@@ -68,7 +66,8 @@ public class CreateReservationController extends AnchorPane {
     private CheckBox termsCheckbox;
 
     @FXML
-    private Button confirmButton;
+    public
+    Button confirmButton;
     @FXML
     private Button cancelButton;
 

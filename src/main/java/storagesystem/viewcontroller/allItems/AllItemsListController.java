@@ -9,6 +9,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import storagesystem.model.IReservable;
 import storagesystem.model.StoreIT;
+import storagesystem.viewcontroller.allItems.reservations.CreateReservationController;
+import storagesystem.viewcontroller.allItems.reservations.ItemReservationsController;
+import storagesystem.viewcontroller.allItems.reservations.ItemReservationsListItemViewController;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -31,6 +34,8 @@ public class AllItemsListController implements Initializable {
     private ScrollPane itemListScrollPane;
 
     private ReservableItemDetailController reservableItemDetailView;
+    private CreateReservationController createReservationView;
+    private ItemReservationsController allReservationsForOneItemView;
 
     private List<SmallItemPanel> allSmallItemPanels = new ArrayList<>();
     private EventHandler<MouseEvent> detailViewClickedHandler = e -> {
@@ -42,6 +47,30 @@ public class AllItemsListController implements Initializable {
         smallItemPanelClicked(panel.getReservableItem());
         e.consume();
     };
+    private EventHandler<MouseEvent> reserveItemCloseHandler = e -> {
+        rootPane.getChildren().remove(createReservationView);
+        e.consume();
+    };
+    private EventHandler<MouseEvent> reserveButtonClickedHandler = e -> {
+        createReservationView = new CreateReservationController(reservableItemDetailView.getItem());
+        createReservationView.addEventHandler(MouseEvent.MOUSE_CLICKED, reserveItemCloseHandler);
+        createReservationView.confirmButton.addEventHandler(MouseEvent.MOUSE_CLICKED, reserveItemCloseHandler);
+        rootPane.getChildren().add(createReservationView);
+        e.consume();
+    };
+    private EventHandler<MouseEvent> showItemsReservationButtonClickedHandler = e -> {
+        allReservationsForOneItemView = new ItemReservationsController(reservableItemDetailView.getItem());
+        allReservationsForOneItemView.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                rootPane.getChildren().remove(allReservationsForOneItemView);
+                event.consume();
+            }
+        });
+        rootPane.getChildren().add(allReservationsForOneItemView);
+        e.consume();
+    };
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -62,6 +91,8 @@ public class AllItemsListController implements Initializable {
     private void smallItemPanelClicked(IReservable item) {
         reservableItemDetailView = new ReservableItemDetailController(item);
         reservableItemDetailView.addEventHandler(MouseEvent.MOUSE_CLICKED, detailViewClickedHandler);
+        reservableItemDetailView.reservationsButton.addEventHandler(MouseEvent.MOUSE_CLICKED, showItemsReservationButtonClickedHandler);
+        reservableItemDetailView.detailViewReserveBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, reserveButtonClickedHandler);
         rootPane.getChildren().add(reservableItemDetailView);
     }
 
