@@ -12,7 +12,6 @@ import java.util.NoSuchElementException;
  */
 public class Organisation {
     private String name;
-    private String imageUrl;
     private final List<IReservable> items = new ArrayList<>();
     private final List<Team> teams = new ArrayList<>();
     private final List<User> users = new ArrayList<>();
@@ -194,14 +193,6 @@ public class Organisation {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
     }
 
     public Team getItemOwner(IReservable item) {

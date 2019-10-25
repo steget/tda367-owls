@@ -16,7 +16,6 @@ public class Team implements IBorrower {
     private final List<Integer> memberIDs = new ArrayList<>();
     private String name;
     private String termsAndConditions;
-    private String imageUrl;
     private int ID;
 
     public Team(String teamName) {
@@ -88,14 +87,6 @@ public class Team implements IBorrower {
 
     public int getID() {
         return ID;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
     }
 
     public static void setNextID(int nextID) {
