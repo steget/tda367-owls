@@ -21,6 +21,7 @@ public class StoreIT {
      * Loads all data into the program. Should be run at start.
      */
     public void initializeBackend() throws IOException {
+
         try {
             organisations.addAll(JSONHandler.getOrganisationList());
         } catch (NullPointerException e) {
@@ -162,13 +163,13 @@ public class StoreIT {
 
 
 
-        Team team1 = new Team("Teknologer");
-        Team team2 = new Team("Vänner");
+        Team teknologer = new Team("Teknologer");
+        Team friends = new Team("Vänner");
 
-        Team team3 = new Team("NollKIT");
-        Team team4 = new Team("P.R.I.T.");
-        Team team5 = new Team("sexIT");
-        Team team6 = new Team("8-bIT");
+        Team nollkit = new Team("NollKIT");
+        Team prit = new Team("P.R.I.T.");
+        Team sexit = new Team("sexIT");
+        Team eightbit = new Team("8-bIT");
 
         createUser("admin", "password", "admin", "see github");
         User admin = currentOrganisation.getUsers().get(0);
@@ -178,53 +179,62 @@ public class StoreIT {
         createUser("Hugo", "1", "Infochef", "hugo@test.se");
         createUser("Eke", "1", "Ordförande", "eke@test.se");
 
-        team1.setTermsAndConditions("För att låna våra prylar måste prylen vara i samma skick som den var när den lånades ut. Behövs den diskas så diska den osv. Prylen ska också vara tillbaka på samma plats igen");
-        team2.setTermsAndConditions("Var rimlig");
-        team3.setTermsAndConditions("Var rimlig");
-        team4.setTermsAndConditions("Var rimlig");
-        team5.setTermsAndConditions("Var rimlig");
-        team6.setTermsAndConditions("Var rimlig");
+        teknologer.setTermsAndConditions("För att låna våra prylar måste prylen vara i samma skick som den var när den lånades ut. Behövs den diskas så diska den osv. Prylen ska också vara tillbaka på samma plats igen");
+        friends.setTermsAndConditions("Var rimlig");
+        nollkit.setTermsAndConditions("Var rimlig");
+        prit.setTermsAndConditions("Var rimlig");
+        sexit.setTermsAndConditions("Var rimlig");
+        eightbit.setTermsAndConditions("Var rimlig");
 
-        informationsteknik.addTeam(team1);
-        informationsteknik.addTeam(team2);
-        informationsteknik.addTeam(team3);
-        informationsteknik.addTeam(team4);
-        informationsteknik.addTeam(team5);
-        informationsteknik.addTeam(team6);
+        informationsteknik.addTeam(teknologer);
+        informationsteknik.addTeam(friends);
+        informationsteknik.addTeam(nollkit);
+        informationsteknik.addTeam(prit);
+        informationsteknik.addTeam(sexit);
+        informationsteknik.addTeam(eightbit);
 
-        team1.addMember(0);
-        team1.addMember(1);
-        team1.addMember(2);
-        team2.addMember(admin.getID());
-        team3.addMember(admin.getID());
-        team3.addMember(4);
-        team4.addMember(admin.getID());
-        team4.addMember(3);
-        team5.addMember(admin.getID());
-        team5.addMember(5);
-        team6.addMember(admin.getID());
-        team6.addMember(3);
+        teknologer.addMember(0);
+        teknologer.addMember(1);
+        teknologer.addMember(2);
+        friends.addMember(admin.getID());
+        nollkit.addMember(admin.getID());
+        nollkit.addMember(4);
+        prit.addMember(admin.getID());
+        prit.addMember(3);
+        sexit.addMember(admin.getID());
+        sexit.addMember(5);
+        eightbit.addMember(admin.getID());
+        eightbit.addMember(3);
 
-        Location mockLocation = new Location("Hubben", "Massa plats");
-        Location mockLocation2 = new Location("Garaget", "Kaos, men får plats med stora saker");
-        Location mockLocation3 = new Location("Basen", "Håll er borta");
+        Location hubben = new Location("Hubben", "Massa plats");
+        Location garage = new Location("Garaget", "Kaos, men får plats med stora saker");
+        Location hasen = new Location("HASen", "Håll er borta");
 
-        informationsteknik.getLocations().add(mockLocation);
-        informationsteknik.getLocations().add(mockLocation2);
-        informationsteknik.getLocations().add(mockLocation3);
-        IReservable mockItem = IReservableFactory.createReservableItem("Gjutjärnspanna", "Tung och välanvänd, men väldigt bra", "Inget diskmedel!!",
-                2, Condition.GREAT, true, mockLocation.getID());
-        IReservable mockItem3 = IReservableFactory.createReservableItem("Högtalare", "Han kallas Roffe, och är lite sönder", "Snälla förstör honom inte mer",
-                2, Condition.BAD, true, mockLocation2.getID());
+        informationsteknik.getLocations().add(hubben);
+        informationsteknik.getLocations().add(garage);
+        informationsteknik.getLocations().add(hasen);
+        IReservable pan = IReservableFactory.createReservableItem("Gjutjärnspanna", "Tung och välanvänd, men väldigt bra", "Inget diskmedel!!",
+                1, Condition.GREAT, true, hubben.getID());
+        IReservable speaker = IReservableFactory.createReservableItem("Högtalare", "Han kallas Roffe, och är lite sönder", "Snälla förstör honom inte mer",
+                1, Condition.BAD, true, garage.getID());
+        IReservable hammer = IReservableFactory.createReservableItem("Hammare", "En stor hammare", "Slå inte dina vänner!", 1, Condition.GREAT, true, hasen.getID());
+        IReservable ballPool = IReservableFactory.createReservableItem("Bollhav", "Väldigt många bollar", "Ge tillbaka alla", 1, Condition.GOOD,true, hubben.getID());
+        IReservable fabric = IReservableFactory.createReservableItem("Tyger", "Olika skick och färg", "Lämna tillbaka i samma skick", 5, Condition.BAD, true, hasen.getID());
+        IReservable nintendo = IReservableFactory.createReservableItem("Nintendo switch", "Switch med tillhörande spel", "Var försiktig!!", 1, Condition.GOOD, true, hubben.getID());
 
-        informationsteknik.addItem(mockItem, team1);
-        informationsteknik.addItem(mockItem3, team1);
+
+        informationsteknik.addItem(pan, teknologer);
+        informationsteknik.addItem(speaker, teknologer);
+        informationsteknik.addItem(hammer, prit);
+        informationsteknik.addItem(ballPool, nollkit);
+        informationsteknik.addItem(fabric, sexit);
+        informationsteknik.addItem(nintendo, eightbit);
 
         Interval interval1 = new Interval(new DateTime(), new DateTime().plusHours(1));
         Interval interval2 = new Interval(new DateTime(), new DateTime().plusHours(1));
 
         ReservationHandler resHandler = informationsteknik.getReservationHandler();
-        resHandler.createReservation(team1.getID(), interval1, mockItem.getID());
+        resHandler.createReservation(friends.getID(), interval1, pan.getID());
 
     }
 

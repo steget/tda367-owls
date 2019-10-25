@@ -10,7 +10,7 @@
           "name": "Gjutjärnspanna",
           "description": "Tung och välanvänd, men väldigt bra",
           "userRequirements": "Inget diskmedel!!",
-          "amount": 2,
+          "amount": 1,
           "condition": "GREAT",
           "reservable": true,
           "locationID": 0
@@ -23,7 +23,7 @@
           "name": "Högtalare",
           "description": "Han kallas Roffe, och är lite sönder",
           "userRequirements": "Snälla förstör honom inte mer",
-          "amount": 2,
+          "amount": 1,
           "condition": "BAD",
           "reservable": true,
           "locationID": 1
@@ -33,22 +33,22 @@
         "CLASSNAME": "storagesystem.model.Item",
         "DATA": {
           "ID": 2,
-          "name": "Bollhav",
-          "description": "Väldigt många bollar",
-          "userRequirements": "Lämna tillbaka alla",
+          "name": "Hammare",
+          "description": "En stor hammare",
+          "userRequirements": "Slå inte dina vänner!",
           "amount": 1,
-          "condition": "GOOD",
+          "condition": "GREAT",
           "reservable": true,
-          "locationID": 1
+          "locationID": 2
         }
       },
       {
         "CLASSNAME": "storagesystem.model.Item",
         "DATA": {
           "ID": 3,
-          "name": "Hammare",
-          "description": "En tung hammare",
-          "userRequirements": "Slå inte någon annan!",
+          "name": "Bollhav",
+          "description": "Väldigt många bollar",
+          "userRequirements": "Ge tillbaka alla",
           "amount": 1,
           "condition": "GOOD",
           "reservable": true,
@@ -60,12 +60,12 @@
         "DATA": {
           "ID": 4,
           "name": "Tyger",
-          "description": "Olika skick och färger",
-          "userRequirements": "Ska lämnas tillbaka i samma skick",
+          "description": "Olika skick och färg",
+          "userRequirements": "Lämna tillbaka i samma skick",
           "amount": 5,
           "condition": "BAD",
           "reservable": true,
-          "locationID": 1
+          "locationID": 2
         }
       },
       {
@@ -73,10 +73,10 @@
         "DATA": {
           "ID": 5,
           "name": "Nintendo switch",
-          "description": "Ett switch med tillhörande spel",
-          "userRequirements": "Var försiktigt!!",
+          "description": "Switch med tillhörande spel",
+          "userRequirements": "Var försiktig!!",
           "amount": 1,
-          "condition": "GREAT",
+          "condition": "GOOD",
           "reservable": true,
           "locationID": 0
         }
@@ -110,7 +110,7 @@
       },
       {
         "itemIDs": [
-          2
+          3
         ],
         "memberIDs": [
           0,
@@ -123,7 +123,7 @@
       },
       {
         "itemIDs": [
-          3
+          2
         ],
         "memberIDs": [
           0,
@@ -217,7 +217,7 @@
         "ID": 1
       },
       {
-        "name": "Basen",
+        "name": "HASen",
         "description": "Håll er borta",
         "ID": 2
       }
@@ -228,8 +228,8 @@
           "CLASSNAME": "storagesystem.model.Reservation",
           "DATA": {
             "id": 0,
-            "borrowerID": 0,
-            "interval": "2019-10-25T18:58:21.190+02:00/2019-10-25T19:58:21.271+02:00",
+            "borrowerID": 1,
+            "interval": "2019-10-25T19:10:22.184+02:00/2019-10-25T20:10:22.263+02:00",
             "reservedObjectID": 0,
             "status": "PENDING"
           }
