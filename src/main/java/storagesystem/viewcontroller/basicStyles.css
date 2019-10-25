@@ -4,6 +4,7 @@
     tertiaryColor: #424242;
     quarternaryColor: #545454;
     secondaryButtonColor: #BB86FC;
+    secondaryButtonHoverColor: #d2affc;
 
 }
 
@@ -31,12 +32,6 @@
     -fx-background-color: tertiaryColor;
 }
 
-.secondaryAppButton {
-    -fx-background-color: secondaryButtonColor;
-    -fx-text-fill: primaryColor;
-    -fx-text-size: 18px;
-}
-
 .nonEditableField {
     -fx-cursor: default;
     -fx-background-color: rgba(0, 0, 0, 0);
@@ -45,21 +40,18 @@
 
 }
 
-.background {
-    -fx-background-color: #303030;
-}
 
 .lightbox {
     -fx-background-color: rgba(0, 0, 0, 0.75);
 }
 
-.popUp {
-    -fx-background-color: secondaryColor;
+.lightboxContent {
+    -fx-background-color: tertiaryColor;
     -fx-background-radius: 20;
 }
 
-.lightboxContent {
-    -fx-background-color: tertiaryColor;
+.popUp {
+    -fx-background-color: secondaryColor;
     -fx-background-radius: 20;
 }
 
@@ -121,15 +113,16 @@
     -fx-background-radius: 10;
     -fx-background-color: secondaryButtonColor;
     -fx-font-size: 20px;
-    -fx-text-fill: white;
+    -fx-text-fill: primaryColor;
 }
 
 .confirmButton:hover{
-    /*TODO Change color to match other buttons*/
+    -fx-background-color: secondaryButtonHoverColor;
 }
 
 .label{
     -fx-text-fill: white;
+    -fx-font-fill: white;
 }
 
 #loginButton {
@@ -138,9 +131,6 @@
 }
 .readOnlyTA .content{
     -fx-cursor: closed;
-}
-.label{
-    -fx-font-fill:white;
 }
 
 .smallPane{
