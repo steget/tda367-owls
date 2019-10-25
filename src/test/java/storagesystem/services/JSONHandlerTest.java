@@ -35,7 +35,7 @@ public class JSONHandlerTest {
         Team testTeam = new Team("testTeam");
         mockOrg2.addTeam(testTeam);
 
-        mockOrg2.addItem(new Item("testItem", "exists in mockOrg2", "userRequirements", 1, Condition.GREAT, false, location.getID()), testTeam);
+        mockOrg2.addItem(IReservableFactory.createReservableItem("testItem", "exists in mockOrg2", "userRequirements", 1, Condition.GREAT, false, location.getID()), testTeam);
 
         JSONHandler.save(organisations);
 
@@ -58,7 +58,7 @@ public class JSONHandlerTest {
         Team testTeam = new Team("testTeam");
         mockOrg2.addTeam(testTeam);
 
-        mockOrg2.addItem(new Item("testItem", "exists in mockOrg2", "userRequirements", 1, Condition.GREAT, false, location.getID()), testTeam);
+        mockOrg2.addItem(IReservableFactory.createReservableItem("testItem", "exists in mockOrg2", "userRequirements", 1, Condition.GREAT, false, location.getID()), testTeam);
 
         List<Organisation> organisations = new ArrayList<>();
         organisations.add(mockOrg);
