@@ -9,7 +9,6 @@ import storagesystem.model.*;
 
 
 import java.io.*;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +23,7 @@ public class JSONHandler {
 
     /**
      * Clears the json files then saves all data of a list of organisations.
-     * @throws IOException
+     * @throws IOException if file does not exist
      */
 
     public static void save(List<Organisation> organisations) throws IOException {
@@ -36,8 +35,8 @@ public class JSONHandler {
     /**
      * addToJson() adds an Object to the json file without erasing its contents.
      *
-     * @param objectToAdd
-     * @throws IOException
+     * @param objectToAdd object to add
+     * @throws IOException if file does not exist
      */
     private static void addToJson(Object objectToAdd) throws IOException {
         Gson gson = createGsonBuilder().setPrettyPrinting().create();
@@ -58,8 +57,8 @@ public class JSONHandler {
     /**
      * addListToJson() adds a list of choice to a json file of choice without erasing the contents that are already in the json file.
      *
-     * @param listToAdd
-     * @throws IOException
+     * @param listToAdd list to add
+     * @throws IOException if file does not exist
      */
 
     private static void addListToJson(List listToAdd) throws IOException {
@@ -75,8 +74,8 @@ public class JSONHandler {
     /**
      * clearJson() clears a json file completely.
      *
-     * @param fileName
-     * @throws IOException
+     * @param fileName name of file to clear
+     * @throws IOException if file does not exist
      */
 
     private static void clearJson(String fileName) throws IOException {
@@ -88,7 +87,7 @@ public class JSONHandler {
     /**
      * clearAllJsonFiles() clears all json files completely.
      *
-     * @throws IOException
+     * @throws IOException if file does not exist
      */
 
     public static void clearAllJsonFiles() throws IOException {
@@ -98,7 +97,7 @@ public class JSONHandler {
 
     /**
      * @return a list of Organisations from the organisationDB file
-     * @throws IOException
+     * @throws IOException if file does not exist
      */
     public static List<Organisation> getOrganisationList() throws IOException {
         Gson gson = createGsonBuilder().setPrettyPrinting().create();

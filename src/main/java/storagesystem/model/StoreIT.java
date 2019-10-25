@@ -10,6 +10,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+/**
+ * StoreIT has an overview of the whole application by containing static variables and methods that corresponds to the
+ * current user, team and organisation. Also contains a list of all available organisations in the application.
+ *
+ * @author Hugo Stegrell, Pär Aronsson, Carl Lindh, William Albertson, Jonathan Eksberg
+ */
+
 public class StoreIT {
     private static List<Organisation> organisations = new ArrayList<>();
     private static User currentUser;
@@ -50,7 +57,7 @@ public class StoreIT {
      *
      * @param username Name to find in the currently selected Organisation
      * @param password Password supposed to match with the username
-     * @return {@code True} if the username and password matches, {@code False} if there is no match
+     * @return {@code true} if the username and password matches, {@code false} if there is no match
      */
     public static boolean doesLoginMatch(String username, String password) {
         for (User user :
@@ -117,11 +124,11 @@ public class StoreIT {
         StoreIT.currentTeam = currentTeam;
     }
 
-    public static List<IReservation> getAllReservations(){
+    public static List<IReservation> getAllReservations() {
         return currentOrganisation.getAllReservations();
     }
 
-    public static List<IReservation> getCurrentTeamsIncomingReservations(){
+    public static List<IReservation> getCurrentTeamsIncomingReservations() {
         return currentOrganisation.getTeamsReservations(currentTeam);
     }
 
@@ -142,11 +149,20 @@ public class StoreIT {
         System.out.println("Current Organisation Set.");
     }
 
-    public void reset() throws IOException { //Run if fresh start or after tests!!!
+    /**
+     * Resets ALL data in the Json files and initializes mockData. Should be run first in initializeBackend if
+     * there is a need to reset the whole database with mockData.
+     *
+     * @throws IOException if Json-file is not found
+     */
+    public void resetWithMockData() throws IOException { //Run if fresh start or after tests!!!
         JSONHandler.clearAllJsonFiles();
         mockData();
     }
 
+    /**
+     * Creates hard-coded data in StoreIT. Should only be run through resetWithMockData.
+     */
     private void mockData() {
         //Hardcoded stuff for testing
         Organisation informationsteknik = new Organisation("Informationsteknik");
@@ -154,7 +170,6 @@ public class StoreIT {
         organisations.add(informationsteknik);
         organisations.add(data);
         setCurrentOrganisation(informationsteknik);
-
 
 
         Team tempTeam = new Team("sexNollK");

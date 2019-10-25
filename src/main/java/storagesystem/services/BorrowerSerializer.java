@@ -14,6 +14,16 @@ public class BorrowerSerializer implements JsonSerializer<IBorrower>, JsonDeseri
     private static final String CLASSNAME = "CLASSNAME";
     private static final String DATA = "DATA";
 
+    /**
+     * Deserializes a Json Element to an IBorrower
+     *
+     * @param jsonElement                a Json Element
+     * @param type                       a Type
+     * @param jsonDeserializationContext a JsonSerializationContext
+     * @return a deserialized IBorrower
+     * @throws JsonParseException
+     */
+
     public IBorrower deserialize(JsonElement jsonElement, Type type,
                                  JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
 
@@ -24,10 +34,18 @@ public class BorrowerSerializer implements JsonSerializer<IBorrower>, JsonDeseri
         return jsonDeserializationContext.deserialize(jsonObject.get(DATA), klass);
     }
 
-    public JsonElement serialize(IBorrower jsonElement, Type type, JsonSerializationContext jsonSerializationContext) {
+    /**
+     * Serializes an IBorrower to a Json Element. Is handled by gson.
+     *
+     * @param iBorrower                an IBorrower
+     * @param type                     a Type
+     * @param jsonSerializationContext a JsonSerializationContext
+     * @return a serialized Json Element
+     */
+    public JsonElement serialize(IBorrower iBorrower, Type type, JsonSerializationContext jsonSerializationContext) {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty(CLASSNAME, jsonElement.getClass().getName());
-        jsonObject.add(DATA, jsonSerializationContext.serialize(jsonElement));
+        jsonObject.addProperty(CLASSNAME, iBorrower.getClass().getName());
+        jsonObject.add(DATA, jsonSerializationContext.serialize(iBorrower));
         return jsonObject;
     }
 

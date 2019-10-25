@@ -1,8 +1,5 @@
 package storagesystem.model;
 
-
-import javafx.scene.image.Image;
-
 /**
  * Interface to use for classes that represent something that can be borrowed.
  *

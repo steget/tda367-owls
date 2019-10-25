@@ -14,8 +14,18 @@ public class ReservableSerializer implements JsonSerializer<IReservable>, JsonDe
     private static final String CLASSNAME = "CLASSNAME";
     private static final String DATA = "DATA";
 
+    /**
+     * Deserializes a Json Element to an IReservable
+     *
+     * @param jsonElement                a Json Element
+     * @param type                       a Type
+     * @param jsonDeserializationContext a JsonSerializationContext
+     * @return a deserialized IReservable
+     * @throws JsonParseException
+     */
+
     public IReservable deserialize(JsonElement jsonElement, Type type,
-                                 JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
+                                   JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
 
         JsonObject jsonObject = jsonElement.getAsJsonObject();
         JsonPrimitive prim = (JsonPrimitive) jsonObject.get(CLASSNAME);
@@ -24,12 +34,21 @@ public class ReservableSerializer implements JsonSerializer<IReservable>, JsonDe
         return jsonDeserializationContext.deserialize(jsonObject.get(DATA), klass);
     }
 
-    public JsonElement serialize(IReservable jsonElement, Type type, JsonSerializationContext jsonSerializationContext) {
+    /**
+     * Serializes an IReservable to a Json Element. Is handled by gson.
+     *
+     * @param iReservable              an IReservable
+     * @param type                     a Type
+     * @param jsonSerializationContext a JsonSerializationContext
+     * @return a serialized Json Element
+     */
+    public JsonElement serialize(IReservable iReservable, Type type, JsonSerializationContext jsonSerializationContext) {
         JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty(CLASSNAME, jsonElement.getClass().getName());
-        jsonObject.add(DATA, jsonSerializationContext.serialize(jsonElement));
+        jsonObject.addProperty(CLASSNAME, iReservable.getClass().getName());
+        jsonObject.add(DATA, jsonSerializationContext.serialize(iReservable));
         return jsonObject;
     }
+
 
     /**
      * Helper method to get the className of the object to be deserialized.
