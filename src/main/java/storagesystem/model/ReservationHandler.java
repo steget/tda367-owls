@@ -13,8 +13,6 @@ import java.util.NoSuchElementException;
 
 public class ReservationHandler {
 
-    //TODO Understand exceptions and make sure they are used properly
-
 
     private final List<IReservation> reservations;
 

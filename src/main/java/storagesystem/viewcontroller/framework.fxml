@@ -35,9 +35,6 @@
                         <Font name="Arial" size="15.0" />
                      </font></Button>
                   <Button fx:id="reservationsButton" mnemonicParsing="false" onMouseClicked="#reservationsButtonPressed" prefHeight="60.0" prefWidth="180.0" styleClass="menuButton" stylesheets="@basicStyles.css" text="Reservation requests" />
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="180.0" styleClass="menuButton" stylesheets="@basicStyles.css" text="Dashboard" />
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="180.0" styleClass="menuButton" stylesheets="@basicStyles.css" text="Button" />
-                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="180.0" styleClass="menuButton" stylesheets="@basicStyles.css" text="Button" />
                </children>
                <BorderPane.margin>
                   <Insets top="20.0" />
