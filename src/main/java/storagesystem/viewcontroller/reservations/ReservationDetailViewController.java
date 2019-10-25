@@ -9,8 +9,6 @@ import storagesystem.model.IReservation;
 import storagesystem.model.StoreIT;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Shows detail about a reservation including borrowed item, time and date, status etc. Intended to be used as a lightbox.
@@ -42,10 +40,8 @@ public class ReservationDetailViewController extends AnchorPane {
 
     @FXML
     private AnchorPane lightboxContentPane;
-    private List<ReservationDetailViewClosedListener> listeners = new ArrayList<>();
 
-
-    public ReservationDetailViewController(IReservation res) {
+    ReservationDetailViewController(IReservation res) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/reservations/reservationDetailView.fxml"));
         fxmlLoader.setController(this);
         fxmlLoader.setRoot(this);
@@ -67,23 +63,5 @@ public class ReservationDetailViewController extends AnchorPane {
         statusField.setText(res.getStatus().toString());
         IDField.setText(Integer.toString(res.getID()));
 
-    }
-
-    @FXML
-    private void closeReservationDetailView() {
-        for (ReservationDetailViewClosedListener listener : listeners) {
-            listener.reservationDetailViewClosed();
-        }
-    }
-
-    public void addReservationDetailViewClosedListener(ReservationDetailViewClosedListener listener) {
-        listeners.add(listener);
-    }
-
-    /**
-     * Used together with "listeners" list as an observer pattern.
-     */
-    interface ReservationDetailViewClosedListener {
-        void reservationDetailViewClosed();
     }
 }

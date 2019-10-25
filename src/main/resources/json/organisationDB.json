@@ -9,7 +9,7 @@
           "ID": 0,
           "name": "mockItem",
           "description": "This is a description",
-          "userRequirements": "Behave please.",
+          "userRequirements": "Behave please.asd",
           "amount": 2,
           "condition": "GOOD",
           "reservable": true,
