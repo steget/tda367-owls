@@ -9,7 +9,7 @@
           "ID": 0,
           "name": "mockItem",
           "description": "This is a description",
-          "userRequirements": "Behave please.asd",
+          "userRequirements": "Behave please.",
           "amount": 2,
           "condition": "GOOD",
           "reservable": true,
@@ -121,13 +121,6 @@
         "description": "1",
         "contactInformation": "1",
         "ID": 6
-      },
-      {
-        "name": "test",
-        "password": "testpassword123",
-        "description": "test3",
-        "contactInformation": "test2",
-        "ID": 7
       }
     ],
     "locations": [
@@ -165,28 +158,8 @@
             "id": 1,
             "borrowerID": 0,
             "interval": "2019-09-12T17:30:00.000+02:00/2019-10-16T20:00:00.000+02:00",
-            "reservedObjectID": 0,
-            "status": "APPROVED"
-          }
-        },
-        {
-          "CLASSNAME": "storagesystem.model.Reservation",
-          "DATA": {
-            "id": 2,
-            "borrowerID": 0,
-            "interval": "2019-12-24T18:30:00.000+01:00/2020-10-24T18:30:00.000+02:00",
-            "reservedObjectID": 0,
-            "status": "PENDING"
-          }
-        },
-        {
-          "CLASSNAME": "storagesystem.model.Reservation",
-          "DATA": {
-            "id": 3,
-            "borrowerID": 1,
-            "interval": "2019-10-26T11:45:00.000+02:00/2019-10-26T12:00:00.000+02:00",
             "reservedObjectID": 1,
-            "status": "PENDING"
+            "status": "APPROVED"
           }
         }
       ]
