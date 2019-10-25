@@ -1,5 +1,6 @@
 package storagesystem.viewcontroller.reservations;
 
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -33,6 +34,4 @@ public class ItemReservationListItemViewController extends AnchorPane {
         intervalLabel.setText(reservation.getReadableInterval());
         statusLabel.setText(reservation.getStatus().toString());
     }
-
-
 }

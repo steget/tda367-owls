@@ -1,9 +1,8 @@
 package storagesystem.viewcontroller.reservations;
 
-import javafx.event.EventHandler;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import storagesystem.model.IReservable;
@@ -18,11 +17,13 @@ public class ItemReservationsController extends AnchorPane {
 
     @FXML
     private FlowPane listFlowPane;
+    @FXML
+    private AnchorPane contentPane;
 
     private IReservable item;
     private List<ItemReservationListItemViewController> itemReservationListItemViews = new ArrayList();
 
-    public ItemReservationsController(IReservable item){
+    public ItemReservationsController(IReservable item) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/reservations/ItemReservations.fxml"));
         fxmlLoader.setController(this);
         fxmlLoader.setRoot(this);
@@ -40,11 +41,12 @@ public class ItemReservationsController extends AnchorPane {
         updateItemReservations();
 
         listFlowPane.getChildren().addAll(itemReservationListItemViews);
+        contentPane.setOnMouseClicked(Event::consume);
     }
 
-    private void updateItemReservations(){
+    private void updateItemReservations() {
         boolean alternating = false;
-        for(IReservation res : StoreIT.getCurrentOrganisation().getReservationHandler().getBorrowersReservations(item.getID())){
+        for (IReservation res : StoreIT.getCurrentOrganisation().getReservationHandler().getBorrowersReservations(item.getID())) {
             ItemReservationListItemViewController listView = new ItemReservationListItemViewController(res);
             itemReservationListItemViews.add(listView);
             if (alternating) {
@@ -53,7 +55,8 @@ public class ItemReservationsController extends AnchorPane {
             } else {
                 listView.setStyle("-fx-background-color: primaryColor");
                 alternating = !alternating;
-            };
+            }
+            ;
 
         }
     }
