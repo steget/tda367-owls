@@ -64,6 +64,7 @@ public class ReservationsController implements Initializable {
         e.consume();
     };
 
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initializeToggleButtons();
@@ -79,20 +80,21 @@ public class ReservationsController implements Initializable {
         });
 
     }
-
     private void initializeToggleButtons() {
-        ToggleGroup group = new ToggleGroup();
-        ingoingToggle.setToggleGroup(group);
-        outgoingToggle.setToggleGroup(group);
+        ToggleGroup toggleGroup = new ToggleGroup();
 
-        group.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
+        ingoingToggle.setToggleGroup(toggleGroup);
+        outgoingToggle.setToggleGroup(toggleGroup);
+
+        toggleGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
             public void changed(ObservableValue<? extends Toggle> ov,
                                 Toggle toggle, Toggle new_toggle) {
                 if(new_toggle == ingoingToggle){
                     setIngoing();
                 }else if( new_toggle == outgoingToggle){
                     setOutgoing();
-                }
+                }else
+                    reservationsLabel.setText("Choose in- our outgoing");
                 updateReservations();
             }
         });
@@ -132,7 +134,7 @@ public class ReservationsController implements Initializable {
         }
 
         for (IReservation res : resToCreate) {
-            ReservationListViewController listView = new ReservationListViewController(res);
+            ReservationListViewController listView = new ReservationListViewController(res, isOutgoing());
             reservationViews.add(listView);
             listView.addEventHandler(MouseEvent.MOUSE_CLICKED, reservationListViewClickedHandler);
             if (alternating) {
@@ -143,6 +145,12 @@ public class ReservationsController implements Initializable {
                 alternating = !alternating;
             }
         }
+    }
+
+    private boolean isOutgoing() {
+        if(outgoingToggle.isSelected())
+            return true;
+        return false;
     }
 
     private void updateReservations() {

@@ -7,7 +7,7 @@
         "CLASSNAME": "storagesystem.model.Item",
         "DATA": {
           "ID": 0,
-          "name": "mockItem",
+          "name": "NewName",
           "description": "This is a description",
           "userRequirements": "Behave please.",
           "amount": 2,
@@ -160,6 +160,46 @@
             "interval": "2019-09-12T17:30:00.000+02:00/2019-10-16T20:00:00.000+02:00",
             "reservedObjectID": 1,
             "status": "APPROVED"
+          }
+        },
+        {
+          "CLASSNAME": "storagesystem.model.Reservation",
+          "DATA": {
+            "id": 2,
+            "borrowerID": 0,
+            "interval": "2019-10-25T13:45:00.000+02:00/2019-10-25T14:00:00.000+02:00",
+            "reservedObjectID": 0,
+            "status": "PENDING"
+          }
+        },
+        {
+          "CLASSNAME": "storagesystem.model.Reservation",
+          "DATA": {
+            "id": 3,
+            "borrowerID": 1,
+            "interval": "2019-10-25T13:45:00.000+02:00/2019-10-25T14:00:00.000+02:00",
+            "reservedObjectID": 0,
+            "status": "PENDING"
+          }
+        },
+        {
+          "CLASSNAME": "storagesystem.model.Reservation",
+          "DATA": {
+            "id": 4,
+            "borrowerID": 0,
+            "interval": "2019-10-25T13:45:00.000+02:00/2019-10-25T14:00:00.000+02:00",
+            "reservedObjectID": 2,
+            "status": "PENDING"
+          }
+        },
+        {
+          "CLASSNAME": "storagesystem.model.Reservation",
+          "DATA": {
+            "id": 5,
+            "borrowerID": 1,
+            "interval": "2019-10-25T13:45:00.000+02:00/2019-10-25T14:00:00.000+02:00",
+            "reservedObjectID": 0,
+            "status": "PENDING"
           }
         }
       ]
