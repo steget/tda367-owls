@@ -162,53 +162,49 @@ public class StoreIT {
 
 
 
-        Team tempTeam = new Team("sexNollK");
-        Team tempTeam2 = new Team("P.R.NollK");
+        Team team1 = new Team("Teknologer");
+        Team team2 = new Team("Vänner");
 
-        createUser("Albert", "1", "1", "1");
-        createUser("admin", "1", "1", "1");
-        createUser("eke", "1", "1", "1");
-        createUser("kvick", "1", "1", "1");
-        createUser("sponken", "1", "1", "1");
-        createUser("giff", "1", "1", "1");
-        createUser("steget", "1", "1", "1");
-        tempTeam.setTermsAndConditions("För att låna våra prylar måste prylen vara i samma skick som den var när den lånades ut. Behövs den diskas så diska den osv. Prylen ska också vara tillbaka på samma plats igen");
-        tempTeam2.setTermsAndConditions("text 2");
+        createUser("admin", "password", "admin", "see github");
+        createUser("Emil", "Emilia", "En go grabb", "emil@test.se");
+        createUser("Emilia", "Emil", "En fin tös", "emilia@test.se");
 
-        informationsteknik.addTeam(tempTeam);
-        informationsteknik.addTeam(tempTeam2);
+        team1.setTermsAndConditions("För att låna våra prylar måste prylen vara i samma skick som den var när den lånades ut. Behövs den diskas så diska den osv. Prylen ska också vara tillbaka på samma plats igen");
+        team2.setTermsAndConditions("Var rimlig");
 
-        tempTeam.addMember(informationsteknik.getUsers().get(0).getID());
-        tempTeam.addMember(informationsteknik.getUsers().get(1).getID());
-        tempTeam2.addMember(informationsteknik.getUsers().get(0).getID());
-        tempTeam2.addMember(informationsteknik.getUsers().get(1).getID());
+        informationsteknik.addTeam(team1);
+        informationsteknik.addTeam(team2);
 
-        Location mockLocation = new Location("Hubben", "This location does not exist");
-        Location mockLocation2 = new Location("Garaget", "This location is unavailable");
-        Location mockLocation3 = new Location("Maskinhuset", "This location is unavailable");
+        team1.addMember(informationsteknik.getUsers().get(0).getID());
+        team1.addMember(informationsteknik.getUsers().get(1).getID());
+        team1.addMember(informationsteknik.getUsers().get(2).getID());
+        team2.addMember(informationsteknik.getUsers().get(0).getID());
+
+        Location mockLocation = new Location("Hubben", "Room for a lot of stuff");
+        Location mockLocation2 = new Location("Garaget", "Chaos, but you can fit larger objects here");
+        Location mockLocation3 = new Location("Maskinhuset", "Please stay away from at all costs");
 
         informationsteknik.getLocations().add(mockLocation);
         informationsteknik.getLocations().add(mockLocation2);
         informationsteknik.getLocations().add(mockLocation3);
-        IReservable mockItem = IReservableFactory.createReservableItem("mockItem", "This is a description", "Behave please.",
-                2, Condition.GOOD, true, mockLocation.getID());
-        IReservable mockItem2 = IReservableFactory.createReservableItem("mockItem nr 2", "This is a description", "Behave please.",
+        IReservable mockItem = IReservableFactory.createReservableItem("Cast iron pan", "Really heavy, but nice", "Dish without soap!!",
+                2, Condition.GREAT, true, mockLocation.getID());
+        IReservable mockItem2 = IReservableFactory.createReservableItem("Ball pool", "Too many balls to fit", "All balls needs to be returned",
                 2, Condition.GOOD, true, mockLocation2.getID());
-        IReservable mockItem3 = IReservableFactory.createReservableItem("mockItem nr 3", "This is a description", "Behave please.",
-                2, Condition.GOOD, true, mockLocation3.getID());
+        IReservable mockItem3 = IReservableFactory.createReservableItem("Speaker", "He is called Roffe, and is a bit broken", "Please don't make him any more broken",
+                2, Condition.BAD, true, mockLocation2.getID());
 
-        Interval interval1 = new Interval(new DateTime(2019, 9, 10, 12, 40), new DateTime(2019, 9, 10, 15, 0));
-        Interval interval2 = new Interval(new DateTime(2019, 9, 12, 17, 30), new DateTime(2019, 10, 16, 20, 0));
-        IReservation res = new Reservation(tempTeam2.getID(), interval1, mockItem.getID(), ReservationStatus.APPROVED);
-        IReservation res2 = new Reservation(tempTeam2.getID(), interval2, mockItem2.getID(), ReservationStatus.PENDING);
+        informationsteknik.addItem(mockItem, team2);
+        informationsteknik.addItem(mockItem2, team1);
+        informationsteknik.addItem(mockItem3, team1);
+
+        Interval interval1 = new Interval(new DateTime(), new DateTime().plusHours(1));
+        Interval interval2 = new Interval(new DateTime(), new DateTime().plusHours(1));
+
         ReservationHandler resHandler = informationsteknik.getReservationHandler();
-        List<IReservation> reservations = resHandler.getAllReservations();
-        reservations.add(res);
-        reservations.add(res2);
+        resHandler.createReservation(team1.getID(), interval1, mockItem.getID());
+        resHandler.createReservation(team2.getID(), interval2, mockItem2.getID());
 
-        informationsteknik.addItem(mockItem, tempTeam);
-        informationsteknik.addItem(mockItem2, tempTeam);
-        informationsteknik.addItem(mockItem3, tempTeam2);
     }
 
 }

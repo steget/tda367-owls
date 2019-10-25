@@ -7,11 +7,11 @@
         "CLASSNAME": "storagesystem.model.Item",
         "DATA": {
           "ID": 0,
-          "name": "mockItem",
-          "description": "This is a description",
-          "userRequirements": "Behave please.",
+          "name": "Cast iron pan",
+          "description": "Really heavy, but nice",
+          "userRequirements": "Dish without soap!!",
           "amount": 2,
-          "condition": "GOOD",
+          "condition": "GREAT",
           "reservable": true,
           "locationID": 0
         }
@@ -20,9 +20,9 @@
         "CLASSNAME": "storagesystem.model.Item",
         "DATA": {
           "ID": 1,
-          "name": "mockItem nr 2",
-          "description": "This is a description",
-          "userRequirements": "Behave please.",
+          "name": "Ball pool",
+          "description": "Too many balls to fit",
+          "userRequirements": "All balls needs to be returned",
           "amount": 2,
           "condition": "GOOD",
           "reservable": true,
@@ -33,114 +33,82 @@
         "CLASSNAME": "storagesystem.model.Item",
         "DATA": {
           "ID": 2,
-          "name": "mockItem nr 3",
-          "description": "This is a description",
-          "userRequirements": "Behave please.",
+          "name": "Speaker",
+          "description": "He is called Roffe, and is a bit broken",
+          "userRequirements": "Please don\u0027t make him any more broken",
           "amount": 2,
-          "condition": "GOOD",
+          "condition": "BAD",
           "reservable": true,
-          "locationID": 2
+          "locationID": 1
         }
       }
     ],
     "teams": [
       {
         "itemIDs": [
-          0,
-          1
+          1,
+          2
         ],
         "memberIDs": [
           0,
           1,
-          2,
-          5,
-          3
+          2
         ],
-        "name": "sexNollK",
+        "name": "Teknologer",
         "termsAndConditions": "För att låna våra prylar måste prylen vara i samma skick som den var när den lånades ut. Behövs den diskas så diska den osv. Prylen ska också vara tillbaka på samma plats igen",
         "imageUrl": null,
         "ID": 0
       },
       {
         "itemIDs": [
-          2
+          0
         ],
         "memberIDs": [
-          0,
-          1,
-          4
+          0
         ],
-        "name": "P.R.NollK",
-        "termsAndConditions": "text 2",
+        "name": "Vänner",
+        "termsAndConditions": "Var rimlig",
         "imageUrl": null,
         "ID": 1
       }
     ],
     "users": [
       {
-        "name": "Albert",
-        "password": "1",
-        "description": "1",
-        "contactInformation": "1",
+        "name": "admin",
+        "password": "password",
+        "description": "admin",
+        "contactInformation": "see github",
         "ID": 0
       },
       {
-        "name": "admin",
-        "password": "1",
-        "description": "1",
-        "contactInformation": "1",
+        "name": "Emil",
+        "password": "Emilia",
+        "description": "En go grabb",
+        "contactInformation": "emil@test.se",
         "ID": 1
       },
       {
-        "name": "eke",
-        "password": "1",
-        "description": "1",
-        "contactInformation": "1",
+        "name": "Emilia",
+        "password": "Emil",
+        "description": "En fin tös",
+        "contactInformation": "emilia@test.se",
         "ID": 2
-      },
-      {
-        "name": "kvick",
-        "password": "1",
-        "description": "1",
-        "contactInformation": "1",
-        "ID": 3
-      },
-      {
-        "name": "sponken",
-        "password": "hej",
-        "description": "1",
-        "contactInformation": "1",
-        "ID": 4
-      },
-      {
-        "name": "giff",
-        "password": "1",
-        "description": "1",
-        "contactInformation": "1",
-        "ID": 5
-      },
-      {
-        "name": "steget",
-        "password": "1",
-        "description": "1",
-        "contactInformation": "1",
-        "ID": 6
       }
     ],
     "locations": [
       {
         "name": "Hubben",
-        "description": "This location does not exist",
+        "description": "Room for a lot of stuff",
         "ID": 0
       },
       {
         "name": "Garaget",
-        "description": "This location is unavailable",
+        "description": "Chaos, but you can fit larger objects here",
         "ID": 1
       },
       {
         "name": "Maskinhuset",
-        "description": "This location is unavailable",
+        "description": "Please stay away from at all costs",
         "ID": 2
       }
     ],
@@ -150,10 +118,10 @@
           "CLASSNAME": "storagesystem.model.Reservation",
           "DATA": {
             "id": 0,
-            "borrowerID": 1,
-            "interval": "2019-09-10T12:40:00.000+02:00/2019-09-10T15:00:00.000+02:00",
+            "borrowerID": 0,
+            "interval": "2019-10-25T18:08:18.989+02:00/2019-10-25T19:08:19.071+02:00",
             "reservedObjectID": 0,
-            "status": "APPROVED"
+            "status": "PENDING"
           }
         },
         {
@@ -161,7 +129,7 @@
           "DATA": {
             "id": 1,
             "borrowerID": 1,
-            "interval": "2019-09-12T17:30:00.000+02:00/2019-10-16T20:00:00.000+02:00",
+            "interval": "2019-10-25T18:08:19.073+02:00/2019-10-25T19:08:19.073+02:00",
             "reservedObjectID": 1,
             "status": "PENDING"
           }
