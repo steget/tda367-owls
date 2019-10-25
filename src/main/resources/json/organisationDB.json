@@ -20,19 +20,6 @@
         "CLASSNAME": "storagesystem.model.Item",
         "DATA": {
           "ID": 1,
-          "name": "Bollhav",
-          "description": "Mer bollar än plats",
-          "userRequirements": "All bollar måste tillbaka",
-          "amount": 2,
-          "condition": "GOOD",
-          "reservable": true,
-          "locationID": 1
-        }
-      },
-      {
-        "CLASSNAME": "storagesystem.model.Item",
-        "DATA": {
-          "ID": 2,
           "name": "Högtalare",
           "description": "Han kallas Roffe, och är lite sönder",
           "userRequirements": "Snälla förstör honom inte mer",
@@ -41,14 +28,65 @@
           "reservable": true,
           "locationID": 1
         }
+      },
+      {
+        "CLASSNAME": "storagesystem.model.Item",
+        "DATA": {
+          "ID": 2,
+          "name": "Bollhav",
+          "description": "Väldigt många bollar",
+          "userRequirements": "Lämna tillbaka alla",
+          "amount": 1,
+          "condition": "GOOD",
+          "reservable": true,
+          "locationID": 1
+        }
+      },
+      {
+        "CLASSNAME": "storagesystem.model.Item",
+        "DATA": {
+          "ID": 3,
+          "name": "Hammare",
+          "description": "En tung hammare",
+          "userRequirements": "Slå inte någon annan!",
+          "amount": 1,
+          "condition": "GOOD",
+          "reservable": true,
+          "locationID": 0
+        }
+      },
+      {
+        "CLASSNAME": "storagesystem.model.Item",
+        "DATA": {
+          "ID": 4,
+          "name": "Tyger",
+          "description": "Olika skick och färger",
+          "userRequirements": "Ska lämnas tillbaka i samma skick",
+          "amount": 5,
+          "condition": "BAD",
+          "reservable": true,
+          "locationID": 1
+        }
+      },
+      {
+        "CLASSNAME": "storagesystem.model.Item",
+        "DATA": {
+          "ID": 5,
+          "name": "Nintendo switch",
+          "description": "Ett switch med tillhörande spel",
+          "userRequirements": "Var försiktigt!!",
+          "amount": 1,
+          "condition": "GREAT",
+          "reservable": true,
+          "locationID": 0
+        }
       }
     ],
     "teams": [
       {
         "itemIDs": [
           0,
-          1,
-          2
+          1
         ],
         "memberIDs": [
           0,
@@ -71,7 +109,9 @@
         "ID": 1
       },
       {
-        "itemIDs": [],
+        "itemIDs": [
+          2
+        ],
         "memberIDs": [
           0,
           4
@@ -82,7 +122,9 @@
         "ID": 2
       },
       {
-        "itemIDs": [],
+        "itemIDs": [
+          3
+        ],
         "memberIDs": [
           0,
           3
@@ -93,7 +135,9 @@
         "ID": 3
       },
       {
-        "itemIDs": [],
+        "itemIDs": [
+          4
+        ],
         "memberIDs": [
           0,
           5
@@ -104,7 +148,9 @@
         "ID": 4
       },
       {
-        "itemIDs": [],
+        "itemIDs": [
+          5
+        ],
         "memberIDs": [
           0,
           3
@@ -183,18 +229,8 @@
           "DATA": {
             "id": 0,
             "borrowerID": 0,
-            "interval": "2019-10-25T18:47:46.677+02:00/2019-10-25T19:47:46.763+02:00",
+            "interval": "2019-10-25T18:58:21.190+02:00/2019-10-25T19:58:21.271+02:00",
             "reservedObjectID": 0,
-            "status": "PENDING"
-          }
-        },
-        {
-          "CLASSNAME": "storagesystem.model.Reservation",
-          "DATA": {
-            "id": 1,
-            "borrowerID": 1,
-            "interval": "2019-10-25T18:47:46.765+02:00/2019-10-25T19:47:46.765+02:00",
-            "reservedObjectID": 1,
             "status": "PENDING"
           }
         }

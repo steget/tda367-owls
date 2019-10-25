@@ -21,7 +21,6 @@ public class StoreIT {
      * Loads all data into the program. Should be run at start.
      */
     public void initializeBackend() throws IOException {
-        reset();
         try {
             organisations.addAll(JSONHandler.getOrganisationList());
         } catch (NullPointerException e) {
@@ -215,13 +214,10 @@ public class StoreIT {
         informationsteknik.getLocations().add(mockLocation3);
         IReservable mockItem = IReservableFactory.createReservableItem("Gjutjärnspanna", "Tung och välanvänd, men väldigt bra", "Inget diskmedel!!",
                 2, Condition.GREAT, true, mockLocation.getID());
-        IReservable mockItem2 = IReservableFactory.createReservableItem("Bollhav", "Mer bollar än plats", "All bollar måste tillbaka",
-                2, Condition.GOOD, true, mockLocation2.getID());
         IReservable mockItem3 = IReservableFactory.createReservableItem("Högtalare", "Han kallas Roffe, och är lite sönder", "Snälla förstör honom inte mer",
                 2, Condition.BAD, true, mockLocation2.getID());
 
         informationsteknik.addItem(mockItem, team1);
-        informationsteknik.addItem(mockItem2, team1);
         informationsteknik.addItem(mockItem3, team1);
 
         Interval interval1 = new Interval(new DateTime(), new DateTime().plusHours(1));
@@ -229,7 +225,6 @@ public class StoreIT {
 
         ReservationHandler resHandler = informationsteknik.getReservationHandler();
         resHandler.createReservation(team1.getID(), interval1, mockItem.getID());
-        resHandler.createReservation(team2.getID(), interval2, mockItem2.getID());
 
     }
 
