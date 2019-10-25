@@ -34,7 +34,7 @@ public class InventoryController implements Initializable {
     private Team currentlySelectedTeam;
     private List<Team> currentUsersTeams = new ArrayList<>();
     private ObservableList<String> teamNames = FXCollections.observableArrayList();
-    private ItemDetailViewController detailView;
+    private EditItemDetailViewController detailView;
     private ItemReservationsController reservationListView;
     private ItemCreateViewController createView;
     private CreateReservationController createReservationView;
@@ -99,7 +99,7 @@ public class InventoryController implements Initializable {
     }
 
     private void inventoryListItemClicked(IReservable item) {
-        detailView = new ItemDetailViewController(item);
+        detailView = new EditItemDetailViewController(item);
         detailView.addEventHandler(MouseEvent.MOUSE_CLICKED, closeDetailViewClickedHandler);
         detailView.closeButtonImageView.addEventHandler(MouseEvent.MOUSE_CLICKED, closeDetailViewClickedHandler);
         detailView.itemPageSaveButton.addEventHandler(MouseEvent.MOUSE_CLICKED, saveButtonClickedHandler);

@@ -37,7 +37,8 @@
                         <Image url="@../../../../resources/pictures/art.png" />
                     </image>
                 </ImageView>
-                <Button fx:id="detailViewReserveBtn" layoutX="548.0" layoutY="492.0" mnemonicParsing="false" onAction="#reserveBtnPressed" text="Reserve" AnchorPane.bottomAnchor="60.0" AnchorPane.rightAnchor="60.0" />
+                <Button fx:id="detailViewReserveBtn" layoutX="750.0" layoutY="466.0" mnemonicParsing="false" onMouseClicked="#reserveBtnPressed" prefHeight="73.0" prefWidth="118.0" styleClass="inAppButton" text="Reserve this item" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="141.0" AnchorPane.rightAnchor="12.0" />
+                <Button fx:id="reservationsButton" layoutX="750.0" layoutY="146.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="118.0" styleClass="inAppButton" text="Reservations" textAlignment="CENTER" wrapText="true" />
             </children>
         </AnchorPane>
     </children>
