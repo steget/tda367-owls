@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
+import storagesystem.model.IReservable;
 import storagesystem.model.IReservation;
 import storagesystem.model.StoreIT;
 
@@ -64,6 +65,7 @@ public class ReservationsController implements Initializable {
                 alternating = !alternating;
             }
         }
+
     }
 
     private void listViewClicked(IReservation res) {

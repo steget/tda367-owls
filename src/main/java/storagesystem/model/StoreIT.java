@@ -117,6 +117,8 @@ public class StoreIT {
         StoreIT.currentTeam = currentTeam;
     }
 
+    //TODO write tests for class
+
     /**
      * Loads all data into the program. Should be run at start.
      */

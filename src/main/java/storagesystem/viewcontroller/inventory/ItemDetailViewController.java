@@ -20,6 +20,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,10 +32,10 @@ import java.util.List;
 public class ItemDetailViewController extends AnchorPane {
     private final IReservable reservableItem;
     private final Team itemOwner;
-    @FXML
-    Button itemPageSaveButton;
     private List<Location> locationList;
     private ObservableList<String> locationNames;
+    private List<ReserveButtonClickedListener> reserveButtonClickedListeners = new ArrayList<>();
+    private List<ItemReservationsClickedListener> itemReservationsClickedListeners = new ArrayList<>();
     @FXML
     private AnchorPane contentPane;
     @FXML
@@ -62,7 +63,16 @@ public class ItemDetailViewController extends AnchorPane {
     @FXML
     private Label imageErrorMsgLabel;
     @FXML
+    Button itemPageSaveButton;
+    @FXML
+    private
+    Button itemPageReserveBtn;
+    @FXML
+    private Button reservationsButton;
+    @FXML
     private Pane editPane;
+
+
 
 
     ItemDetailViewController(IReservable reservableItem) {
@@ -162,7 +172,10 @@ public class ItemDetailViewController extends AnchorPane {
 
     @FXML
     protected void reserveBtnPressed() {
-        //TODO: create a new reservation if possible
+        //TODO Move this to all items when possible
+        for(ReserveButtonClickedListener listener : reserveButtonClickedListeners){
+            listener.reserveButtonClicked();
+        }
     }
 
     private void setConditionSlider(Condition condition) {
@@ -211,6 +224,10 @@ public class ItemDetailViewController extends AnchorPane {
         itemPageTeamOwnerLabel.setText("Owner: " + teamOwner);
     }
 
+    private void setReservableBtn(boolean reservable) {
+        itemPageReserveBtn.setDisable(!reservable);
+    }
+
     /**
      * This method is called when user is in its own inventory.
      * It changes all variables so that they can be edited by the user.
@@ -243,6 +260,13 @@ public class ItemDetailViewController extends AnchorPane {
         saveCondition((int) itemPageConditionSlider.getValue());
         saveLocation(itemPageLocationChoicebox.getValue().toString());
         reservableItem.setAmount(Integer.parseInt(itemPageAmountTA.getText()));
+    }
+    
+    @FXML
+    private void reservationsButtonPressed(){
+        for(ItemReservationsClickedListener listener : itemReservationsClickedListeners){
+            listener.itemReservationsClicked(reservableItem);
+        }
     }
 
     /**
@@ -299,5 +323,28 @@ public class ItemDetailViewController extends AnchorPane {
                 //todo add an animation for when an image cant be read.
             }
         }
+    }
+
+    void addReserveButtonClickedListener(ReserveButtonClickedListener listener){
+        reserveButtonClickedListeners.add(listener);
+    }
+
+    void addItemReservationsClickedListeners(ItemReservationsClickedListener listener){
+        itemReservationsClickedListeners.add(listener);
+    }
+
+    /**
+     * Listener interface for reserve button pressed
+     */
+    interface ReserveButtonClickedListener{
+        void reserveButtonClicked();
+    }
+
+    interface ItemReservationsClickedListener{
+        void itemReservationsClicked(IReservable item);
+    }
+
+    IReservable getItem(){
+        return reservableItem;
     }
 }

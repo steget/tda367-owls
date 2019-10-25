@@ -7,6 +7,10 @@
 
 }
 
+.root{
+    -fx-text-fill: white;
+}
+
 .appbar {
     -fx-background-color: primaryColor;
 }
@@ -17,6 +21,10 @@
 
 .menubar {
     -fx-background-color: secondaryColor;
+}
+
+.choice-box .label{
+    -fx-text-fill: black;
 }
 
 .searchbar {
@@ -34,6 +42,11 @@
     -fx-background-color: rgba(0, 0, 0, 0);
     -fx-text-fill: white;
     -fx-font-size: 20;
+
+}
+
+.background {
+    -fx-background-color: #303030;
 }
 
 .lightbox {
@@ -75,6 +88,11 @@
     -fx-text-fill: white;
 }
 
+.smallText{
+    -fx-font-size: 16px;
+    -fx-text-fill: white;
+}
+
 .verySmallLabel {
     -fx-font-size: 14px;
     -fx-text-fill: white;
@@ -84,7 +102,6 @@
     -fx-font-size: 24px;
     -fx-text-fill: white;
 }
-
 
 .loginText {
     -fx-font-size: 16px;
@@ -99,8 +116,30 @@
     -fx-text-fill: #00ff0f;
 }
 
+.confirmButton{
+    -fx-background-radius: 10;
+    -fx-background-color: secondaryButtonColor;
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+}
+
+.confirmButton:hover{
+    /*TODO Change color to match other buttons*/
+}
+
+.label{
+    -fx-text-fill: white;
+}
+
+#loginButton {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
 .readOnlyTA .content{
     -fx-cursor: closed;
+}
+.label{
+    -fx-font-fill:white;
 }
 
 .smallPane{
