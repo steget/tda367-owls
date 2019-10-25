@@ -2,13 +2,20 @@ package storagesystem.model;
 
 import org.joda.time.DateTime;
 import org.joda.time.Interval;
-import storagesystem.services.JSONHandler;
 import storagesystem.services.IDHandler;
+import storagesystem.services.JSONHandler;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+
+/**
+ * StoreIT has an overview of the whole application by containing static variables and methods that corresponds to the
+ * current user, team and organisation. Also contains a list of all available organisations in the application.
+ *
+ * @author Hugo Stegrell, Pär Aronsson, Carl Lindh, William Albertson, Jonathan Eksberg
+ */
 
 public class StoreIT {
     private static List<Organisation> organisations = new ArrayList<>();
@@ -25,8 +32,9 @@ public class StoreIT {
      * Loads all data into the program. Should be run at start.
      */
     public void initializeBackend() throws IOException {
-        if(reset)
-            reset();
+        if (reset) {
+            resetWithMockData();
+        }
 
         try {
             organisations.addAll(JSONHandler.getOrganisationList());
@@ -72,7 +80,7 @@ public class StoreIT {
      *
      * @param username Name to find in the currently selected Organisation
      * @param password Password supposed to match with the username
-     * @return {@code True} if the username and password matches, {@code False} if there is no match
+     * @return {@code true} if the username and password matches, {@code false} if there is no match
      */
     public static boolean doesLoginMatch(String username, String password) {
         for (User user :
@@ -139,25 +147,28 @@ public class StoreIT {
         StoreIT.currentTeam = currentTeam;
     }
 
-    public static List<IReservation> getAllReservations(){
-        return currentOrganisation.getAllReservations();
-    }
-
-    public static List<IReservation> getCurrentTeamIngoingReservations(){
+    public static List<IReservation> getCurrentTeamIngoingReservations() {
         return currentOrganisation.getReservationHandler().getTeamsIngoingReservations(currentTeam);
     }
 
-    public static List<IReservation> getCurrentTeamOutgoingReservations(){
+    public static List<IReservation> getCurrentTeamOutgoingReservations() {
         return currentOrganisation.getReservationHandler().getTeamsOutgoingReservations(currentTeam);
     }
 
-
-    public void reset() throws IOException { //Run if fresh start or after tests!!!
+    /**
+     * Resets ALL data in the Json files and initializes mockData. Should be run first in initializeBackend if
+     * there is a need to reset the whole database with mockData.
+     *
+     * @throws IOException if Json-file is not found
+     */
+    public void resetWithMockData() throws IOException { //Run if fresh start or after tests!!!
         JSONHandler.clearAllJsonFiles();
         mockData();
     }
 
-
+    /**
+     * Creates hard-coded data in StoreIT. Should only be run through resetWithMockData.
+     */
     private void mockData() {
         //Hardcoded stuff for testing
         Organisation informationsteknik = new Organisation("Informationsteknik");
@@ -165,8 +176,6 @@ public class StoreIT {
         organisations.add(informationsteknik);
         organisations.add(data);
         setCurrentOrganisation(informationsteknik);
-
-
 
 
         Team nollkit = new Team("NollKIT");
@@ -209,27 +218,16 @@ public class StoreIT {
         informationsteknik.getLocations().add(hubben);
         informationsteknik.getLocations().add(garage);
         informationsteknik.getLocations().add(hasen);
-        IReservable pan = IReservableFactory.createReservableItem("Gjutjärnspanna", "Tung och välanvänd, men väldigt bra", "Inget diskmedel!!",
-                1, Condition.GREAT, true, hubben.getID());
-        IReservable speaker = IReservableFactory.createReservableItem("Högtalare", "Han kallas Roffe, och är lite sönder", "Snälla förstör honom inte mer",
-                1, Condition.BAD, true, garage.getID());
         IReservable hammer = IReservableFactory.createReservableItem("Hammare", "En stor hammare", "Slå inte dina vänner!", 1, Condition.GREAT, true, hasen.getID());
-        IReservable ballPool = IReservableFactory.createReservableItem("Bollhav", "Väldigt många bollar", "Ge tillbaka alla", 1, Condition.GOOD,true, hubben.getID());
+        IReservable ballPool = IReservableFactory.createReservableItem("Bollhav", "Väldigt många bollar", "Ge tillbaka alla", 1, Condition.GOOD, true, hubben.getID());
         IReservable fabric = IReservableFactory.createReservableItem("Tyger", "Olika skick och färg", "Lämna tillbaka i samma skick", 5, Condition.BAD, true, hasen.getID());
         IReservable nintendo = IReservableFactory.createReservableItem("Nintendo switch", "Switch med tillhörande spel", "Var försiktig!!", 1, Condition.GOOD, true, hubben.getID());
-
 
 
         informationsteknik.addItem(hammer, prit);
         informationsteknik.addItem(ballPool, nollkit);
         informationsteknik.addItem(fabric, sexit);
         informationsteknik.addItem(nintendo, eightbit);
-
-        Interval interval1 = new Interval(new DateTime(), new DateTime().plusHours(1));
-        Interval interval2 = new Interval(new DateTime(), new DateTime().plusHours(1));
-
-        ReservationHandler resHandler = informationsteknik.getReservationHandler();
-
     }
 
 }

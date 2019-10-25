@@ -5,7 +5,7 @@
       {
         "CLASSNAME": "storagesystem.model.Item",
         "DATA": {
-          "ID": 2,
+          "ID": 0,
           "name": "Hammare",
           "description": "En stor hammare",
           "userRequirements": "Slå inte dina vänner!",
@@ -18,7 +18,7 @@
       {
         "CLASSNAME": "storagesystem.model.Item",
         "DATA": {
-          "ID": 3,
+          "ID": 1,
           "name": "Bollhav",
           "description": "Väldigt många bollar",
           "userRequirements": "Ge tillbaka alla",
@@ -31,7 +31,7 @@
       {
         "CLASSNAME": "storagesystem.model.Item",
         "DATA": {
-          "ID": 4,
+          "ID": 2,
           "name": "Tyger",
           "description": "Olika skick och färg",
           "userRequirements": "Lämna tillbaka i samma skick",
@@ -44,7 +44,7 @@
       {
         "CLASSNAME": "storagesystem.model.Item",
         "DATA": {
-          "ID": 5,
+          "ID": 3,
           "name": "Nintendo switch",
           "description": "Switch med tillhörande spel",
           "userRequirements": "Var försiktig!!",
@@ -58,7 +58,7 @@
     "teams": [
       {
         "itemIDs": [
-          3
+          1
         ],
         "memberIDs": [
           0,
@@ -70,7 +70,7 @@
       },
       {
         "itemIDs": [
-          2
+          0
         ],
         "memberIDs": [
           0,
@@ -82,7 +82,7 @@
       },
       {
         "itemIDs": [
-          4
+          2
         ],
         "memberIDs": [
           0,
@@ -94,7 +94,7 @@
       },
       {
         "itemIDs": [
-          5
+          3
         ],
         "memberIDs": [
           0,
@@ -128,7 +128,7 @@
         "ID": 2
       },
       {
-        "name": "Eke",
+        "name": "Jonathan",
         "password": "1",
         "description": "Ordförande",
         "contactInformation": "eke@test.se",
@@ -137,23 +137,44 @@
     ],
     "locations": [
       {
+        "ID": 0,
         "name": "Hubben",
-        "description": "Massa plats",
-        "ID": 0
+        "description": "Massa plats"
       },
       {
+        "ID": 1,
         "name": "Garaget",
-        "description": "Kaos, men får plats med stora saker",
-        "ID": 1
+        "description": "Kaos, men får plats med stora saker"
       },
       {
+        "ID": 2,
         "name": "HASen",
-        "description": "Håll er borta",
-        "ID": 2
+        "description": "Håll er borta"
       }
     ],
     "reservationHandler": {
-      "reservations": []
+      "reservations": [
+        {
+          "CLASSNAME": "storagesystem.model.Reservation",
+          "DATA": {
+            "id": 0,
+            "borrowerID": 0,
+            "interval": "2019-10-25T21:00:00.000+02:00/2019-10-25T21:15:00.000+02:00",
+            "reservedObjectID": 0,
+            "status": "PENDING"
+          }
+        },
+        {
+          "CLASSNAME": "storagesystem.model.Reservation",
+          "DATA": {
+            "id": 1,
+            "borrowerID": 2,
+            "interval": "2019-10-25T21:00:00.000+02:00/2019-10-25T21:15:00.000+02:00",
+            "reservedObjectID": 1,
+            "status": "PENDING"
+          }
+        }
+      ]
     }
   },
   {

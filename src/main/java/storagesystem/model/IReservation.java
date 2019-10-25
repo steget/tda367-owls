@@ -3,8 +3,10 @@ package storagesystem.model;
 import org.joda.time.Interval;
 
 /**
- * @author William Albertsson
  * Interface used for reservations.
+ *
+ * @author William Albertsson
+ * @see Reservation
  */
 
 public interface IReservation {
@@ -22,8 +24,6 @@ public interface IReservation {
      * @return The time interval when the reservation is
      */
     Interval getInterval();
-
-
 
 
     ReservationStatus getStatus();

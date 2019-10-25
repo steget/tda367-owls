@@ -18,7 +18,7 @@ public class JSONHandlerTest {
     public static void resetDatabase() throws IOException {
         IDHandler.clearAllNextIDs();
         StoreIT storeIT = new StoreIT();
-        storeIT.reset();
+        storeIT.resetWithMockData();
         JSONHandler.save(StoreIT.getOrganisations());
     }
 

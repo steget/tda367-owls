@@ -30,14 +30,16 @@ public class Reservation implements IReservation {
         nextID++;
     }
 
+    //TODO: cleanup
+
     /**
      * Should not be used. Created for testing purposes.
      *
-     * @param id
-     * @param borrowerID
-     * @param interval
-     * @param reservedObjectID
-     * @param status
+     * @param id               ID of reservation
+     * @param borrowerID       ID of borrower
+     * @param interval         Interval for reservation
+     * @param reservedObjectID ID for object to be reserved
+     * @param status           status of reservation
      */
 
     public Reservation(int id, int borrowerID, Interval interval, int reservedObjectID, ReservationStatus status) {
@@ -46,10 +48,6 @@ public class Reservation implements IReservation {
         this.interval = new Interval(interval);
         this.reservedObjectID = reservedObjectID;
         this.status = status;
-    }
-
-    private Reservation(IReservation res) {
-        this(res.getID(), res.getBorrowerID(), res.getInterval(), res.getReservedObjectID(), res.getStatus());
     }
 
     @Override
@@ -100,8 +98,8 @@ public class Reservation implements IReservation {
     /**
      * Compares ID's if o is a reservation
      *
-     * @param o
-     * @return
+     * @param o Object to compare
+     * @return true if ID's are equal
      */
     @Override
     public boolean equals(Object o) {
@@ -114,7 +112,7 @@ public class Reservation implements IReservation {
     /**
      * Converts the interval to a string that can be easily read.
      *
-     * @return
+     * @return a readable interval as a String
      */
     @Override
     public String getReadableInterval() {
@@ -153,11 +151,18 @@ public class Reservation implements IReservation {
         return sb.toString();
     }
 
-    private String getToDoubleZero(int startMinute) {
 
-        if (startMinute == 0) {
+    /**
+     * Converts the value of startMinute to double zeroes if it is zero
+     *
+     * @param minute time in minutes to convert
+     * @return Double zeroes if startMinute equals 0, otherwise returns startMinute
+     */
+    private String getToDoubleZero(int minute) {
+
+        if (minute == 0) {
             return "00";
         }
-        return Integer.toString(startMinute);
+        return Integer.toString(minute);
     }
 }

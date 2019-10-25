@@ -96,7 +96,7 @@ public class ReservationDetailViewController extends AnchorPane {
     void updateAllViews(){
         IReservable item = StoreIT.getCurrentOrganisation().getItem(reservation.getReservedObjectID());
         itemField.setText(StoreIT.getCurrentOrganisation().getItem(reservation.getReservedObjectID()).getName());
-        borrowerField.setText(StoreIT.getCurrentOrganisation().getItem(reservation.getBorrowerID()).getName());
+        borrowerField.setText(StoreIT.getCurrentOrganisation().getTeamFromID(reservation.getBorrowerID()).getName());
         ownerField.setText(StoreIT.getCurrentOrganisation().getItemOwner(item).getName());
         timeAndDateField.setText(reservation.getReadableInterval());
         statusField.setText(reservation.getStatus().toString());
