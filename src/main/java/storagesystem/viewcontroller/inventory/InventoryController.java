@@ -12,6 +12,9 @@ import javafx.scene.layout.FlowPane;
 import storagesystem.model.*;
 import storagesystem.viewcontroller.inventory.reservations.CreateReservationController;
 import storagesystem.viewcontroller.inventory.reservations.ItemReservationsController;
+import storagesystem.model.IReservable;
+import storagesystem.model.StoreIT;
+import storagesystem.model.Team;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -34,6 +37,7 @@ public class InventoryController implements Initializable {
     private ObservableList<String> teamNames = FXCollections.observableArrayList();
     private ItemDetailViewController detailView;
     private ItemReservationsController reservationListView;
+    private ItemCreateViewController createView;
     private CreateReservationController createReservationView;
 
     private EventHandler<MouseEvent> closeDetailViewClickedHandler = e -> {
@@ -138,6 +142,14 @@ public class InventoryController implements Initializable {
         rootPane.getChildren().add(reservationListView);
     }
 
+    @FXML
+    private void addItem() {
+        createView = new ItemCreateViewController();
+        rootPane.getChildren().add(createView);
+        createView.addCreateItemButtonListener(this::createButtonClicked);
+        createView.addRemoveCreateViewListener(this::removeCreateView);
+    }
+
     private void closeCreateReservationView() {
         rootPane.getChildren().remove(createReservationView);
     }
@@ -150,11 +162,21 @@ public class InventoryController implements Initializable {
         rootPane.getChildren().remove(detailView);
     }
 
+    private void removeCreateView() {
+        rootPane.getChildren().remove(createView);
+    }
+
+
     private void saveButtonClicked() {
         refreshItems();
     }
 
-    private void reserveItemClicked(){
+    private void createButtonClicked() {
+        refreshItems();
+        rootPane.getChildren().remove(createView);
+    }
+
+    private void reserveItemClicked() {
         createReservationView = new CreateReservationController(detailView.getItem());
         createReservationView.addCreateReservationViewClosedListener(this::closeCreateReservationView);
         rootPane.getChildren().remove(detailView);
