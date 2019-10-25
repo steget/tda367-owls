@@ -35,9 +35,9 @@ ________________________________________________________________________________
 
 3. Data at start
 
-At start there is some data in the application. The "admin" use with password "password"
-is part of all the teams. The teams are: "NollKIT", "sexit", "P.R.I.T." and "8-bIT". These are inspired by
-commites in the IT-section and are part of the "Informationsteknologi" organisation in
+At start there is some data in the application. The "admin" user with password "password"
+is part of all the teams. The teams are: "NollKIT", "sexIT", "P.R.I.T." and "8-bIT". These are inspired by
+committees in the IT-section and are part of the "Informationsteknologi" organisation in
 the program. "Data" organisation is empty.\
 All users other than "admin" have password "1".\
 "William" is part of 8-bIT and P.R.I.T.\
