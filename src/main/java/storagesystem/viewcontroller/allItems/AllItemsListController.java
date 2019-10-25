@@ -51,10 +51,17 @@ public class AllItemsListController implements Initializable {
         rootPane.getChildren().remove(createReservationView);
         e.consume();
     };
+    private EventHandler<MouseEvent> createReservationButtonClickedHandler = e -> {
+        if(createReservationView.isReservationLegal()){
+            createReservationView.confirmReservation();
+            rootPane.getChildren().remove(createReservationView);
+        }
+        e.consume();
+    };
     private EventHandler<MouseEvent> reserveButtonClickedHandler = e -> {
         createReservationView = new CreateReservationController(reservableItemDetailView.getItem());
         createReservationView.addEventHandler(MouseEvent.MOUSE_CLICKED, reserveItemCloseHandler);
-        createReservationView.confirmButton.addEventHandler(MouseEvent.MOUSE_CLICKED, reserveItemCloseHandler);
+        createReservationView.confirmButton.addEventHandler(MouseEvent.MOUSE_CLICKED, createReservationButtonClickedHandler);
         rootPane.getChildren().add(createReservationView);
         e.consume();
     };

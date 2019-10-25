@@ -182,29 +182,28 @@ public class CreateReservationController extends AnchorPane {
 
 
     @FXML
-    private void confirmReservation() {
+    public void confirmReservation() {
         ReservationHandler resHandler = StoreIT.getCurrentOrganisation().getReservationHandler();
-        checkReservationLegal();
         if (isReservationLegal()) {
             resHandler.createReservation(getTeam().getID(), getInterval(), item.getID());
             close();
         }
     }
 
-    private boolean isReservationLegal() {
+    public boolean isReservationLegal() {
         if(!isEndAfterStart()){
-            AbstractFader.fadeTransition(intervalError, 3);
+            fadeMessage(intervalError);
             return false;
         }
         if(StoreIT.getCurrentOrganisation().getReservationHandler().isObjectReservedBetween(item.getID(), getInterval())) {
-            AbstractFader.fadeTransition(alreadyReservedError, 3);
+            fadeMessage(alreadyReservedError);
             return false;
         }
         return true;
     }
 
-    private void checkReservationLegal() {
-        //TODO print in program if any info is missing or wrong
+    private void fadeMessage(AnchorPane labelToFade) {
+        AbstractFader.fadeTransition(labelToFade, 3);
     }
 
     private IBorrower getTeam() {
