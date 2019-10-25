@@ -91,10 +91,6 @@ public class ReservableItemDetailController extends AnchorPane {
         setTeamOwnerLabel(itemOwner.getName());
     }
 
-    @FXML
-    protected void reserveBtnPressed() {
-        //TODO: create a new reservation if possible
-    }
 
     private void setConditionSlider(Condition condition) {
         int value = 0;

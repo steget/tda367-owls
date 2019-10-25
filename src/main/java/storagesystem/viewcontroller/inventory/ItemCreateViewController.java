@@ -109,7 +109,6 @@ public class ItemCreateViewController extends AnchorPane {
         //consume click so the box doesn't close itself
         contentPane.setOnMouseClicked(Event::consume);
         editPane.setOnMouseClicked(Event::consume);
-        //todo two modes in the pane so you can either just view the info or edit the item
         setTemplate();
     }
 
