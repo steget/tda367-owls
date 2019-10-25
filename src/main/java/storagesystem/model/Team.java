@@ -25,18 +25,6 @@ public class Team implements IBorrower {
         nextID++;
     }
 
-    public void addUsers(List<User> userList) {
-        for (User user : userList) {
-            memberIDs.add(user.getID());
-        }
-    }
-
-    public void addItems(List<IReservable> itemList) {
-        for (IReservable iReservable : itemList) {
-            itemIDs.add(iReservable.getID());
-        }
-    }
-
     public boolean isItemOwner(int itemID){
         if(itemIDs.contains(itemID)){
             return true;
