@@ -2,10 +2,7 @@ package storagesystem.viewcontroller.settings;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import storagesystem.model.StoreIT;
@@ -31,6 +28,9 @@ public class UserPageController implements Initializable {
 
     @FXML
     private TextField profileNameInput;
+
+    @FXML
+    private PasswordField profilePasswordInput;
 
     @FXML
     private TextField profileContactInput;
@@ -80,6 +80,8 @@ public class UserPageController implements Initializable {
             currentUser.setName(profileNameInput.getText());
             currentUser.setDescription(profileDescriptionInput.getText());
             currentUser.setContactInformation(profileContactInput.getText());
+            if(!profilePasswordInput.getText().isEmpty())
+                currentUser.setPassword(profilePasswordInput.getText());
             writeProfileInfo();
             viewProfileAnchorPane.toFront();
         }
