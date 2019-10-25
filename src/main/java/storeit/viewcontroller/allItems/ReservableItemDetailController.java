@@ -1,4 +1,4 @@
-package storagesystem.viewcontroller.allItems;
+package storeit.viewcontroller.allItems;
 
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -11,11 +11,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import storagesystem.model.Condition;
-import storagesystem.model.IReservable;
-import storagesystem.model.StoreIT;
-import storagesystem.model.Team;
-import storagesystem.services.PictureHandler;
+import storeit.model.Condition;
+import storeit.model.IReservable;
+import storeit.model.StoreIT;
+import storeit.model.Team;
+import storeit.services.PictureHandler;
 
 import java.io.IOException;
 

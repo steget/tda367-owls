@@ -1,4 +1,4 @@
-package storagesystem.viewcontroller.allItems;
+package storeit.viewcontroller.allItems;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -7,10 +7,10 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
-import storagesystem.model.IReservable;
-import storagesystem.model.StoreIT;
-import storagesystem.viewcontroller.allItems.reservations.CreateReservationController;
-import storagesystem.viewcontroller.allItems.reservations.ItemReservationsController;
+import storeit.model.IReservable;
+import storeit.model.StoreIT;
+import storeit.viewcontroller.allItems.reservations.CreateReservationController;
+import storeit.viewcontroller.allItems.reservations.ItemReservationsController;
 
 import java.net.URL;
 import java.util.ArrayList;

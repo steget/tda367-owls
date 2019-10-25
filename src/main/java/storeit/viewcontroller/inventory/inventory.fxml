@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.*?>
-<AnchorPane fx:id="rootPane" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="storagesystem.viewcontroller.inventory.InventoryController">
+<AnchorPane fx:id="rootPane" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="storeit.viewcontroller.inventory.InventoryController">
    <children>
       <Text layoutX="419.0" layoutY="73.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="INVENTORY" textAlignment="CENTER">
          <font>

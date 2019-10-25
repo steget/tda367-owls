@@ -1,13 +1,13 @@
-package storagesystem.viewcontroller.allItems.reservations;
+package storeit.viewcontroller.allItems.reservations;
 
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
-import storagesystem.model.IReservable;
-import storagesystem.model.IReservation;
-import storagesystem.model.StoreIT;
+import storeit.model.IReservable;
+import storeit.model.IReservation;
+import storeit.model.StoreIT;
 
 import java.io.IOException;
 import java.util.ArrayList;

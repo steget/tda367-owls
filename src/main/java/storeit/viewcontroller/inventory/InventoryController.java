@@ -1,4 +1,4 @@
-package storagesystem.viewcontroller.inventory;
+package storeit.viewcontroller.inventory;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,9 +9,9 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
-import storagesystem.model.IReservable;
-import storagesystem.model.StoreIT;
-import storagesystem.model.Team;
+import storeit.model.IReservable;
+import storeit.model.StoreIT;
+import storeit.model.Team;
 
 import java.net.URL;
 import java.util.ArrayList;

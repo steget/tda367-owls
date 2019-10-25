@@ -1,4 +1,4 @@
-package storagesystem.viewcontroller.login;
+package storeit.viewcontroller.login;
 
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -12,9 +12,9 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import storagesystem.model.Organisation;
-import storagesystem.model.StoreIT;
-import storagesystem.viewcontroller.AbstractFader;
+import storeit.model.Organisation;
+import storeit.model.StoreIT;
+import storeit.viewcontroller.AbstractFader;
 
 import java.io.IOException;
 import java.net.URL;

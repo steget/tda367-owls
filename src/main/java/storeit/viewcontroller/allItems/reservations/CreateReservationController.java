@@ -1,4 +1,4 @@
-package storagesystem.viewcontroller.allItems.reservations;
+package storeit.viewcontroller.allItems.reservations;
 
 import javafx.collections.FXCollections;
 import javafx.event.Event;
@@ -8,8 +8,8 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import org.joda.time.DateTime;
 import org.joda.time.Interval;
-import storagesystem.model.*;
-import storagesystem.viewcontroller.AbstractFader;
+import storeit.model.*;
+import storeit.viewcontroller.AbstractFader;
 
 import java.io.IOException;
 import java.util.ArrayList;
