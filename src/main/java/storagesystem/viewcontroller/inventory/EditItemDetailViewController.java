@@ -117,7 +117,6 @@ public class EditItemDetailViewController extends AnchorPane {
         //consume click so the box doesn't close itself
         contentPane.setOnMouseClicked(Event::consume);
         editPane.setOnMouseClicked(Event::consume);
-        //todo two modes in the pane so you can either just view the info or edit the item
     }
 
     /**
@@ -161,13 +160,6 @@ public class EditItemDetailViewController extends AnchorPane {
 
     }
 
-    @FXML
-    protected void reserveBtnPressed() {
-        //TODO Move this to all items when possible
-        for(ReserveButtonClickedListener listener : reserveButtonClickedListeners){
-            listener.reserveButtonClicked();
-        }
-    }
 
     private void setConditionSlider(Condition condition) {
         int value = 0;
@@ -300,7 +292,6 @@ public class EditItemDetailViewController extends AnchorPane {
 
             } catch (IOException exception) {
                 System.out.println("Can't read image: " + selectedFile.getPath());
-                //todo add an animation for when an image cant be read.
             }
         }
     }

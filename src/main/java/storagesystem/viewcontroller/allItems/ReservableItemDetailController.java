@@ -95,6 +95,7 @@ public class ReservableItemDetailController extends AnchorPane {
         setTeamOwnerLabel(itemOwner.getName());
     }
 
+
     private void setConditionSlider(Condition condition) {
         int value = 0;
         switch (condition) {

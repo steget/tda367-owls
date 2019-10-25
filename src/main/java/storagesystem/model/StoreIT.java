@@ -145,7 +145,6 @@ public class StoreIT {
         return currentOrganisation.getReservationHandler().getTeamsOutgoingReservations(currentTeam);
     }
 
-    //TODO write tests for class
 
     public void reset() throws IOException { //Run if fresh start or after tests!!!
         JSONHandler.clearAllJsonFiles();
