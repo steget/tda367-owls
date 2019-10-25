@@ -123,7 +123,7 @@ public class Reservation implements IReservation {
 
         int startYear = start.getYear();
         int startMonth = start.getMonthOfYear();
-        int startDay = start.getMonthOfYear();
+        int startDay = start.getDayOfMonth();
         int startHour = start.getHourOfDay();
         int startMinute = start.getMinuteOfHour();
 

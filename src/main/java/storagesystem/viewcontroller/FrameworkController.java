@@ -49,13 +49,15 @@ public class FrameworkController implements Initializable, ILoadUI {
     }
 
     @FXML
-    void userButtonPressed(){ loadUI("/settings/userPage.fxml"); }
+    void userButtonPressed() {
+        loadUI("/settings/userPage.fxml");
+    }
 
     @FXML
-    private void teamButtonPressed(){
-        if(StoreIT.getCurrentOrganisation().getUsersTeams(StoreIT.getCurrentUser()).size() > 0){
+    private void teamButtonPressed() {
+        if (StoreIT.getCurrentOrganisation().getUsersTeams(StoreIT.getCurrentUser()).size() > 0) {
             loadUI("/settings/teamPage.fxml");
-        } else{
+        } else {
             noTeamPopUp();
         }
     }
@@ -71,11 +73,11 @@ public class FrameworkController implements Initializable, ILoadUI {
     }
 
     @FXML
-    private void yourInventoryButtonPressed(){
+    private void yourInventoryButtonPressed() {
 
-        if(StoreIT.getCurrentOrganisation().isUserPartOfTeam(StoreIT.getCurrentUser())){
+        if (StoreIT.getCurrentOrganisation().isUserPartOfTeam(StoreIT.getCurrentUser())) {
             loadUI("/inventory/inventory.fxml");
-        }else{
+        } else {
             noTeamPopUp();
         }
     }
@@ -84,7 +86,7 @@ public class FrameworkController implements Initializable, ILoadUI {
      * When the logOutButton is pressed the root is switched and you are taken back to the loginPage
      */
     @FXML
-    private void logOutButtonPressed(){
+    private void logOutButtonPressed() {
         Parent root;
         try {
             root = FXMLLoader.load(getClass().getResource("/login/loginPage.fxml"));
@@ -113,7 +115,7 @@ public class FrameworkController implements Initializable, ILoadUI {
         borderPane.setCenter(root);
     }
 
-    private void noTeamPopUp(){
+    private void noTeamPopUp() {
         NoTeamPopUpController popUp = new NoTeamPopUpController();
         rootPane.getChildren().add(popUp);
         AbstractFader.fadeTransition(popUp, 6);

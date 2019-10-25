@@ -26,7 +26,7 @@ import java.util.List;
 /**
  * Controls a detailed view of an item. Can be used to book an item.
  *
- * @author Jonathan Eksberg, Carl Lindh, Pär Aronsson
+ * @author Jonathan Eksberg, Carl Lindh, Pär Aronsson, Hugo Stegrell
  */
 
 public class ItemDetailViewController extends AnchorPane {
@@ -34,18 +34,14 @@ public class ItemDetailViewController extends AnchorPane {
     private final Team itemOwner;
     private List<Location> locationList;
     private ObservableList<String> locationNames;
-    private List<DetailedItemViewListener> detailListeners = new ArrayList<>();
-    private List<SaveButtonClickedListener> saveButtonListeners = new ArrayList<>();
     private List<ReserveButtonClickedListener> reserveButtonClickedListeners = new ArrayList<>();
     private List<ItemReservationsClickedListener> itemReservationsClickedListeners = new ArrayList<>();
-
-
     @FXML
     private AnchorPane contentPane;
     @FXML
     private ImageView itemPageImageView;
     @FXML
-    private ImageView closeButtonImageView;
+    ImageView closeButtonImageView;
     @FXML
     private TextArea itemPageNameTA;
     @FXML
@@ -67,19 +63,18 @@ public class ItemDetailViewController extends AnchorPane {
     @FXML
     private Label imageErrorMsgLabel;
     @FXML
-    Button itemPageReserveBtn;
-    @FXML
     Button itemPageSaveButton;
     @FXML
-    private Button reservationsButton;
+    Button itemPageReserveBtn;
+    @FXML
+    Button reservationsButton;
     @FXML
     private Pane editPane;
 
-
-
-
     ItemDetailViewController(IReservable reservableItem) {
+
         this.reservableItem = reservableItem;
+
         this.itemOwner = StoreIT.getCurrentOrganisation().getItemOwner(reservableItem);
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/inventory/ItemDetailView.fxml"));
@@ -96,6 +91,7 @@ public class ItemDetailViewController extends AnchorPane {
     }
 
     private void initialize() {
+        enableEditMode();
         locationList = StoreIT.getCurrentOrganisation().getLocations();
         isReservableChoiceBox.setItems(FXCollections.observableArrayList("True", "False"));
         updateAllVisibleFields();
@@ -141,7 +137,6 @@ public class ItemDetailViewController extends AnchorPane {
         setIDLabel("" + reservableItem.getID());
         setAmountLabel("" + reservableItem.getAmount());
         setConditionSlider(reservableItem.getCondition());
-        setReservableBtn(reservableItem.isReservable());
         setImage(PictureHandler.getItemImage(reservableItem.getID()));
         setTeamOwnerLabel(itemOwner.getName());
         setReservableChoiceBox();
@@ -160,9 +155,9 @@ public class ItemDetailViewController extends AnchorPane {
                 itemPageLocationChoicebox.getSelectionModel().select(s);
             }
         }
-
-
     }
+
+
 
     private void setReservableChoiceBox() {
         if (reservableItem.isReservable()) {
@@ -178,13 +173,6 @@ public class ItemDetailViewController extends AnchorPane {
         //TODO Move this to all items when possible
         for(ReserveButtonClickedListener listener : reserveButtonClickedListeners){
             listener.reserveButtonClicked();
-        }
-    }
-
-    @FXML
-    private void closeDetailView() {
-        for (DetailedItemViewListener l : detailListeners) {
-            l.detailItemViewClicked();
         }
     }
 
@@ -230,7 +218,6 @@ public class ItemDetailViewController extends AnchorPane {
         itemPageAmountTA.setText(amount);
     }
 
-
     private void setTeamOwnerLabel(String teamOwner) {
         itemPageTeamOwnerLabel.setText("Owner: " + teamOwner);
     }
@@ -239,18 +226,13 @@ public class ItemDetailViewController extends AnchorPane {
         itemPageReserveBtn.setDisable(!reservable);
     }
 
-
-
-
-
     /**
      * This method is called when user is in its own inventory.
      * It changes all variables so that they can be edited by the user.
      * The default setting is that the variables are non-editable.
      */
-    public void editItem() {
-        //TODO make not visible
-        //itemPageReserveBtn.setVisible(false);
+    public void enableEditMode() {
+
         itemPageAmountTA.setEditable(true);
         itemPageSaveButton.setVisible(true);
         itemPageDescriptionTA.setEditable(true);
@@ -267,24 +249,15 @@ public class ItemDetailViewController extends AnchorPane {
     /**
      * Saves the changes to the current item.
      */
+    @FXML
     public void saveItem() {
-
         reservableItem.setName(itemPageNameTA.getText());
         reservableItem.setDescription(itemPageDescriptionTA.getText());
         reservableItem.setUserRequirements(itemPageUserRequirementsTA.getText());
         reservableItem.setReservable(isReservableChoiceBox.getSelectionModel().getSelectedIndex() == 0);
         saveCondition((int) itemPageConditionSlider.getValue());
         saveLocation(itemPageLocationChoicebox.getValue().toString());
-        reservableItem.setAmount(Integer.valueOf(itemPageAmountTA.getText()));
-        for (SaveButtonClickedListener l : saveButtonListeners) {
-            l.saveButtonClicked();
-        }
-    }
-    @FXML
-    private void reservationsButtonPressed(){
-        for(ItemReservationsClickedListener listener : itemReservationsClickedListeners){
-            listener.itemReservationsClicked(reservableItem);
-        }
+        reservableItem.setAmount(Integer.parseInt(itemPageAmountTA.getText()));
     }
 
     /**
@@ -324,7 +297,7 @@ public class ItemDetailViewController extends AnchorPane {
      * where it then can be called from.
      */
     @FXML
-    void changeItemImage() {
+    private void changeItemImage() {
 
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("jpg", "*.jpg"), new FileChooser.ExtensionFilter("png", "*.png"), new FileChooser.ExtensionFilter("jpeg", "*.jpg"));
@@ -343,37 +316,12 @@ public class ItemDetailViewController extends AnchorPane {
         }
     }
 
-    /**
-     * adds a listener to this object.
-     * @param listener
-     */
-    public void addDetailListener(DetailedItemViewListener listener) {
-        detailListeners.add(listener);
-    }
-
-    public void addSaveButtonListener(SaveButtonClickedListener listener) {
-        saveButtonListeners.add(listener);
-    }
-    public void addReserveButtonClickedListener(ReserveButtonClickedListener listener ){
+    void addReserveButtonClickedListener(ReserveButtonClickedListener listener){
         reserveButtonClickedListeners.add(listener);
     }
-    public void addItemReservationsClickedListeners(ItemReservationsClickedListener listener){
+
+    void addItemReservationsClickedListeners(ItemReservationsClickedListener listener){
         itemReservationsClickedListeners.add(listener);
-    }
-
-
-    /**
-     * Listener interface for DetailedItemView
-     */
-    interface DetailedItemViewListener {
-        void detailItemViewClicked();
-    }
-
-    /**
-     * Listener interface for saveButtonClicked
-     */
-    interface SaveButtonClickedListener {
-        void saveButtonClicked();
     }
 
     /**
@@ -385,5 +333,9 @@ public class ItemDetailViewController extends AnchorPane {
 
     interface ItemReservationsClickedListener{
         void itemReservationsClicked(IReservable item);
+    }
+
+    IReservable getItem(){
+        return reservableItem;
     }
 }

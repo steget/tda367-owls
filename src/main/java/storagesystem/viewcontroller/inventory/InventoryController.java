@@ -9,7 +9,9 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
-import storagesystem.model.*;
+import storagesystem.model.IReservable;
+import storagesystem.model.StoreIT;
+import storagesystem.model.Team;
 import storagesystem.viewcontroller.reservations.CreateReservationController;
 import storagesystem.viewcontroller.reservations.ItemReservationsController;
 
@@ -19,26 +21,50 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 /**
- * @author Pär Aronsson
+ * @author Pär Aronsson, Hugo Stegrell
  */
 public class InventoryController implements Initializable {
 
+    @FXML
+    FlowPane itemPane;
+    @FXML
+    AnchorPane rootPane;
+    @FXML
+    ChoiceBox teamChooser;
     private Team currentlySelectedTeam;
     private List<Team> currentUsersTeams = new ArrayList<>();
     private ObservableList<String> teamNames = FXCollections.observableArrayList();
     private ItemDetailViewController detailView;
     private ItemReservationsController reservationListView;
+    private ItemCreateViewController createView;
+    private CreateReservationController createReservationView;
 
-    @FXML
-    FlowPane itemPane;
+    private EventHandler<MouseEvent> closeDetailViewClickedHandler = e -> {
+        closeDetailView();
+        e.consume();
+    };
+    private EventHandler<MouseEvent> saveButtonClickedHandler = e -> {
+        saveButtonClicked();
+        e.consume();
+    };
+    private EventHandler<MouseEvent> listItemClickedHandler = e -> {
+        InventoryListItemController panel = (InventoryListItemController) e.getSource();
+        inventoryListItemClicked(panel.getReservableItem());
+        e.consume();
+    };
+    private EventHandler<MouseEvent> closeReservationViewHandler = e -> {
+        closeReservationListView();
+        e.consume();
+    };
+    private EventHandler<MouseEvent> reserveItemClickedHandler = e -> {
+        reserveItemClicked();
+        e.consume();
+    };
+    private EventHandler<MouseEvent> itemReservationsClickedHandler = e -> {
+        itemReservationsClicked();
+        e.consume();
+    };
 
-    @FXML
-    AnchorPane rootPane;
-
-    @FXML
-    ChoiceBox teamChooser;
-
-    private IReservable currentItem;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -47,14 +73,6 @@ public class InventoryController implements Initializable {
         fillTeamAttributes();
         refreshItems();
     }
-
-    EventHandler<MouseEvent> closeReservationViewHandler = new EventHandler<MouseEvent>() {
-        @Override
-        public void handle(MouseEvent event) {
-            closeReservationView();
-            event.consume();
-        }
-    };
 
 
     /**
@@ -68,6 +86,28 @@ public class InventoryController implements Initializable {
         teamChooser.setItems(teamNames);
         teamChooser.setValue(teamNames.get(0)); //show first value in box
         teamChooserListener();
+    }
+
+    /**
+     * removes the detailed itemView from rootPane.
+     */
+    private void closeDetailView() {
+        rootPane.getChildren().remove(detailView);
+    }
+
+    private void closeReservationListView(){
+        rootPane.getChildren().remove(reservationListView);
+    }
+
+    private void inventoryListItemClicked(IReservable item) {
+        detailView = new ItemDetailViewController(item);
+        detailView.addEventHandler(MouseEvent.MOUSE_CLICKED, closeDetailViewClickedHandler);
+        detailView.closeButtonImageView.addEventHandler(MouseEvent.MOUSE_CLICKED, closeDetailViewClickedHandler);
+        detailView.itemPageSaveButton.addEventHandler(MouseEvent.MOUSE_CLICKED, saveButtonClickedHandler);
+        detailView.itemPageReserveBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, reserveItemClickedHandler);
+        detailView.reservationsButton.addEventHandler(MouseEvent.MOUSE_CLICKED, itemReservationsClickedHandler);
+        detailView.enableEditMode();
+        rootPane.getChildren().add(detailView);
     }
 
     /**
@@ -94,47 +134,32 @@ public class InventoryController implements Initializable {
      */
     private void refreshItems() {
         List<IReservable> inventory = StoreIT.getCurrentOrganisation().getTeamsItems(currentlySelectedTeam);
-        itemPane.getChildren().remove(0, itemPane.getChildren().size());
+        itemPane.getChildren().clear();
         for (IReservable i : inventory) {
-            InventoryListItemController listItem = new InventoryListItemController(i);
-            listItem.addListener(this::listItemClicked);
-            itemPane.getChildren().add(listItem);
+            InventoryListItemController newListItem = new InventoryListItemController(i);
+            newListItem.addEventHandler(MouseEvent.MOUSE_CLICKED, listItemClickedHandler);
+            itemPane.getChildren().add(newListItem);
         }
     }
 
-    /**
-     * opens up a detailed view of the pressed item.
-     *
-     * @param item
-     */
-    private void listItemClicked(IReservable item) {
-        detailView = new ItemDetailViewController(item);
-        rootPane.getChildren().add(detailView);
-        detailView.addDetailListener(this::detailItemViewClicked);
-        detailView.addSaveButtonListener(this::saveButtonClicked);
-        detailView.addReserveButtonClickedListener(this::reserveItemClicked);
-        detailView.addItemReservationsClickedListeners(this::itemReservationsClicked);
-        detailView.editItem();
-        currentItem=item;
-    }
-
-    private void itemReservationsClicked(IReservable item) {
-        reservationListView = new ItemReservationsController(item);
+    private void itemReservationsClicked() {
+        reservationListView = new ItemReservationsController(detailView.getItem());
         reservationListView.addEventHandler(MouseEvent.MOUSE_CLICKED, closeReservationViewHandler);
-        rootPane.getChildren().remove(detailView);
         rootPane.getChildren().add(reservationListView);
-
     }
 
-    private void closeReservationView() {
-        rootPane.getChildren().remove(reservationListView);
+    @FXML
+    private void addItem() {
+        createView = new ItemCreateViewController();
+        rootPane.getChildren().add(createView);
+        createView.addCreateItemButtonListener(this::createButtonClicked);
+        createView.addRemoveCreateViewListener(this::removeCreateView);
     }
 
-
-
-    public void createReservationClosed(CreateReservationController createReservationController){
-        rootPane.getChildren().remove(createReservationController);
+    private void closeCreateReservationView() {
+        rootPane.getChildren().remove(createReservationView);
     }
+
 
     /**
      * removes the detailed itemView from rootPane.
@@ -143,18 +168,24 @@ public class InventoryController implements Initializable {
         rootPane.getChildren().remove(detailView);
     }
 
+    private void removeCreateView() {
+        rootPane.getChildren().remove(createView);
+    }
+
+
     private void saveButtonClicked() {
+        detailView.saveItem();
         refreshItems();
     }
 
-    private void reserveItemClicked(){
-        CreateReservationController createReservation = new CreateReservationController(currentItem);
-        rootPane.getChildren().remove(detailView);
-        rootPane.getChildren().add(createReservation);
-        createReservation.addCreateReservationViewClosedListener(this::createReservationClosed);
+    private void createButtonClicked() {
+        refreshItems();
+        rootPane.getChildren().remove(createView);
     }
 
-
-
-
+    private void reserveItemClicked() {
+        createReservationView = new CreateReservationController(detailView.getItem());
+        createReservationView.addCreateReservationViewClosedListener(this::closeCreateReservationView);
+        rootPane.getChildren().add(createReservationView);
+    }
 }

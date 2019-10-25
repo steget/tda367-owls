@@ -14,9 +14,9 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<fx:root fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#closeDetailView" prefHeight="700.0" prefWidth="1000.0" styleClass="lightbox" stylesheets="@../basicStyles.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.201" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" styleClass="lightbox" stylesheets="@../basicStyles.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane fx:id="editPane" layoutX="60.0" layoutY="270.0" prefHeight="38.0" prefWidth="293.0">
+      <Pane fx:id="editPane" layoutX="90.0" layoutY="300.0" prefHeight="38.0" prefWidth="293.0">
          <children>
             <Label alignment="CENTER" prefHeight="30.0" prefWidth="293.0" styleClass="smallLabel" text="Click image to change it." textAlignment="CENTER" />
          </children>
@@ -36,20 +36,20 @@
                   <Image url="@../../../../resources/pictures/art.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="closeButtonImageView" fitHeight="52.0" fitWidth="38.0" layoutX="828.0" layoutY="23.0" onMouseClicked="#closeDetailView" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+            <ImageView fx:id="closeButtonImageView" fitHeight="52.0" fitWidth="38.0" layoutX="828.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
                <image>
                   <Image url="@../../../../resources/pictures/close-button.png" />
                </image>
             </ImageView>
-            <Label layoutX="317.0" layoutY="149.0" text="Item description" />
-            <Label layoutX="317.0" layoutY="358.0" text="User requirements" />
+            <Label layoutX="371.0" layoutY="152.0" styleClass="smallLabel" text="Item description" />
+            <Label layoutX="371.0" layoutY="361.0" styleClass="smallLabel" text="User requirements" />
             <TextArea fx:id="itemPageNameTA" editable="false" layoutX="371.0" layoutY="17.0" minHeight="-Infinity" prefHeight="73.0" prefWidth="357.0" text="ItemName">
                <font>
                   <Font size="36.0" />
                </font>
             </TextArea>
-            <Button fx:id="itemPageSaveButton" layoutX="750.0" layoutY="466.0" mnemonicParsing="false" onAction="#saveItem" prefHeight="73.0" prefWidth="118.0" styleClass="inAppButton" text="Save this item" textAlignment="CENTER" wrapText="true" />
-            <Button fx:id="itemPageReserveBtn" layoutX="750.0" layoutY="366.0" mnemonicParsing="false" onAction="#reserveBtnPressed" prefHeight="73.0" prefWidth="118.0" styleClass="inAppButton" text="Reserve this item" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="141.0" AnchorPane.rightAnchor="12.0" />
+            <Button fx:id="itemPageSaveButton" layoutX="750.0" layoutY="466.0" mnemonicParsing="false" prefHeight="73.0" prefWidth="118.0" styleClass="inAppButton" text="Save this item" textAlignment="CENTER" wrapText="true" />
+            <Button fx:id="itemPageReserveBtn" layoutX="750.0" layoutY="366.0" mnemonicParsing="false" onMouseClicked="#reserveBtnPressed" prefHeight="73.0" prefWidth="118.0" styleClass="inAppButton" text="Reserve this item" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="141.0" AnchorPane.rightAnchor="12.0" />
             <Line endX="-100.0" endY="486.0" layoutX="454.0" layoutY="94.0" startX="-100.0" startY="-94.0" />
             <Line endX="525.0" layoutX="355.0" layoutY="125.0" />
             <Line endX="200.5" layoutX="153.0" layoutY="282.0" startX="-152.0" />
@@ -61,7 +61,7 @@
             <TextArea fx:id="itemPageAmountTA" editable="false" layoutX="203.0" layoutY="350.0" prefHeight="47.0" prefWidth="90.0" text="444444" />
             <ChoiceBox fx:id="itemPageLocationChoicebox" layoutX="203.0" layoutY="407.0" prefHeight="44.0" prefWidth="141.0" />
             <Line endX="200.5" layoutX="153.0" layoutY="466.0" startX="-152.0" />
-            <Button fx:id="reservationsButton" layoutX="750.0" layoutY="146.0" mnemonicParsing="false" onAction="#reservationsButtonPressed" prefHeight="38.0" prefWidth="118.0" styleClass="inAppButton" text="Reservations" textAlignment="CENTER" wrapText="true" />
+            <Button fx:id="reservationsButton" layoutX="750.0" layoutY="146.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="118.0" styleClass="inAppButton" text="Reservations" textAlignment="CENTER" wrapText="true" />
          </children>
       </AnchorPane>
    </children>

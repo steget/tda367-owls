@@ -17,6 +17,7 @@ import java.util.ResourceBundle;
 
 /**
  * Control for userPage
+ *
  * @author Jonathan Eksberg, Pär Aronsson, Hugo Stegrell
  */
 
@@ -75,7 +76,7 @@ public class UserPageController implements Initializable {
      */
     @FXML
     public void saveUser() {
-        if(validateInfo(nameInputEmptyError, profileNameInput) && validateInfo(contactInputEmptyError, profileContactInput)){
+        if (validateInfo(nameInputEmptyError, profileNameInput) && validateInfo(contactInputEmptyError, profileContactInput)) {
             currentUser.setName(profileNameInput.getText());
             currentUser.setDescription(profileDescriptionInput.getText());
             currentUser.setContactInformation(profileContactInput.getText());
@@ -87,11 +88,11 @@ public class UserPageController implements Initializable {
     /**
      * Sets the information from the current user.
      */
-    private void writeProfileInfo(){
+    private void writeProfileInfo() {
         profileNameLabel.setText(currentUser.getName());
         profileContactLabel.setText(currentUser.getContactInformation());
         profileDescriptionTextArea.setText(currentUser.getDescription());
-        if(profileDescriptionTextArea.getText().trim().isEmpty()){
+        if (profileDescriptionTextArea.getText().trim().isEmpty()) {
             profileDescriptionTextArea.setText("User does not yet have a description... :(");
         }
         profileOrganisationLabel.setText(StoreIT.getCurrentOrganisation().getName());
@@ -102,12 +103,13 @@ public class UserPageController implements Initializable {
 
     /**
      * Checks if a texfield is empty
-     * @param text The error message that will show if an empty field is found.
+     *
+     * @param text      The error message that will show if an empty field is found.
      * @param textField The field that is being checked.
      * @return If empty fields are found, return false, else true.
      */
-    private boolean validateInfo(Text text, TextField textField){
-        if(textField.getText().trim().isEmpty()){
+    private boolean validateInfo(Text text, TextField textField) {
+        if (textField.getText().trim().isEmpty()) {
             AbstractFader.fadeTransition(text, 3);
             return false;
         }
@@ -115,12 +117,12 @@ public class UserPageController implements Initializable {
     }
 
     @FXML
-    public void editProfileButtonPressed(){
+    public void editProfileButtonPressed() {
         editProfileAnchorPane.toFront();
     }
 
     @FXML
-    public void cancelButtonPressed(){
+    public void cancelButtonPressed() {
         viewProfileAnchorPane.toFront();
     }
 

@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * Controller for creation of a Reservation
  *
- * @author William Albertsson
+ * @author William Albertsson, Hugo Stegrell
  */
 
 public class CreateReservationController extends AnchorPane {
@@ -241,7 +241,7 @@ public class CreateReservationController extends AnchorPane {
     @FXML
     private void close() {
         for (CreateReservationViewClosedListener listener : listeners) {
-            listener.reservationDetailViewClosed(this);
+            listener.reservationDetailViewClosed();
         }
     }
 
@@ -252,7 +252,7 @@ public class CreateReservationController extends AnchorPane {
      * Used together with "listeners" list as an observer pattern.
      */
     public interface CreateReservationViewClosedListener {
-        void reservationDetailViewClosed(CreateReservationController controller);
+        void reservationDetailViewClosed();
     }
 
     public void addCreateReservationViewClosedListener(CreateReservationViewClosedListener listener) {
