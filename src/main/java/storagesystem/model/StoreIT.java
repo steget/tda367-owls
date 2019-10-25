@@ -17,10 +17,17 @@ public class StoreIT {
     private static Organisation currentOrganisation;
 
 
+    //Change this if you want to reset the database.
+    private boolean reset = false;
+
+
     /**
      * Loads all data into the program. Should be run at start.
      */
     public void initializeBackend() throws IOException {
+        if(reset)
+            reset();
+
         try {
             organisations.addAll(JSONHandler.getOrganisationList());
         } catch (NullPointerException e) {
@@ -161,53 +168,68 @@ public class StoreIT {
 
 
 
-        Team tempTeam = new Team("sexNollK");
-        Team tempTeam2 = new Team("P.R.NollK");
 
-        createUser("Albert", "1", "1", "1");
-        createUser("admin", "1", "1", "1");
-        createUser("eke", "1", "1", "1");
-        createUser("kvick", "1", "1", "1");
-        createUser("sponken", "1", "1", "1");
-        createUser("giff", "1", "1", "1");
-        createUser("steget", "1", "1", "1");
-        tempTeam.setTermsAndConditions("För att låna våra prylar måste prylen vara i samma skick som den var när den lånades ut. Behövs den diskas så diska den osv. Prylen ska också vara tillbaka på samma plats igen");
-        tempTeam2.setTermsAndConditions("text 2");
+        Team nollkit = new Team("NollKIT");
+        Team prit = new Team("P.R.I.T.");
+        Team sexit = new Team("sexIT");
+        Team eightbit = new Team("8-bIT");
 
-        informationsteknik.addTeam(tempTeam);
-        informationsteknik.addTeam(tempTeam2);
+        createUser("admin", "password", "admin", "see github");
+        User admin = currentOrganisation.getUsers().get(0);
 
-        tempTeam.addMember(informationsteknik.getUsers().get(0).getID());
-        tempTeam.addMember(informationsteknik.getUsers().get(1).getID());
-        tempTeam2.addMember(informationsteknik.getUsers().get(0).getID());
-        tempTeam2.addMember(informationsteknik.getUsers().get(1).getID());
+        createUser("William", "1", "Ordförande 8-bIT, Kassör P.R.I.T.", "william@test.se");
+        createUser("Hugo", "1", "Infochef", "hugo@test.se");
+        createUser("Jonathan", "1", "Ordförande", "eke@test.se");
 
-        Location mockLocation = new Location("Hubben", "This location does not exist");
-        Location mockLocation2 = new Location("Garaget", "This location is unavailable");
-        Location mockLocation3 = new Location("Maskinhuset", "This location is unavailable");
 
-        informationsteknik.getLocations().add(mockLocation);
-        informationsteknik.getLocations().add(mockLocation2);
-        informationsteknik.getLocations().add(mockLocation3);
-        IReservable mockItem = IReservableFactory.createReservableItem("mockItem", "This is a description", "Behave please.",
-                2, Condition.GOOD, true, mockLocation.getID());
-        IReservable mockItem2 = IReservableFactory.createReservableItem("mockItem nr 2", "This is a description", "Behave please.",
-                2, Condition.GOOD, true, mockLocation2.getID());
-        IReservable mockItem3 = IReservableFactory.createReservableItem("mockItem nr 3", "This is a description", "Behave please.",
-                2, Condition.GOOD, true, mockLocation3.getID());
+        nollkit.setTermsAndConditions("Var rimlig");
+        prit.setTermsAndConditions("Var rimlig");
+        sexit.setTermsAndConditions("Var rimlig");
+        eightbit.setTermsAndConditions("Var rimlig");
 
-        Interval interval1 = new Interval(new DateTime(2019, 9, 10, 12, 40), new DateTime(2019, 9, 10, 15, 0));
-        Interval interval2 = new Interval(new DateTime(2019, 9, 12, 17, 30), new DateTime(2019, 10, 16, 20, 0));
-        IReservation res = new Reservation(tempTeam2.getID(), interval1, mockItem.getID(), ReservationStatus.APPROVED);
-        IReservation res2 = new Reservation(tempTeam2.getID(), interval2, mockItem2.getID(), ReservationStatus.PENDING);
+
+        informationsteknik.addTeam(nollkit);
+        informationsteknik.addTeam(prit);
+        informationsteknik.addTeam(sexit);
+        informationsteknik.addTeam(eightbit);
+
+        nollkit.addMember(admin.getID());
+        nollkit.addMember(2);
+        prit.addMember(admin.getID());
+        prit.addMember(1);
+        sexit.addMember(admin.getID());
+        sexit.addMember(3);
+        eightbit.addMember(admin.getID());
+        eightbit.addMember(1);
+
+        Location hubben = new Location("Hubben", "Massa plats");
+        Location garage = new Location("Garaget", "Kaos, men får plats med stora saker");
+        Location hasen = new Location("HASen", "Håll er borta");
+
+        informationsteknik.getLocations().add(hubben);
+        informationsteknik.getLocations().add(garage);
+        informationsteknik.getLocations().add(hasen);
+        IReservable pan = IReservableFactory.createReservableItem("Gjutjärnspanna", "Tung och välanvänd, men väldigt bra", "Inget diskmedel!!",
+                1, Condition.GREAT, true, hubben.getID());
+        IReservable speaker = IReservableFactory.createReservableItem("Högtalare", "Han kallas Roffe, och är lite sönder", "Snälla förstör honom inte mer",
+                1, Condition.BAD, true, garage.getID());
+        IReservable hammer = IReservableFactory.createReservableItem("Hammare", "En stor hammare", "Slå inte dina vänner!", 1, Condition.GREAT, true, hasen.getID());
+        IReservable ballPool = IReservableFactory.createReservableItem("Bollhav", "Väldigt många bollar", "Ge tillbaka alla", 1, Condition.GOOD,true, hubben.getID());
+        IReservable fabric = IReservableFactory.createReservableItem("Tyger", "Olika skick och färg", "Lämna tillbaka i samma skick", 5, Condition.BAD, true, hasen.getID());
+        IReservable nintendo = IReservableFactory.createReservableItem("Nintendo switch", "Switch med tillhörande spel", "Var försiktig!!", 1, Condition.GOOD, true, hubben.getID());
+
+
+
+        informationsteknik.addItem(hammer, prit);
+        informationsteknik.addItem(ballPool, nollkit);
+        informationsteknik.addItem(fabric, sexit);
+        informationsteknik.addItem(nintendo, eightbit);
+
+        Interval interval1 = new Interval(new DateTime(), new DateTime().plusHours(1));
+        Interval interval2 = new Interval(new DateTime(), new DateTime().plusHours(1));
+
         ReservationHandler resHandler = informationsteknik.getReservationHandler();
-        List<IReservation> reservations = resHandler.getAllReservations();
-        reservations.add(res);
-        reservations.add(res2);
 
-        informationsteknik.addItem(mockItem, tempTeam);
-        informationsteknik.addItem(mockItem2, tempTeam);
-        informationsteknik.addItem(mockItem3, tempTeam2);
     }
 
 }

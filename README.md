@@ -1,12 +1,13 @@
 # tda367-owls
 This readme is for the project StoreIT for course TDA-367
 - https://github.com/steget/tda367-owls
-@author Carl Lindh
+
 _____________________________________________________________________________________
 
 Content:
     1. Introduction
     2. Group Members
+    3. Data at start
 
 _____________________________________________________________________________________
 
@@ -31,3 +32,15 @@ Group member - Git username
 - Carl Lindh          -     Kviick
 
 ______________________________________________________________________________________
+
+3. Data at start
+
+At start there is some data in the application. The "admin" user with password "password"
+is part of all the teams. The teams are: "NollKIT", "sexIT", "P.R.I.T." and "8-bIT". These are inspired by
+committees in the IT-section and are part of the "Informationsteknologi" organisation in
+the program. "Data" organisation is empty.\
+All users other than "admin" have password "1".\
+"William" is part of 8-bIT and P.R.I.T.\
+"Hugo" is part of NollKIT.\
+"Jonathan" is part of sexIT.\
+Each team has one item, which all can be reserved.

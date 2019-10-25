@@ -71,7 +71,7 @@ public class Organisation {
      */
     public boolean isUserPartOfTeam(User user){
 
-        return StoreIT.getCurrentOrganisation().getUsersTeams(user).size() > 0;
+        return getUsersTeams(user).size() > 0;
     }
 
 
