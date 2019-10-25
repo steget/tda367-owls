@@ -51,7 +51,10 @@
         ],
         "memberIDs": [
           0,
-          1
+          1,
+          2,
+          5,
+          3
         ],
         "name": "sexNollK",
         "termsAndConditions": "För att låna våra prylar måste prylen vara i samma skick som den var när den lånades ut. Behövs den diskas så diska den osv. Prylen ska också vara tillbaka på samma plats igen",
@@ -64,7 +67,8 @@
         ],
         "memberIDs": [
           0,
-          1
+          1,
+          4
         ],
         "name": "P.R.NollK",
         "termsAndConditions": "text 2",
@@ -103,7 +107,7 @@
       },
       {
         "name": "sponken",
-        "password": "1",
+        "password": "hej",
         "description": "1",
         "contactInformation": "1",
         "ID": 4
