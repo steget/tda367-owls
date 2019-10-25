@@ -1,12 +1,12 @@
-package storagesystem.viewcontroller.allItems;
+package storeit.viewcontroller.allItems;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import storagesystem.model.IReservable;
-import storagesystem.services.PictureHandler;
+import storeit.model.IReservable;
+import storeit.services.PictureHandler;
 
 import java.io.IOException;
 

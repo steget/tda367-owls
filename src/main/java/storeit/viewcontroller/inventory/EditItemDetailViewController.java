@@ -1,4 +1,4 @@
-package storagesystem.viewcontroller.inventory;
+package storeit.viewcontroller.inventory;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -13,8 +13,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
-import storagesystem.model.*;
-import storagesystem.services.PictureHandler;
+import storeit.model.*;
+import storeit.services.PictureHandler;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;

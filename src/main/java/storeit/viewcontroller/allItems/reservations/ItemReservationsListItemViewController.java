@@ -1,11 +1,11 @@
-package storagesystem.viewcontroller.allItems.reservations;
+package storeit.viewcontroller.allItems.reservations;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import storagesystem.model.IReservation;
-import storagesystem.model.StoreIT;
+import storeit.model.IReservation;
+import storeit.model.StoreIT;
 
 import java.io.IOException;
 
