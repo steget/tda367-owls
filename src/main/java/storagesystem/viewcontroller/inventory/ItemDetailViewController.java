@@ -76,7 +76,9 @@ public class ItemDetailViewController extends AnchorPane {
 
 
     ItemDetailViewController(IReservable reservableItem) {
+
         this.reservableItem = reservableItem;
+
         this.itemOwner = StoreIT.getCurrentOrganisation().getItemOwner(reservableItem);
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/inventory/ItemDetailView.fxml"));
@@ -91,6 +93,8 @@ public class ItemDetailViewController extends AnchorPane {
 
         initialize();
     }
+
+
 
     private void initialize() {
         enableEditMode();
@@ -157,9 +161,9 @@ public class ItemDetailViewController extends AnchorPane {
                 itemPageLocationChoicebox.getSelectionModel().select(s);
             }
         }
-
-
     }
+
+
 
     private void setReservableChoiceBox() {
         if (reservableItem.isReservable()) {
@@ -306,7 +310,7 @@ public class ItemDetailViewController extends AnchorPane {
      * where it then can be called from.
      */
     @FXML
-    void changeItemImage() {
+    private void changeItemImage() {
 
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("jpg", "*.jpg"), new FileChooser.ExtensionFilter("png", "*.png"), new FileChooser.ExtensionFilter("jpeg", "*.jpg"));
