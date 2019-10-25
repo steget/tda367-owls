@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Author: William Albertsson -->
+
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+
+<AnchorPane fx:id="reservationsRootPane" prefHeight="700.0" prefWidth="1000.0" styleClass="background" stylesheets="@../basicStyles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="storeit.viewcontroller.yourReservations.ReservationsController">
+    <children>
+        <ScrollPane hbarPolicy="NEVER" layoutY="98.0" prefHeight="602.0" prefWidth="1000.0" styleClass="background" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="98.0">
+            <content>
+                <FlowPane fx:id="reservationListFlowPane" prefHeight="665.0" prefWidth="1000.0" styleClass="background" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            </content>
+        </ScrollPane>
+          <Label layoutX="3.0" layoutY="70.0" minHeight="-Infinity" minWidth="-Infinity" styleClass="smallLabel" text="Item" />
+          <Label fx:id="teamLabel" layoutX="240.0" layoutY="70.0" minHeight="-Infinity" minWidth="-Infinity" styleClass="smallLabel" text="Borrower" />
+          <Label alignment="CENTER" contentDisplay="CENTER" layoutX="520.0" layoutY="70.0" minHeight="-Infinity" minWidth="-Infinity" styleClass="smallLabel" text="Time borrowed" textAlignment="CENTER" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="790.0" layoutY="70.0" minHeight="-Infinity" minWidth="-Infinity" styleClass="smallLabel" text="Status" textAlignment="CENTER" />
+      <ChoiceBox fx:id="teamChooser" layoutX="21.0" layoutY="14.0" prefWidth="150.0" />
+      <Label fx:id="reservationsLabel" layoutX="280.0" layoutY="13.0" styleClass="bigLabel" text="requests" />
+      <ToggleButton fx:id="ingoingToggle" layoutX="592.0" layoutY="14.0" mnemonicParsing="false" text="Incoming requests" />
+      <ToggleButton fx:id="outgoingToggle" layoutX="727.0" layoutY="14.0" mnemonicParsing="false" text="Outgoing requests" />
+    </children>
+</AnchorPane>
