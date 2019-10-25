@@ -95,7 +95,6 @@ public class ReservationsController implements Initializable {
     }
 
     private void updateReservations() {
-        System.out.println(StoreIT.getCurrentTeam().getName());
         List<IReservation> reservations = StoreIT.getCurrentTeamsIncomingReservations();
         createListViews(reservations);
         reservationListFlowPane.getChildren().clear();
