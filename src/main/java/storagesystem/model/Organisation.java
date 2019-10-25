@@ -208,4 +208,8 @@ public class Organisation {
     public List<IReservation> getAllReservations() {
         return reservationHandler.getReservations();
     }
+
+    List<IReservation> getTeamsReservations(Team team) {
+        return reservationHandler.getTeamsReservations(team);
+    }
 }
