@@ -25,7 +25,9 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 /**
- * Shows a list of reservations using ReservationListViewController. A lightbox with details about reservations is shown when listitem is clicked.
+ * Shows a list of reservations using ReservationListViewController. A lightbox with details about reservations is shown
+ * when listitem is clicked. Can show ingoing reservations(other teams who reserved your items) and outgoing reservatins
+ * (your reservations on other teams items.)
  *
  * @author William Albertsson, Hugo Stegrell
  */

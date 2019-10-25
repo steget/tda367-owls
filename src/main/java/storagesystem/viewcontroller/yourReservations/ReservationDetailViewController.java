@@ -12,6 +12,7 @@ import java.io.IOException;
 
 /**
  * Shows detail about a reservation including borrowed item, time and date, status etc. Intended to be used as a lightbox.
+ * Gives the ability to accept or decline pending reservations as long as the current team should be able to.
  *
  * @author William Albertsson
  */

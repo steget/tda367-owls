@@ -13,6 +13,7 @@ import java.io.IOException;
 /**
  * View meant to be used in ReservationsController. Represents a reservation in a small item meant to be used in a list.
  *
+ *
  * @author William Albertsson
  */
 
