@@ -21,6 +21,7 @@ public class StoreIT {
      * Loads all data into the program. Should be run at start.
      */
     public void initializeBackend() throws IOException {
+        reset();
         try {
             organisations.addAll(JSONHandler.getOrganisationList());
         } catch (NullPointerException e) {
@@ -171,32 +172,52 @@ public class StoreIT {
         Team team6 = new Team("8-bIT");
 
         createUser("admin", "password", "admin", "see github");
+        User admin = currentOrganisation.getUsers().get(0);
         createUser("Emil", "Emilia", "En go grabb", "emil@test.se");
         createUser("Emilia", "Emil", "En fin tös", "emilia@test.se");
+        createUser("William", "1", "Ordförande 8-bIT, Kassör P.R.I.T.", "william@test.se");
+        createUser("Hugo", "1", "Infochef", "hugo@test.se");
+        createUser("Eke", "1", "Ordförande", "eke@test.se");
 
         team1.setTermsAndConditions("För att låna våra prylar måste prylen vara i samma skick som den var när den lånades ut. Behövs den diskas så diska den osv. Prylen ska också vara tillbaka på samma plats igen");
         team2.setTermsAndConditions("Var rimlig");
+        team3.setTermsAndConditions("Var rimlig");
+        team4.setTermsAndConditions("Var rimlig");
+        team5.setTermsAndConditions("Var rimlig");
+        team6.setTermsAndConditions("Var rimlig");
 
         informationsteknik.addTeam(team1);
         informationsteknik.addTeam(team2);
+        informationsteknik.addTeam(team3);
+        informationsteknik.addTeam(team4);
+        informationsteknik.addTeam(team5);
+        informationsteknik.addTeam(team6);
 
-        team1.addMember(informationsteknik.getUsers().get(0).getID());
-        team1.addMember(informationsteknik.getUsers().get(1).getID());
-        team1.addMember(informationsteknik.getUsers().get(2).getID());
-        team2.addMember(informationsteknik.getUsers().get(0).getID());
+        team1.addMember(0);
+        team1.addMember(1);
+        team1.addMember(2);
+        team2.addMember(admin.getID());
+        team3.addMember(admin.getID());
+        team3.addMember(4);
+        team4.addMember(admin.getID());
+        team4.addMember(3);
+        team5.addMember(admin.getID());
+        team5.addMember(5);
+        team6.addMember(admin.getID());
+        team6.addMember(3);
 
-        Location mockLocation = new Location("Hubben", "Room for a lot of stuff");
-        Location mockLocation2 = new Location("Garaget", "Chaos, but you can fit larger objects here");
-        Location mockLocation3 = new Location("Maskinhuset", "Please stay away from at all costs");
+        Location mockLocation = new Location("Hubben", "Massa plats");
+        Location mockLocation2 = new Location("Garaget", "Kaos, men får plats med stora saker");
+        Location mockLocation3 = new Location("Basen", "Håll er borta");
 
         informationsteknik.getLocations().add(mockLocation);
         informationsteknik.getLocations().add(mockLocation2);
         informationsteknik.getLocations().add(mockLocation3);
-        IReservable mockItem = IReservableFactory.createReservableItem("Cast iron pan", "Really heavy, but nice", "Dish without soap!!",
+        IReservable mockItem = IReservableFactory.createReservableItem("Gjutjärnspanna", "Tung och välanvänd, men väldigt bra", "Inget diskmedel!!",
                 2, Condition.GREAT, true, mockLocation.getID());
-        IReservable mockItem2 = IReservableFactory.createReservableItem("Ball pool", "Too many balls to fit", "All balls needs to be returned",
+        IReservable mockItem2 = IReservableFactory.createReservableItem("Bollhav", "Mer bollar än plats", "All bollar måste tillbaka",
                 2, Condition.GOOD, true, mockLocation2.getID());
-        IReservable mockItem3 = IReservableFactory.createReservableItem("Speaker", "He is called Roffe, and is a bit broken", "Please don't make him any more broken",
+        IReservable mockItem3 = IReservableFactory.createReservableItem("Högtalare", "Han kallas Roffe, och är lite sönder", "Snälla förstör honom inte mer",
                 2, Condition.BAD, true, mockLocation2.getID());
 
         informationsteknik.addItem(mockItem, team1);

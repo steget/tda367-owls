@@ -7,9 +7,9 @@
         "CLASSNAME": "storagesystem.model.Item",
         "DATA": {
           "ID": 0,
-          "name": "Cast iron pan",
-          "description": "Really heavy, but nice",
-          "userRequirements": "Dish without soap!!",
+          "name": "Gjutjärnspanna",
+          "description": "Tung och välanvänd, men väldigt bra",
+          "userRequirements": "Inget diskmedel!!",
           "amount": 2,
           "condition": "GREAT",
           "reservable": true,
@@ -20,9 +20,9 @@
         "CLASSNAME": "storagesystem.model.Item",
         "DATA": {
           "ID": 1,
-          "name": "Ball pool",
-          "description": "Too many balls to fit",
-          "userRequirements": "All balls needs to be returned",
+          "name": "Bollhav",
+          "description": "Mer bollar än plats",
+          "userRequirements": "All bollar måste tillbaka",
           "amount": 2,
           "condition": "GOOD",
           "reservable": true,
@@ -33,9 +33,9 @@
         "CLASSNAME": "storagesystem.model.Item",
         "DATA": {
           "ID": 2,
-          "name": "Speaker",
-          "description": "He is called Roffe, and is a bit broken",
-          "userRequirements": "Please don\u0027t make him any more broken",
+          "name": "Högtalare",
+          "description": "Han kallas Roffe, och är lite sönder",
+          "userRequirements": "Snälla förstör honom inte mer",
           "amount": 2,
           "condition": "BAD",
           "reservable": true,
@@ -46,6 +46,7 @@
     "teams": [
       {
         "itemIDs": [
+          0,
           1,
           2
         ],
@@ -60,9 +61,7 @@
         "ID": 0
       },
       {
-        "itemIDs": [
-          0
-        ],
+        "itemIDs": [],
         "memberIDs": [
           0
         ],
@@ -70,6 +69,50 @@
         "termsAndConditions": "Var rimlig",
         "imageUrl": null,
         "ID": 1
+      },
+      {
+        "itemIDs": [],
+        "memberIDs": [
+          0,
+          4
+        ],
+        "name": "NollKIT",
+        "termsAndConditions": "Var rimlig",
+        "imageUrl": null,
+        "ID": 2
+      },
+      {
+        "itemIDs": [],
+        "memberIDs": [
+          0,
+          3
+        ],
+        "name": "P.R.I.T.",
+        "termsAndConditions": "Var rimlig",
+        "imageUrl": null,
+        "ID": 3
+      },
+      {
+        "itemIDs": [],
+        "memberIDs": [
+          0,
+          5
+        ],
+        "name": "sexIT",
+        "termsAndConditions": "Var rimlig",
+        "imageUrl": null,
+        "ID": 4
+      },
+      {
+        "itemIDs": [],
+        "memberIDs": [
+          0,
+          3
+        ],
+        "name": "8-bIT",
+        "termsAndConditions": "Var rimlig",
+        "imageUrl": null,
+        "ID": 5
       }
     ],
     "users": [
@@ -93,22 +136,43 @@
         "description": "En fin tös",
         "contactInformation": "emilia@test.se",
         "ID": 2
+      },
+      {
+        "name": "William",
+        "password": "1",
+        "description": "Ordförande 8-bIT, Kassör P.R.I.T.",
+        "contactInformation": "william@test.se",
+        "ID": 3
+      },
+      {
+        "name": "Hugo",
+        "password": "1",
+        "description": "Infochef",
+        "contactInformation": "hugo@test.se",
+        "ID": 4
+      },
+      {
+        "name": "Eke",
+        "password": "1",
+        "description": "Ordförande",
+        "contactInformation": "eke@test.se",
+        "ID": 5
       }
     ],
     "locations": [
       {
         "name": "Hubben",
-        "description": "Room for a lot of stuff",
+        "description": "Massa plats",
         "ID": 0
       },
       {
         "name": "Garaget",
-        "description": "Chaos, but you can fit larger objects here",
+        "description": "Kaos, men får plats med stora saker",
         "ID": 1
       },
       {
-        "name": "Maskinhuset",
-        "description": "Please stay away from at all costs",
+        "name": "Basen",
+        "description": "Håll er borta",
         "ID": 2
       }
     ],
@@ -119,7 +183,7 @@
           "DATA": {
             "id": 0,
             "borrowerID": 0,
-            "interval": "2019-10-25T18:08:18.989+02:00/2019-10-25T19:08:19.071+02:00",
+            "interval": "2019-10-25T18:47:46.677+02:00/2019-10-25T19:47:46.763+02:00",
             "reservedObjectID": 0,
             "status": "PENDING"
           }
@@ -129,7 +193,7 @@
           "DATA": {
             "id": 1,
             "borrowerID": 1,
-            "interval": "2019-10-25T18:08:19.073+02:00/2019-10-25T19:08:19.073+02:00",
+            "interval": "2019-10-25T18:47:46.765+02:00/2019-10-25T19:47:46.765+02:00",
             "reservedObjectID": 1,
             "status": "PENDING"
           }
