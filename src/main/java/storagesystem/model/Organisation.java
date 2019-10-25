@@ -11,14 +11,12 @@ import java.util.NoSuchElementException;
  * @author Hugo Stegrell, Pär Aronsson, Carl Lindh, William Albertson, Jonathan Eksberg
  */
 public class Organisation {
+    private String name;
     private final List<IReservable> items = new ArrayList<>();
     private final List<Team> teams = new ArrayList<>();
     private final List<User> users = new ArrayList<>();
     private final List<Location> locations = new ArrayList<>();
     private final ReservationHandler reservationHandler;
-    private String name;
-    private String imageUrl;
-
 
     public Organisation(String name) {
         this.name = name;
@@ -65,16 +63,6 @@ public class Organisation {
     }
 
     /**
-     * Gets a team's reservations
-     *
-     * @param team Team to get reservations from
-     * @return A list of all reservations belonging to the selected team
-     */
-    List<IReservation> getTeamsReservations(Team team) {
-        return reservationHandler.getTeamsReservations(team);
-    }
-
-    /**
      * Adds an item to the organisation and the item's ID to a team's inventory.
      *
      * @param iReservable item to add
@@ -110,7 +98,7 @@ public class Organisation {
      */
     public boolean isUserPartOfTeam(User user) {
 
-        return StoreIT.getCurrentOrganisation().getUsersTeams(user).size() > 0;
+        return getUsersTeams(user).size() > 0;
     }
 
 
@@ -250,11 +238,23 @@ public class Organisation {
         this.name = name;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public Team getItemOwner(int itemID)throws NoSuchElementException{
+        for (Team t :
+                teams) {
+            if (t.getAllItemIDs().contains(itemID)) {
+                return t;
+            }
+        }
+        throw new NoSuchElementException("Item owner could not be found");
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    /**
+     * Gets a team's reservations
+     *
+     * @param team Team to get reservations from
+     * @return A list of all reservations belonging to the selected team
+     */
+    List<IReservation> getTeamIngoingReservations(Team team) {
+        return reservationHandler.getTeamsIngoingReservations(team);
     }
 }

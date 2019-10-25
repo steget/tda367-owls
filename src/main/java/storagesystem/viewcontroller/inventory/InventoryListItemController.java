@@ -32,7 +32,7 @@ public class InventoryListItemController extends AnchorPane {
 
     public InventoryListItemController(IReservable item) {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Inventory/InventoryListItem.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/inventory/InventoryListItem.fxml"));
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
 

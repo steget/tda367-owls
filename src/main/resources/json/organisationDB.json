@@ -1,14 +1,28 @@
 [
   {
+    "name": "Informationsteknik",
     "items": [
       {
         "CLASSNAME": "storagesystem.model.Item",
         "DATA": {
           "ID": 0,
-          "name": "mockItem",
-          "description": "This is a description",
-          "userRequirements": "Behave please.",
-          "amount": 2,
+          "name": "Hammare",
+          "description": "En stor hammare",
+          "userRequirements": "Slå inte dina vänner!",
+          "amount": 1,
+          "condition": "GREAT",
+          "reservable": true,
+          "locationID": 2
+        }
+      },
+      {
+        "CLASSNAME": "storagesystem.model.Item",
+        "DATA": {
+          "ID": 1,
+          "name": "Bollhav",
+          "description": "Väldigt många bollar",
+          "userRequirements": "Ge tillbaka alla",
+          "amount": 1,
           "condition": "GOOD",
           "reservable": true,
           "locationID": 0
@@ -17,44 +31,54 @@
       {
         "CLASSNAME": "storagesystem.model.Item",
         "DATA": {
-          "ID": 1,
-          "name": "mockItem nr 2",
-          "description": "This is a description",
-          "userRequirements": "Behave please.",
-          "amount": 2,
-          "condition": "GOOD",
+          "ID": 2,
+          "name": "Tyger",
+          "description": "Olika skick och färg",
+          "userRequirements": "Lämna tillbaka i samma skick",
+          "amount": 5,
+          "condition": "BAD",
           "reservable": true,
-          "locationID": 1
+          "locationID": 2
         }
       },
       {
         "CLASSNAME": "storagesystem.model.Item",
         "DATA": {
-          "ID": 2,
-          "name": "mockItem nr 3",
-          "description": "This is a description",
-          "userRequirements": "Behave please.",
-          "amount": 2,
+          "ID": 3,
+          "name": "Nintendo switch",
+          "description": "Switch med tillhörande spel",
+          "userRequirements": "Var försiktig!!",
+          "amount": 1,
           "condition": "GOOD",
           "reservable": true,
-          "locationID": 2
+          "locationID": 0
         }
       }
     ],
     "teams": [
       {
         "itemIDs": [
-          0,
           1
+        ],
+        "memberIDs": [
+          0,
+          2
+        ],
+        "name": "NollKIT",
+        "termsAndConditions": "Var rimlig",
+        "ID": 0
+      },
+      {
+        "itemIDs": [
+          0
         ],
         "memberIDs": [
           0,
           1
         ],
-        "name": "sexNollK",
-        "termsAndConditions": "För att låna våra prylar måste prylen vara i samma skick som den var när den lånades ut. Behövs den diskas så diska den osv. Prylen ska också vara tillbaka på samma plats igen",
-        "imageUrl": null,
-        "ID": 0
+        "name": "P.R.I.T.",
+        "termsAndConditions": "Var rimlig",
+        "ID": 1
       },
       {
         "itemIDs": [
@@ -62,80 +86,70 @@
         ],
         "memberIDs": [
           0,
+          3
+        ],
+        "name": "sexIT",
+        "termsAndConditions": "Var rimlig",
+        "ID": 2
+      },
+      {
+        "itemIDs": [
+          3
+        ],
+        "memberIDs": [
+          0,
           1
         ],
-        "name": "P.R.NollK",
-        "termsAndConditions": "text 2",
-        "imageUrl": null,
-        "ID": 1
+        "name": "8-bIT",
+        "termsAndConditions": "Var rimlig",
+        "ID": 3
       }
     ],
     "users": [
       {
-        "name": "Albert",
-        "password": "1",
-        "description": "1",
-        "contactInformation": "1",
+        "name": "admin",
+        "password": "password",
+        "description": "admin",
+        "contactInformation": "see github",
         "ID": 0
       },
       {
-        "name": "admin",
+        "name": "William",
         "password": "1",
-        "description": "1",
-        "contactInformation": "1",
+        "description": "Ordförande 8-bIT, Kassör P.R.I.T.",
+        "contactInformation": "william@test.se",
         "ID": 1
       },
       {
-        "name": "eke",
+        "name": "Hugo",
         "password": "1",
-        "description": "1",
-        "contactInformation": "1",
+        "description": "Infochef",
+        "contactInformation": "hugo@test.se",
         "ID": 2
       },
       {
-        "name": "kvick",
+        "name": "Jonathan",
         "password": "1",
-        "description": "1",
-        "contactInformation": "1",
+        "description": "Ordförande",
+        "contactInformation": "eke@test.se",
         "ID": 3
-      },
-      {
-        "name": "sponken",
-        "password": "1",
-        "description": "1",
-        "contactInformation": "1",
-        "ID": 4
-      },
-      {
-        "name": "giff",
-        "password": "1",
-        "description": "1",
-        "contactInformation": "1",
-        "ID": 5
-      },
-      {
-        "name": "steget",
-        "password": "1",
-        "description": "1",
-        "contactInformation": "1",
-        "ID": 6
       }
     ],
     "locations": [
       {
         "ID": 0,
         "name": "Hubben",
-        "description": "This location does not exist"
+        "description": "Massa plats"
       },
       {
         "ID": 1,
         "name": "Garaget",
-        "description": "This location is unavailable"
+        "description": "Kaos, men får plats med stora saker"
       },
       {
         "ID": 2,
-        "name": "Maskinhuset",
-        "description": "This location is unavailable"
+        "name": "HASen",
+        "description": "Håll er borta"
       }
     ],
     "reservationHandler": {
@@ -145,35 +159,32 @@
           "DATA": {
             "id": 0,
             "borrowerID": 0,
-            "interval": "2019-09-10T12:40:00.000+02:00/2019-09-10T15:00:00.000+02:00",
+            "interval": "2019-10-25T21:00:00.000+02:00/2019-10-25T21:15:00.000+02:00",
             "reservedObjectID": 0,
-            "status": "APPROVED"
+            "status": "PENDING"
           }
         },
         {
           "CLASSNAME": "storagesystem.model.Reservation",
           "DATA": {
             "id": 1,
-            "borrowerID": 0,
-            "interval": "2019-09-12T17:30:00.000+02:00/2019-10-16T20:00:00.000+02:00",
+            "borrowerID": 2,
+            "interval": "2019-10-25T21:00:00.000+02:00/2019-10-25T21:15:00.000+02:00",
             "reservedObjectID": 1,
-            "status": "APPROVED"
+            "status": "PENDING"
           }
         }
       ]
-    },
-    "name": "Informationsteknik",
-    "imageUrl": null
+    }
   },
   {
+    "name": "Data",
     "items": [],
     "teams": [],
     "users": [],
     "locations": [],
     "reservationHandler": {
       "reservations": []
-    },
-    "name": "Data",
-    "imageUrl": null
+    }
   }
 ]

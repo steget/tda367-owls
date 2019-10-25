@@ -1,6 +1,5 @@
-package storagesystem.viewcontroller.inventory.reservations;
+package storagesystem.viewcontroller.allItems.reservations;
 
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -10,7 +9,7 @@ import storagesystem.model.StoreIT;
 
 import java.io.IOException;
 
-public class ItemReservationListItemViewController extends AnchorPane {
+public class ItemReservationsListItemViewController extends AnchorPane {
 
     @FXML
     private Label borrowerLabel;
@@ -20,8 +19,8 @@ public class ItemReservationListItemViewController extends AnchorPane {
     private Label statusLabel;
 
 
-    public ItemReservationListItemViewController(IReservation reservation){
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/inventory/reservations/ItemReservationsListItemView.fxml"));
+    public ItemReservationsListItemViewController(IReservation reservation){
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/allItems/reservations/ItemReservationsListItemView.fxml"));
         fxmlLoader.setController(this);
         fxmlLoader.setRoot(this);
         try {

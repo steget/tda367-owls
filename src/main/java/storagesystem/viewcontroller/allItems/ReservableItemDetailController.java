@@ -30,6 +30,10 @@ public class ReservableItemDetailController extends AnchorPane {
     private final Team itemOwner;
 
     @FXML
+    private AnchorPane rootPane;
+    @FXML
+    private AnchorPane contentPane;
+    @FXML
     private ImageView detailViewImageView;
     @FXML
     private Label detailViewNameLabel;
@@ -48,9 +52,9 @@ public class ReservableItemDetailController extends AnchorPane {
     @FXML
     private TextArea detailViewUserRequirementsTA;
     @FXML
-    private Button detailViewReserveBtn;
+    Button detailViewReserveButton;
     @FXML
-    private AnchorPane contentPane;
+    Button reservationsButton;
 
     public ReservableItemDetailController(IReservable item) {
         this.item = item;
@@ -91,10 +95,6 @@ public class ReservableItemDetailController extends AnchorPane {
         setTeamOwnerLabel(itemOwner.getName());
     }
 
-    @FXML
-    protected void reserveBtnPressed() {
-        //TODO: create a new reservation if possible
-    }
 
     private void setConditionSlider(Condition condition) {
         int value = 0;
@@ -147,7 +147,11 @@ public class ReservableItemDetailController extends AnchorPane {
     }
 
     private void setReservableBtn(boolean reservable) {
-        detailViewReserveBtn.setDisable(!reservable);
+        detailViewReserveButton.setDisable(!reservable);
+    }
+
+    public IReservable getItem() {
+        return item;
     }
 }
 

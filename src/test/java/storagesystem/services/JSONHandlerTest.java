@@ -45,7 +45,6 @@ public class JSONHandlerTest {
         Assert.assertNotEquals(organisationList.get(1).getName(), mockOrg.getName());
         Assert.assertEquals(organisationList.get(1).getName(), mockOrg2.getName());
         Assert.assertEquals(organisationList.get(1).getAllItems(), mockOrg2.getAllItems());
-        Assert.assertEquals(organisationList.get(1).getImageUrl(), mockOrg2.getImageUrl());
     }
 
     @Test
@@ -72,7 +71,6 @@ public class JSONHandlerTest {
         Assert.assertNotEquals(organisationList.get(1).getName(), mockOrg.getName());
         Assert.assertEquals(organisationList.get(1).getName(), mockOrg2.getName());
         Assert.assertEquals(organisationList.get(1).getAllItems(), mockOrg2.getAllItems());
-        Assert.assertEquals(organisationList.get(1).getImageUrl(), mockOrg2.getImageUrl());
 
     }
 }

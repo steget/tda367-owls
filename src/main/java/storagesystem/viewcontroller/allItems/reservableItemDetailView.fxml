@@ -2,12 +2,16 @@
 
 <!-- Author: Carl Lindh, Jonathan Eksberg, Hugo Stegrell-->
 
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
+
 <fx:root fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: rgba(0, 0, 0, 0.75);" stylesheets="@../basicStyles.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <AnchorPane fx:id="contentPane" layoutX="19.0" layoutY="30.0" styleClass="background" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="60.0">
@@ -20,7 +24,6 @@
                 <Label fx:id="detailViewReservableLabel" layoutX="37.0" layoutY="286.0" styleClass="smallLabel" text="ReservableLabel" />
                 <Label fx:id="detailViewAmountLabel" layoutX="24.0" layoutY="366.0" styleClass="smallLabel" text="AmountLabel" />
                 <Label fx:id="detailViewLocationLabel" layoutX="24.0" layoutY="394.0" styleClass="smallLabel" text="LocationLabel" />
-                <Label fx:id="detailViewIDLabel" layoutX="374.0" layoutY="63.0" styleClass="smallLabel" text="IDLabel" />
                 <Slider fx:id="detailViewConditionSlider" blockIncrement="1.0" disable="true" layoutX="31.0" layoutY="497.0" majorTickUnit="1.0" max="2.0" minorTickCount="0" prefHeight="45.0" prefWidth="293.0" showTickMarks="true" snapToTicks="true" value="1.0" />
                 <Label layoutX="31.0" layoutY="534.0" style="-fx-text-fill: red;" text="BAD" />
                 <Label layoutX="155.0" layoutY="534.0" style="-fx-text-fill: yellow;" text="GOOD" />
@@ -37,7 +40,8 @@
                         <Image url="@../../../../resources/pictures/art.png" />
                     </image>
                 </ImageView>
-                <Button fx:id="detailViewReserveBtn" layoutX="548.0" layoutY="492.0" mnemonicParsing="false" onAction="#reserveBtnPressed" text="Reserve" AnchorPane.bottomAnchor="60.0" AnchorPane.rightAnchor="60.0" />
+                <Button fx:id="detailViewReserveButton" layoutX="750.0" layoutY="466.0" mnemonicParsing="false" prefHeight="73.0" prefWidth="118.0" styleClass="inAppButton" text="Reserve this item" textAlignment="CENTER" wrapText="true" />
+                <Button fx:id="reservationsButton" layoutX="750.0" layoutY="146.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="118.0" styleClass="inAppButton" text="Reservations" textAlignment="CENTER" wrapText="true" />
             </children>
         </AnchorPane>
     </children>
