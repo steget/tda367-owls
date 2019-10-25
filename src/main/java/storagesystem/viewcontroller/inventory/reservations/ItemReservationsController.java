@@ -46,7 +46,7 @@ public class ItemReservationsController extends AnchorPane {
 
     private void updateItemReservations() {
         boolean alternating = false;
-        for (IReservation res : StoreIT.getCurrentOrganisation().getReservationHandler().getBorrowersReservations(item.getID())) {
+        for (IReservation res : StoreIT.getCurrentOrganisation().getReservationHandler().getObjectsReservations(item.getID())) {
             ItemReservationListItemViewController listView = new ItemReservationListItemViewController(res);
             itemReservationListItemViews.add(listView);
             if (alternating) {

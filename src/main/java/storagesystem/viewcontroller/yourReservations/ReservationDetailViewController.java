@@ -67,7 +67,7 @@ public class ReservationDetailViewController extends AnchorPane {
 
         itemField.setText(StoreIT.getCurrentOrganisation().getItem(res.getReservedObjectID()).getName());
         borrowerField.setText(StoreIT.getCurrentOrganisation().getTeamFromID(res.getBorrowerID()).getName());
-        update();
+        updateAllViews();
 
     }
 
@@ -80,7 +80,7 @@ public class ReservationDetailViewController extends AnchorPane {
         }
     }
 
-    void update(){
+    void updateAllViews(){
         IReservable item = StoreIT.getCurrentOrganisation().getItem(reservation.getReservedObjectID());
         itemField.setText(StoreIT.getCurrentOrganisation().getItem(reservation.getReservedObjectID()).getName());
         borrowerField.setText(StoreIT.getCurrentOrganisation().getItem(reservation.getBorrowerID()).getName());

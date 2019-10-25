@@ -215,6 +215,10 @@ public class Organisation {
     }
 
     public List<IReservation> getAllReservations() {
-        return reservationHandler.getReservations();
+        return reservationHandler.getAllReservations();
+    }
+
+    List<IReservation> getTeamsReservations(Team team) {
+        return reservationHandler.getTeamsReservations(team);
     }
 }

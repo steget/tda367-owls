@@ -122,12 +122,7 @@ public class StoreIT {
     }
 
     public static List<IReservation> getCurrentTeamsIncomingReservations(){
-        List<IReservation> teamReservations = new ArrayList<>();
-        for(IReservation res : getAllReservations()){
-            if(currentTeam.isItemOwner(res.getReservedObjectID()))
-                teamReservations.add(res);
-        }
-        return teamReservations;
+        return currentOrganisation.getTeamsReservations(currentTeam);
     }
 
     //TODO write tests for class
