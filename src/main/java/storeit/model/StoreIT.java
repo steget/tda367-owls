@@ -23,7 +23,7 @@ public class StoreIT {
 
 
     //Change this if you want to reset the database.
-    private boolean reset = true;
+    private boolean reset = false;
 
 
     /**
