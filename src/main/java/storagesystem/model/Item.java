@@ -25,7 +25,7 @@ public class Item implements IReservable {
     private boolean reservable;
     private int locationID;
 
-    public Item(String name, String description, String userRequirements, int amount, Condition condition, boolean reservable, int locationID) {
+    Item(String name, String description, String userRequirements, int amount, Condition condition, boolean reservable, int locationID) {
         this.name = name;
         this.description = description;
         this.userRequirements = userRequirements;

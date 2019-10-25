@@ -6,8 +6,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import storagesystem.model.IReservable;
 import storagesystem.model.IReservation;
 import storagesystem.model.ReservationStatus;
+import storagesystem.model.StoreIT;
 
 import java.io.IOException;
 
@@ -63,6 +65,8 @@ public class ReservationDetailViewController extends AnchorPane {
 
         lightboxContentPane.setOnMouseClicked(Event::consume);
 
+        itemField.setText(StoreIT.getCurrentOrganisation().getItem(res.getReservedObjectID()).getName());
+        borrowerField.setText(StoreIT.getCurrentOrganisation().getTeamFromID(res.getBorrowerID()).getName());
         update();
 
     }
@@ -77,9 +81,10 @@ public class ReservationDetailViewController extends AnchorPane {
     }
 
     void update(){
-        itemField.setText(reservation.getReservedObject().getName());
-        borrowerField.setText(reservation.getBorrower().getName());
-        //TODO Set owner field. Method is missing in organisation at time of writing
+        IReservable item = StoreIT.getCurrentOrganisation().getItem(reservation.getReservedObjectID());
+        itemField.setText(StoreIT.getCurrentOrganisation().getItem(reservation.getReservedObjectID()).getName());
+        borrowerField.setText(StoreIT.getCurrentOrganisation().getItem(reservation.getBorrowerID()).getName());
+        ownerField.setText(StoreIT.getCurrentOrganisation().getItemOwner(item).getName());
         timeAndDateField.setText(reservation.getReadableInterval());
         statusField.setText(reservation.getStatus().toString());
         IDField.setText(Integer.toString(reservation.getID()));

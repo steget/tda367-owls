@@ -18,8 +18,8 @@ public class ReservationTest {
 
         Interval interval1 = new Interval(time1, time2);
 
-        IReservation res1 = new Reservation(1, borrower, interval1, object, ReservationStatus.PENDING);
-        IReservation res2 = new Reservation(1, borrower, interval1, object, ReservationStatus.APPROVED);
+        IReservation res1 = new Reservation(1, borrower.getID(), interval1, object.getID(), ReservationStatus.PENDING);
+        IReservation res2 = new Reservation(1, borrower.getID(), interval1, object.getID(), ReservationStatus.APPROVED);
 
         assertTrue(res1.equals(res2));
     }
@@ -27,18 +27,24 @@ public class ReservationTest {
 
     @Test
     public void objectShouldEqual(){
-        IBorrower borrower = new Team("Team1");
+        Organisation mockOrg = new Organisation("MockOrg");
+        StoreIT.setCurrentOrganisation(mockOrg);
+        Team borrower = new Team("Team1");
+        Team owner = new Team("Owner");
+        mockOrg.addTeam(borrower);
+        mockOrg.addTeam(owner);
         IReservable object = IReservableFactory.createReservableItem("mockItem", "desc","requirements",1,Condition.GREAT,true, 0);
         DateTime time1 = new DateTime();
         DateTime time2 = time1.plusDays(1);
+        mockOrg.addItem(object, owner);
 
 
         Interval interval1 = new Interval(time1, time2);
 
-        IReservation res1 = new Reservation(1, borrower, interval1, object, ReservationStatus.PENDING);
+        IReservation res1 = new Reservation(1, borrower.getID(), interval1, object.getID(), ReservationStatus.PENDING);
 
 
-        assertTrue(res1.getReservedObject().equals(object));
+        assertTrue(StoreIT.getCurrentOrganisation().getItem(res1.getReservedObjectID()).equals(object));
 
     }
 

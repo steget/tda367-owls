@@ -57,8 +57,14 @@ public class InventoryController implements Initializable {
         closeReservationListView();
         e.consume();
     };
-
-    private IReservable currentItem;
+    private EventHandler<MouseEvent> reserveItemClickedHandler = e -> {
+        reserveItemClicked();
+        e.consume();
+    };
+    private EventHandler<MouseEvent> itemReservationsClickedHandler = e -> {
+        itemReservationsClicked();
+        e.consume();
+    };
 
 
     @Override
@@ -98,8 +104,8 @@ public class InventoryController implements Initializable {
         detailView.addEventHandler(MouseEvent.MOUSE_CLICKED, closeDetailViewClickedHandler);
         detailView.closeButtonImageView.addEventHandler(MouseEvent.MOUSE_CLICKED, closeDetailViewClickedHandler);
         detailView.itemPageSaveButton.addEventHandler(MouseEvent.MOUSE_CLICKED, saveButtonClickedHandler);
-        detailView.addReserveButtonClickedListener(this::reserveItemClicked);
-        detailView.addItemReservationsClickedListeners(this::itemReservationsClicked);
+        detailView.itemPageReserveBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, reserveItemClickedHandler);
+        detailView.reservationsButton.addEventHandler(MouseEvent.MOUSE_CLICKED, itemReservationsClickedHandler);
         detailView.enableEditMode();
         rootPane.getChildren().add(detailView);
     }
@@ -127,7 +133,7 @@ public class InventoryController implements Initializable {
      */
     private void refreshItems() {
         List<IReservable> inventory = StoreIT.getCurrentOrganisation().getTeamsItems(StoreIT.getCurrentTeam());
-        itemPane.getChildren().remove(0, itemPane.getChildren().size());
+        itemPane.getChildren().clear();
         for (IReservable i : inventory) {
             InventoryListItemController newListItem = new InventoryListItemController(i);
             newListItem.addEventHandler(MouseEvent.MOUSE_CLICKED, listItemClickedHandler);
@@ -135,10 +141,9 @@ public class InventoryController implements Initializable {
         }
     }
 
-    private void itemReservationsClicked(IReservable item) {
-        reservationListView = new ItemReservationsController(item);
+    private void itemReservationsClicked() {
+        reservationListView = new ItemReservationsController(detailView.getItem());
         reservationListView.addEventHandler(MouseEvent.MOUSE_CLICKED, closeReservationViewHandler);
-        rootPane.getChildren().remove(detailView);
         rootPane.getChildren().add(reservationListView);
     }
 
@@ -168,6 +173,7 @@ public class InventoryController implements Initializable {
 
 
     private void saveButtonClicked() {
+        detailView.saveItem();
         refreshItems();
     }
 
@@ -179,7 +185,6 @@ public class InventoryController implements Initializable {
     private void reserveItemClicked() {
         createReservationView = new CreateReservationController(detailView.getItem());
         createReservationView.addCreateReservationViewClosedListener(this::closeCreateReservationView);
-        rootPane.getChildren().remove(detailView);
         rootPane.getChildren().add(createReservationView);
     }
 }

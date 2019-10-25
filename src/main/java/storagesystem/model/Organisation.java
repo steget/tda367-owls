@@ -54,7 +54,7 @@ public class Organisation {
      * @return the requested item if found
      * @throws NoSuchElementException if item ID not found
      */
-    IReservable getItem(int ID) throws NoSuchElementException {
+    public IReservable getItem(int ID) throws NoSuchElementException {
         for (IReservable i :
                 items) {
             if (i.getID() == ID) {
@@ -146,6 +146,15 @@ public class Organisation {
             }
         }
         throw new NoSuchElementException("No team with that name");
+    }
+
+    public Team getTeamFromID(int teamID) throws NoSuchElementException{
+        for(Team t : teams){
+            if (t.getID() == teamID){
+                return t;
+            }
+        }
+        throw new NoSuchElementException("No team with that ID");
     }
 
     /**

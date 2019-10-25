@@ -65,15 +65,11 @@ public class ItemDetailViewController extends AnchorPane {
     @FXML
     Button itemPageSaveButton;
     @FXML
-    private
     Button itemPageReserveBtn;
     @FXML
-    private Button reservationsButton;
+    Button reservationsButton;
     @FXML
     private Pane editPane;
-
-
-
 
     ItemDetailViewController(IReservable reservableItem) {
 
@@ -93,8 +89,6 @@ public class ItemDetailViewController extends AnchorPane {
 
         initialize();
     }
-
-
 
     private void initialize() {
         enableEditMode();
@@ -264,13 +258,6 @@ public class ItemDetailViewController extends AnchorPane {
         saveCondition((int) itemPageConditionSlider.getValue());
         saveLocation(itemPageLocationChoicebox.getValue().toString());
         reservableItem.setAmount(Integer.parseInt(itemPageAmountTA.getText()));
-    }
-    
-    @FXML
-    private void reservationsButtonPressed(){
-        for(ItemReservationsClickedListener listener : itemReservationsClickedListeners){
-            listener.itemReservationsClicked(reservableItem);
-        }
     }
 
     /**

@@ -14,9 +14,9 @@ public interface IReservation {
     int getID();
 
     /**
-     * @return The party that borrows the object in Reservation
+     * @return The ID of the party that borrows the object in Reservation
      */
-    IBorrower getBorrower();
+    int getBorrowerID();
 
     /**
      * @return The time interval when the reservation is
@@ -24,7 +24,7 @@ public interface IReservation {
     Interval getInterval();
 
 
-    IReservable getReservedObject();
+    int getReservedObjectID();
 
 
     ReservationStatus getStatus();

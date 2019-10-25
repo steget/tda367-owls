@@ -38,8 +38,8 @@ public class Team implements IBorrower {
         }
     }
 
-    public boolean isItemOwner(IReservable item){
-        if(itemIDs.contains(item.getID())){
+    public boolean isItemOwner(int itemID){
+        if(itemIDs.contains(itemID)){
             return true;
         }return false;
     }

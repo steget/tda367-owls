@@ -187,7 +187,7 @@ public class CreateReservationController extends AnchorPane {
         ReservationHandler resHandler = StoreIT.getCurrentOrganisation().getReservationHandler();
         checkReservationLegal();
         if (isReservationLegal()) {
-            resHandler.createReservation(getTeam(), getInterval(), item);
+            resHandler.createReservation(getTeam().getID(), getInterval(), item.getID());
             close();
         }
     }
@@ -197,7 +197,7 @@ public class CreateReservationController extends AnchorPane {
             AbstractFader.fadeTransition(intervalError, 3);
             return false;
         }
-        if(StoreIT.getCurrentOrganisation().getReservationHandler().isObjectReservedBetween(item, getInterval())) {
+        if(StoreIT.getCurrentOrganisation().getReservationHandler().isObjectReservedBetween(item.getID(), getInterval())) {
             AbstractFader.fadeTransition(alreadyReservedError, 3);
             return false;
         }

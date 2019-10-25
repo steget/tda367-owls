@@ -166,7 +166,7 @@ public class ItemCreateViewController extends AnchorPane {
 
     private void createItem() {
 
-        IReservable newItem = new Item(itemPageNameTA.getText(), itemPageDescriptionTA.getText(), itemPageUserRequirementsTA.getText(), Integer.parseInt(itemPageAmountTA.getText()), saveCondition((int) itemPageConditionSlider.getValue()), isReservableChoiceBox.getSelectionModel().getSelectedIndex() == 0, getLocation(itemPageLocationChoicebox.getSelectionModel().getSelectedItem().toString()));
+        IReservable newItem = IReservableFactory.createReservableItem(itemPageNameTA.getText(), itemPageDescriptionTA.getText(), itemPageUserRequirementsTA.getText(), Integer.parseInt(itemPageAmountTA.getText()), saveCondition((int) itemPageConditionSlider.getValue()), isReservableChoiceBox.getSelectionModel().getSelectedIndex() == 0, getLocation(itemPageLocationChoicebox.getSelectionModel().getSelectedItem().toString()));
 
         PictureHandler.saveItemImagePic(SwingFXUtils.fromFXImage(itemPageImageView.getImage(), null), newItem.getID());
         StoreIT.getCurrentOrganisation().addItem(newItem, StoreIT.getCurrentTeam());

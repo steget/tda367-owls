@@ -16,7 +16,7 @@
 
 <fx:root fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" styleClass="lightbox" stylesheets="@../basicStyles.css" type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane fx:id="editPane" layoutX="60.0" layoutY="270.0" prefHeight="38.0" prefWidth="293.0">
+      <Pane fx:id="editPane" layoutX="90.0" layoutY="300.0" prefHeight="38.0" prefWidth="293.0">
          <children>
             <Label alignment="CENTER" prefHeight="30.0" prefWidth="293.0" styleClass="smallLabel" text="Click image to change it." textAlignment="CENTER" />
          </children>
@@ -61,7 +61,7 @@
             <TextArea fx:id="itemPageAmountTA" editable="false" layoutX="203.0" layoutY="350.0" prefHeight="47.0" prefWidth="90.0" text="444444" />
             <ChoiceBox fx:id="itemPageLocationChoicebox" layoutX="203.0" layoutY="407.0" prefHeight="44.0" prefWidth="141.0" />
             <Line endX="200.5" layoutX="153.0" layoutY="466.0" startX="-152.0" />
-            <Button fx:id="reservationsButton" layoutX="750.0" layoutY="146.0" mnemonicParsing="false" onAction="#reservationsButtonPressed" onMouseClicked="#reservationsButtonPressed" prefHeight="38.0" prefWidth="118.0" styleClass="inAppButton" text="Reservations" textAlignment="CENTER" wrapText="true" />
+            <Button fx:id="reservationsButton" layoutX="750.0" layoutY="146.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="118.0" styleClass="inAppButton" text="Reservations" textAlignment="CENTER" wrapText="true" />
          </children>
       </AnchorPane>
    </children>
