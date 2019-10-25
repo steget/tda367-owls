@@ -28,7 +28,10 @@ public class ReservableItemDetailController extends AnchorPane {
 
     private final IReservable item;
     private final Team itemOwner;
-
+    @FXML
+    Button detailViewReserveButton;
+    @FXML
+    Button reservationsButton;
     @FXML
     private AnchorPane rootPane;
     @FXML
@@ -51,10 +54,6 @@ public class ReservableItemDetailController extends AnchorPane {
     private TextArea detailViewDescriptionTA;
     @FXML
     private TextArea detailViewUserRequirementsTA;
-    @FXML
-    Button detailViewReserveButton;
-    @FXML
-    Button reservationsButton;
 
     public ReservableItemDetailController(IReservable item) {
         this.item = item;

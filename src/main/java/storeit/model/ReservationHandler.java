@@ -86,22 +86,23 @@ public class ReservationHandler {
 
     /**
      * Finds all the incoming reservations a team has
+     *
      * @param team Owner of the items in the reservations
      * @return List with all incoming reservations the team has
      */
     List<IReservation> getTeamsIngoingReservations(Team team) {
         List<IReservation> teamReservations = new ArrayList<>();
-        for(IReservation res : reservations){
-            if(team.isItemOwner(res.getReservedObjectID()))
+        for (IReservation res : reservations) {
+            if (team.isItemOwner(res.getReservedObjectID()))
                 teamReservations.add(res);
         }
         return teamReservations;
     }
 
-    List<IReservation> getTeamsOutgoingReservations(Team team){
+    List<IReservation> getTeamsOutgoingReservations(Team team) {
         List<IReservation> teamReservations = new ArrayList<>();
-        for(IReservation res : reservations){
-            if(res.getBorrowerID() == team.getID()){
+        for (IReservation res : reservations) {
+            if (res.getBorrowerID() == team.getID()) {
                 teamReservations.add(res);
             }
         }
@@ -112,7 +113,7 @@ public class ReservationHandler {
     /**
      * Checks too see if an interval overlaps the reservations of an object.
      *
-     * @param objectID   ID of Object to test
+     * @param objectID ID of Object to test
      * @param interval Interval to test object against
      * @return True if there is overlap, false otherwise.
      */

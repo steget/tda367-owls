@@ -24,6 +24,9 @@ import java.util.List;
 public class CreateReservationController extends AnchorPane {
 
     @FXML
+    public
+    Button confirmButton;
+    @FXML
     AnchorPane rootPane;
     @FXML
     AnchorPane lightboxContentPane;
@@ -31,7 +34,6 @@ public class CreateReservationController extends AnchorPane {
     AnchorPane intervalError;
     @FXML
     AnchorPane alreadyReservedError;
-
     @FXML
     TextField itemField;
     @FXML
@@ -40,7 +42,6 @@ public class CreateReservationController extends AnchorPane {
     Label terms;
     @FXML
     ChoiceBox<String> teamChoicebox;
-
     @FXML
     private Spinner<Integer> startYearSpinner;
     @FXML
@@ -61,13 +62,8 @@ public class CreateReservationController extends AnchorPane {
     private Spinner<Integer> endHourSpinner;
     @FXML
     private Spinner<Integer> endMinuteSpinner;
-
     @FXML
     private CheckBox termsCheckbox;
-
-    @FXML
-    public
-    Button confirmButton;
     @FXML
     private Button cancelButton;
 
@@ -136,28 +132,28 @@ public class CreateReservationController extends AnchorPane {
         endMinuteSpinner.setValueFactory(endMinuteFactory);
 
         startMinuteSpinner.valueProperty().addListener((obs, oldValue, newValue) -> {
-            if(newValue == 60){
+            if (newValue == 60) {
                 startMinuteSpinner.getValueFactory().setValue(0);
-                startHourSpinner.getValueFactory().setValue(startHourFactory.getValue()+1);
+                startHourSpinner.getValueFactory().setValue(startHourFactory.getValue() + 1);
             }
         });
         startHourSpinner.valueProperty().addListener((obs, oldValue, newValue) -> {
-            if(newValue == 24){
+            if (newValue == 24) {
                 startHourSpinner.getValueFactory().setValue(0);
-                startDaySpinner.getValueFactory().setValue(startDayFactory.getValue()+1);
+                startDaySpinner.getValueFactory().setValue(startDayFactory.getValue() + 1);
             }
         });
 
         endMinuteSpinner.valueProperty().addListener((obs, oldValue, newValue) -> {
-            if(newValue == 60){
+            if (newValue == 60) {
                 endMinuteSpinner.getValueFactory().setValue(0);
-                endHourSpinner.getValueFactory().setValue(endHourFactory.getValue()+1);
+                endHourSpinner.getValueFactory().setValue(endHourFactory.getValue() + 1);
             }
         });
         endHourSpinner.valueProperty().addListener((obs, oldValue, newValue) -> {
-            if(newValue == 24){
+            if (newValue == 24) {
                 endHourSpinner.getValueFactory().setValue(0);
-                endDaySpinner.getValueFactory().setValue(endDayFactory.getValue()+1);
+                endDaySpinner.getValueFactory().setValue(endDayFactory.getValue() + 1);
             }
         });
 
@@ -165,7 +161,7 @@ public class CreateReservationController extends AnchorPane {
     }
 
 
-    private int getClosestQuarter(){
+    private int getClosestQuarter() {
         DateTime now = new DateTime();
         int minute = now.getMinuteOfHour();
         int temp = minute % 15;
@@ -173,7 +169,7 @@ public class CreateReservationController extends AnchorPane {
         return temp2;
     }
 
-    private boolean isEndAfterStart(){
+    private boolean isEndAfterStart() {
         long start = getStartDate().getMillis();
         long end = getEndDate().getMillis();
         return end > start;
@@ -189,11 +185,11 @@ public class CreateReservationController extends AnchorPane {
     }
 
     public boolean isReservationLegal() {
-        if(!isEndAfterStart()){
+        if (!isEndAfterStart()) {
             fadeMessage(intervalError);
             return false;
         }
-        if(StoreIT.getCurrentOrganisation().getReservationHandler().isObjectReservedBetween(item.getID(), getInterval())) {
+        if (StoreIT.getCurrentOrganisation().getReservationHandler().isObjectReservedBetween(item.getID(), getInterval())) {
             fadeMessage(alreadyReservedError);
             return false;
         }
@@ -214,7 +210,7 @@ public class CreateReservationController extends AnchorPane {
     }
 
 
-    private DateTime getStartDate(){
+    private DateTime getStartDate() {
         int startYear = startYearSpinner.getValue();
         int startMonth = startMonthSpinner.getValue();
         int startDay = startDaySpinner.getValue();
@@ -224,7 +220,7 @@ public class CreateReservationController extends AnchorPane {
         return start;
     }
 
-    private DateTime getEndDate(){
+    private DateTime getEndDate() {
         int endYear = endYearSpinner.getValue();
         int endMonth = endMonthSpinner.getValue();
         int endDay = endDaySpinner.getValue();
@@ -235,11 +231,11 @@ public class CreateReservationController extends AnchorPane {
     }
 
     private int getMonthDays(int nr) {
-        if(nr == 1 || nr == 3 || nr == 5 || nr == 7 || nr == 8 || nr ==10 || nr == 12)
+        if (nr == 1 || nr == 3 || nr == 5 || nr == 7 || nr == 8 || nr == 10 || nr == 12)
             return 31;
-        else if(nr == 2)
+        else if (nr == 2)
             return 28;
-        else if(nr ==4|| nr == 6|| nr == 9 || nr == 11)
+        else if (nr == 4 || nr == 6 || nr == 9 || nr == 11)
             return 30;
         return 0;
     }

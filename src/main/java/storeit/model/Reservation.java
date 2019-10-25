@@ -52,13 +52,13 @@ public class Reservation implements IReservation {
         this(res.getID(), res.getBorrowerID(), res.getInterval(), res.getReservedObjectID(), res.getStatus());
     }
 
+    public static void setNextID(int nextID) {
+        Reservation.nextID = nextID;
+    }
+
     @Override
     public int getID() {
         return id;
-    }
-
-    public static void setNextID(int nextID) {
-        Reservation.nextID = nextID;
     }
 
     @Override

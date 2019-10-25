@@ -25,10 +25,12 @@ public class Team implements IBorrower {
         nextID++;
     }
 
-    public boolean isItemOwner(int itemID){
-        if(itemIDs.contains(itemID)){
-            return true;
-        }return false;
+    public static void setNextID(int nextID) {
+        Team.nextID = nextID;
+    }
+
+    public boolean isItemOwner(int itemID) {
+        return itemIDs.contains(itemID);
     }
 
     /**
@@ -57,16 +59,20 @@ public class Team implements IBorrower {
         return name;
     }
 
-    void addItemIDToInventory(int itemID) {
-        itemIDs.add(itemID);
-    }
-
     public void setName(String name) {
         this.name = name;
     }
 
+    void addItemIDToInventory(int itemID) {
+        itemIDs.add(itemID);
+    }
+
     public String getTermsAndConditions() {
         return termsAndConditions;
+    }
+
+    public void setTermsAndConditions(String termsAndConditions) {
+        this.termsAndConditions = termsAndConditions;
     }
 
     public List<Integer> getAllItemIDs() {
@@ -75,13 +81,5 @@ public class Team implements IBorrower {
 
     public int getID() {
         return ID;
-    }
-
-    public static void setNextID(int nextID) {
-        Team.nextID = nextID;
-    }
-
-    public void setTermsAndConditions(String termsAndConditions) {
-        this.termsAndConditions = termsAndConditions;
     }
 }

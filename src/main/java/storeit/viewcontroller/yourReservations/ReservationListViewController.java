@@ -13,7 +13,6 @@ import java.io.IOException;
 /**
  * View meant to be used in ReservationsController. Represents a reservation in a small item meant to be used in a list.
  *
- *
  * @author William Albertsson
  */
 
@@ -48,14 +47,14 @@ public class ReservationListViewController extends AnchorPane {
         this.reservation = res;
 
         itemLabel.setText(StoreIT.getCurrentOrganisation().getItem(reservation.getReservedObjectID()).getName());
-        if(isOutgoing)
+        if (isOutgoing)
             borrowerLabel.setText(StoreIT.getCurrentOrganisation().getItemOwner(reservation.getReservedObjectID()).getName());
         else {
             borrowerLabel.setText(StoreIT.getCurrentOrganisation().getTeamFromID(reservation.getBorrowerID()).getName());
         }
         intervalLabel.setText(reservation.getReadableInterval());
         statusLabel.setText(reservation.getStatus().toString());
-        if(reservation.getStatus() == ReservationStatus.PENDING){
+        if (reservation.getStatus() == ReservationStatus.PENDING) {
             statusLabel.setStyle("-fx-text-fill: secondaryButtonColor");
         }
     }

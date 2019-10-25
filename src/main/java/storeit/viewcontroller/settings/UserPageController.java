@@ -62,7 +62,6 @@ public class UserPageController implements Initializable {
     private Button cancelButton;
 
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         viewProfileAnchorPane.toFront();
@@ -78,7 +77,7 @@ public class UserPageController implements Initializable {
             StoreIT.getCurrentUser().setName(profileNameInput.getText());
             StoreIT.getCurrentUser().setDescription(profileDescriptionInput.getText());
             StoreIT.getCurrentUser().setContactInformation(profileContactInput.getText());
-            if(!profilePasswordInput.getText().isEmpty())
+            if (!profilePasswordInput.getText().isEmpty())
                 StoreIT.getCurrentUser().setPassword(profilePasswordInput.getText());
             writeProfileInfo();
             viewProfileAnchorPane.toFront();

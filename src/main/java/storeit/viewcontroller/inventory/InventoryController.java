@@ -38,13 +38,13 @@ public class InventoryController implements Initializable {
         closeDetailView();
         e.consume();
     };
-    private EventHandler<MouseEvent> saveButtonClickedHandler = e -> {
-        saveButtonClicked();
-        e.consume();
-    };
     private EventHandler<MouseEvent> listItemClickedHandler = e -> {
         InventoryListItemController panel = (InventoryListItemController) e.getSource();
         inventoryListItemClicked(panel.getReservableItem());
+        e.consume();
+    };
+    private EventHandler<MouseEvent> saveButtonClickedHandler = e -> {
+        saveButtonClicked();
         e.consume();
     };
     private EventHandler<MouseEvent> createItemClickedHandler = e -> {

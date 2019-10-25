@@ -32,6 +32,10 @@ public class User {
         this(name, "", "", "");
     }
 
+    public static void setNextID(int nextID) {
+        User.nextID = nextID;
+    }
+
     public String getName() {
         return name;
     }
@@ -62,10 +66,6 @@ public class User {
 
     String getPassword() {
         return password;
-    }
-
-    public static void setNextID(int nextID) {
-        User.nextID = nextID;
     }
 
     public void setPassword(String password) {

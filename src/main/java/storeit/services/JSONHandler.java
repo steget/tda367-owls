@@ -5,10 +5,15 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import storeit.model.*;
+import storeit.model.IBorrower;
+import storeit.model.IReservable;
+import storeit.model.IReservation;
+import storeit.model.Organisation;
 
-
-import java.io.*;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +28,7 @@ public class JSONHandler {
 
     /**
      * Clears the json files then saves all data of a list of organisations.
+     *
      * @throws IOException
      */
 

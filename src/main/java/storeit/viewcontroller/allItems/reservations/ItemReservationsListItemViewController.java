@@ -19,7 +19,7 @@ public class ItemReservationsListItemViewController extends AnchorPane {
     private Label statusLabel;
 
 
-    public ItemReservationsListItemViewController(IReservation reservation){
+    public ItemReservationsListItemViewController(IReservation reservation) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/allItems/reservations/ItemReservationsListItemView.fxml"));
         fxmlLoader.setController(this);
         fxmlLoader.setRoot(this);

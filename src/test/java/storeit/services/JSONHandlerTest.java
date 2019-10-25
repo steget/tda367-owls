@@ -5,12 +5,11 @@ import org.junit.Assert;
 import org.junit.Test;
 import storeit.model.*;
 
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static storeit.services.JSONHandler.*;
+import static storeit.services.JSONHandler.getOrganisationList;
 
 public class JSONHandlerTest {
     //makes sure we have the mockData from storeIT in organisationDB

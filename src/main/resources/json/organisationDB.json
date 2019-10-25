@@ -1,6 +1,5 @@
 [
   {
-    "name": "Informationsteknik",
     "items": [
       {
         "CLASSNAME": "storeit.model.Item",
@@ -137,33 +136,34 @@
     ],
     "locations": [
       {
+        "ID": 0,
         "name": "Hubben",
-        "description": "Massa plats",
-        "ID": 0
+        "description": "Massa plats"
       },
       {
+        "ID": 1,
         "name": "Garaget",
-        "description": "Kaos, men får plats med stora saker",
-        "ID": 1
+        "description": "Kaos, men får plats med stora saker"
       },
       {
+        "ID": 2,
         "name": "HASen",
-        "description": "Håll er borta",
-        "ID": 2
+        "description": "Håll er borta"
       }
     ],
     "reservationHandler": {
       "reservations": []
-    }
+    },
+    "name": "Informationsteknik"
   },
   {
-    "name": "Data",
     "items": [],
     "teams": [],
     "users": [],
     "locations": [],
     "reservationHandler": {
       "reservations": []
-    }
+    },
+    "name": "Data"
   }
 ]

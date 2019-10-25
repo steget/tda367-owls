@@ -17,25 +17,6 @@ public class StoreIT {
     //Change this if you want to reset the database.
     private boolean reset = false;
 
-
-    /**
-     * Loads all data into the program. Should be run at start.
-     */
-    public void initializeBackend() throws IOException {
-        if (reset)
-            reset();
-
-        try {
-            organisations.addAll(JSONHandler.getOrganisationList());
-        } catch (NullPointerException e) {
-            System.out.println("Organisation json is empty.");
-        }
-        System.out.println("Loaded Organisations from json.");
-        IDHandler.updateAllIDs(organisations);
-        currentOrganisation = organisations.get(0);
-        System.out.println("Current Organisation Set.");
-    }
-
     /**
      * Searches through the organisations and tries to find one with the input String
      *
@@ -101,7 +82,6 @@ public class StoreIT {
         return organisations;
     }
 
-
     public static Organisation getCurrentOrganisation() {
         return currentOrganisation;
     }
@@ -140,6 +120,23 @@ public class StoreIT {
         return currentOrganisation.getReservationHandler().getTeamsOutgoingReservations(currentTeam);
     }
 
+    /**
+     * Loads all data into the program. Should be run at start.
+     */
+    public void initializeBackend() throws IOException {
+        if (reset)
+            reset();
+
+        try {
+            organisations.addAll(JSONHandler.getOrganisationList());
+        } catch (NullPointerException e) {
+            System.out.println("Organisation json is empty.");
+        }
+        System.out.println("Loaded Organisations from json.");
+        IDHandler.updateAllIDs(organisations);
+        currentOrganisation = organisations.get(0);
+        System.out.println("Current Organisation Set.");
+    }
 
     public void reset() throws IOException { //Run if fresh start or after tests!!!
         JSONHandler.clearAllJsonFiles();

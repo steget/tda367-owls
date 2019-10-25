@@ -32,6 +32,10 @@ import java.util.List;
 public class EditItemDetailViewController extends AnchorPane {
     private final IReservable reservableItem;
     private final Team itemOwner;
+    @FXML
+    ImageView closeButtonImageView;
+    @FXML
+    Button itemPageSaveButton;
     private List<Location> locationList;
     private List<ReserveButtonClickedListener> reserveButtonClickedListeners = new ArrayList<>();
     private List<ItemReservationsClickedListener> itemReservationsClickedListeners = new ArrayList<>();
@@ -39,8 +43,6 @@ public class EditItemDetailViewController extends AnchorPane {
     private AnchorPane contentPane;
     @FXML
     private ImageView itemPageImageView;
-    @FXML
-    ImageView closeButtonImageView;
     @FXML
     private TextArea itemPageNameTA;
     @FXML
@@ -61,8 +63,6 @@ public class EditItemDetailViewController extends AnchorPane {
     private ChoiceBox itemPageLocationChoicebox;
     @FXML
     private Label imageErrorMsgLabel;
-    @FXML
-    Button itemPageSaveButton;
     @FXML
     private Pane editPane;
 
@@ -148,7 +148,6 @@ public class EditItemDetailViewController extends AnchorPane {
             }
         }
     }
-
 
 
     private void setReservableChoiceBox() {
@@ -296,26 +295,26 @@ public class EditItemDetailViewController extends AnchorPane {
         }
     }
 
-    void addReserveButtonClickedListener(ReserveButtonClickedListener listener){
+    void addReserveButtonClickedListener(ReserveButtonClickedListener listener) {
         reserveButtonClickedListeners.add(listener);
     }
 
-    void addItemReservationsClickedListeners(ItemReservationsClickedListener listener){
+    void addItemReservationsClickedListeners(ItemReservationsClickedListener listener) {
         itemReservationsClickedListeners.add(listener);
+    }
+
+    IReservable getItem() {
+        return reservableItem;
     }
 
     /**
      * Listener interface for reserve button pressed
      */
-    interface ReserveButtonClickedListener{
+    interface ReserveButtonClickedListener {
         void reserveButtonClicked();
     }
 
-    interface ItemReservationsClickedListener{
+    interface ItemReservationsClickedListener {
         void itemReservationsClicked(IReservable item);
-    }
-
-    IReservable getItem(){
-        return reservableItem;
     }
 }

@@ -9,9 +9,9 @@ import static org.junit.Assert.assertTrue;
 public class ReservationTest {
 
     @Test
-    public void reservationsShouldBeEqual(){
+    public void reservationsShouldBeEqual() {
         IBorrower borrower = new Team("Team1");
-        IReservable object = IReservableFactory.createReservableItem("mockItem", "desc","requirements",1,Condition.GREAT,true, 0);
+        IReservable object = IReservableFactory.createReservableItem("mockItem", "desc", "requirements", 1, Condition.GREAT, true, 0);
         DateTime time1 = new DateTime();
         DateTime time2 = time1.plusDays(1);
 
@@ -26,14 +26,14 @@ public class ReservationTest {
 
 
     @Test
-    public void objectShouldEqual(){
+    public void objectShouldEqual() {
         Organisation mockOrg = new Organisation("MockOrg");
         StoreIT.setCurrentOrganisation(mockOrg);
         Team borrower = new Team("Team1");
         Team owner = new Team("Owner");
         mockOrg.addTeam(borrower);
         mockOrg.addTeam(owner);
-        IReservable object = IReservableFactory.createReservableItem("mockItem", "desc","requirements",1,Condition.GREAT,true, 0);
+        IReservable object = IReservableFactory.createReservableItem("mockItem", "desc", "requirements", 1, Condition.GREAT, true, 0);
         DateTime time1 = new DateTime();
         DateTime time2 = time1.plusDays(1);
         mockOrg.addItem(object, owner);

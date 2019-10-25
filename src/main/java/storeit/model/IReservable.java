@@ -1,4 +1,5 @@
 package storeit.model;
+
 /**
  * Interface to use for classes that represent something that can be borrowed.
  *
@@ -13,32 +14,31 @@ public interface IReservable {
 
     String getUserRequirements();
 
-    int getAmount();
-
-    Condition getCondition();
-
-    boolean isReservable();
-
-    int getLocationID();
-
-    String getName();
-
-    String getDescription();
-
-    void setName(String name);
-
-    void setDescription(String description);
-
     void setUserRequirements(String userRequirements);
+
+    int getAmount();
 
     void setAmount(int amount);
 
+    Condition getCondition();
+
     void setCondition(Condition condition);
+
+    boolean isReservable();
 
     void setReservable(boolean reservable);
 
+    int getLocationID();
+
     void setLocationID(int locationID);
 
+    String getName();
+
+    void setName(String name);
+
+    String getDescription();
+
+    void setDescription(String description);
 
     /**
      * Should be implemented by all implementors

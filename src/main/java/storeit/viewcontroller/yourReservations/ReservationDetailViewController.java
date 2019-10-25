@@ -20,30 +20,22 @@ import java.io.IOException;
 public class ReservationDetailViewController extends AnchorPane {
 
     IReservation reservation;
-
-    @FXML
-    private TextField itemField;
-
-    @FXML
-    private TextField borrowerField;
-
-    @FXML
-    private TextField ownerField;
-
-    @FXML
-    private TextField timeAndDateField;
-
-    @FXML
-    private TextField statusField;
-
-    @FXML
-    private TextField IDField;
-
     @FXML
     Button approveButton;
     @FXML
     Button declineButton;
-
+    @FXML
+    private TextField itemField;
+    @FXML
+    private TextField borrowerField;
+    @FXML
+    private TextField ownerField;
+    @FXML
+    private TextField timeAndDateField;
+    @FXML
+    private TextField statusField;
+    @FXML
+    private TextField IDField;
     @FXML
     private AnchorPane lightboxContentPane;
 
@@ -72,28 +64,24 @@ public class ReservationDetailViewController extends AnchorPane {
     private void updateButtons() {
         declineButton.setVisible(false);
         approveButton.setVisible(false);
-        if(teamShouldEdit()) {
+        if (teamShouldEdit()) {
             declineButton.setVisible(true);
             approveButton.setVisible(true);
         }
     }
 
     private boolean teamShouldEdit() {
-        if(reservation.getStatus() == ReservationStatus.PENDING && teamRecievesReservation())
-            return true;
-        return false;
+        return reservation.getStatus() == ReservationStatus.PENDING && teamRecievesReservation();
     }
 
     private boolean teamRecievesReservation() {
         int itemID = reservation.getReservedObjectID();
         IBorrower borrower = StoreIT.getCurrentOrganisation().getItemOwner(itemID);
-        if(StoreIT.getCurrentTeam().equals(borrower))
-            return true;
-        return false;
+        return StoreIT.getCurrentTeam().equals(borrower);
     }
 
 
-    void updateAllViews(){
+    void updateAllViews() {
         IReservable item = StoreIT.getCurrentOrganisation().getItem(reservation.getReservedObjectID());
         itemField.setText(StoreIT.getCurrentOrganisation().getItem(reservation.getReservedObjectID()).getName());
         borrowerField.setText(StoreIT.getCurrentOrganisation().getItem(reservation.getBorrowerID()).getName());

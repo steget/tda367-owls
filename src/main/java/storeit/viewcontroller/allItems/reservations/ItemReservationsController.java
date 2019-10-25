@@ -23,7 +23,7 @@ public class ItemReservationsController extends AnchorPane {
     private IReservable item;
     private List<ItemReservationsListItemViewController> itemReservationListItemViews = new ArrayList();
 
-    public ItemReservationsController(IReservable item){
+    public ItemReservationsController(IReservable item) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/allItems/reservations/ItemReservations.fxml"));
         fxmlLoader.setController(this);
         fxmlLoader.setRoot(this);

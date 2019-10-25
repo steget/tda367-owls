@@ -32,17 +32,18 @@ import java.util.List;
  */
 
 public class ItemCreateViewController extends AnchorPane {
+    @FXML
+    ImageView closeButtonImageView;
+    @FXML
+    Button createItemButton;
     private List<Location> locationList;
     private List<CreateItemButtonListener> createButtonListeners = new ArrayList<>();
-
     @FXML
     private Label errorMsg;
     @FXML
     private AnchorPane contentPane;
     @FXML
     private ImageView itemPageImageView;
-    @FXML
-    ImageView closeButtonImageView;
     @FXML
     private TextArea itemPageNameTA;
     @FXML
@@ -61,8 +62,6 @@ public class ItemCreateViewController extends AnchorPane {
     private Label imageErrorMsgLabel;
     @FXML
     private Pane editPane;
-    @FXML
-    Button createItemButton;
 
 
     ItemCreateViewController() {

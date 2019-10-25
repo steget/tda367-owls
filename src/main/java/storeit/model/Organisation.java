@@ -11,13 +11,12 @@ import java.util.NoSuchElementException;
  * @author Hugo Stegrell, Pär Aronsson
  */
 public class Organisation {
-    private String name;
     private final List<IReservable> items = new ArrayList<>();
     private final List<Team> teams = new ArrayList<>();
     private final List<User> users = new ArrayList<>();
     private final List<Location> locations = new ArrayList<>();
-
     private final ReservationHandler reservationHandler;
+    private String name;
 
     public Organisation(String name) {
         this.name = name;
@@ -69,7 +68,7 @@ public class Organisation {
      * @param user
      * @return true if a user is part of a team.
      */
-    public boolean isUserPartOfTeam(User user){
+    public boolean isUserPartOfTeam(User user) {
 
         return getUsersTeams(user).size() > 0;
     }
@@ -112,6 +111,7 @@ public class Organisation {
 
     /**
      * Gets a specific team's Items through checking it's itemIDs.
+     *
      * @param team
      * @return a List of Items
      */
@@ -138,18 +138,18 @@ public class Organisation {
     }
 
 
-    public Team getTeamFromName(String teamName) throws NoSuchElementException{
-        for(Team t : teams){
-            if (t.getName().equals(teamName)){
+    public Team getTeamFromName(String teamName) throws NoSuchElementException {
+        for (Team t : teams) {
+            if (t.getName().equals(teamName)) {
                 return t;
             }
         }
         throw new NoSuchElementException("No team with that name");
     }
 
-    public Team getTeamFromID(int teamID) throws NoSuchElementException{
-        for(Team t : teams){
-            if (t.getID() == teamID){
+    public Team getTeamFromID(int teamID) throws NoSuchElementException {
+        for (Team t : teams) {
+            if (t.getID() == teamID) {
                 return t;
             }
         }
@@ -199,7 +199,7 @@ public class Organisation {
         return getItemOwner(item.getID());
     }
 
-    public Team getItemOwner(int itemID)throws NoSuchElementException{
+    public Team getItemOwner(int itemID) throws NoSuchElementException {
         for (Team t :
                 teams) {
             if (t.getAllItemIDs().contains(itemID)) {
@@ -208,7 +208,6 @@ public class Organisation {
         }
         throw new NoSuchElementException("Item owner could not be found");
     }
-
 
 
     public List<IReservation> getAllReservations() {

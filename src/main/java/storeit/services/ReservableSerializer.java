@@ -15,7 +15,7 @@ public class ReservableSerializer implements JsonSerializer<IReservable>, JsonDe
     private static final String DATA = "DATA";
 
     public IReservable deserialize(JsonElement jsonElement, Type type,
-                                 JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
+                                   JsonDeserializationContext jsonDeserializationContext) throws JsonParseException {
 
         JsonObject jsonObject = jsonElement.getAsJsonObject();
         JsonPrimitive prim = (JsonPrimitive) jsonObject.get(CLASSNAME);

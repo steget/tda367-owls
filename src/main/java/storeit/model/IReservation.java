@@ -24,8 +24,6 @@ public interface IReservation {
     Interval getInterval();
 
 
-
-
     ReservationStatus getStatus();
 
     void setStatus(ReservationStatus status);

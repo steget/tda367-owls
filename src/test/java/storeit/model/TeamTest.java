@@ -16,9 +16,9 @@ public class TeamTest {
         List<IReservable> allItems = org.getTeamsItems(testTeam);
 
         assertEquals(0, allItems.size());
-        Location hasen = new Location("hasen","ha senare");
+        Location hasen = new Location("hasen", "ha senare");
 
-        IReservable mockItem = IReservableFactory.createReservableItem("mockItem", "desc","requirements",1,Condition.GREAT,true, hasen.getID());
+        IReservable mockItem = IReservableFactory.createReservableItem("mockItem", "desc", "requirements", 1, Condition.GREAT, true, hasen.getID());
         allItems.add(mockItem);
         assertEquals(1, allItems.size());
     }

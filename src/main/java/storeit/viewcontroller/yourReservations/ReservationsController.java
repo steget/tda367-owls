@@ -36,28 +36,30 @@ public class ReservationsController implements Initializable {
 
 
     List<ReservationListViewController> reservationViews = new ArrayList<>();
-
+    @FXML
+    ChoiceBox<String> teamChooser;
     @FXML
     private AnchorPane reservationsRootPane;
-
     @FXML
     private Label reservationsLabel;
     @FXML
     private Label teamLabel;
-
     @FXML
     private FlowPane reservationListFlowPane;
-    @FXML
-    ChoiceBox<String> teamChooser;
-
     @FXML
     private Toggle ingoingToggle;
     @FXML
     private Toggle outgoingToggle;
 
     private ReservationDetailViewController detailView;
-    private EventHandler<MouseEvent> detailViewClickedHandler = e -> {
-        detailViewClicked();
+    private EventHandler<MouseEvent> approveButtonClicked = e -> {
+        detailView.reservation.setStatus(ReservationStatus.APPROVED);
+        detailView.updateAllViews();
+        e.consume();
+    };
+    private EventHandler<MouseEvent> declineButtonClicked = e -> {
+        detailView.reservation.setStatus(ReservationStatus.DECLINED);
+        detailView.updateAllViews();
         e.consume();
     };
     private EventHandler<MouseEvent> reservationListViewClickedHandler = e -> {
@@ -65,7 +67,10 @@ public class ReservationsController implements Initializable {
         reservationListViewClicked(panel.getReservation());
         e.consume();
     };
-
+    private EventHandler<MouseEvent> detailViewClickedHandler = e -> {
+        detailViewClicked();
+        e.consume();
+    };
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -82,20 +87,21 @@ public class ReservationsController implements Initializable {
         });
 
     }
+
     private void initializeToggleButtons() {
         ToggleGroup toggleGroup = new ToggleGroup();
 
         ingoingToggle.setToggleGroup(toggleGroup);
         outgoingToggle.setToggleGroup(toggleGroup);
 
-        toggleGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>(){
+        toggleGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
             public void changed(ObservableValue<? extends Toggle> ov,
                                 Toggle toggle, Toggle new_toggle) {
-                if(new_toggle == ingoingToggle){
+                if (new_toggle == ingoingToggle) {
                     setIngoing();
-                }else if( new_toggle == outgoingToggle){
+                } else if (new_toggle == outgoingToggle) {
                     setOutgoing();
-                }else
+                } else
                     reservationsLabel.setText("Choose in- our outgoing");
                 updateReservations();
             }
@@ -124,14 +130,13 @@ public class ReservationsController implements Initializable {
         teamChooser.setValue(StoreIT.getCurrentTeam().getName()); //show first value in box
     }
 
-
     private void createListViews() {
         reservationViews = new ArrayList<>();
         boolean alternating = false;
         List<IReservation> resToCreate = new ArrayList<>();
-        if(ingoingToggle.isSelected()){
+        if (ingoingToggle.isSelected()) {
             resToCreate = StoreIT.getCurrentTeamIngoingReservations();
-        }else if(outgoingToggle.isSelected()){
+        } else if (outgoingToggle.isSelected()) {
             resToCreate = StoreIT.getCurrentTeamOutgoingReservations();
         }
 
@@ -150,9 +155,7 @@ public class ReservationsController implements Initializable {
     }
 
     private boolean isOutgoing() {
-        if(outgoingToggle.isSelected())
-            return true;
-        return false;
+        return outgoingToggle.isSelected();
     }
 
     private void updateReservations() {
@@ -161,18 +164,6 @@ public class ReservationsController implements Initializable {
         reservationListFlowPane.getChildren().addAll(reservationViews);
 
     }
-
-    private EventHandler<MouseEvent> approveButtonClicked = e -> {
-        detailView.reservation.setStatus(ReservationStatus.APPROVED);
-        detailView.updateAllViews();
-        e.consume();
-    };
-    private EventHandler<MouseEvent> declineButtonClicked = e -> {
-        detailView.reservation.setStatus(ReservationStatus.DECLINED);
-        detailView.updateAllViews();
-        e.consume();
-    };
-
 
     private void detailViewClicked() {
         reservationsRootPane.getChildren().remove(detailView);

@@ -73,7 +73,7 @@ public class FrameworkController implements Initializable, ILoadUI {
 
         if (StoreIT.getCurrentOrganisation().getUsersTeams(StoreIT.getCurrentUser()).size() > 0) {
             loadUI("/yourReservations/reservations.fxml");
-        }else{
+        } else {
             noTeamPopUp();
         }
     }

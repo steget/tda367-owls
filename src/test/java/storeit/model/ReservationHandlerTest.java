@@ -17,7 +17,7 @@ public class ReservationHandlerTest {
     public void shouldCreateMultipleReservations() {
 
         IBorrower borrower = new Team("Team1");
-        IReservable object = IReservableFactory.createReservableItem("mockItem", "desc","requirements",1,Condition.GREAT,true, 0);
+        IReservable object = IReservableFactory.createReservableItem("mockItem", "desc", "requirements", 1, Condition.GREAT, true, 0);
         ReservationHandler handler = new ReservationHandler(new ArrayList<>());
 
         DateTime time1 = new DateTime();
@@ -45,8 +45,8 @@ public class ReservationHandlerTest {
         Team owner = new Team("Owner");
         mockOrg.addTeam(borrower);
         mockOrg.addTeam(owner);
-        IReservable object1 = IReservableFactory.createReservableItem("mockItem", "desc","requirements",1,Condition.GREAT,true, 0);
-        IReservable object2 = IReservableFactory.createReservableItem("mockItem", "desc","requirements",1,Condition.GREAT,true, 0);
+        IReservable object1 = IReservableFactory.createReservableItem("mockItem", "desc", "requirements", 1, Condition.GREAT, true, 0);
+        IReservable object2 = IReservableFactory.createReservableItem("mockItem", "desc", "requirements", 1, Condition.GREAT, true, 0);
         ReservationHandler handler = new ReservationHandler(new ArrayList<>());
 
         mockOrg.addItem(object1, owner);
@@ -56,7 +56,6 @@ public class ReservationHandlerTest {
 
 
         Interval interval = new Interval(time1, time2);
-
 
 
         if (!handler.isObjectReservedBetween(object1.getID(), interval))
@@ -88,7 +87,7 @@ public class ReservationHandlerTest {
         mockOrg.addTeam(borrower);
         mockOrg.addTeam(owner);
 
-        IReservable object = IReservableFactory.createReservableItem("mockItem", "desc","requirements",1,Condition.GREAT,true, 0);
+        IReservable object = IReservableFactory.createReservableItem("mockItem", "desc", "requirements", 1, Condition.GREAT, true, 0);
         ReservationHandler handler = new ReservationHandler(new ArrayList<>());
 
         mockOrg.addItem(object, owner);
@@ -119,8 +118,8 @@ public class ReservationHandlerTest {
         mockOrg.addTeam(borrower2);
 
 
-        IReservable object1 = IReservableFactory.createReservableItem("mockItem", "desc","requirements",1,Condition.GREAT,true, 0);
-        IReservable object2 = IReservableFactory.createReservableItem("mockItem", "desc","requirements",1,Condition.GREAT,true, 0);
+        IReservable object1 = IReservableFactory.createReservableItem("mockItem", "desc", "requirements", 1, Condition.GREAT, true, 0);
+        IReservable object2 = IReservableFactory.createReservableItem("mockItem", "desc", "requirements", 1, Condition.GREAT, true, 0);
 
         mockOrg.addItem(object1, borrower2);
         mockOrg.addItem(object2, borrower2);
