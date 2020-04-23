@@ -25,7 +25,7 @@ ________________________________________________________________________________
 
 Group member - Git username
 
-- Pär Aronsson        -     PearPressure
+- Pär Aronsson        -     Pear99
 - William Albertsson  -     Sponken
 - Jonathan Eksberg    -     xXEKEXx
 - Hugo Stegrell       -     steget
